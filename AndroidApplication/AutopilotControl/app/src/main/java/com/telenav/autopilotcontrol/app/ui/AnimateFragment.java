@@ -112,6 +112,11 @@ public class AnimateFragment extends Fragment {
     boolean isRequestSent = false;
     boolean highwayMsgSpoken = false;
 
+    boolean threeMilesMsgSpoken = false;
+    boolean twoMileMsgSpoken = false;
+    boolean oneMileMsgSpoken = false;
+    boolean halfMileMsgSpoken = false;
+
     //boolean = false;
     private setStatusClass statusObject = new setStatusClass();
 
@@ -985,7 +990,7 @@ public class AnimateFragment extends Fragment {
 
         if (isAutopilotOnFromNetwork)
         {
-            speechStrings.playAdviceInEnglish(speechStrings.NO_NETWORK_EMERGENCY);
+//            speechStrings.playAdviceInEnglish(speechStrings.NO_NETWORK_EMERGENCY);
             for (Map.Entry<String, Boolean> entry : speechStrings.messagePlayed.entrySet()) {
                 if (!entry.getKey().equals(speechStrings.NO_NETWORK_EMERGENCY)) {
                     entry.setValue(false);
@@ -993,7 +998,7 @@ public class AnimateFragment extends Fragment {
             }
         } else
         {
-            speechStrings.playAdviceInHindi(speechStrings.NO_NETWORK_NON_EMERGENCY);
+//            speechStrings.playAdviceInHindi(speechStrings.NO_NETWORK_NON_EMERGENCY);
             for (Map.Entry<String, Boolean> entry : speechStrings.messagePlayed.entrySet()) {
                 if (!entry.getKey().equals(speechStrings.NO_NETWORK_NON_EMERGENCY)) {
                     entry.setValue(false);
@@ -1032,21 +1037,21 @@ public class AnimateFragment extends Fragment {
             if(!isPerceptionWorking)
             {
                 errorString = errorString + "Perception data not received\n";
-                speechStrings.playAdviceInEnglish(speechStrings.PERCEPTION_NOT_WORKING_NON_EMERGENCY);
+//                speechStrings.playAdviceInEnglish(speechStrings.PERCEPTION_NOT_WORKING_NON_EMERGENCY);
             }
             if(!isControlWorking)
             {
                 errorString = errorString + "Control data not received\n";
-                speechStrings.playAdviceInEnglish(speechStrings.CONTROL_NOT_WORKING_NON_EMERGENCY);
+//                speechStrings.playAdviceInEnglish(speechStrings.CONTROL_NOT_WORKING_NON_EMERGENCY);
             }
             if(!isMapWorking)
             {
                 errorString = errorString + "Map data not received\n";
-                speechStrings.playAdviceInEnglish(speechStrings.MAPS_NOT_WORKING_NON_EMERGENCY);
+//                speechStrings.playAdviceInEnglish(speechStrings.MAPS_NOT_WORKING_NON_EMERGENCY);
             }
             if(!isLaneObjectWorking) {
                 errorString = errorString + "Lane data not received\n";
-                speechStrings.playAdviceInEnglish(speechStrings.MOTION_PLANNING_NOT_WORKING_NON_EMERGENCY);
+//                speechStrings.playAdviceInEnglish(speechStrings.MOTION_PLANNING_NOT_WORKING_NON_EMERGENCY);
             }
         }
         errorTextBox.getHandler().post(new Runnable() {
@@ -1074,7 +1079,7 @@ public class AnimateFragment extends Fragment {
     {
         if (autopilotAvailableMessagePlayed == false)
         {
-            ((MainActivity)getActivity()).speak("Autopilot available in " + remainingDistance + "miles");
+//            ((MainActivity)getActivity()).speak("Autopilot available in " + remainingDistance + "miles");
 
             noNetworkMessagePlayed = false;
             noNodesWorkingMessagePlayed = false;
@@ -1106,7 +1111,7 @@ public class AnimateFragment extends Fragment {
 
         if (isAutopilotOnFromNetwork) {
             if (waitingForDataMessagePlayed == false) {
-                ((MainActivity)getActivity()).speak("We are waiting for data. Please take back control immediately");
+//                ((MainActivity)getActivity()).speak("We are waiting for data. Please take back control immediately");
 
                 noNetworkMessagePlayed = false;
                 noNodesWorkingMessagePlayed = false;
@@ -1117,7 +1122,7 @@ public class AnimateFragment extends Fragment {
             }
         } else {
             if (waitingForDataMessagePlayed == false) {
-                ((MainActivity)getActivity()).speak("We are waiting for data.");
+//                ((MainActivity)getActivity()).speak("We are waiting for data.");
 
                 noNetworkMessagePlayed = false;
                 noNodesWorkingMessagePlayed = false;
@@ -1190,22 +1195,46 @@ public class AnimateFragment extends Fragment {
         });
 
         if (distance == 3) {
-            String textToSpeak = "Autopilot section ending. Please take over the control";
-            ((MainActivity)getActivity()).speak(textToSpeak);
+            if(!threeMilesMsgSpoken) {
+                String textToSpeak = "Autopilot section ending. Please take over the control";
+                ((MainActivity) getActivity()).speak(textToSpeak);
+                threeMilesMsgSpoken = true;
+            }
+            twoMileMsgSpoken = false;
+            oneMileMsgSpoken = false;
+            halfMileMsgSpoken = false;
         }
         if (distance == 2) {
-            String textToSpeak = "Autopilot section ending soon. Please take over the control";
-            ((MainActivity)getActivity()).speak(textToSpeak);
+            if(!twoMileMsgSpoken) {
+                String textToSpeak = "Autopilot section ending soon. Please take over the control";
+                ((MainActivity) getActivity()).speak(textToSpeak);
+                twoMileMsgSpoken = true;
+            }
+            threeMilesMsgSpoken = false;
+            oneMileMsgSpoken = false;
+            halfMileMsgSpoken = false;
         }
         if (distance == 1) {
-            isEmergency = true;
-            String textToSpeak = "Please take back the control. Autopilot section has finished";
-            ((MainActivity)getActivity()).speak(textToSpeak);
+            if(!oneMileMsgSpoken) {
+                isEmergency = true;
+                String textToSpeak = "Please take back the control. Autopilot section has finished";
+                ((MainActivity) getActivity()).speak(textToSpeak);
+                oneMileMsgSpoken = true;
+            }
+            threeMilesMsgSpoken = false;
+            twoMileMsgSpoken = false;
+            halfMileMsgSpoken = false;
         }
         if (distance == 0.5) {
-            isEmergency = true;
-            String textToSpeak = "Emergency procedure has started. Please take back the control";
-            ((MainActivity)getActivity()).speak(textToSpeak);
+            if(!halfMileMsgSpoken) {
+                isEmergency = true;
+                String textToSpeak = "Emergency procedure has started. Please take back the control";
+                ((MainActivity) getActivity()).speak(textToSpeak);
+                halfMileMsgSpoken = true;
+            }
+            threeMilesMsgSpoken = false;
+            twoMileMsgSpoken = false;
+            oneMileMsgSpoken = false;
         }
     }
 
