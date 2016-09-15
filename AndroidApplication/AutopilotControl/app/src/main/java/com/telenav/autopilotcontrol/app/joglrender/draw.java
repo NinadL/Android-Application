@@ -151,21 +151,21 @@ public class draw {
 
     public void drawToScreen()
     {
-            if (MainActivity.screenView == MainActivity.startScreen && MainActivity.autoswap == false || MainActivity.autoswap == true && !statusObject.gettingMapData()) {
-
-                GLES20.glEnable(GLES20.GL_BLEND);
-                GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-
-                if (flag4) {
-                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), 3, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrix, mViewMatrix, mModelMatrix, redColorHandle);
-                }
-
-                if (flag3) {
-                    // Matrix.rotateM(mModelMatrixLane, 0, 90, 1, 0, 0);
-                    Log.d("sentsensor", "flag3" + " " + sensorSize);
-                    drawTexture(sensorVertexBuffer, sensorColorBuffer, null, null, sensorSize, 3, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrix, mViewMatrix, mModelMatrix, -2);
-                }
-            } else
+//            if (MainActivity.screenView == MainActivity.startScreen && MainActivity.autoswap == false || MainActivity.autoswap == true && !statusObject.gettingMapData()) {
+//
+//                GLES20.glEnable(GLES20.GL_BLEND);
+//                GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+//
+//                if (flag4) {
+//                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), 3, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrix, mViewMatrix, mModelMatrix, redColorHandle);
+//                }
+//
+//                if (flag3) {
+//                    // Matrix.rotateM(mModelMatrixLane, 0, 90, 1, 0, 0);
+//                    Log.d("sentsensor", "flag3" + " " + sensorSize);
+//                    drawTexture(sensorVertexBuffer, sensorColorBuffer, null, null, sensorSize, 3, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrix, mViewMatrix, mModelMatrix, -2);
+//                }
+//            } else
             //*/
             {
 
@@ -184,7 +184,7 @@ public class draw {
                     float yMultiplicationFactor = 3.5f;
 
                     Matrix.setIdentityM(mModelMatrixLane, 0);
-                    Matrix.scaleM(mModelMatrixLane, 0, 0.5f, 0.5f, 0.5f);
+                    Matrix.scaleM(mModelMatrixLane, 0, 0.45f, 0.45f, 0.45f); //originally 0, 0.5, 0.5, 0.5
                     Matrix.translateM(mModelMatrixLane, 0, xTranslateValue, 0, zTranslateValue);
 
                     //make the car hood to face forward
@@ -193,27 +193,29 @@ public class draw {
                     //make the car tires to touch the base else it is verticle instead of horizontal
                     Matrix.rotateM(mModelMatrixLane, 0, 90, 1, 0, 0);
 
+
                     drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
 
                     if (statusObject.gettingPerceptionData()) {
                         ArrayList<Obstacles> obstacleList = dp.getObstaclesObject();
                         Log.d("entered", "he " + obstacleList.size());
                         for (int i = 0; i < obstacleList.size(); i++) {
-                            if (obstacleList.get(i) != null) {
+                            if (obstacleList.get(i) != null && isObstacleInAdjacentLane(obstacleList.get(i))) {
                                 Log.d("entered", "he1");
                                 Matrix.setIdentityM(mModelMatrixLane, 0);
-                                Matrix.scaleM(mModelMatrixLane, 0, 0.4f, 0.4f, 0.4f);
+                                Matrix.scaleM(mModelMatrixLane, 0, 0.45f, 0.45f, 0.45f); //originally 0.4, 0.4, 0.4
                                 Matrix.translateM(mModelMatrixLane, 0, xTranslateValue + (float) (obstacleList.get(i).getPosition()[0]), (float) (yMultiplicationFactor * obstacleList.get(i).getPosition()[1]), zTranslateValue + (float) obstacleList.get(i).getPosition()[2]);
                                 Matrix.rotateM(mModelMatrixLane, 0, 90, 1, 0, 0);
                                 Log.d("orientation:Client", "qx: " + obstacleList.get(i).getOrientation()[0] + "qw:" + obstacleList.get(i).getOrientation()[3] + " " + ((Math.acos(obstacleList.get(i).getOrientation()[3]) * 2) - 180) + " " + Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3] * 2)));
                                 Matrix.rotateM(mModelMatrixLane, 0, (float) Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3]) * 2) - 180, 0, 1, 0);
-                                drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
+                                drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, yellowColorHandle);
                             }
                         }
                     }
                 }
             }
     }
+
 
 
     void drawTexture(FloatBuffer vertexBuffer,FloatBuffer colorBuffer, FloatBuffer normalBuffer, FloatBuffer textureBuffer, int size ,int dataSize,float useTexture,int mode,float[] mProjectionMatrix,float[] mViewMatrix,float[] mModelMatrix,int mTextureDataHandle)
@@ -287,5 +289,15 @@ public class draw {
         Log.d("laneFormoation",mode+" "+size);
        // GLES20.glDeleteTextures(1,mTextureDataHandle);
 
+    }
+
+    boolean isObstacleInAdjacentLane(Obstacles obstacle)
+    {
+        double[] position = obstacle.getPosition();
+        if(position[1] > 5.4 && position[1] < -5.4)
+        {
+            return false;
+        }
+        return true;
     }
 }

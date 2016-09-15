@@ -14,7 +14,6 @@ public class Obstacles {
 
     public void setPosition(double x, double y, double z)
     {
-       // Log.d("setPosition timestamp",obstacles.length()+" ");
         this.position[0] = x;
         this.position[1] = y;
         this.position[2] = z;

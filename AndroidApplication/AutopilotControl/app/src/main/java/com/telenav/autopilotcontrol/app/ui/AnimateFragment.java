@@ -473,117 +473,117 @@ public class AnimateFragment extends Fragment {
 
             }
 
-            if((( (MainActivity)getActivity()).areWeOnStartScreen && MainActivity.autoswap == false)||(MainActivity.autoswap == true && statusObject.gettingMapData() == false) && areWeOnCentreLaneRadioButton!=null )
-            {
-                if( areWeOnCentreLaneRadioButton.getVisibility() != View.INVISIBLE && areWeOnCentreLaneRadioButton.getHandler()!=null)
-                {
-                    areWeOnCentreLaneRadioButton.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            areWeOnCentreLaneRadioButton.setVisibility(View.INVISIBLE);
-                        }
-                    });
+//            statusSymbol.getHandler().post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    statusSymbol.setVisibility(View.VISIBLE);
+//                }
+//            });
+//
+//            mbtSpeak.getHandler().post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    mbtSpeak.setVisibility(View.VISIBLE);
+//                }
+//            });
 
-                    onHighwayRadioButton.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            onHighwayRadioButton.setVisibility(View.INVISIBLE);
-                        }
-                    });
-
-                    leftLaneVisibleRadioButton.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            leftLaneVisibleRadioButton.setVisibility(View.INVISIBLE);
-                        }
-                    });
-
-                    rightButtonVisibleRadioButton.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            rightButtonVisibleRadioButton.setVisibility(View.INVISIBLE);
-                        }
-                    });
-
-                    distanceRemainingMoreThan3.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            distanceRemainingMoreThan3.setVisibility(View.INVISIBLE);
-                        }
-                    });
-
-                    statusSymbol.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            statusSymbol.setVisibility(View.INVISIBLE);
-                        }
-                    });
-
-                    mbtSpeak.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mbtSpeak.setVisibility(View.INVISIBLE);
-                        }
-                    });
-                }
-            }
-            else
-            {
-                if(areWeOnCentreLaneRadioButton.getVisibility() != View.VISIBLE)
-                {
-                    areWeOnCentreLaneRadioButton.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            areWeOnCentreLaneRadioButton.setVisibility(View.VISIBLE);
-                        }
-                    });
-
-                    onHighwayRadioButton.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            onHighwayRadioButton.setVisibility(View.VISIBLE);
-                        }
-                    });
-
-                    leftLaneVisibleRadioButton.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            leftLaneVisibleRadioButton.setVisibility(View.VISIBLE);
-                        }
-                    });
-
-                    distanceRemainingMoreThan3.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            distanceRemainingMoreThan3.setVisibility(View.VISIBLE);
-                        }
-                    });
-
-                    rightButtonVisibleRadioButton.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            rightButtonVisibleRadioButton.setVisibility(View.VISIBLE);
-                        }
-                    });
-
-//                    if(allNodesWorking)
-                    {
-                        statusSymbol.getHandler().post(new Runnable() {
-                            @Override
-                            public void run() {
-                                statusSymbol.setVisibility(View.VISIBLE);
-                            }
-                        });
-                    }
-
-                    mbtSpeak.getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mbtSpeak.setVisibility(View.VISIBLE);
-                        }
-                    });
-                }
-            }
+//            if((( (MainActivity)getActivity()).areWeOnStartScreen && MainActivity.autoswap == false)||(MainActivity.autoswap == true && statusObject.gettingMapData() == false) && areWeOnCentreLaneRadioButton!=null )
+//            {
+//                if( areWeOnCentreLaneRadioButton.getVisibility() != View.INVISIBLE && areWeOnCentreLaneRadioButton.getHandler()!=null)
+//                {
+//                    areWeOnCentreLaneRadioButton.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            areWeOnCentreLaneRadioButton.setVisibility(View.INVISIBLE);
+//                        }
+//                    });
+//
+//                    onHighwayRadioButton.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            onHighwayRadioButton.setVisibility(View.INVISIBLE);
+//                        }
+//                    });
+//
+//                    leftLaneVisibleRadioButton.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            leftLaneVisibleRadioButton.setVisibility(View.INVISIBLE);
+//                        }
+//                    });
+//
+//                    rightButtonVisibleRadioButton.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            rightButtonVisibleRadioButton.setVisibility(View.INVISIBLE);
+//                        }
+//                    });
+//
+//                    distanceRemainingMoreThan3.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            distanceRemainingMoreThan3.setVisibility(View.INVISIBLE);
+//                        }
+//                    });
+//
+//                    statusSymbol.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            statusSymbol.setVisibility(View.INVISIBLE);
+//                        }
+//                    });
+//
+//                    mbtSpeak.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            mbtSpeak.setVisibility(View.INVISIBLE);
+//                        }
+//                    });
+//                }
+//            }
+//            else
+//            {
+//                if(areWeOnCentreLaneRadioButton.getVisibility() != View.VISIBLE)
+//                {
+//                    areWeOnCentreLaneRadioButton.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            areWeOnCentreLaneRadioButton.setVisibility(View.VISIBLE);
+//                        }
+//                    });
+//
+//                    onHighwayRadioButton.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            onHighwayRadioButton.setVisibility(View.VISIBLE);
+//                        }
+//                    });
+//
+//                    leftLaneVisibleRadioButton.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            leftLaneVisibleRadioButton.setVisibility(View.VISIBLE);
+//                        }
+//                    });
+//
+//                    distanceRemainingMoreThan3.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            distanceRemainingMoreThan3.setVisibility(View.VISIBLE);
+//                        }
+//                    });
+//
+//                    rightButtonVisibleRadioButton.getHandler().post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            rightButtonVisibleRadioButton.setVisibility(View.VISIBLE);
+//                        }
+//                    });
+//
+////                    if(allNodesWorking)
+//
+//                }
+//            }
 
             if (DataParser.autopilotBrainData != null && DataParser.autopilotBrainData.getIsNavigationStarted()== true && !isTimerStarted )
             {
@@ -1054,13 +1054,13 @@ public class AnimateFragment extends Fragment {
 //                speechStrings.playAdviceInEnglish(speechStrings.MOTION_PLANNING_NOT_WORKING_NON_EMERGENCY);
             }
         }
-        errorTextBox.getHandler().post(new Runnable() {
-            @Override
-            public void run() {
-                errorTextBox.setVisibility(View.VISIBLE);
-                errorTextBox.setText(errorString);
-            }
-        });
+//        errorTextBox.getHandler().post(new Runnable() {
+//            @Override
+//            public void run() {
+//                errorTextBox.setVisibility(View.VISIBLE);
+//                errorTextBox.setText(errorString);
+//            }
+//        });
         rightDial.post(new Runnable() {
             @Override
             public void run() {
