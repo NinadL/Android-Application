@@ -10,7 +10,7 @@ import com.telenav.autopilotcontrol.app.car_data.Ego;
     {
         static boolean isNavigationStarted= false;
         static double remainingDistance;
-        static int speedLimit;
+        static int speedLimit = 0;
         static boolean isHighwayNext = false;
         static boolean areWeOnHighway = false;
         private DataParser dataParser = new DataParser();
