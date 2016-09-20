@@ -104,49 +104,46 @@ public class DataParser
         {
             jsonObject = new JSONObject(response);
             laneObject.clear();
-
+            sortedLane.clear();
             if (!jsonObject.isNull("lane"))
             {
 
-                statusObject.setLaneTimestamp(System.currentTimeMillis());
+            statusObject.setLaneTimestamp(System.currentTimeMillis());
 
-                JSONArray lane = jsonObject.getJSONArray("lane");
-                //Log.d("laneObjectLength", lane.length() +"");
-                for (int i = 0; i < lane.length(); i++)
+            JSONArray lane = jsonObject.getJSONArray("lane");
+            //Log.d("laneObjectLength", lane.length() +"");
+            for (int i = 0; i < lane.length(); i++)
+            {
+                JSONObject laneData = lane.getJSONObject(i);
+                Lane laneDataObject = new Lane();
+
+                if (laneData.get("type") != null)
                 {
-                    JSONObject laneData = lane.getJSONObject(i);
-                    Lane laneDataObject = new Lane();
-
-                    if (laneData.get("type") != null)
-                    {
-                        Log.d("type data",""+laneData.getInt("type"));
-                        laneDataObject.setType(laneData.getInt("type"));
-                    }
-                    JSONArray pointsData = laneData.getJSONArray("points");
-                    if (pointsData != null)
-                    {
-
-                        for (int j = 0; j < pointsData.length(); j++)
-                        {
-                            Point pointsDataObject = new Point();
-                            JSONObject point = pointsData.getJSONObject(j);
-                            pointsDataObject.setX(Double.valueOf(point.get("x").toString()));
-                            pointsDataObject.setY(Double.valueOf(point.get("y").toString()));
-                            pointsDataObject.setNx(Double.valueOf(point.get("nx").toString()));
-                            pointsDataObject.setNy(Double.valueOf(point.get("ny").toString()));
-
-                            laneDataObject.addPoint(pointsDataObject);
-                        }
-                        laneObject.add(laneDataObject);
-                    }
+                    Log.d("type data",""+laneData.getInt("type"));
+                    laneDataObject.setType(laneData.getInt("type"));
                 }
+                JSONArray pointsData = laneData.getJSONArray("points");
+                if (pointsData != null)
+                {
 
-                LaneModel laneModel = new LaneModel();
-                sortedLane.clear();
-                sortedLane = laneModel.sortLanes(laneObject);
-                Log.d("sortedLane Size,",sortedLane.size()+" ");
+                    for (int j = 0; j < pointsData.length(); j++)
+                    {
+                        Point pointsDataObject = new Point();
+                        JSONObject point = pointsData.getJSONObject(j);
+                        pointsDataObject.setX(Double.valueOf(point.get("x").toString()));
+                        pointsDataObject.setY(Double.valueOf(point.get("y").toString()));
+                        pointsDataObject.setNx(Double.valueOf(point.get("nx").toString()));
+                        pointsDataObject.setNy(Double.valueOf(point.get("ny").toString()));
 
+                        laneDataObject.addPoint(pointsDataObject);
+                    }
+                    laneObject.add(laneDataObject);
+                }
             }
+            Log.d("sortedLane Size,",sortedLane.size()+" ");
+        }
+        LaneModel laneModel = new LaneModel();
+        sortedLane = laneModel.sortLanes(laneObject);
 
 //            //Obstacles
 //

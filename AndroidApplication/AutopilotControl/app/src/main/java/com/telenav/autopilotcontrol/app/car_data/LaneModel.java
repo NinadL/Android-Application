@@ -13,7 +13,7 @@ public class LaneModel
     static Lane rightLaneBoundary;
     static Lane leftLaneBoundary;
     static Lane leftLeftLaneBoundary;
-    static final double DISTANCE_BETWEEN_LANE_BOUNDARIES = 36;
+    static final double DISTANCE_BETWEEN_LANE_BOUNDARIES = 3.6;
 
     static int NOT_PRESENT = -1;
 
@@ -51,6 +51,7 @@ public class LaneModel
 
         sortLanesAsPerOrder();
 
+
         for (int i = 0; i < laneBoundaries.size(); i++)
         {
             if(laneBoundaries.get(i).getType() == 9 || laneBoundaries.get(i).getType() == 10)
@@ -81,6 +82,20 @@ public class LaneModel
         rightLaneBoundary = null;
         leftLaneBoundary = null;
         leftLeftLaneBoundary = null;
+
+        if(laneBoundaries.size() == 0)
+        {
+            //Type -2 indicates that the lane boundary is imaginary with solid boundary
+            //Type -1 indicates that the lane boundary is imaginary with dashed boundary
+            leftLeftLaneBoundary = createImaginaryLane(5.4, null);
+            leftLeftLaneBoundary.setType(-2);
+            leftLaneBoundary = createImaginaryLane(1.8, null);
+            leftLaneBoundary.setType(-1);
+            rightLaneBoundary = createImaginaryLane(-1.8, null);
+            rightLaneBoundary.setType(-1);
+            rightRightLaneBoundary = createImaginaryLane(-5.4, null);
+            rightRightLaneBoundary.setType(-2);
+        }
 
         if (laneBoundaries.size() == 1)
         {
@@ -146,17 +161,21 @@ public class LaneModel
         {
             System.out.println("Missing lane at -1.8");
             rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
-            rightLaneBoundary = null;
+            rightLaneBoundary = createImaginaryLane(-1.8, rightRightLaneBoundary);
+            rightLaneBoundary.setType(-1);
+//            rightLaneBoundary = null;
             leftLaneBoundary = laneBoundaries.get(1).laneboundary;
             leftLeftLaneBoundary = laneBoundaries.get(2).laneboundary;
         }
         else if (numberOfNegatives == 1)
         {
             System.out.println("Missing lane at -5.4");
-            rightRightLaneBoundary = null;
+//            rightRightLaneBoundary = null;
             rightLaneBoundary = laneBoundaries.get(0).laneboundary;
             leftLaneBoundary = laneBoundaries.get(1).laneboundary;
             leftLeftLaneBoundary = laneBoundaries.get(2).laneboundary;
+            rightRightLaneBoundary = createImaginaryLane(-5.4, rightLaneBoundary);
+            rightRightLaneBoundary.setType(-2);
         }
 
         if (targetValueOne < targetValueTwo && numberOfPositives == 1)
@@ -164,7 +183,9 @@ public class LaneModel
             System.out.println("Missing lane at 1.8");
             rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
             rightLaneBoundary = laneBoundaries.get(1).laneboundary;
-            leftLaneBoundary = null;
+//            leftLaneBoundary = null;
+            leftLaneBoundary = createImaginaryLane(1.8, rightLaneBoundary);
+            leftLaneBoundary.setType(-1);
             leftLeftLaneBoundary = laneBoundaries.get(2).laneboundary;
         }
         else if (numberOfPositives == 1)
@@ -173,7 +194,9 @@ public class LaneModel
             rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
             rightLaneBoundary = laneBoundaries.get(1).laneboundary;
             leftLaneBoundary = laneBoundaries.get(2).laneboundary;
-            leftLeftLaneBoundary = null;
+//            leftLeftLaneBoundary = null;
+            leftLeftLaneBoundary = createImaginaryLane(5.4, leftLaneBoundary);
+            leftLeftLaneBoundary.setType(-2);
         }
     }
 
@@ -241,39 +264,63 @@ public class LaneModel
             System.out.println("Missing lane at 5.4");
             rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
             rightLaneBoundary = laneBoundaries.get(1).laneboundary;
-            leftLaneBoundary = null;
-            leftLeftLaneBoundary = null;
+//            leftLaneBoundary = null;
+//            leftLeftLaneBoundary = null;
+            leftLaneBoundary = createImaginaryLane(1.8, rightLaneBoundary);
+            leftLaneBoundary.setType(-1);
+            leftLeftLaneBoundary = createImaginaryLane(5.4, rightLaneBoundary);
+            leftLeftLaneBoundary.setType(-2);
         }
         else if(numberOfPositives == 2)
         {
             System.out.println("Missing lane at -1.8");
             System.out.println("Missing lane at -5.4");
-            rightRightLaneBoundary = null;
-            rightLaneBoundary = null;
+//            rightRightLaneBoundary = null;
+//            rightLaneBoundary = null;
             leftLaneBoundary = laneBoundaries.get(0).laneboundary;
             leftLeftLaneBoundary = laneBoundaries.get(1).laneboundary;
+            rightLaneBoundary = createImaginaryLane(-1.8, leftLaneBoundary);
+            rightLaneBoundary.setType(-1);
+            rightRightLaneBoundary = createImaginaryLane(-5.4, leftLaneBoundary);
+            rightRightLaneBoundary.setType(-2);
         }
         if (ll == false || l == false || r == false || rr == false)
         {
             if(ll == false && r == false)
             {
                 leftLaneBoundary = laneBoundaries.get(1).laneboundary;
+                leftLeftLaneBoundary = createImaginaryLane(5.4, leftLaneBoundary);
+                leftLeftLaneBoundary.setType(-2);
                 rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
+                rightLaneBoundary = createImaginaryLane(-1.8, rightRightLaneBoundary);
+                rightLaneBoundary.setType(-1);
             }
             else if(ll == false && rr == false)
             {
                 leftLaneBoundary =  laneBoundaries.get(1).laneboundary;
+                leftLeftLaneBoundary = createImaginaryLane(5.4, leftLaneBoundary);
+                leftLeftLaneBoundary.setType(-2);
                 rightLaneBoundary = laneBoundaries.get(0).laneboundary;
+                rightRightLaneBoundary = createImaginaryLane(-5.4, rightLaneBoundary);
+                rightRightLaneBoundary.setType(-2);
             }
             else if(l == false && r == false)
             {
                 leftLeftLaneBoundary = laneBoundaries.get(1).laneboundary;
+                leftLaneBoundary = createImaginaryLane(1.8, leftLeftLaneBoundary);
+                leftLaneBoundary.setType(-1);
                 rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
+                rightLaneBoundary = createImaginaryLane(-1.8, rightRightLaneBoundary);
+                rightLaneBoundary.setType(-1);
             }
             else if(l == false && rr == false)
             {
                 leftLeftLaneBoundary = laneBoundaries.get(1).laneboundary;
+                leftLaneBoundary = createImaginaryLane(1.8, leftLeftLaneBoundary);
+                leftLaneBoundary.setType(-1);
                 rightLaneBoundary = laneBoundaries.get(0).laneboundary;
+                rightRightLaneBoundary = createImaginaryLane(-5.4, rightLaneBoundary);
+                rightRightLaneBoundary.setType(-2);
             }
         }
 
@@ -297,36 +344,91 @@ public class LaneModel
                 targetValueOne < targetValueFour)
         {
             rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
-            rightLaneBoundary = null;
-            leftLaneBoundary = null;
-            leftLeftLaneBoundary = null;
+            rightLaneBoundary = createImaginaryLane(-1.8, rightRightLaneBoundary);
+            rightLaneBoundary.setType(-1);
+            leftLaneBoundary = createImaginaryLane(1.8, rightRightLaneBoundary);
+            leftLaneBoundary.setType(-1);
+            leftLeftLaneBoundary = createImaginaryLane(5.4, rightRightLaneBoundary);
+            leftLeftLaneBoundary.setType(-2);
+//            rightLaneBoundary = null;
+//            leftLaneBoundary = null;
+//            leftLeftLaneBoundary = null;
         }
         else if(targetValueTwo < targetValueOne &&
                 targetValueTwo < targetValueThree &&
                 targetValueTwo < targetValueFour)
         {
-            rightRightLaneBoundary = null;
+//            rightRightLaneBoundary = null;
             rightLaneBoundary = laneBoundaries.get(0).laneboundary;
-            leftLaneBoundary = null;
-            leftLeftLaneBoundary = null;
+            rightRightLaneBoundary = createImaginaryLane(-5.4, rightLaneBoundary);
+            rightRightLaneBoundary.setType(-2);
+            leftLeftLaneBoundary = createImaginaryLane(5.4, rightLaneBoundary);
+            leftLeftLaneBoundary.setType(-2);
+            leftLaneBoundary = createImaginaryLane(1.8, rightLaneBoundary);
+            leftLaneBoundary.setType(-1);
+//            leftLaneBoundary = null;
+//            leftLeftLaneBoundary = null;
         }
         else if(targetValueThree < targetValueOne &&
                 targetValueThree < targetValueTwo &&
                 targetValueThree < targetValueFour)
         {
-            rightRightLaneBoundary = null;
-            rightLaneBoundary = null;
-            leftLaneBoundary = null;
             leftLeftLaneBoundary =  laneBoundaries.get(0).laneboundary;
+            rightRightLaneBoundary = createImaginaryLane(-5.4, leftLeftLaneBoundary);
+            rightRightLaneBoundary.setType(-2);
+            rightLaneBoundary = createImaginaryLane(-1.8, leftLeftLaneBoundary);
+            rightLaneBoundary.setType(-1);
+            leftLaneBoundary = createImaginaryLane(1.8, leftLeftLaneBoundary);
+            leftLaneBoundary.setType(-1);
+//            rightRightLaneBoundary = null;
+//            rightLaneBoundary = null;
+//            leftLaneBoundary = null;
+
         }
         else
         {
-            rightRightLaneBoundary = null;
-            rightLaneBoundary = null;
             leftLaneBoundary = laneBoundaries.get(0).laneboundary;
-            leftLeftLaneBoundary = null;
+            rightRightLaneBoundary = createImaginaryLane(-5.4, leftLaneBoundary);
+            rightRightLaneBoundary.setType(-2);
+            rightLaneBoundary = createImaginaryLane(-1.8, leftLaneBoundary);
+            rightLaneBoundary.setType(-1);
+            leftLeftLaneBoundary = createImaginaryLane(5.4, leftLaneBoundary);
+            leftLeftLaneBoundary.setType(-2);
+//            rightRightLaneBoundary = null;
+//            rightLaneBoundary = null;
+//            leftLeftLaneBoundary = null;
 
         }
+    }
+
+    //Create imaginary lane based on the surrounding lanes
+    Lane createImaginaryLane(double missingLaneBoundaryYCoord, Lane adjacentLane)
+    {
+        Lane imaginaryLane = new Lane();
+        if(adjacentLane == null)
+        {
+            for(int i = 0; i < 100 ; i=i+4)
+            {
+                Point point = new Point();
+                point.setX(i);
+                point.setY(missingLaneBoundaryYCoord);
+                imaginaryLane.addPoint(point);
+            }
+        }
+        else
+        {
+            double distanceBetweenLanes = missingLaneBoundaryYCoord - adjacentLane.getPoints().get(0).getY();
+
+            for(int i = 0; i < adjacentLane.getPoints().size(); i++)
+            {
+                Point point = new Point();
+                point.setX(adjacentLane.getPoints().get(i).getX());
+                point.setY(adjacentLane.getPoints().get(i).getY() + distanceBetweenLanes);
+                point.setNx(adjacentLane.getPoints().get(i).getNx());
+                point.setNy(adjacentLane.getPoints().get(i).getNy());
+            }
+        }
+        return imaginaryLane;
     }
 }
 

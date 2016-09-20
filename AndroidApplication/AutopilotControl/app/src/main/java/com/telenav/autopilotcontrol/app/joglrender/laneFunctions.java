@@ -275,7 +275,7 @@ public class laneFunctions {
             thickness = 0.05f;
         else
             thickness = 0.1f;
-        if (mode == -1) {
+        if (mode == -10) {
             laneVertexList.add(x1);
             laneVertexList.add(y1);
             //  laneVertexList.add(1);
@@ -311,7 +311,7 @@ public class laneFunctions {
         }
 
 
-        if (mode == -1)//grid
+        if (mode == -10)//grid
         {
             for (int lanepoint = 0; lanepoint < 4; lanepoint++)
             {
@@ -333,6 +333,13 @@ public class laneFunctions {
                     LaneColorLane.add(0.5f);
                 }
                 else if (mode == 9 )
+                {
+                    LaneColorLane.add(1);
+                    LaneColorLane.add(0);
+                    LaneColorLane.add(0);
+                    LaneColorLane.add(0.5f);
+                }
+                else if(mode == -1 || mode == -2 )
                 {
                     LaneColorLane.add(0.5);
                     LaneColorLane.add(0.5);

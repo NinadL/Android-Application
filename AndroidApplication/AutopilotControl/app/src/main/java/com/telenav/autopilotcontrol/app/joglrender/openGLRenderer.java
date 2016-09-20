@@ -66,7 +66,7 @@ public class openGLRenderer implements GLSurfaceView.Renderer
 
     Context context;
 
-    short gridMode = -1;
+    short gridMode = -10;
 
     //private final Handler handler = new Handler();
 
@@ -381,7 +381,8 @@ public class openGLRenderer implements GLSurfaceView.Renderer
      * sensorList.get(i).orientation[0] = qw;
         */
 
-    class senorStatusTimerClass extends TimerTask {
+    class senorStatusTimerClass extends TimerTask
+    {
         public void run() {
             if ( statusObject.gettingPerceptionData() ){
 
@@ -480,21 +481,26 @@ public class openGLRenderer implements GLSurfaceView.Renderer
                          * LaneType {DASHED = 1, SOLID = 2,UNDECIDED =3, ROAD_EDGE=4, DOUBLE_LANE_MARK=5, BOTTS_DOTS=6, INVALID=7, UNKNOWN=8, CENTER_LINE=9, PATH=10
                          */
                         switch( localLaneBoundaryData.get(lane_no).getType()){
-                            case 1:
-                                if(lane_no == 1 )
-                                {
-                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList,3.6f);
-                                    leftLaneDashed = true;
-                                }
-                                if( lane_no ==2)
-                                {
-                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList,-3.6f);
-                                    rightLaneDashed = true;
-                                }
+                            case -1:
+                                laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), -1, lanePoints, laneColorList);
+                                break;
+                            case -2:
+                                laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), -2, lanePoints, laneColorList,0);
+                                break;
+                            case 1://dashed
+//                                if(lane_no == 1 )
+//                                {
+//                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList,3.6f);
+//                                    leftLaneDashed = true;
+//                                }
+//                                if( lane_no ==2)
+//                                {
+//                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList,-3.6f);
+//                                    rightLaneDashed = true;
+//                                }
                                 laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList);
                                 break;
-                            case 9:
-
+                            case 9: //centerlane
                                 new laneFunctions().getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 9, lanePoints, laneColorList);
                                 break;
                             default:
