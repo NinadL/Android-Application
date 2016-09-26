@@ -269,7 +269,8 @@
         android:layout_toRightOf="@+id/leftDialLayout"
         android:layout_toLeftOf="@+id/rightDial"
         android:background="@android:color/black"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>

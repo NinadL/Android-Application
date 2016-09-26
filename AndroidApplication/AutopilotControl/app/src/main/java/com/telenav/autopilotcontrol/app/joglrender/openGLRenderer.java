@@ -14,6 +14,7 @@ import com.telenav.autopilotcontrol.R;
 import com.telenav.autopilotcontrol.app.car_data.DataParser;
 import com.telenav.autopilotcontrol.app.car_data.FieldOfView;
 import com.telenav.autopilotcontrol.app.car_data.Lane;
+import com.telenav.autopilotcontrol.app.car_data.LaneModel;
 import com.telenav.autopilotcontrol.app.car_data.Sensor;
 import com.telenav.autopilotcontrol.app.car_data.setStatusClass;
 
@@ -66,7 +67,7 @@ public class openGLRenderer implements GLSurfaceView.Renderer
 
     Context context;
 
-    short gridMode = -10;
+    short gridMode = -1;
 
     //private final Handler handler = new Handler();
 
@@ -455,7 +456,7 @@ public class openGLRenderer implements GLSurfaceView.Renderer
             boolean leftLaneDashed = false;
             boolean rightLaneDashed = false;
 
-           if (statusObject.gettingLaneData())
+          if (statusObject.gettingLaneData())
             {
                 // long waitTime = 100;
 
@@ -466,7 +467,9 @@ public class openGLRenderer implements GLSurfaceView.Renderer
                 ArrayList<Lane> localLaneBoundaryData = laneBoundaryData;
 
                 long startTime = System.currentTimeMillis();
+                int i = 0;
                 for (int lane_no = 0; lane_no < localLaneBoundaryData.size(); lane_no++) {
+
                     if (localLaneBoundaryData.get(lane_no) != null )//{&&  localLaneBoundaryData.get(lane_no).getType() < 9  ) {
                     {
                         Log.d("lane number",lane_no+"lane type "+localLaneBoundaryData.get(lane_no).getType());
@@ -480,12 +483,13 @@ public class openGLRenderer implements GLSurfaceView.Renderer
                         /*
                          * LaneType {DASHED = 1, SOLID = 2,UNDECIDED =3, ROAD_EDGE=4, DOUBLE_LANE_MARK=5, BOTTS_DOTS=6, INVALID=7, UNKNOWN=8, CENTER_LINE=9, PATH=10
                          */
+                        Log.d("number of boundries",i++ +" "+localLaneBoundaryData.get(lane_no).getPoints().size());
                         switch( localLaneBoundaryData.get(lane_no).getType()){
-                            case -1:
-                                laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), -1, lanePoints, laneColorList);
+                            case LaneModel.leftLaneInvisibleType:
+                                laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), LaneModel.leftLaneInvisibleType, lanePoints, laneColorList);
                                 break;
-                            case -2:
-                                laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), -2, lanePoints, laneColorList,0);
+                            case LaneModel.leftLeftLaneInvisibleType:
+                                laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), LaneModel.leftLeftLaneInvisibleType, lanePoints, laneColorList,0);
                                 break;
                             case 1://dashed
 //                                if(lane_no == 1 )

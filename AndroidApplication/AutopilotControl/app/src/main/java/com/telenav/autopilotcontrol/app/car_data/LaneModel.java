@@ -9,6 +9,10 @@ import java.util.Comparator;
  */
 public class LaneModel
 {
+    public final static int leftLeftLaneInvisibleType = -23;
+    public final static int rightRightLaneInvisibleType = -23;
+    public final static int leftLaneInvisibleType = 22;
+    public final static int rightLaneInvisibleType = 22;
     static Lane rightRightLaneBoundary;
     static Lane rightLaneBoundary;
     static Lane leftLaneBoundary;
@@ -83,18 +87,18 @@ public class LaneModel
         leftLaneBoundary = null;
         leftLeftLaneBoundary = null;
 
-        if(laneBoundaries.size() == 0)
+        if(laneBoundaries.size() == 0 )
         {
             //Type -2 indicates that the lane boundary is imaginary with solid boundary
             //Type -1 indicates that the lane boundary is imaginary with dashed boundary
             leftLeftLaneBoundary = createImaginaryLane(5.4, null);
-            leftLeftLaneBoundary.setType(-2);
+            leftLeftLaneBoundary.setType(leftLeftLaneInvisibleType);
             leftLaneBoundary = createImaginaryLane(1.8, null);
-            leftLaneBoundary.setType(-1);
+            leftLaneBoundary.setType(leftLaneInvisibleType);
             rightLaneBoundary = createImaginaryLane(-1.8, null);
-            rightLaneBoundary.setType(-1);
+            rightLaneBoundary.setType(rightLaneInvisibleType);
             rightRightLaneBoundary = createImaginaryLane(-5.4, null);
-            rightRightLaneBoundary.setType(-2);
+            rightRightLaneBoundary.setType(rightRightLaneInvisibleType);
         }
 
         if (laneBoundaries.size() == 1)
@@ -162,7 +166,7 @@ public class LaneModel
             System.out.println("Missing lane at -1.8");
             rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
             rightLaneBoundary = createImaginaryLane(-1.8, rightRightLaneBoundary);
-            rightLaneBoundary.setType(-1);
+            rightLaneBoundary.setType(rightLaneInvisibleType);
 //            rightLaneBoundary = null;
             leftLaneBoundary = laneBoundaries.get(1).laneboundary;
             leftLeftLaneBoundary = laneBoundaries.get(2).laneboundary;
@@ -175,7 +179,7 @@ public class LaneModel
             leftLaneBoundary = laneBoundaries.get(1).laneboundary;
             leftLeftLaneBoundary = laneBoundaries.get(2).laneboundary;
             rightRightLaneBoundary = createImaginaryLane(-5.4, rightLaneBoundary);
-            rightRightLaneBoundary.setType(-2);
+            rightRightLaneBoundary.setType(rightRightLaneInvisibleType);
         }
 
         if (targetValueOne < targetValueTwo && numberOfPositives == 1)
@@ -185,7 +189,7 @@ public class LaneModel
             rightLaneBoundary = laneBoundaries.get(1).laneboundary;
 //            leftLaneBoundary = null;
             leftLaneBoundary = createImaginaryLane(1.8, rightLaneBoundary);
-            leftLaneBoundary.setType(-1);
+            leftLaneBoundary.setType(leftLaneInvisibleType);
             leftLeftLaneBoundary = laneBoundaries.get(2).laneboundary;
         }
         else if (numberOfPositives == 1)
@@ -196,7 +200,7 @@ public class LaneModel
             leftLaneBoundary = laneBoundaries.get(2).laneboundary;
 //            leftLeftLaneBoundary = null;
             leftLeftLaneBoundary = createImaginaryLane(5.4, leftLaneBoundary);
-            leftLeftLaneBoundary.setType(-2);
+            leftLeftLaneBoundary.setType(leftLeftLaneInvisibleType);
         }
     }
 
@@ -267,9 +271,9 @@ public class LaneModel
 //            leftLaneBoundary = null;
 //            leftLeftLaneBoundary = null;
             leftLaneBoundary = createImaginaryLane(1.8, rightLaneBoundary);
-            leftLaneBoundary.setType(-1);
+            leftLaneBoundary.setType(leftLaneInvisibleType);
             leftLeftLaneBoundary = createImaginaryLane(5.4, rightLaneBoundary);
-            leftLeftLaneBoundary.setType(-2);
+            leftLeftLaneBoundary.setType(leftLeftLaneInvisibleType);
         }
         else if(numberOfPositives == 2)
         {
@@ -280,9 +284,9 @@ public class LaneModel
             leftLaneBoundary = laneBoundaries.get(0).laneboundary;
             leftLeftLaneBoundary = laneBoundaries.get(1).laneboundary;
             rightLaneBoundary = createImaginaryLane(-1.8, leftLaneBoundary);
-            rightLaneBoundary.setType(-1);
+            rightLaneBoundary.setType(rightLaneInvisibleType);
             rightRightLaneBoundary = createImaginaryLane(-5.4, leftLaneBoundary);
-            rightRightLaneBoundary.setType(-2);
+            rightRightLaneBoundary.setType(rightRightLaneInvisibleType);
         }
         if (ll == false || l == false || r == false || rr == false)
         {
@@ -290,37 +294,37 @@ public class LaneModel
             {
                 leftLaneBoundary = laneBoundaries.get(1).laneboundary;
                 leftLeftLaneBoundary = createImaginaryLane(5.4, leftLaneBoundary);
-                leftLeftLaneBoundary.setType(-2);
+                leftLeftLaneBoundary.setType(leftLeftLaneInvisibleType);
                 rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
                 rightLaneBoundary = createImaginaryLane(-1.8, rightRightLaneBoundary);
-                rightLaneBoundary.setType(-1);
+                rightLaneBoundary.setType(rightLaneInvisibleType);
             }
             else if(ll == false && rr == false)
             {
                 leftLaneBoundary =  laneBoundaries.get(1).laneboundary;
                 leftLeftLaneBoundary = createImaginaryLane(5.4, leftLaneBoundary);
-                leftLeftLaneBoundary.setType(-2);
+                leftLeftLaneBoundary.setType(leftLeftLaneInvisibleType);
                 rightLaneBoundary = laneBoundaries.get(0).laneboundary;
                 rightRightLaneBoundary = createImaginaryLane(-5.4, rightLaneBoundary);
-                rightRightLaneBoundary.setType(-2);
+                rightRightLaneBoundary.setType(rightRightLaneInvisibleType);
             }
             else if(l == false && r == false)
             {
                 leftLeftLaneBoundary = laneBoundaries.get(1).laneboundary;
                 leftLaneBoundary = createImaginaryLane(1.8, leftLeftLaneBoundary);
-                leftLaneBoundary.setType(-1);
+                leftLaneBoundary.setType(leftLaneInvisibleType);
                 rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
                 rightLaneBoundary = createImaginaryLane(-1.8, rightRightLaneBoundary);
-                rightLaneBoundary.setType(-1);
+                rightLaneBoundary.setType(rightLaneInvisibleType);
             }
             else if(l == false && rr == false)
             {
                 leftLeftLaneBoundary = laneBoundaries.get(1).laneboundary;
                 leftLaneBoundary = createImaginaryLane(1.8, leftLeftLaneBoundary);
-                leftLaneBoundary.setType(-1);
+                leftLaneBoundary.setType(leftLaneInvisibleType);
                 rightLaneBoundary = laneBoundaries.get(0).laneboundary;
                 rightRightLaneBoundary = createImaginaryLane(-5.4, rightLaneBoundary);
-                rightRightLaneBoundary.setType(-2);
+                rightRightLaneBoundary.setType(rightRightLaneInvisibleType);
             }
         }
 
@@ -345,11 +349,11 @@ public class LaneModel
         {
             rightRightLaneBoundary = laneBoundaries.get(0).laneboundary;
             rightLaneBoundary = createImaginaryLane(-1.8, rightRightLaneBoundary);
-            rightLaneBoundary.setType(-1);
+            rightLaneBoundary.setType(rightLaneInvisibleType);
             leftLaneBoundary = createImaginaryLane(1.8, rightRightLaneBoundary);
-            leftLaneBoundary.setType(-1);
+            leftLaneBoundary.setType(leftLaneInvisibleType);
             leftLeftLaneBoundary = createImaginaryLane(5.4, rightRightLaneBoundary);
-            leftLeftLaneBoundary.setType(-2);
+            leftLeftLaneBoundary.setType(leftLeftLaneInvisibleType);
 //            rightLaneBoundary = null;
 //            leftLaneBoundary = null;
 //            leftLeftLaneBoundary = null;
@@ -361,11 +365,11 @@ public class LaneModel
 //            rightRightLaneBoundary = null;
             rightLaneBoundary = laneBoundaries.get(0).laneboundary;
             rightRightLaneBoundary = createImaginaryLane(-5.4, rightLaneBoundary);
-            rightRightLaneBoundary.setType(-2);
+            rightRightLaneBoundary.setType(rightRightLaneInvisibleType);
             leftLeftLaneBoundary = createImaginaryLane(5.4, rightLaneBoundary);
-            leftLeftLaneBoundary.setType(-2);
+            leftLeftLaneBoundary.setType(leftLeftLaneInvisibleType);
             leftLaneBoundary = createImaginaryLane(1.8, rightLaneBoundary);
-            leftLaneBoundary.setType(-1);
+            leftLaneBoundary.setType(leftLaneInvisibleType);
 //            leftLaneBoundary = null;
 //            leftLeftLaneBoundary = null;
         }
@@ -375,11 +379,11 @@ public class LaneModel
         {
             leftLeftLaneBoundary =  laneBoundaries.get(0).laneboundary;
             rightRightLaneBoundary = createImaginaryLane(-5.4, leftLeftLaneBoundary);
-            rightRightLaneBoundary.setType(-2);
+            rightRightLaneBoundary.setType(rightRightLaneInvisibleType);
             rightLaneBoundary = createImaginaryLane(-1.8, leftLeftLaneBoundary);
-            rightLaneBoundary.setType(-1);
+            rightLaneBoundary.setType(rightLaneInvisibleType);
             leftLaneBoundary = createImaginaryLane(1.8, leftLeftLaneBoundary);
-            leftLaneBoundary.setType(-1);
+            leftLaneBoundary.setType(leftLaneInvisibleType);
 //            rightRightLaneBoundary = null;
 //            rightLaneBoundary = null;
 //            leftLaneBoundary = null;
@@ -389,11 +393,11 @@ public class LaneModel
         {
             leftLaneBoundary = laneBoundaries.get(0).laneboundary;
             rightRightLaneBoundary = createImaginaryLane(-5.4, leftLaneBoundary);
-            rightRightLaneBoundary.setType(-2);
+            rightRightLaneBoundary.setType(rightRightLaneInvisibleType);
             rightLaneBoundary = createImaginaryLane(-1.8, leftLaneBoundary);
-            rightLaneBoundary.setType(-1);
+            rightLaneBoundary.setType(rightLaneInvisibleType);
             leftLeftLaneBoundary = createImaginaryLane(5.4, leftLaneBoundary);
-            leftLeftLaneBoundary.setType(-2);
+            leftLeftLaneBoundary.setType(leftLeftLaneInvisibleType);
 //            rightRightLaneBoundary = null;
 //            rightLaneBoundary = null;
 //            leftLeftLaneBoundary = null;
@@ -426,6 +430,7 @@ public class LaneModel
                 point.setY(adjacentLane.getPoints().get(i).getY() + distanceBetweenLanes);
                 point.setNx(adjacentLane.getPoints().get(i).getNx());
                 point.setNy(adjacentLane.getPoints().get(i).getNy());
+                imaginaryLane.addPoint(point);
             }
         }
         return imaginaryLane;

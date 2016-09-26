@@ -180,20 +180,36 @@ public class draw {
                 }
                 if (flag4)
                 {
-                    short xTranslateValue = -45;
+                    short xTranslateValue = 6;
                     short zTranslateValue = 1;
                     float yMultiplicationFactor = 3.5f;
 
-                    Matrix.setIdentityM(mModelMatrixLane, 0);
-                    Matrix.scaleM(mModelMatrixLane, 0, 0.45f, 0.45f, 0.45f); //originally 0, 0.5, 0.5, 0.5
-                    Matrix.translateM(mModelMatrixLane, 0, xTranslateValue, 0, zTranslateValue);
-
-                    //make the car hood to face forward
+                    Matrix.scaleM(mModelMatrixLane, 0, 1f, 0.4f, 0.6f); //originally 0, 0.5, 0.5, 0.5
+                    Matrix.translateM(mModelMatrixLane, 0, xTranslateValue, 0, 0);
+//
+//                    //make the car hood to face forward
                     Matrix.rotateM(mModelMatrixLane, 0, -180, 0, 0, 1);
-
-                    //make the car tires to touch the base else it is verticle instead of horizontal
-                    Matrix.rotateM(mModelMatrixLane, 0, 90, 1, 0, 0);
+//
+//                    //make the car tires to touch the base else it is verticle instead of horizontal
+                    Matrix.rotateM(mModelMatrixLane, 0, -90, 1, 0, 0);
                     drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
+
+//                    //obstacles
+//
+//                    Matrix.translateM(mModelMatrixLane, 0,-13, 0,  5 + 3.6f );
+//                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
+//
+//                    Matrix.translateM(mModelMatrixLane, 0,+13, 0, -5 -3.6f );
+//
+//                    Matrix.translateM(mModelMatrixLane, 0,-23, 0, 5 + 1.8f );
+//                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
+//
+//                    Matrix.translateM(mModelMatrixLane, 0,-13, 0, -5 - 1.8f );
+//                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
+//
+//                    Matrix.translateM(mModelMatrixLane, 0,-13, 0, -5 -1.8f );
+//                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
+
                 }
 
                 if (statusObject.gettingPerceptionData() && dp.getObstaclesObject()!= null)
@@ -208,15 +224,18 @@ public class draw {
                         if (obstacleList.get(i) != null && isObstacleInAdjacentLane(obstacleList.get(i)))
                         {
                             Log.d("entered", "he1");
-                            Matrix.setIdentityM(mModelMatrixLane, 0);
-                            Matrix.translateM(mModelMatrixLane,0,-24,0,0f);
-                            Matrix.scaleM(mModelMatrixLane,0,0.55f,1.5f,-1f);
-                           // Matrix.scaleM(mModelMatrixLane, 0, 0.45f, 0.45f, 0.45f); //originally 0.4, 0.4, 0.4
-                            Matrix.translateM(mModelMatrixLane, 0, xTranslateValue + (float) (obstacleList.get(i).getPosition()[0]), (float) (yMultiplicationFactor * obstacleList.get(i).getPosition()[1]), zTranslateValue + (float) obstacleList.get(i).getPosition()[2]);
-                            Matrix.rotateM(mModelMatrixLane, 0, 90, 1, 0, 0);
+                           // Matrix.setIdentityM(mModelMatrixLane, 0);
+                            int scalingFactor = 5;
+                            if(obstacleList.get(i).getPosition()[1] < 0)
+                            {
+                                scalingFactor = scalingFactor * -1;
+                            }
+                            Matrix.translateM(mModelMatrixLane,0,-(float) (obstacleList.get(i).getPosition()[0]),0,scalingFactor + (float) (obstacleList.get(i).getPosition()[1]));
                             Log.d("orientation:Client", "qx: " + obstacleList.get(i).getOrientation()[0] + "qw:" + obstacleList.get(i).getOrientation()[3] + " " + ((Math.acos(obstacleList.get(i).getOrientation()[3]) * 2) - 180) + " " + Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3] * 2)));
                             Matrix.rotateM(mModelMatrixLane, 0, (float) Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3]) * 2) - 180, 0, 1, 0);
                             drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, yellowColorHandle);
+                            Matrix.translateM(mModelMatrixLane,0,(float) (obstacleList.get(i).getPosition()[0]),0,-scalingFactor - (float) (obstacleList.get(i).getPosition()[1]));
+
                         }
                     }
                 }

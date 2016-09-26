@@ -1,8 +1,10 @@
 package com.telenav.autopilotcontrol.app.joglrender;
 
-import com.telenav.autopilotcontrol.app.car_data.Point;
+        import com.telenav.autopilotcontrol.app.car_data.Lane;
+        import com.telenav.autopilotcontrol.app.car_data.LaneModel;
+        import com.telenav.autopilotcontrol.app.car_data.Point;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
 /**
  * Created by ishwarya on 6/14/16.
@@ -275,7 +277,7 @@ public class laneFunctions {
             thickness = 0.05f;
         else
             thickness = 0.1f;
-        if (mode == -10) {
+        if (mode == -1) {
             laneVertexList.add(x1);
             laneVertexList.add(y1);
             //  laneVertexList.add(1);
@@ -311,7 +313,7 @@ public class laneFunctions {
         }
 
 
-        if (mode == -10)//grid
+        if (mode == -1)//grid
         {
             for (int lanepoint = 0; lanepoint < 4; lanepoint++)
             {
@@ -332,18 +334,18 @@ public class laneFunctions {
                     LaneColorLane.add(0);
                     LaneColorLane.add(0.5f);
                 }
-                else if (mode == 9 )
+                else if (mode == LaneModel.leftLaneInvisibleType || mode == LaneModel.leftLeftLaneInvisibleType)
+                {
+                    LaneColorLane.add(0.5);
+                    LaneColorLane.add(0.5);
+                    LaneColorLane.add(0.5);
+                    LaneColorLane.add(0.5f);
+                }
+                else if (mode == 9)
                 {
                     LaneColorLane.add(1);
                     LaneColorLane.add(0);
                     LaneColorLane.add(0);
-                    LaneColorLane.add(0.5f);
-                }
-                else if(mode == -1 || mode == -2 )
-                {
-                    LaneColorLane.add(0.5);
-                    LaneColorLane.add(0.5);
-                    LaneColorLane.add(0.5);
                     LaneColorLane.add(0.5f);
                 }
                 else

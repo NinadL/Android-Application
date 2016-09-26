@@ -647,16 +647,25 @@ public class AnimateFragment extends Fragment {
                     {
                         currentSpeed = String.valueOf(autopilotBrainData.getSpeed());
                     }
+
                     SpannableString currentSpeedSpannableString = new SpannableString(currentSpeed);
                     currentSpeedSpannableString.setSpan(new RelativeSizeSpan(1.7f), 0, currentSpeed.length(), 0);
 
+                    int iCurrentSpeed = 0;
+                    try {
+                        iCurrentSpeed = Integer.valueOf(currentSpeed);
 
-                    if(autopilotBrainData != null && autopilotBrainData.getSpeedLimit() > 0 && (Integer.valueOf(currentSpeed) > (autopilotBrainData.getSpeedLimit() + 5)))
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if(autopilotBrainData != null && autopilotBrainData.getSpeedLimit() > 0 && (iCurrentSpeed > (autopilotBrainData.getSpeedLimit() + 5)))
                     {
 
                         currentSpeedSpannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, currentSpeed.length(), 0);
                     }
-                    else if(autopilotBrainData != null && autopilotBrainData.getSpeedLimit() > 0 && (Integer.valueOf(currentSpeed) > (autopilotBrainData.getSpeedLimit())) && (Integer.valueOf(currentSpeed) < (autopilotBrainData.getSpeedLimit()) + 5))
+                    else if(autopilotBrainData != null && autopilotBrainData.getSpeedLimit() > 0 && (iCurrentSpeed > (autopilotBrainData.getSpeedLimit())) && (iCurrentSpeed < (autopilotBrainData.getSpeedLimit()) + 5))
                     {
                         currentSpeedSpannableString.setSpan(new ForegroundColorSpan(Color.YELLOW), 0, currentSpeed.length(), 0);
                     }

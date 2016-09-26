@@ -45,6 +45,7 @@ public class Lane {
 
     public void init() {
 
+        rightLane.setType(9);
         rightLane.addPoint(new Point(0.00,-1.00,0.00,1.8));
         rightLane.addPoint(new Point(0.0179971,-0.999838,3,1.827));
         rightLane.addPoint(new Point(0.0359767,-0.999353,6,1.908));

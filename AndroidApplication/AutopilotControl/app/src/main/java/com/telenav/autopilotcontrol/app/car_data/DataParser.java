@@ -75,8 +75,13 @@ public class DataParser
 
     public ArrayList<Lane> getLaneObject() {
         ArrayList<Lane> localDeepCopy = null;
+        LaneModel laneModel = new LaneModel();
+        laneObject.clear();
+  //      laneObject.add(Lane.rLane());
+//        sortedLane = laneModel.sortLanes(laneObject);
         synchronized (mutex) {
             if (sortedLane != null) {
+
                 localDeepCopy = new ArrayList<Lane>(sortedLane);
                 //  mutex.notify();
                 //  Log.d("motex","sent");
