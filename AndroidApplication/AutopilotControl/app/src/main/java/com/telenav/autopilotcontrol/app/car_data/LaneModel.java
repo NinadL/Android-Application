@@ -30,39 +30,58 @@ public class LaneModel
     {
         for (int i = 0; i < laneBoundaries.size(); i++)
         {
-            if(laneBoundaries.get(i).getType() != 9 && laneBoundaries.get(i).getType() != 10) {
-                Point pointOne = laneBoundaries.get(i).getPoints().get(0);
-                Point pointTwo = laneBoundaries.get(i).getPoints().get(1);
-
-                double xOne = pointOne.getX();
-                double xTwo = pointTwo.getX();
-
-                double yOne = pointOne.getY();
-                double yTwo = pointTwo.getY();
-
-                Double y = findYIntercept(xOne, xTwo, yOne, yTwo);
-
-                this.laneBoundaries.add(new LaneModelObject(laneBoundaries.get(i), laneBoundaries.get(i).getType(), y));
-            }
-
-        }
-
-        Collections.sort(this.laneBoundaries, new Comparator<LaneModelObject>() {
-            public int compare(LaneModelObject o1, LaneModelObject o2) {
-                return o1.getY().compareTo(o2.getY());
-            }
-        });
-
-        sortLanesAsPerOrder();
-
-
-        for (int i = 0; i < laneBoundaries.size(); i++)
-        {
-            if(laneBoundaries.get(i).getType() == 9 || laneBoundaries.get(i).getType() == 10)
+            if(laneBoundaries.get(i).getType() == 9)
             {
+                rightRightLaneBoundary = createImaginaryLane(-5.4, laneBoundaries.get(i));
+                rightRightLaneBoundary.setType(2);
+                sortedBoundaries.add(rightRightLaneBoundary);
+                rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
+                rightLaneBoundary.setType(1);
+                sortedBoundaries.add(rightLaneBoundary);
+                leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
+                leftLaneBoundary.setType(1);
+                sortedBoundaries.add(leftLaneBoundary);
+                leftLeftLaneBoundary = createImaginaryLane(5.4, laneBoundaries.get(i));
+                leftLeftLaneBoundary.setType(2);
+                sortedBoundaries.add(leftLeftLaneBoundary);
                 sortedBoundaries.add(laneBoundaries.get(i));
             }
+
+
+
+//            if(laneBoundaries.get(i).getType() != 9 && laneBoundaries.get(i).getType() != 10) {
+//                Point pointOne = laneBoundaries.get(i).getPoints().get(0);
+//                Point pointTwo = laneBoundaries.get(i).getPoints().get(1);
+//
+//                double xOne = pointOne.getX();
+//                double xTwo = pointTwo.getX();
+//
+//                double yOne = pointOne.getY();
+//                double yTwo = pointTwo.getY();
+//
+//                Double y = findYIntercept(xOne, xTwo, yOne, yTwo);
+//
+//                this.laneBoundaries.add(new LaneModelObject(laneBoundaries.get(i), laneBoundaries.get(i).getType(), y));
+//            }
+
         }
+
+//        Collections.sort(this.laneBoundaries, new Comparator<LaneModelObject>() {
+//            public int compare(LaneModelObject o1, LaneModelObject o2) {
+//                return o1.getY().compareTo(o2.getY());
+//            }
+//        });
+//
+//        sortLanesAsPerOrder();
+//
+//
+//        for (int i = 0; i < laneBoundaries.size(); i++)
+//        {
+//            if(laneBoundaries.get(i).getType() == 9 || laneBoundaries.get(i).getType() == 10)
+//            {
+//                sortedBoundaries.add(laneBoundaries.get(i));
+//            }
+//        }
         return this.sortedBoundaries;
     }
 

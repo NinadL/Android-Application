@@ -77,7 +77,7 @@ public class DataParser
         ArrayList<Lane> localDeepCopy = null;
         LaneModel laneModel = new LaneModel();
         laneObject.clear();
-  //      laneObject.add(Lane.rLane());
+//        laneObject.add(Lane.centerLane);
 //        sortedLane = laneModel.sortLanes(laneObject);
         synchronized (mutex) {
             if (sortedLane != null) {

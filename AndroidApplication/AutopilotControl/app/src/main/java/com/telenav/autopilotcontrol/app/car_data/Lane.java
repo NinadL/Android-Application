@@ -90,6 +90,7 @@ public class Lane {
         centerLane.addPoint(new Point(0.308226,-0.951313,54,8.748));
         centerLane.addPoint(new Point(0.323599,-0.946194,57,9.747));
         centerLane.addPoint(new Point(0.338719,-0.940887,60,10.8));
+        centerLane.setType(9);
 
 //
 //        centerLane.addPoint(new Point(0, -0.45508, -0.054606, -0.99851));
