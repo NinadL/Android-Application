@@ -180,8 +180,6 @@ public class draw {
                 }
                 if (flag4)
                 {
-
-
                     short xTranslateValue = 6;
                     short zTranslateValue = 1;
                     float yMultiplicationFactor = 3.5f;
@@ -239,9 +237,9 @@ public class draw {
                             //Log.d("orientation:Client", "qx: " + obstacleList.get(i).getOrientation()[0] + "qw:" + obstacleList.get(i).getOrientation()[3] + " " + ((Math.acos(obstacleList.get(i).getOrientation()[3]) * 2) - 180) + " " + Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3] * 2)));
 //                          Matrix.rotateM(mModelMatrixLane, 0,  -180, 0, 1, 0); //(float) Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3]) * 2) -180 original code
 //                    //make the car hood to face forward
-                            Matrix.rotateM(mModelMatrixLane, 0, -180, 0, 0, 1);
+                            Matrix.rotateM(mModelMatrixLane, 0, 0, 0, 0, 1);
 //                    //make the car tires to touch the base else it is verticle instead of horizontal
-                            Matrix.rotateM(mModelMatrixLane, 0, -90, 1, 0, 0);
+                            Matrix.rotateM(mModelMatrixLane, 0, 0, 1, 0, 0);
                             Matrix.rotateM(mModelMatrixLane, 0, 0, 0, 1, 0);
 //                            Matrix.rotateM(mModelMatrixLane, 0, (float) Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3]) * 2) - 180, 0, 1, 0);
                             //make the car tires to touch the base else it is vertical instead of horizontal
