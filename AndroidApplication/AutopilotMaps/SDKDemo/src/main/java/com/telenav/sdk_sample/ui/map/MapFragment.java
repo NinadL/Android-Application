@@ -313,9 +313,9 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 
         appPrefs = SdkSampleApplication.getInstance().getApplicationPreferences();
         //set map settings
-        mapSettings.setOrientationMode(appPrefs.getIntPreference(PreferenceTypes.K_MAP_ORIENTATION));
+        mapSettings.setOrientationMode(MapSettings.ORIENTATION_MODE_M3D_HEADING_UP);
         setMapGesture();
-        mapSettings.setMapStyle(appPrefs.getIntPreference(PreferenceTypes.K_MAP_STYLE));
+        mapSettings.setMapStyle(MapSettings.MAP_STYLE_NIGHT);
         mapSettings.setFollowUserPosition(appPrefs.getBooleanPreference(PreferenceTypes.K_FOLLOW_USER_POSITION));
         mapSettings.setEnableHeadingRotation(appPrefs.getBooleanPreference(PreferenceTypes.K_ROTATE_HEADING));
         mapSettings.setShowBuildingIn3D(appPrefs.getBooleanPreference(PreferenceTypes.K_SHOW_BUILDINGS_IN_3D_MODE));

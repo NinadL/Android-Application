@@ -72,7 +72,7 @@ public class MyMapView extends MapView
                         latLonStart.setLat(edgeList.get(j).getShapePoints().get(0).getLat());
                         latLonStart.setLon(edgeList.get(j).getShapePoints().get(0).getLon());
 
-                        Bitmap bitmapStart = BitmapFactory.decodeResource(getResources(), R.drawable.autopilot_start);
+                        Bitmap bitmapStart = BitmapFactory.decodeResource(getResources(), R.drawable.autopilot_start_annotation);
                         startAnnotation = new GLMapImageAnnotation(getContext(), 0, bitmapStart, latLonStart);
                         addAnnotation(startAnnotation);
 
@@ -88,7 +88,7 @@ public class MyMapView extends MapView
                         latLonEnd.setLat(edgeList.get(j).getShapePoints().get(0).getLat());
                         latLonEnd.setLon(edgeList.get(j).getShapePoints().get(0).getLon());
 
-                        Bitmap bitmapEnd = BitmapFactory.decodeResource(getResources(), R.drawable.autopilot_end);
+                        Bitmap bitmapEnd = BitmapFactory.decodeResource(getResources(), R.drawable.autopilot_end_annotation);
 
                         endAnnotation = new GLMapImageAnnotation(getContext(), 0, bitmapEnd, latLonEnd);
                         addAnnotation(endAnnotation);
