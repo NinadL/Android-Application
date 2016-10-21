@@ -1,98 +1,42 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/fragment_container">
+    android:layout_height="match_parent">
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:animateLayoutChanges="true">-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/white"
-            android:id="@+id/leftPane">
-
-
+            android:layout_weight="0.5"
+            android:background="@android:color/black"
+            android:id="@+id/left_pane">
 
             <android.opengl.GLSurfaceView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/jogl_render"
                 android:importantForAccessibility="yes"
-                android:longClickable="true"
-                android:padding="10dp"
-                android:visibility="visible"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="380dp"
-                android:id="@+id/SwipeStartScreen"
-                android:background="@drawable/left_arrow"
-                android:clickable="true"
-                android:visibility="invisible"
-
-                />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="380dp"
-                android:id="@+id/SwipeControlScreen"
-                android:background="@drawable/right_arrow"
-                android:clickable="true"
-                android:visibility="invisible"
-                />
-            <!--android:layout_marginTop="460dp"-->
-            <Button
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_above="@+id/SwipeStartScreen"
-                android:layout_marginBottom="10dp"
-                android:layout_alignParentBottom="true"
-                android:id="@+id/AutoSwap"
-                android:background="@drawable/autoswap_enabled"
-                android:clickable="true"
-                android:layout_marginLeft="100dp"
-                android:visibility="invisible"
-                />
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="New Text123"-->
-                <!--android:textSize="30dp"-->
-                <!--android:textColor="@color/cyan"-->
-                <!--android:id="@+id/node_not_working_middle"-->
-                <!--android:layout_centerInParent="true"-->
-                <!--/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="New Text"-->
-                <!--android:textSize="25dp"-->
-                <!--android:textColor="@color/cyan"-->
-                <!--android:id="@+id/node_not_working_top"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--/>-->
+                android:visibility="visible"/>
         </RelativeLayout>
 
-    <!--</LinearLayout>-->
+        <RelativeLayout
+            android:id="@+id/content_frame"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
+        </RelativeLayout>
+
+    </LinearLayout>
 
 
-    <!--<ListView-->
-        <!--android:id="@+id/sliding_drawer_list"-->
-        <!--style="@style/sliding_drawer_list"-->
-        <!--android:layout_gravity="end"/>-->
+    <ListView
+        android:id="@+id/sliding_drawer_list"
+        style="@style/sliding_drawer_list"
+        android:layout_gravity="end"/>
 </android.support.v4.widget.DrawerLayout>

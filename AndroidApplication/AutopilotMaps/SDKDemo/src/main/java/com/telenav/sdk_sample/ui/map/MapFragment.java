@@ -1,9 +1,11 @@
 package com.telenav.sdk_sample.ui.map;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,7 +23,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +31,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -80,7 +82,6 @@ import com.telenav.sdk.navigation.model.WayPoint;
 import com.telenav.sdk.navigation.model.WhereAmIInfo;
 import com.telenav.sdk_sample.R;
 import com.telenav.sdk_sample.application.ApplicationPreferences;
-import com.telenav.sdk_sample.application.AutopilotBrainData;
 import com.telenav.sdk_sample.application.PreferenceTypes;
 import com.telenav.sdk_sample.application.SdkSampleApplication;
 import com.telenav.sdk_sample.connectivity.NetworkUtils;
@@ -232,21 +233,27 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
      */
     private Button naviButton;
 
-    private RelativeLayout navigationDetails;
-    private LinearLayout navigationDetailsExt;
-    private LinearLayout travelEstimation;
-
-    private ImageView turnIcon;
-    private TextView turnDistance;
-    private TextView nextRoad;
     private Button closeNavigation;
 
-    private TextView distanceEstimated;
-    private TextView turnDistanceExt;
-    private TextView arrivalTime;
-
-    private ImageView turnIconExt;
     private TextView currentStreetName;
+
+
+    //Navigation details bar
+    private LinearLayout navigationDetailsBar;
+    private ImageView turnDisplayIcon;
+    private TextView remainingDistanceToTurn;
+    private TextView nextStreetName;
+    private TextView arrivalTimeAtDestination;
+    private TextView remainingTimeToDestination;
+    private TextView remainingDistanceToDestination;
+    private TextView nameOfTheDestination;
+
+    //button to change the zoom levels
+    private ImageButton zoomLevel;
+    private boolean isStreetLevelZoomEnabled = false;
+
+
+
 
     Timer myTimer1;
 
@@ -287,8 +294,6 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
     private Activity mainActivity;
 
     String destinationName = "";
-
-    TextView destinationNameTextView;
 
     Button recentSearch;
 
@@ -464,9 +469,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
         calculateRouteButton = (Button) view.findViewById(R.id.calculateRouteButton);
         calculateRouteButton.setOnClickListener(this);
         view.findViewById(R.id.slidingMenuButton).setOnClickListener(this);
-        navigationDetails = (RelativeLayout) view.findViewById(R.id.navigation_details);
-        navigationDetailsExt = (LinearLayout) view.findViewById(R.id.navigation_details_ext);
-        travelEstimation = (LinearLayout) view.findViewById(R.id.travel_estimation);
+        navigationDetailsBar = (LinearLayout) view.findViewById(R.id.navigation_details_bar);
         closeNavigation = (Button) view.findViewById(R.id.close_Navigation);
         closeNavigation.setOnClickListener(this);
         recentSearch = (Button) view.findViewById(R.id.recent_history);
@@ -538,17 +541,20 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
         routeOption = new RouteOption();
         navigationSettings = NavigationManager.getInstance().getNavigationSettings();
 
-        turnIcon = (ImageView) view.findViewById(R.id.turn_icon);
-        turnDistance = (TextView) view.findViewById(R.id.turn_distance);
-        nextRoad = (TextView) view.findViewById(R.id.next_road);
-
-        turnIconExt = (ImageView) view.findViewById(R.id.turn_icon_ext);
-        turnDistanceExt = (TextView) view.findViewById(R.id.turn_distance_ext);
-        distanceEstimated = (TextView) view.findViewById(R.id.distance_estimation);
-        arrivalTime = (TextView) view.findViewById(R.id.arrival_time);
-        destinationNameTextView = (TextView) view.findViewById(R.id.destination_name);
         currentStreetName = (TextView) view.findViewById(R.id.currentStreetName);
 
+        //Navigation details bar
+        turnDisplayIcon = (ImageView) view.findViewById(R.id.turn_display_icon);
+        remainingDistanceToTurn = (TextView) view.findViewById(R.id.remaining_distance_to_turn);
+        nextStreetName = (TextView) view.findViewById(R.id.next_street_name);
+        arrivalTimeAtDestination = (TextView) view.findViewById(R.id.arrival_time_at_destination);
+        remainingTimeToDestination = (TextView) view.findViewById(R.id.remaining_time_to_destination);
+        remainingDistanceToDestination = (TextView) view.findViewById(R.id.remaining_distance_to_destination);
+        nameOfTheDestination = (TextView) view.findViewById(R.id.name_of_destination);
+
+        //Zoomlevel button
+        zoomLevel = (ImageButton)view.findViewById(R.id.view_button);
+        zoomLevel.setOnClickListener(this);
     }
 
     /**
@@ -782,7 +788,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                 mainActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        waypointsLayout.setVisibility(View.VISIBLE);
+                        waypointsLayout.setVisibility(View.GONE);
                     }
                 });
             } else {
@@ -964,12 +970,11 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                         cancelButton.setVisibility(View.GONE);
 
                         naviButton.setText(getResources().getText(R.string.stop_navi_button_label));
-                        //nextStreetNameTextView.setVisibility(View.VISIBLE);
-                        navigationDetails.setVisibility(View.VISIBLE);
-                        navigationDetailsExt.setVisibility(View.VISIBLE);
-                        travelEstimation.setVisibility(View.VISIBLE);
+                        navigationDetailsBar.setVisibility(View.VISIBLE);
                         currentStreetName.setVisibility(View.VISIBLE);
                         mapSettings.setZoomLevel(1.0f, 1.0f);
+                        zoomLevel.setImageResource(R.drawable.street_view_icon);
+                        isStreetLevelZoomEnabled = true;
 
                         if (selectedRoute != -1) {
                             navigationSettings.setSimulationMode(appPrefs.getBooleanPreference(PreferenceTypes.K_NAVIGATION_SIMULATION));
@@ -992,10 +997,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                         ((MapActivity)getActivity()).isNavigationStarted = false;
                         myTimer1.cancel();
                         myTimer1.purge();
-                        // nextStreetNameTextView.setVisibility(View.GONE);
-                        navigationDetails.setVisibility(View.GONE);
-                        navigationDetailsExt.setVisibility(View.GONE);
-                        travelEstimation.setVisibility(View.GONE);
+                        navigationDetailsBar.setVisibility(View.GONE);
                         currentStreetName.setVisibility(View.GONE);
                         junctionViewImage.setVisibility(View.GONE);
                         NavigationManager.getInstance().stopNavigation();
@@ -1015,10 +1017,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                 myTimer1.cancel();
                 myTimer1.purge();
                 ((MapActivity)getActivity()).isNavigationStarted = false;
-                // nextStreetNameTextView.setVisibility(View.GONE);
-                navigationDetails.setVisibility(View.GONE);
-                navigationDetailsExt.setVisibility(View.GONE);
-                travelEstimation.setVisibility(View.GONE);
+                navigationDetailsBar.setVisibility(View.GONE);
                 currentStreetName.setVisibility(View.GONE);
                 junctionViewImage.setVisibility(View.GONE);
                 NavigationManager.getInstance().stopNavigation();
@@ -1026,6 +1025,8 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                 mapView.removeAllAnnotation();
                 releaseAnnotations();
                 mapSettings.setZoomLevel(8.0f, 0.5f);
+                zoomLevel.setImageResource(R.drawable.earth_icon);
+                isStreetLevelZoomEnabled = false;
                 ((MapActivity) mainActivity).enableSettingsMenu();
                 break;
             case R.id.currentPositionButton:
@@ -1057,8 +1058,25 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                 ((MapActivity)getActivity()).arrayAdapter = new ArrayAdapter(mainActivity, android.R.layout.simple_list_item_1, reverseArrayList);
                 recentHistoryListView.setAdapter(((MapActivity)getActivity()).arrayAdapter);
                 recentHistoryListView.setVisibility(View.VISIBLE);
+                break;
 
-
+            case R.id.view_button:
+                if(isStreetLevelZoomEnabled)
+                {
+                    zoomLevel.setImageResource(R.drawable.earth_icon);
+                    mapSettings.setZoomLevel(8.0f, 0.5f);
+                    mapSettings.setFollowUserPosition(!appPrefs.getBooleanPreference(PreferenceTypes.K_FOLLOW_USER_POSITION));
+                    mapSettings.setEnableHeadingRotation(!appPrefs.getBooleanPreference(PreferenceTypes.K_ROTATE_HEADING));
+                    isStreetLevelZoomEnabled = false;
+                }
+                else
+                {
+                    zoomLevel.setImageResource(R.drawable.street_view_icon);
+                    mapSettings.setZoomLevel(1.0f, 1.0f);
+                    mapSettings.setFollowUserPosition(appPrefs.getBooleanPreference(PreferenceTypes.K_FOLLOW_USER_POSITION));
+                    mapSettings.setEnableHeadingRotation(appPrefs.getBooleanPreference(PreferenceTypes.K_ROTATE_HEADING));
+                    isStreetLevelZoomEnabled = true;
+                }
         }
     }
 
@@ -1074,9 +1092,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                         waypointsLayout.setVisibility(View.GONE);
                     }
                     routesButtons.setVisibility(View.GONE);
-                    navigationDetails.setVisibility(View.GONE);
-                    navigationDetailsExt.setVisibility(View.GONE);
-                    travelEstimation.setVisibility(View.GONE);
+                    navigationDetailsBar.setVisibility(View.GONE);
                     currentStreetName.setVisibility(View.GONE);
                     naviButton.setVisibility(View.GONE);
                     topBarLayout.setVisibility(View.VISIBLE);
@@ -1337,19 +1353,63 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                         @Override
                         public void run() {
                             setImageResource(navigationData);
-                            nextRoad.setText(NavigationManager.getInstance().getNavigationData().getNextStreetName());
-                            turnDistanceExt.setText(String.valueOf((Math.round((float)((NavigationManager.getInstance().getNavigationData().getDistanceToTurn()) * 0.000621371)*10.0)/10.0)) + "MI");
+                            nextStreetName.setText(NavigationManager.getInstance().getNavigationData().getNextStreetName());
+                            remainingDistanceToTurn.setText(String.valueOf((Math.round((float)((NavigationManager.getInstance().getNavigationData().getDistanceToTurn()) * 0.000621371)*10.0)/10.0)) + " mi");
 
                             TravelEstimation travelEstimation = NavigationManager.getInstance().getNavigationData().getDestinationTravelEstimation();
 
                             if(travelEstimation != null) {
+                                //Calculate the estimated arrival time based on the
                                 int hours = travelEstimation.getArriveTimeInMinutes() / 60; //since both are ints, you get an int
                                 int minutes = travelEstimation.getArriveTimeInMinutes() % 60;
 
-                                arrivalTime.setText("ETA : " + String.valueOf(hours + ":" + minutes));
-                                distanceEstimated.setText("ETD : " + String.valueOf(convertMetersToMiles(travelEstimation.getDistance())) + " mi");
+                                String _24HourTime = String.valueOf(hours)+":"+String.valueOf(minutes);
+
+
+                                try {
+                                    //Convert 24 hr format to 12 hr format
+
+                                    SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm");
+                                    SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm a");
+                                    Date _24HourDt = null;
+                                    _24HourDt = _24HourSDF.parse(_24HourTime);
+                                    arrivalTimeAtDestination.setText(_12HourSDF.format(_24HourDt));
+
+                                    //Get remaining time
+                                    Date currentTime = _24HourSDF.parse(_24HourSDF.format(new Date()));
+                                    Date arrivalTime = _24HourDt;
+
+                                    long diff = arrivalTime.getTime() - currentTime.getTime();
+                                    long diffMinutes = diff / (60 * 1000);
+
+                                    int remainingHours = (int)diffMinutes / 60; //since both are ints, you get an int
+                                    int remainingMinutes  = (int)diffMinutes % 60;
+                                    System.out.printf("%d:%02d", hours, minutes);
+
+                                    if(remainingHours != 0)
+                                    {
+                                        remainingTimeToDestination.setText(String.valueOf(remainingHours) + " hr " + String.valueOf(remainingMinutes) + " min");
+                                    }
+                                    else
+                                    {
+                                        remainingTimeToDestination.setText(String.valueOf(remainingMinutes) + " min");
+                                    }
+
+
+
+
+
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+
+
+
+                                remainingDistanceToDestination.setText(String.valueOf(convertMetersToMiles(travelEstimation.getDistance())) + " mi");
                             }
-                            destinationNameTextView.setText(destinationName);
+                            nameOfTheDestination.setText(destinationName);
                             currentStreetName.setText(NavigationManager.getInstance().getNavigationData().getCurrentStreetName());
                         }
                     });
@@ -1535,82 +1595,82 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 
             switch (turnType) {
                 case Continue:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_ahead_icon);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_ahead_icon);
                     break;
                 case TurnSlightRight:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_turn_right_icon_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_turn_right_icon_focused);
                     break;
                 case TurnRight:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_turn_right_icon_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_turn_right_icon_focused);
                     break;
                 case TurnHardRight:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_hard_right_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_hard_right_unfocused);
                     break;
                 case RightUTurn:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_uturnright_icon_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_uturnright_icon_focused);
                     break;
                 case LeftUTurn:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_uturnleft_icon_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_uturnleft_icon_focused);
                     break;
                 case TurnHardLeft:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_hard_left_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_hard_left_unfocused);
                     break;
                 case TurnLeft:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_turn_left_icon_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_turn_left_icon_focused);
                     break;
                 case TurnSlightLeft:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_turn_left_icon_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_turn_left_icon_focused);
                     break;
                 case EnterLeft:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_turn_left_icon_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_turn_left_icon_focused);
                     break;
                 case EnterRight:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_turn_right_icon_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_turn_right_icon_focused);
                     break;
                 case EnterAhead:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_ahead_icon);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_ahead_icon);
                     break;
                 case ExitLeft:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_exit_left_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_exit_left_unfocused);
                     break;
                 case ExitRight:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_exit_right_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_exit_right_unfocused);
                     break;
                 case ExitAhead:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_ahead_icon);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_ahead_icon);
                     break;
                 case MergeLeft:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_merge_left_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_merge_left_unfocused);
                     break;
                 case MergeRight:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_merge_right_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_merge_right_unfocused);
                     break;
                 case MergeAhead:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_continue_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_continue_unfocused);
                     break;
                 case LocationLeft:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_on_left_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_on_left_unfocused);
                     break;
                 case LocationRight:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_on_right_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_on_right_unfocused);
                     break;
                 case LocationAhead:
-                    turnIcon.setImageResource(R.drawable.list_turn_icon_big_ahead_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_ahead_focused);
                     break;
                 case StayLeft:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_ahead_icon);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_ahead_icon);
                     break;
                 case StayRight:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_ahead_icon);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_ahead_icon);
                     break;
                 case StayMiddle:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_ahead_icon);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_ahead_icon);
                     break;
                 case HookTurnRight:
-                    turnIconExt.setImageResource(R.drawable.lane_assist_turn_right_icon_focused);
+                    turnDisplayIcon.setImageResource(R.drawable.lane_assist_turn_right_icon_focused);
                     break;
                 case PassTollBotth:
-                    turnIconExt.setImageResource(R.drawable.list_turn_icon_big_tollbooth_unfocused);
+                    turnDisplayIcon.setImageResource(R.drawable.list_turn_icon_big_tollbooth_unfocused);
                     break;
 
             }
@@ -1632,19 +1692,13 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
         public void run()
         {
             AutopilotBrain autopilotBrain = new AutopilotBrain();
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put("distance_remaining", String.valueOf(autopilotBrain.getDistance()));
-                jsonObject.put("speed_limit", String.valueOf(autopilotBrain.getSpeedLimit()));
-                jsonObject.put("is_highway_next", String.valueOf(autopilotBrain.isHighwayNext));
-                jsonObject.put("are_we_on_highway", String.valueOf(autopilotBrain.areWeOnHighway));
-                jsonObject.put("isNavigationStarted", String.valueOf(((MapActivity)getActivity()).isNavigationStarted));
+            AutopilotBrainData autopilotBrainData = new AutopilotBrainData();
 
-                ((MapActivity)getActivity()).sendControl(jsonObject);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            autopilotBrainData.setRemainingDistance(autopilotBrain.getDistance());
+            autopilotBrainData.setSpeedLimit(autopilotBrain.getSpeedLimit());
+            autopilotBrainData.setIsHighwayNext(autopilotBrain.isHighwayNext);
+            autopilotBrainData.setAreWeOnHighway(autopilotBrain.areWeOnHighway);
+            autopilotBrainData.setIsNavigationStarted(((MapActivity)getActivity()).isNavigationStarted);
         }
     }
 

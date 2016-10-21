@@ -5,4 +5,8 @@
     <color name="white">#ffffff</color>
     <color name="button_color_default">#313131</color>
     <color name="button_pressed">#707070</color>
+    <color name="background_green">#137506</color>
+    <color name="background_line">#86B67E</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#FF5722</color>
 </resources>

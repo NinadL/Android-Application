@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ComponentName;
@@ -19,9 +21,12 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationManager;
+import android.opengl.GLSurfaceView;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -34,6 +39,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.telenav.entity.service.model.common.GeoPoint;
 import com.telenav.entity.service.model.v4.Entity;
@@ -57,14 +64,19 @@ import com.telenav.sdk_sample.application.ApplicationPreferences;
 import com.telenav.sdk_sample.application.PreferenceTypes;
 import com.telenav.sdk_sample.application.SdkSampleApplication;
 import com.telenav.sdk_sample.connectivity.NetworkConnectionMonitor;
-import com.telenav.sdk_sample.connectivity.SocketClient;
+//import com.telenav.sdk_sample.connectivity.SocketClient;
+import com.telenav.sdk_sample.joglrender.OBJParser;
 import com.telenav.sdk_sample.search.SearchManager;
 import com.telenav.sdk_sample.search.SearchRequestObject;
 import com.telenav.sdk_sample.search.SuggestionItem;
 import com.telenav.sdk_sample.ui.menu.MenuConstants;
 import com.telenav.sdk_sample.ui.menu.SlidingMenuAdapter;
 import com.telenav.sdk_sample.ui.menu.SlidingMenuItem;
+import com.telenav.sdk_sample.car_data.SocketClient;
+import com.telenav.sdk_sample.car_data.SocketServer;
+import com.telenav.sdk_sample.joglrender.openGLRenderer;
 
+//import org.apache.log4j.net.SocketServer;
 import org.json.JSONObject;
 
 
@@ -112,7 +124,7 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
     private boolean isSettingsMenuLocked;
 
     private ApplicationPreferences appPrefs;
-    private SocketClient client = null;
+    private com.telenav.sdk_sample.connectivity.SocketClient client = null;
 
     public boolean isNavigationStarted = false;
 
@@ -129,11 +141,32 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
     /**
      * used for knowing if onPostResume method was called
      */
+
+    //Control Application variables
+    public static final short startScreen = 1;
+    public static final short controlScreen = 2;
+    private SocketClient c0=null, c1=null, c2=null, c3=null;
+    private SocketServer ss = null;
+    public static final String ANIMATE_FRAGMENT = "ANIMATE_FRAGMENT";
+    private AnimateFragment animateFragment;
+    public static boolean areWeOnStartScreen = true;
     private volatile boolean onPostResumeCalled;
+    boolean click = true;
+    public static TextView PerceptionNotWorking;
+    public static TextView otherNodesNotWorking;
+    boolean autoSwapIsClicked = false;
+    GLSurfaceView gl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ss = new SocketServer();
+        c0 = new SocketClient("localhost",45001,0);
+        c1 = new SocketClient("localhost",45011,1);
+        c2 = new SocketClient("localhost",45021,2);
+        c3 = new SocketClient("localhost",45031,3);
+
         setContentView(R.layout.activity_main);
 
         onPostResumeCalled = false;
@@ -147,8 +180,49 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
             // Pre-Marshmallow
             initMap();
         }
+        initScreen();
+        initJoglScreen();
     }
 
+    private void initJoglScreen(){
+
+        new processObjFile().execute();
+        gl = (GLSurfaceView) findViewById(R.id.jogl_render);
+        gl.setEGLContextClientVersion(2);
+
+        gl.setRenderer( new openGLRenderer(this,(RelativeLayout) findViewById(R.id.left_pane)));
+
+    }
+
+    private void initScreen()
+    {
+        RelativeLayout leftLayout = (RelativeLayout) findViewById(R.id.left_pane);
+        RelativeLayout.LayoutParams leftLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        leftLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        leftLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        attachFragmentToActivity();
+
+//        tts=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener()
+//        {
+//            @Override
+//            public void onInit(int status)
+//            {
+//                tts.setLanguage(Locale.US);
+//            }
+//        }
+//        );
+//
+//
+//        speechStrings = new SpeechStrings(getApplicationContext());
+//        tts=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+//            @Override
+//            public void onInit(int status)
+//            {
+//                tts.setLanguage(Locale.US);
+//            }
+//        }
+//        );
+    }
     private void initMap() {
         SdkSampleApplication sdkApp = (SdkSampleApplication) getApplication();
         if (!sdkApp.isInitOk()) {
@@ -163,7 +237,7 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
             InitialiseManager.getInstance().addInitStatusListener(this);
             InitialiseManager.getInstance().initialise(getApplicationContext());
             ipAddress = appPrefs.getStringPreference(PreferenceTypes.K_IP_ADDRESS);
-            client = new SocketClient(ipAddress,45002);
+            client = new com.telenav.sdk_sample.connectivity.SocketClient(ipAddress,45002);
             Log.d("ipAddress", "is"+ ipAddress);
 
             LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -306,6 +380,9 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
         registerNetworkConnectionBroadcastReceiver();
         mapFragment = new MapFragment();
         getFragmentManager().beginTransaction().replace(R.id.content_frame, mapFragment, MAP_FRAGMENT).commit();
+        animateFragment = new AnimateFragment();
+        getFragmentManager().beginTransaction().replace(R.id.left_pane, animateFragment, ANIMATE_FRAGMENT).commit();
+
         setDefaultNavigationSettingsValues();
 
     }
@@ -359,23 +436,7 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
         navigationSettings.setTrafficSettings(trafficSettings);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(client!=null){
-            client.closeConnection();
-            client = null;
-        }
 
-        MapView.destroyMap();
-        if (networkConnectionMonitor != null) {
-            unregisterReceiver(networkConnectionMonitor);
-        }
-        if (NavigationManager.getInstance().getNavigationData().isNavigationStarted()) {
-            NavigationManager.getInstance().stopNavigation();
-        }
-        ExternalDisplayManager.getInstance().stopRenderingOnExternalDisplay();
-    }
 
     /**
      * performs search
@@ -1115,4 +1176,103 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
         File file = getBaseContext().getFileStreamPath(fname);
         return file.exists();
     }
+
+    public void sendControl(int value)
+    {
+        //TODO - MODIFY THIS
+        c0.sendMessage(String.valueOf(value));
+        //cService.sendMessage(String.valueOf(value)) ;
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        if(client!=null){
+            client.closeConnection();
+            client = null;
+        }
+
+        MapView.destroyMap();
+        if (networkConnectionMonitor != null) {
+            unregisterReceiver(networkConnectionMonitor);
+        }
+        if (NavigationManager.getInstance().getNavigationData().isNavigationStarted()) {
+            NavigationManager.getInstance().stopNavigation();
+        }
+        ExternalDisplayManager.getInstance().stopRenderingOnExternalDisplay();
+
+        if (ss != null) {
+            ss.closeAll();
+            ss = null;
+        }
+
+        if (c0 != null) {
+            c0.closeConnection();
+            c0 = null;
+        }
+        if (c1 != null) {
+            c1.closeConnection();
+            c1 = null;
+        }
+        if (c2 != null) {
+            c2.closeConnection();
+            c2 = null;
+        }
+        if (c3 != null) {
+            c3.closeConnection();
+            c3 = null;
+        }
+    }
+
+    @Override
+    protected void onResume()
+    {
+        // The activity must call the GL surface view's onResume() on activity onResume().
+        super.onResume();
+        gl.onResume();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        // The activity must call the GL surface view's onPause() on activity onPause().
+        super.onPause();
+        gl.onPause();
+    }
+
+
+    public class processObjFile extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            Log.d("asyncTask","started");
+            OBJParser parser=new OBJParser(getBaseContext());
+            parser.parseOBJ();
+            Log.d("asyncTask","end of async");
+            return null;
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+
+
+
+        }
+
+        @Override
+        protected void onPostExecute(Void param) {
+
+        }
+
+
+
+        @Override
+        protected void onProgressUpdate(Void... values) {}
+
+    }
+
+
 }
