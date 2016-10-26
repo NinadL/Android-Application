@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="sliding_menu_blue_button">#0080ff</color>
-    <color name="button_background_color">#2fa96c</color>
-    <color name="white">#ffffff</color>
-    <color name="button_color_default">#313131</color>
-    <color name="button_pressed">#707070</color>
-</resources>
