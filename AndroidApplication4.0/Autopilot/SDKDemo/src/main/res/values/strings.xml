@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">Autopilot Maps</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="no_results_label">No results</string>
+    <string name="no_internet_connection_label">No internet connection!</string>
+
+    <string name="map_style_label">Map Style</string>
+    <string name="map_style_day_label">Day</string>
+    <string name="map_style_night_label">Night</string>
+
+    <string name="map_orientation_label">Map Orientation</string>
+    <string name="map_orientation_m3_label">3D</string>
+    <string name="map_orientation_m3_north_up_label">3D north up</string>
+    <string name="map_orientation_m3_heading_up_label">3D heading up</string>
+    <string name="map_orientation_m2_label">2D</string>
+    <string name="map_orientation_m2_north_up_label">2D north up</string>
+    <string name="map_orientation_m2_heading_up_label">2D heading up</string>
+
+    <string name="map_mode_label">Map Mode</string>
+    <string name="map_mode_compass_heading_up">Compass heading up</string>
+    <string name="map_mode_compass_direct_heading">Compass direct heading</string>
+    <string name="map_mode_north_heading_up">North heading up</string>
+    <string name="map_mode_north_direct_heading">North direct heading</string>
+
+    <string name="map_features_label">Other map features</string>
+    <string name="show_buildings_in_3d_mode_label">Show buildings in 3D mode</string>
+    <string name="rotate_heading_label">Rotate heading</string>
+
+    <string name="enable_traffic_label">Traffic</string>
+    <string name="enable_traffic_incidents_checkbox_text">Show traffic incidents</string>
+    <string name="enable_traffic_flow_checkbox_text">Show traffic flow</string>
+
+    <string name="map_position_mode_label">Position mode</string>
+    <string name="map_position_follow_vehicle_label">Follow user position</string>
+    <string name="map_position_pan_and_zoom_label">Pan and zoom</string>
+
+    <string name="map_interaction_label">Map interaction</string>
+    <string name="map_multitouch_gesture_pan_label">Pan</string>
+    <string name="map_multitouch_gesture_rotate_label">Rotate</string>
+    <string name="map_multitouch_gesture_tilt_label">Tilt</string>
+    <string name="map_multitouch_gesture_zoom_label">Zoom</string>
+
+    <string name="map_scale_label">Map scale</string>
+    <string name="map_scale_action_label">Show map scale</string>
+
+    <string name="map_roads_label">Roads</string>
+    <string name="map_roads_action_label">Show roads</string>
+
+    <string name="map_regions_label">Regions</string>
+    <string name="map_regions_action_label">Show regions</string>
+
+    <string name="map_labels_label">Map labels</string>
+    <string name="map_labels_action_label">Show map labels</string>
+
+    <string name="map_terrain_label">Terrain</string>
+    <string name="map_terrain_action_label">Show terrain</string>
+
+    <string name="navigation_mode_label">Navigation</string>
+    <string name="navigation_mode_simulation_label">Simulation</string>
+    <string name="navigation_mode_real_label">Real</string>
+
+    <string name="first_route_label">Route 1</string>
+    <string name="second_route_label">Route 2</string>
+    <string name="third_route_label">Route 3</string>
+    <string name="start_navi_button_label">Lets Go</string>
+    <string name="stop_navi_button_label">Stop navigation</string>
+
+    <string name="map_data_path_label">Data path</string>
+    <string name="ip_data_path_label">IP Address</string>
+
+    <string name="map_region_label">Map region</string>
+    <string name="map_region_eu_label">EU</string>
+    <string name="map_region_na_label">NA</string>
+
+    <string name="save_data_path_label">Save</string>
+    <string name="change_data_path_label">change</string>
+    <string name="new_map_data_path_massage">Please add a new data path</string>
+    <string name="new_ip_data_path_massage">Please add a new IP address</string>
+    <string name="change_data_path_explanation">In order to apply your changes, please restart your app</string>
+
+    <string name="add_way_point_along_route">Add along route</string>
+    <string name="add_way_point_as_new_destination">Add as new destination</string>
+
+    <string name="calculate_route_label">Calculate route</string>
+
+    <string name="route_calculation_failed">Route calculation failed!</string>
+    <string name="cancel_label">Cancel</string>
+
+    <string name="route_options_label">Route options</string>
+    <string name="avoid_highways">Avoid highways</string>
+    <string name="avoid_toll_roads">Avoid toll roads</string>
+    <string name="avoid_tunnels">Avoid tunnels</string>
+    <string name="avoid_unpaved_road">Avoid unpaved road</string>
+    <string name="avoid_country_borders">Avoid country borders</string>
+    <string name="avoid_ferries">Avoid ferries</string>
+    <string name="avoid_hov_lanes">Avoid HOV lanes</string>
+    <string name="avoid_train_transport">Avoid train transport</string>
+
+    <string name="unit_type_label">Unit type</string>
+    <string name="imperial_label">Imperial</string>
+    <string name="metric_label">Metric</string>
+
+    <string name="voice_guidance_type_label">Voice guidance type</string>
+    <string name="voice_guidance_none_label">None</string>
+    <string name="voice_guidance_phoneme_label">Phoneme</string>
+    <string name="voice_guidance_orthography_label">Orthography</string>
+    <string name="voice_guidance_instruction_label">Instruction</string>
+
+    <string name="grant_access_to_gps_external">You need to grant access to gps, external storage</string>
+    <string name="ok">Ok</string>
+    <string name="permissions_denied">Permissions denied.</string>
+    <string name="permissions_granted">Permissions granted</string>
+
+    <string name="manual_mode">Manual Mode</string>
+    <string name="autopilot_available">Autopilot Available</string>
+    <string name="autopilot_enabled">Autopilot Enabled</string>
+    <string name="autopilot_ending">Autopilot Ending</string>
+    <string name="prepare_to_take_control">Prepare to Take Over</string>
+    <string name="please_take_over">Please Take Over</string>
+    <string name="take_over_now">Take Over Now</string>
+
+</resources>

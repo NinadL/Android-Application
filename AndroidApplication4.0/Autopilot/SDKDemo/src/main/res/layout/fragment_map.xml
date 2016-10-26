@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--map-->
+    <com.telenav.sdk_sample.ui.map.MyMapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true" />
+
+    <!--current position-->
+    <ImageButton
+        android:id="@+id/currentPositionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:scaleType="center"
+        android:src="@drawable/current_position" />
+
+    <!--exit button-->
+    <TextView
+        android:id="@+id/exitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:scaleType="center"
+        android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel" />
+
+
+    <!--top bar-->
+    <RelativeLayout
+        android:id="@+id/topBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:alpha="0.9"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="95dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="30dp"
+            android:id="@+id/recent_history"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/recent_search"
+            />
+
+        <ImageView
+            android:id="@+id/divider_line"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/recent_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/dividerline"/>
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_toRightOf="@id/divider_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:iconifiedByDefault="false"
+            android:layout_marginLeft="10dp"
+            android:searchIcon="@drawable/icon_search"
+            android:queryBackground="@android:color/white"
+            android:queryHint="Type to search for an address or destination"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/slidingMenuButton"
+        android:layout_width="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="70dp"
+        android:src="@drawable/icn_search_large_setting_blue"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        android:alpha="0.9"/>
+
+    <!--routes button-->
+    <!-- suggestions-->
+
+    <ListView
+        android:id="@+id/suggestionsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topBarLayout"
+        android:background="@android:color/white"
+        android:alpha ="0.9"
+        android:layout_marginRight="95dp"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/recentHistoryListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topBarLayout"
+        android:background="@android:color/white"
+        android:alpha ="0.9"
+        android:layout_marginRight="95dp"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone" />
+
+    <!--search result layout-->
+    <LinearLayout
+        android:id="@+id/searchResultLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:weightSum="1">
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/closeSearchResultsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/button_gradient"
+                android:drawableLeft="@drawable/cancel"/>
+
+            <ListView
+                android:id="@+id/searchResultList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/closeSearchResultsButton"
+                android:layout_marginEnd="1dp"
+                android:cacheColorHint="#00000000"
+                android:choiceMode="singleChoice"
+                android:divider="?android:listDivider"
+                android:dividerHeight="1dp"
+                android:fastScrollEnabled="true"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:listSelector="#C2C2D6"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/noResultsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/no_results_label"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/loadingIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/routes_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+                >
+
+                <Button
+                    android:id="@+id/first_route"
+                    style="@style/button"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/button_background_color"
+                    android:fontFamily="sans-serif"
+                    android:textSize="22dp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/first_route_label" />
+
+                <Button
+                    android:id="@+id/second_route"
+                    style="@style/button"
+                    android:layout_width="match_parent"
+                    android:fontFamily="sans-serif"
+                    android:textSize="22dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:text="Route 2" />
+
+                <Button
+                    android:id="@+id/third_route"
+                    style="@style/button"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:fontFamily="sans-serif"
+                    android:textSize="22dp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="match_parent"
+                    android:text="@string/third_route_label" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <!--junction view-->
+
+    <ImageView
+        android:id="@+id/junctionViewImage"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#31b071" />
+
+    <!--next street name-->
+    <TextView
+        android:id="@+id/nextStreetNameView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/button_gradient"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:visibility="gone" />
+
+    <!--calculate route-->
+    <Button
+        android:id="@+id/calculateRouteButton"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:textSize="22dp"
+        android:textColor="@android:color/white"
+        android:drawableLeft="@drawable/route_icon"
+        android:paddingLeft="15dp"
+        android:background="@drawable/calculate_button"
+        android:bottomRightRadius="10dp"
+        android:bottomLeftRadius="10dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        android:text="@string/calculate_route_label"
+        android:visibility="gone" />
+
+    <!--start/stop navigation-->
+    <Button
+        android:id="@+id/navi_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:textSize="22dp"
+        android:textColor="@android:color/white"
+        android:text="Start Navigation"
+        android:drawableLeft="@drawable/car_icon"
+        android:paddingLeft="15dp"
+        android:visibility="gone"
+        android:background="@drawable/rounded_button"
+        android:bottomRightRadius="10dp"
+        android:bottomLeftRadius="10dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp" />
+
+    <!--cancel button-->
+    <Button
+        android:id="@+id/cancelButton"
+        style="@style/button"
+        android:layout_centerHorizontal="true"
+        android:text="@string/cancel_label"
+        android:visibility="gone" />
+
+
+    <!--waypoints -->
+
+    <LinearLayout
+        android:id="@+id/waypointsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/alongRouteButton"
+            style="@style/button"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text="@string/add_way_point_along_route" />
+
+        <Button
+            android:id="@+id/newDestinationButton"
+            style="@style/button"
+            android:gravity="center"
+            android:text="@string/add_way_point_as_new_destination" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentStreetName"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.9"
+        android:layout_above="@+id/travel_estimation"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/current_street_color"
+        android:textColor="@android:color/white"
+        android:fontFamily="sans-serif"
+        android:textSize="15dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/destination_details_color"
+        android:visibility="gone"
+        android:id="@+id/travel_estimation">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/close_navigation"
+            android:layout_weight="0.05"
+            android:background="@android:drawable/ic_menu_close_clear_cancel"/>
+        <TextView
+            android:id="@+id/arrival_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="20dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/remaining_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="20dp"
+            android:gravity="center" />
+
+
+        <TextView
+            android:id="@+id/distance_estimation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="20dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/destination_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.395"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="20dp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/zoom_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/map_view"
+        android:visibility="gone"
+        />
+
+
+</RelativeLayout>

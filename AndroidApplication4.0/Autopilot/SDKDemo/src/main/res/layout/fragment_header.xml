@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="21"
+    android:orientation="horizontal">
+
+    <!--Blank space-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@android:color/black">
+    </LinearLayout>
+
+    <!--Autopilot buttons-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:weightSum="9.5"
+        android:orientation="vertical"
+        android:background="@android:color/black">
+
+        <!--Blank space-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            />
+
+        <!--Increase speed button-->
+        <ImageButton
+            android:id="@+id/increase_speed"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:background="@android:color/black"
+            android:clickable="false"
+            android:src="@drawable/increase_speed_disabled"/>
+
+        <!--Blank space-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            />
+
+        <!--Engage autopilot button-->
+        <ImageButton
+            android:id="@+id/engage_autopilot"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:background="@android:color/black"
+            android:clickable="false"
+            android:src="@drawable/engage_autopilot_disabled"/>
+
+        <!--Blank space-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            />
+
+        <!--Decrease speed button-->
+        <ImageButton
+            android:id="@+id/decrease_speed"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:background="@android:color/black"
+            android:clickable="false"
+            android:src="@drawable/decrease_speed_disabled"/>
+
+        <!--Blank space-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            />
+
+    </LinearLayout>
+
+    <!--Blank space-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@android:color/black">
+    </LinearLayout>
+
+    <!--Maps information-->
+    <LinearLayout
+        android:id="@+id/maps_information_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:weightSum="4"
+        android:orientation="vertical"
+        android:background="@color/backgroundColor">
+
+        <!--Blank space at the top-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25">
+        </LinearLayout>
+
+        <!--Turn icon -->
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.75"
+            android:gravity="center"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/turn_icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/turn_distance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="sans-serif"
+                android:textSize="22dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/next_street_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="2"
+                android:fontFamily="sans-serif"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--Speedometer layout-->
+    <LinearLayout
+        android:id="@+id/speedometer_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:background="@color/backgroundColor">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--Digital Speed display-->
+            <TextView
+                android:id="@+id/digital_speed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:lines="2"
+                android:fontFamily="sans-serif"
+                android:textSize="22dp"
+                android:textColor="@android:color/white"
+                />
+
+            <!--Analog speed display-->
+            <ProgressBar
+                android:id="@+id/analog_speed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_progress_bar"
+                android:background="@drawable/circle_shape"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="160"
+                />
+
+            <ProgressBar
+                android:id="@+id/progressBarOne"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_progress_bar_one"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="134"
+                android:progress="36" />
+
+            <!--Speed limit when autopilot is not enabled-->
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/speedlimit_normal"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/speedlimit"
+                />
+
+            <!--Speed limit (Reference speed) when autopilot is on-->
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/reference_speed_autopilot"
+                android:text="LIMIT\n65"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="65dp"
+                android:background="@drawable/green_circle"
+                android:visibility="invisible"
+                />
+
+            <!--Speed limit of the road when autopilot is on-->
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/speedlimit_autopilot"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="115dp"
+                android:background="@drawable/speedlimit"
+                android:visibility="invisible"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!--Autopilot status layout-->
+    <LinearLayout
+        android:id="@+id/autopilot_status_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:weightSum="4"
+        android:background="@color/backgroundColor">
+
+        <!--Blank space at the top-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+        </LinearLayout>
+
+        <!--Autopilot status image-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/autopilot_status_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/manual_mode"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+        <!--Autopilot text status -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/autopilot_text_status"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Manual Mode"
+                android:textColor="@android:color/white"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
+        <!--Autopilot distance remaining -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="@android:color/black">
+    </LinearLayout>
+
+</LinearLayout>
+

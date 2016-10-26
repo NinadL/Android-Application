@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sliding_menu_blue_button">#0080ff</color>
+    <color name="button_background_color">#2fa96c</color>
+    <color name="white">#ffffff</color>
+    <color name="button_color_default">#313131</color>
+    <color name="button_pressed">#707070</color>
+    <color name="backgroundColor">#272727</color>
+    <color name="destination_details_color">#1B1B1B</color>
+    <color name="current_street_color">#565656</color>
+    <color name="autopilot_enable_color">#00B52C</color>
+    <color name="warning_color">#FED406</color>
+    <color name="error_color">#D0011D</color>
+    <color name="emergency_background_color">#43060E</color>
+</resources>
