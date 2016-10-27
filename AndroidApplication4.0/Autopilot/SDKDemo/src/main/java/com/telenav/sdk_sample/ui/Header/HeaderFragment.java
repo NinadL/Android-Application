@@ -11,6 +11,7 @@ import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,6 +44,7 @@ public class HeaderFragment extends Fragment
     ImageButton increaseSpeed;
     ImageButton engageAutopilot;
     ImageButton decreaseSpeed;
+    Button takeControl;
     public static boolean isAutopilotOn = false;
     public static int referenceSpeed = 60;
 
@@ -95,6 +97,7 @@ public class HeaderFragment extends Fragment
         increaseSpeed = (ImageButton) view.findViewById(R.id.increase_speed);
         engageAutopilot = (ImageButton) view.findViewById(R.id.engage_autopilot);
         decreaseSpeed = (ImageButton) view.findViewById(R.id.decrease_speed);
+        takeControl = (Button) view.findViewById(R.id.take_control);
 
         increaseSpeed.setOnClickListener(new View.OnClickListener()
         {
@@ -122,6 +125,13 @@ public class HeaderFragment extends Fragment
             {
                 referenceSpeed = referenceSpeed - 1;
                 ((MapActivity) getActivity()).sendControl(3);
+            }
+        });
+
+        takeControl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MapActivity) getActivity()).sendControl(1);
             }
         });
     }

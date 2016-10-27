@@ -328,7 +328,19 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
+        android:weightSum="4"
+        android:orientation="vertical"
         android:background="@android:color/black">
+
+        <Button
+        android:id="@+id/take_control"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Take Control"
+        android:background="@android:color/darker_gray"
+            />
+
     </LinearLayout>
 
 </LinearLayout>
