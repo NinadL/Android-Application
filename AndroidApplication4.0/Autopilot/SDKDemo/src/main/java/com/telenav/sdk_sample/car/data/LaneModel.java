@@ -26,6 +26,26 @@ public class LaneModel
 
     public ArrayList<Lane> sortLanes(ArrayList<Lane> laneBoundaries)
     {
+        if(laneBoundaries.size() == 0)
+        {
+            Lane centreLane = new Lane();
+            centreLane = createImaginaryLane(0, null);
+            centreLane.setType(9);
+            rightRightLaneBoundary = createImaginaryLane(-5.4, centreLane);
+            rightRightLaneBoundary.setType(2);
+            sortedBoundaries.add(rightRightLaneBoundary);
+            rightLaneBoundary = createImaginaryLane(-1.8, centreLane);
+            rightLaneBoundary.setType(1);
+            sortedBoundaries.add(rightLaneBoundary);
+            leftLaneBoundary = createImaginaryLane(1.8, centreLane);
+            leftLaneBoundary.setType(1);
+            sortedBoundaries.add(leftLaneBoundary);
+            leftLeftLaneBoundary = createImaginaryLane(5.4, centreLane);
+            leftLeftLaneBoundary.setType(2);
+            sortedBoundaries.add(leftLeftLaneBoundary);
+            sortedBoundaries.add(centreLane);
+
+        }
         for (int i = 0; i < laneBoundaries.size(); i++)
         {
             if(laneBoundaries.get(i).getType() == 9)

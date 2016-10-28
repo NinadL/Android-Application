@@ -52,7 +52,28 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/black">
+                android:orientation="vertical"
+                android:background="@android:color/black"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/leftPane">
+
+                    <android.opengl.GLSurfaceView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/jogl_render"
+                        android:importantForAccessibility="yes"
+                        android:longClickable="true"
+                        android:padding="10dp"
+                        android:visibility="visible"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+
+                </RelativeLayout>
+
             </LinearLayout>
 
         </LinearLayout>

@@ -9,6 +9,8 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationManager;
+import android.opengl.GLSurfaceView;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,7 +24,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.telenav.entity.service.model.common.GeoPoint;
@@ -48,6 +52,8 @@ import com.telenav.sdk_sample.application.PreferenceTypes;
 import com.telenav.sdk_sample.application.SdkSampleApplication;
 import com.telenav.sdk_sample.car.data.SocketServer;
 import com.telenav.sdk_sample.connectivity.NetworkConnectionMonitor;
+import com.telenav.sdk_sample.joglrender.OBJParser;
+import com.telenav.sdk_sample.joglrender.openGLRenderer;
 import com.telenav.sdk_sample.search.SearchManager;
 import com.telenav.sdk_sample.search.SearchRequestObject;
 import com.telenav.sdk_sample.search.SuggestionItem;
@@ -136,6 +142,8 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
     private SocketClient c0=null, c1=null, c2=null, c3=null;
     private SocketServer ss = null;
 
+    GLSurfaceView gl;
+
 
     /**
      * used for knowing if onPostResume method was called
@@ -165,6 +173,7 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
             // Pre-Marshmallow
             initMap();
         }
+        initJoglScreen();
     }
 
     private void initMap() {
@@ -199,6 +208,16 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
             }
 
         }
+    }
+
+    private void initJoglScreen(){
+
+        new processObjFile().execute();
+        gl = (GLSurfaceView) findViewById(R.id.jogl_render);
+        gl.setEGLContextClientVersion(2);
+
+        gl.setRenderer( new openGLRenderer(this,(RelativeLayout) findViewById(R.id.leftPane)));
+
     }
 
     /**
@@ -1161,5 +1180,37 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
     public HeaderFragment getHeaderObjectReference()
     {
         return headerFragment;
+    }
+
+    public class processObjFile extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            Log.d("asyncTask","started");
+            OBJParser parser=new OBJParser(getBaseContext());
+            parser.parseOBJ();
+            Log.d("asyncTask","end of async");
+            return null;
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+
+
+
+        }
+
+        @Override
+        protected void onPostExecute(Void param) {
+
+        }
+
+
+
+        @Override
+        protected void onProgressUpdate(Void... values) {}
+
     }
 }
