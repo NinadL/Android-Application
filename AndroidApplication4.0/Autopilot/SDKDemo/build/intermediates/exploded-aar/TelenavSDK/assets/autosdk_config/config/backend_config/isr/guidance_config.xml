@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Guidance>
-    <Context Project="denali" Region="isr"/>
-    <TurnType TollManeuver="false" FrontageSwitch="false" />
-    <Alert Tunnel="false" Bridge="false" Toll="false" Hov="false" Unpaved="false" Ipd="false" Booth="false" Service_Area="false"
-    	 City="false" State="false" Country="false" Hazard_Spot="2" Sign_Railway="false"/>
-   
-</Guidance>
-
