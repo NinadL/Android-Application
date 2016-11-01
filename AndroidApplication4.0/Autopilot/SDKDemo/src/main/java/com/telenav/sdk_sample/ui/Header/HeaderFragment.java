@@ -115,6 +115,7 @@ public class HeaderFragment extends Fragment
             public void onClick(View v)
             {
                 ((MapActivity) getActivity()).sendControl(1);
+                ((MapActivity) getActivity()).moveToRouteMid();
                 isAutopilotOn = true;
             }
         });

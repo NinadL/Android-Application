@@ -36,6 +36,7 @@ import com.telenav.entity.service.model.v4.EntitySearchResponse;
 import com.telenav.entity.service.model.v4.EntitySuggestionResponse;
 import com.telenav.entity.service.model.v4.Suggestion;
 import com.telenav.foundation.log.LogEnum;
+import com.telenav.foundation.vo.LatLon;
 import com.telenav.sdk.external.ExternalDisplayManager;
 import com.telenav.sdk.map.InitialiseManager;
 import com.telenav.sdk.map.InitialiseSettings;
@@ -44,7 +45,10 @@ import com.telenav.sdk.map.MapSettings;
 import com.telenav.sdk.map.MapView;
 import com.telenav.sdk.map.SdkInitialization;
 import com.telenav.sdk.navigation.controller.NavigationManager;
+import com.telenav.sdk.navigation.model.Edge;
+import com.telenav.sdk.navigation.model.NavigationData;
 import com.telenav.sdk.navigation.model.NavigationSettings;
+import com.telenav.sdk.navigation.model.Segment;
 import com.telenav.sdk.navigation.model.TrafficSettings;
 import com.telenav.sdk_sample.R;
 import com.telenav.sdk_sample.application.ApplicationPreferences;
@@ -1211,6 +1215,12 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
 
         @Override
         protected void onProgressUpdate(Void... values) {}
+
+    }
+
+    public void moveToRouteMid()
+    {
+        mapFragment.pointToMidRoute();
 
     }
 }

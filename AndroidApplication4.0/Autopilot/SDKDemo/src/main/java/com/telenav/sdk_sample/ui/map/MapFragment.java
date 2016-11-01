@@ -37,6 +37,7 @@ import com.telenav.foundation.vo.LatLon;
 import com.telenav.map.engine.GLMapAnnotation;
 import com.telenav.map.engine.GLMapImageAnnotation;
 import com.telenav.map.engine.MapSelectedPickable;
+import com.telenav.onboard.index.address.datatype.ShapePoints;
 import com.telenav.sdk.external.ExternalDisplayManager;
 import com.telenav.sdk.location.LocationListener;
 import com.telenav.sdk.location.LocationManager;
@@ -52,6 +53,7 @@ import com.telenav.sdk.navigation.listener.RouteListener;
 import com.telenav.sdk.navigation.listener.VoiceGuidanceListener;
 import com.telenav.sdk.navigation.model.DisplayRouteInfo;
 import com.telenav.sdk.navigation.model.DynamicRerouteInfo;
+import com.telenav.sdk.navigation.model.Edge;
 import com.telenav.sdk.navigation.model.JunctionViewInfo;
 import com.telenav.sdk.navigation.model.LocationArrivalInfo;
 import com.telenav.sdk.navigation.model.ManeuverInfo;
@@ -1075,6 +1077,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                     mapSettings.setFollowUserPosition(!appPrefs.getBooleanPreference(PreferenceTypes.K_FOLLOW_USER_POSITION));
                     mapSettings.setEnableHeadingRotation(!appPrefs.getBooleanPreference(PreferenceTypes.K_ROTATE_HEADING));
                     isStreetLevelZoomEnabled = false;
+                    pointToMidRoute();
                 }
                 else
                 {
@@ -1637,7 +1640,16 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 //        }
 //    }
 
-
+    void pointToMidRoute()
+    {
+        List<Segment> segmentList = navigationData.getSegments();
+        Segment segment = segmentList.get(segmentList.size()/2);
+        List<Edge> edgeList = segment.getEdges();
+        Edge edge = edgeList.get(edgeList.size()/2);
+        List<LatLon> shapePointsList = edge.getShapePoints();
+        LatLon latLon = shapePointsList.get(shapePointsList.size()/2);
+        mapView.moveTo(latLon);
+    }
 }
 
 
