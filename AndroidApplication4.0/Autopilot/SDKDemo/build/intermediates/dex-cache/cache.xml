@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.0.1_71fa5da97922ab96a4b6af41da5d7003a3375dfe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="51a11c41a08f099a204e1b8dcc04f27217de50ec">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-9.0.2_7e9acea75d32b9973290ce4c9474b8387b0cd017\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\httpclient-4.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="911454efc8dcca9517634ac5537dbfbaf253a648">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\httpclient-4.0.1_079b95aea9213d2640221a085743768666a9c47b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="20e1a0f0de6276a5f36062b655f8b20f8cc00cc4">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-9.0.2_7776a28cbdb4d470053f013c10b157e50b2405ba\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\httpcore-4.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="52e4149a532f277a70a066ac74d5fe0009be9fca">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\httpcore-4.0.1_afb98ff443c3eb6b1fd8124c24fe065509dd596c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-pool-1.5.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5aee9055c719850350352948e2981bab862e6524">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-pool-1.5.4_ec2ac8b98bd36228db890d4781422ec27aab93af\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3b3634ced0a79c74e06f9410daee45c9f022fa41">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8db9443259bac41c3806a087ed6c7a155ff5da49\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\json-simple-1.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="177efd6c3888ea5dc2a3041bed6d40f72add1ca7">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\json-simple-1.1.1_3cd2a636d6e095b24e7c1e780bbc8f8e2ce6f84f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\geo-0.7.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8c68ae4bbf896b4d27b8a9a5245c06b15394f7ff">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\geo-0.7.1_422a00b79e525832925e43ee9f8b20ab5b53ff7b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\concurrentlinkedhashmap-lru-1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="530bccb820c1fb42449ffe75577c4f9a2465f39c">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\concurrentlinkedhashmap-lru-1.1_84dc79670a135d1e5667ce8e0ddd60ffd947cace\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d900f2a1ff098cac8befe6c023d723e9afb154be">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-9.0.2_c40fdd4004008e68e93c5a396143ab920fd4c78b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\grumpy-core-0.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b0ee61e3fe5d0de022255205dc6532b74ec86fb5">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\grumpy-core-0.2.2_3f24f1b39ee5bf603fb60c90c27822e2b6dca531\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-logging-1.1.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ab99c2763812e31b4ae2ac07baeb08d0d8f0056e">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-logging-1.1.3_16c87ac664ba4f71a080d0a6ad551040f6588eaf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics\2.5.5\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="611605b6b640c1558f9bdea41de8ff837ab68ca8">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.crashlytics.sdk.android-crashlytics-2.5.5_e70427b8e1a894bd7edce97fe124b18d0977e3fe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-io-2.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="0b3d42b918f48bdaecbaf56d5b1f52700279281d">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-io-2.4_b330972061e43deb8532b296a5901882f980bce5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\AutoSDK-android.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c30303a0b9429fd34a51d1e209e87a218c9f6c10">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\AutoSDK-android_81210366df0d3efc7b391bde3623a80e6a1d3edd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\log4j-1.2.17.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fab8f2175ef91ac51f5456f74ea35b8c21e6e358">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\log4j-1.2.17_93f456d85bfc41bb1aa9adf90369a647be14115e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="0c835e9f3875cf245877c9b17d1c69bc98f16057">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-9.0.2_42ab238a2a6f95ebd03a4c618d7189fad4a8d3fb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-csv-1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="43d75e34cd2a9df3d0d4236578a368eeae1a85e8">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-csv-1.0_5e2f6a80fd024aa233e7166d54ac92e800698c1c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\io.fabric.sdk.android\fabric\1.3.10\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a5db9a2dd46d84285ef737f65030b74b6e8ee2a4">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\io.fabric.sdk.android-fabric-1.3.10_0a3bc9f4d393fb951af5a7d5587d06bd4829d2f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="92a1d5f71b0fc8938f1d3f2e6ef984b52b894b4d">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-9.0.2_18dc68b9f4a3ec5a2974ba6676e59fc6fad60e8e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5915f80621434294b9275de1a6cef9dbb0a15af8">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-TelenavSDK_79c3ebb98ceb0a33f262a4383920bcfbd4f2c64f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fa472b7cbd3897bf6bed6068ac0b00e494987688">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-9.0.2_7b65c282bc6cefa3147cd699e19633dc8c04a4ab\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.0.1_f0924d94a00f5706b2c9fd6ba3e12d7c8a156471\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\lucene-analyzers-phonetic-4.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b73a123eb376e00ec4e2e215d06244b23877afd5">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\lucene-analyzers-phonetic-4.5.0_f813279bbd656c3018e8dbfe871ab70b07920bb9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-lang-2.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8fffe01fc50b296700404e5f3ebc1ce2517a302e">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-lang-2.6_1c7d0d66f2303ea2265b9c710707d83569ec4105\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="764d32faf85bc6f7bd2cdcb3a70a482c1884fdd2">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-9.0.2_6059a8ef2610dd43b09574bc30b9ebc5bc5f8147\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-config\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="604ecf403feb0084dc6d0c12f1677a490cf45e4c">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-config-9.0.2_23de12996145504d6c2babe576d085752962327f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\sqlite-jdbc-3.8.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3cc46ec721a0000a36ffa8e2ba9acb17bb99d93b">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\sqlite-jdbc-3.8.7_688b13c953dde2ceaedde890f8013b81beba77af\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4022261eeea0d92eb2997a68d2c1f084a16abad9">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.0.2_fcafc635ac0bfbb5e957255f349791f345616146\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="143813b18381b28de1e04aae1d92fcb374a0add9">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-drive-9.0.2_591941ab141161ec219e8cf44804c91f9f865eb6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a498fab72f8663c26fbf3d4496eb6b673b17bcae">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-games-9.0.2_9459ca9c3045a3879ab8e4025fea56ccf2dda4bf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-configuration-1.8.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b8e6d0a5b40deb6ea985294577c3576aa89b5006">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-configuration-1.8_63c6e962fec4e7d86cd8bd4ab3d2518d7b48de4b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\lucene-analyzers-common-4.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fab424e1fbf6ea731691a7586b55e1ddd4b2c1e9">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\lucene-analyzers-common-4.5.0_d9ad952061097aa30e64bf4df7ceba0d96d97f3f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\lucene-analyzers-stempel-4.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5e1a92f010682e5efd399be305808a644d2188bc">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\lucene-analyzers-stempel-4.5.0_afeac5fbf0846a64ba0a85b118d07a8483e5bde9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\lucene-spatial-4.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8be60b51a6d8c9c0876dcc8ce7bbdb2dd3ef3073">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\lucene-spatial-4.5.0_6e6d0ab366aa3ec571321e5c30ca1b6d87110a48\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f4fb6981392ca7680d02fd57d26d6124c141d9d9">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-9.0.2_386dc1711ccce83f4a652fbca4e920e96b3579c7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a511c684ea4c2cf31a3377d51e7677cb76696e07">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-9.0.2_69948df09fd388062a04bc7c7d3d19bff10f6a7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="cd4c7c54e15d9ccbc448384fa2c4684d69ca73f0">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-9.0.2_db486bf7f8480adb6b8b96448bfc51498faa13d2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6c58c14d15602fea2c50138c73bb107e8b832b62">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-impl-9.0.2_7d0a3112e7aa7457d2b0e320c8d815e40f8d0251\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-database\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4ec890171a97b5ab98292f131aa784e0f3792c73">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-9.0.2_42e552283e772c5a427fe51068e6acc74cbec3fe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-collections4-4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="7d530e46f12b544f99a47efdb03fc7f7ae00bf87">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-collections4-4.0_9767448acaafd64d764760d8985951bea3ae80d7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d9ea4cdaafa29ec4651d6e4715788d3fcaa7b913">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tagmanager-9.0.2_122faf451db0074cc8436d6fdab6e6f9af340a42\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\gson-2.2.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="30fa98c9660714cb91a5cfadde8c0243a7511e10">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.2.4_72c101c0624a9ff0c47505e203f91b12de71c968\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.0_1dc78dc4c7f1c6404696785cf471daea7239833a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth-base\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="829c6e46cb221c2102801221c648b77113743e81">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-base-9.0.2_5a727dd9400a92f0868da12f14535cb3b069b940\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\protobuf-java-2.4.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="cab386b955e3bee123769af3b2ba95fb74492ecc">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\protobuf-java-2.4.1_c51807fd5d9249b88a3f4c23a71b681ae2ccb2ff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe5b47e764869f1076cb9cfe12801ed2ef4e9117">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-9.0.2_01058ffe1d21c58c4d1d8d1274b283e21e5d183f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\opencsv-2.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1a35b35dd44b5821bc4bc02afe5993453f7db178">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\opencsv-2.3_119c2c0da398ea095c5bb11a68fbcf27b342471a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.1_191c3bf94fce58191b9a8849e9dfb193c7f33196\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.crashlytics.sdk.android\answers\1.3.6\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9af3b9b8114e685291aa00e6572b0a9131244956">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.crashlytics.sdk.android-answers-1.3.6_e8b2d75d88753828c58a66c19877b84b51468cc1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8c0fc9b1ea0bac0cb31d60c8b1bf2feb0518e3a9">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-9.0.2_5254bb93773fd2bc26965ae9cfd887cac8623eea\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-auth-common\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="568d5bda0b4d51f90d978ace369bb9ad024d2057">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-common-9.0.2_cf7a2fd30c7b3b120b2a45fb89c511299b94728b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\spaceidcreator-0.0.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="50ae52f06a71c72501f75ac46e071f2fa879df99">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\spaceidcreator-0.0.5_202e6ce3b470a0ba6be2f4baa0faa49d0efa21b0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-9.0.2_ffe47b293b20f0bd02f87e1e8e0fb38a9e7d34bd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9819419ce8d79f3f81a0fc70f9345ac8c843af9c">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-9.0.2_b82816b3079e7a606aa1892b11f88a3c05c863e1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-23.0.0_36b10c38f3a91e57acb3f8c8a7b3244300e50acb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-dbcp-1.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4e4eb7ad0d9e5f0761aa5eb082966e6f83710b3c">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-dbcp-1.4_686c6f44cf269d8a9fc6bc7be3a4d97f57362568\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b8e0372ca6dc89ac4fe22b76eeea4f68ece435b8">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-lite-9.0.2_ea2526505654c5b80b29c6fa7515b7fd9d350ede\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-auth-module\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="79e298d7fed2fcada58da7032d07d34ee198a545">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-module-9.0.2_289fb53c5a23ccf3cb437522da09bb16ffc67c62\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="060a7157438a0b1b0706b99c430fb3ecbc5a79a4">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-9.0.2_9a2a070d4d2697ba541182ef92fb1a4b7c633fd3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\entity-search-hybrid-1.0.43.20-SNAPSHOT.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3edb2ef62eb51f0b4174d62bf3150860892a09cc">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\entity-search-hybrid-1.0.43.20-SNAPSHOT_559b86c3330b1ea61ae6771c777bb0c2cbbeec02\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\lucene-queries-4.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5e28021d3ade2adccb199b884a87443b05fccb3d">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\lucene-queries-4.5.0_a1d1f1df5800659005c6083ca3c0ea1670c6325c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-math3-3.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a7aa6720ba06bb3ddc129de1c7bc21c0395f244c">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-math3-3.2_40e141e64b87427c4541a7aaaaa3f20a8868be17\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="bc156efaaee99f1ef6bf471347373a4cbb28e2a1">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-9.0.2_4a81a16450ff3fc4f971a9cc3a1c57f694ea3e5a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f2774b1e02e5fbc524590311a744263c3b152d63">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-messaging-9.0.2_ce2186b5e0e15d9490fa2f0fc7655d78c8a6258e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e6970f0554f9508c041f1f6960af15cc888c9f35">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-9.0.2_dae8d1c508cdd790fba484f4e4a81e286efc6938\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\ScoutFoundation-android.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a5e4417de73ae99056ac7e309e94fb78a1bb6cfa">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\ScoutFoundation-android_9ace52b84d616919991f6400358b54c09afd22dc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics-core\2.3.8\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c9ef45dcbd082cd63aac09a5e2cd443adb5df837">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.crashlytics.sdk.android-crashlytics-core-2.3.8_f7bad7453d89ba863bacdffa1dd016728532e089\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e80191c286bdfad16f4d750a012a7dfc29656c28">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_f0bc627a26e1f6673622ac67c59bf041cdd4d390\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="53f10fcd322a3931495d6ca2078a81f4957cdbce">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-9.0.2_7f57b90f4cf0af8cdbc6877596dc37605dfd2718\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6ff48ef26bc539c78af4aa061cb9bad6abcbf5e8">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-common-9.0.2_d0ff97017240c5819540c030ce78928f48455840\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\MapEngine-android-ndk-r10d.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="dc24d2a9a38340881e67a4cc9d833efa8b741b2b">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\MapEngine-android-ndk-r10d_76143117a401ea3e2507ecb7165f16385762d68c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\commons-codec-1.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="59b4914082aa5b40a96be01ab7ad8671eafe0c6e">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\commons-codec-1.7_9dde2a75cb891e1c535b6c6898fb58e9d7404ae6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b6af089f583d547bcffc0689b2e80bc7aaa54b15">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-9.0.2_27593e9fcf3c2b805dfc08362675046188cb8f16\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-api\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f399a2fde7888450cadcaec4974bfd169d8cce43">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tagmanager-api-9.0.2_553ced78ded46f004616d15b6cc43a017778b2ba\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2ab5be19bbd34bae74662ea6b2d4451314d92d97">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-9.0.2_ee6ba03ca56f7a04c4ebaa7fd9fd9ef3dc1f8c18\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\lucene-suggest-4.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="73db3ef2e5c12d97b89bddc6e8c22f803c46f592">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\lucene-suggest-4.5.0_499af6c08c00737aa47f1a5f99d8377bd479dd49\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="cf16220db9128d91a215aedc739584181d5ca6a4">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-iid-9.0.2_19a41a9e1cd74d1fce6d0b8f9d3d7c6005e4f94f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.0.1_a0131f0be3c296e4bd4f49ceee166b61919b1592\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b3d0809a742c5f768c6aa9efc6decd5c1d6cd227">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-9.0.2_d294bb0cf7175b8942f8e66fdf49a1028d1f8670\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-crash\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="922c24fbfc4247947fcfaf2b95f295a16a8c3d17">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-crash-9.0.2_9711c2ec904b93ca37e45e5be3376c98b02415c8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e11da70cff6a544a45cdc21f419802d9bb9043ac">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-9.0.2_0ea2ff43abacb44db59c28178e60fad3818e9bd0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a45bc1ed812137b21dddd1cedaa3712b308f0b3f">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-9.0.2_68b56b91b518e0721d87e6bf39b0323175eb8e59\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\lucene-queryparser-4.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ee0708bc4b2b546215caf313826d05750c1a40db">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\lucene-queryparser-4.5.0_2ddf6bd2d052af4e4c54c928c1b6c6b9f5cc5a9b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aec1bc54964a85d851c2c1b1cb7f90f7dbd755ab">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.0.2_38c82dd889818538ed73b7bb6d88bd217f5e5f4b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.crashlytics.sdk.android\beta\1.1.4\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ad5bb101ced4d3939225c9b57e5a3d81547c1fbb">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.crashlytics.sdk.android-beta-1.1.4_415304486bf20e5c8a08f5ec57718b68c9c001c5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="7e52b440a26498c56b4f263e215223b5451c955e">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-9.0.2_bd7433be60af4825e513d2caeafae858f397e33d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\spatial4j-0.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="96ad3fcc517c41cd088a85175064864bf81ddefe">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\spatial4j-0.4_5873a5afba090bd54c6327ee4f1b3cc57b99a20b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\TelenavSDK\jars\libs\lucene-analyzers-icu-4.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="960478451d1622d6182cdd95c30dda2689fd2cef">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\lucene-analyzers-icu-4.5.0_226d265b2a035ea2ca996282441d9a22f44aa728\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_83454cbc752dd2d1a637723ee26410bdb3f90b2e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\Users\user\AppData\Local\Android\sdk1\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.0.1_9ae2d6c463172a8c2941fb91e1d8d4f67141ba2e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c96952c162c9f6076f44c5939982cb35491442ea">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-plus-9.0.2_b0f4ef97d202d1683bba261c034d38b086aa60b3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="94d9cedd04b124aed044ac71c451a292856d854c">
+        <dex dex="E:\WorkGit\AndroidApplication4.0\Autopilot\SDKDemo\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.0.2_7c16f23846cdb43d91d9d09fe95866bcdc4c440e\classes.dex" />
+    </item>
+
+</items>

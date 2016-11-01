@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<language>
+	<Alternatives BaseLanguage="ENG" Alternatives="FRE,SPA"/>
+	<Alternatives BaseLanguage="SPA" Alternatives="ENG,FRE"/>
+	<Alternatives BaseLanguage="FRE" Alternatives="ENG,SPA"/>
+</language>
+<mapping>
+	<Category BaseLanguage="ENG" Index="0" MappingLanguage="US-ENG"/>
+	<Category BaseLanguage="SPA" Index="1" MappingLanguage="MEX-SPA"/>
+	<Category BaseLanguage="FRE" Index="2" MappingLanguage="CAN-FRE"/>
+</mapping>

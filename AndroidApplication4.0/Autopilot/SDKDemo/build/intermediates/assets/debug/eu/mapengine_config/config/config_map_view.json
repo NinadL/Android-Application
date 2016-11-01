@@ -1,0 +1,268 @@
+{
+    "flat_labels" :
+    {
+        "default" :
+        {
+            "font_face" : "Roboto-Regular"
+        },
+        "Motorway" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 12
+        },
+        "Primary" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 11
+        },
+        "Residential" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 10
+        },
+        "Secondary" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 11
+        },
+        "Tertiary" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 10
+        },
+        "Trunk" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 11
+        }
+    },
+    "billboard_labels" :
+    {
+        "default" :
+        {
+            "font_face" : "Roboto-Regular"
+        },
+        "Motorway" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 24
+        },
+        "Trunk" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 24
+        },
+        "Primary" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 24
+        },
+        "Secondary" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 22
+        }
+    },
+    "point_labels" :
+    {
+        "default" :
+        {
+            "font_face" : "Roboto-Italic"
+        },
+        
+        "Capital" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 24
+        },
+        "StateCapital" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 22
+        },
+        
+        "city_extra_large" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 24
+        },
+        "city_large" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 22
+        },
+        "city_medium" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 22
+        },
+        "city_small" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 20
+        },
+        "City" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 22
+        },
+        "Town" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 18
+        },
+        "Hamlet" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 18
+        },
+        "Neighbourhood" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 18
+        },
+        
+        "State" :
+        {
+            "font_face" : "Roboto-Regular",
+            "render_size" : 22
+        },
+        "Country" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 24
+        },
+        "Continent" :
+        {
+            "font_face" : "Roboto-Medium",
+            "render_size" : 24
+        },
+        
+        "Ocean" :
+        {
+            "font_face" : "Roboto-Italic",
+            "render_size" : 22
+        }
+    },
+    "annotations" :
+    {
+        "default" :
+        {
+            "font_face" : "Roboto-Medium"
+        }
+    },
+    "city_annotations" :
+    {
+        "default" :
+        {
+            "font_face" : "Roboto-Medium"
+        }
+    },
+    "traffic_annotation" :
+    {
+        "default" :
+        {
+            "font_face" : "Roboto-Medium"
+        },
+        "event" :
+        {
+            "enabled" : false
+        },
+        "planned_event" :
+        {
+            "enabled" : false
+        },
+        "police" :
+        {
+            "enabled" : false
+        },
+        "speed_trap" :
+        {
+            "enabled" : false
+        },
+        "speed_camera" :
+        {
+            "enabled" : false
+        },
+        "traffic_camera" :
+        {
+            "enabled" : false
+        },
+        "road_closure" :
+        {
+            "icon_name" : "traffic_closure.png"
+        }
+    },
+    "poi_annotations" :
+    {
+        "default" :
+        {
+            "font_face" : "Roboto-Medium"
+        }
+    },
+    "screen_text" :
+    {
+        "font_face" : "Roboto-Regular"
+    },
+    "super_groups" :
+    {
+        "default" :
+        {
+            "font_face" : "Roboto-Regular"
+        },
+        "entity" :
+        {
+            "font_face" : "Roboto-Regular"
+        }
+    },
+    "2d_annotations" :
+    {
+        "copyright" :
+        {
+            "font_face" : "Roboto-Regular"
+        },
+        "telenav_copyright" :
+        {
+            "font_face" : "Roboto-Regular"
+        }
+    },
+    "group_count_label" :
+    {
+        "font_face" : "Roboto-Regular"
+    },
+    "shields" :
+    {
+        "default" :
+        {
+            "font_face" : "Roboto-Medium"
+        }
+    },
+    "view" :
+    {
+        "feature_class_mapping" :
+        {
+            "for_roads" : [4, 4, 4, 4, 4, 4, 4, 3, 2, 2, 1, 1, 0, 0, -1],
+            "for_traffic" : [4, 4, 4, 4, 4, 3, 3, 2, 2, 1, 1, 0, -1]
+
+        }
+    },
+    "scalebar" :
+    {
+        "font_bold" : false,
+        "font_italic" : false,
+        "font_face" : "Roboto-Regular",
+        "render_size" : 28,
+        "text_color" : "#001122ff",
+        "outline_color" : "#ffeeddaa",
+        "horizontal_alignment" : "left",
+        "vertical_alignment" : "bottom",
+        "text_alignment" : "center",
+        "horizontal_margin" : 1450,
+        "vertical_margin" : 50,
+        "text_margin" : 7,
+        "text_y" : 11,
+        "bar_width_maximum" : 200,
+        "bar_height" : 10,
+        "text_overall_space" : 1.0
+    }
+}

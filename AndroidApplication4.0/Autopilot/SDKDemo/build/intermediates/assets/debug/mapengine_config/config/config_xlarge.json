@@ -1,0 +1,67 @@
+{
+    "billboard_labels" :
+    {
+        "default" :
+        {
+            "cull_bounds_scale" : 1.7
+        }
+    },
+    "touch":
+    {
+        "zoom_sensitivity" : 0.005
+    },
+    "vehicle" :
+    {
+        "model_scale" : 46
+    },
+    "screen_annotations" :
+    {
+        "aardvark_screen_annotation_atlased" :
+        {
+            "comment" : "This is for testing screen annotations.",
+            "style" : "screen_icon",
+            "priority" : 21,
+            "font_face" : "MyriadPro-Regular",
+            "font_size" : 20,
+            "render_size" : 20,
+            "text_color" : "#aaffaaff",
+            "outline_color" : "#115511ff",
+            "icon_x" : 0.5,
+            "icon_y" : 0,
+            "icon_w" : 50,
+            "icon_h" : 50,
+            "text_x" : 0,
+            "text_y" : 0.5,
+            "texcoord_left" : 0.15,
+            "texcoord_bottom" : 0.3,
+            "texcoord_right" : 0.85,
+            "texcoord_top" : 0.8,
+            "text_alignment" : "center",
+            "animation_time" : 0.5
+        },
+        "dot_screen_annotation" :
+        {
+            "comment" : "dot",
+            "style" : "screen_icon",
+            "priority" : 25,
+            "font_face" : "MyriadPro-Regular",
+            "font_size" : 30,
+            "render_size" : 20,
+            "text_color" : "#aaffaaff",
+            "outline_color" : "#115511ff",
+            "icon_x" : 0.5,
+            "icon_y" : 0.5,
+            "icon_w" : 84,
+            "icon_h" : 84,
+            "text_x" : 0,
+            "text_y" : 0.5,
+            "texcoord_left" : 0,
+            "texcoord_bottom" : 0,
+            "texcoord_right" : 1,
+            "texcoord_top" : 1,
+            "text_alignment" : "center",
+            "animation_time" : 0.0,
+            "always_visible" : true
+        }
+    }
+}

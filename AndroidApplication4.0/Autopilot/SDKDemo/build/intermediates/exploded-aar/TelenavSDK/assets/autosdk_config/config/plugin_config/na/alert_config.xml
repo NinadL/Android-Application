@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+	refer to class ZoneAlertItem in navdatastructureinternal.h
+	enum
+    {
+        INVALID     = -1,
+        INCIDENT	= 0,
+        CONGESTION_AREA = 1,
+        ONEWAY_AHEAD = 2,
+        ONEWAY_LEFT = 3,
+        ONEWAY_RIGHT = 4,
+        VEHICLE_FOBBIDING_AHEAD = 5,
+        VEHICLE_FOBBIDING_LEFT = 6,
+        VEHICLE_FOBBIDING_RIGHT = 7,
+        TUNNEL_AREA = 8,
+        SCHOOL_ZONE = 9,
+        ACCIDENT_PRONE_SECTION = 10,
+        FLOW_MERGING_LEFT = 11,
+        FLOW_MERGING_RIGHT = 12,
+        ROCKFALL_LEFT = 13,
+        ROCKFALL_RIGHT = 14,
+        SHARP_LEFT_BEND = 15,
+        SHARP_RIGHT_BEND = 16,
+        S_UTURN = 17,
+        WINDING_ROAD = 18,
+        SLIPPERY_AREA = 19,
+        CROSS_RAILWAY = 20,
+        SPEED_CAMERA = 21,
+        REGULATION_CAMERA = 22,
+        BUS_LANE_CAMERA = 23,
+    };
+-->
+<ItemToAlert>
+	<Item type="9" name="SCHOOL_ZONE"/>
+	<Item type="20" name="CROSS_RAILWAY"/>
+	<Item type="21" name="SPEED_CAMERA"/>
+</ItemToAlert>
+
+<AlertTiming>
+	<AlertCategory name = "Driving Safety">
+		<RoadType type="Motorway">
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+					<Dist length="0" type="lower" unit="km" />
+                    <Dist length="0.15" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0" type="lower" unit="mile" />
+					<Dist length="0.1" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+		</RoadType>
+		<RoadType type="Surface">
+			<TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+					<Dist length="0" type="lower" unit="km" />
+                    <Dist length="0.15" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0" type="lower" unit="mile" />
+					<Dist length="0.1" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+		</RoadType>
+		<RoadType type="Residential">
+			<TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+					<Dist length="0" type="lower" unit="km" />
+                    <Dist length="0.15" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0" type="lower" unit="mile" />
+					<Dist length="0.1" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+		</RoadType>
+	</AlertCategory>
+	<AlertCategory name = "Camera">
+		<RoadType type="Motorway">
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+					<Dist length="0" type="lower" unit="km" />
+                    <Dist length="0.8" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0" type="lower" unit="mile" />
+					<Dist length="0.5" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+		</RoadType>
+		<RoadType type="Surface">
+			<TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+					<Dist length="0" type="lower" unit="km" />
+                    <Dist length="0.8" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0" type="lower" unit="mile" />
+					<Dist length="0.5" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+		</RoadType>
+		<RoadType type="Residential">
+		<TimingSet unit="global">
+		   <Timing speed="all" unit="kph">
+				<Dist length="0" type="lower" unit="km" />
+				<Dist length="0.8" type="upper" unit="km" />
+			</Timing>
+            </TimingSet>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0" type="lower" unit="mile" />
+					<Dist length="0.5" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+		</RoadType>
+	</AlertCategory>
+</AlertTiming>
+

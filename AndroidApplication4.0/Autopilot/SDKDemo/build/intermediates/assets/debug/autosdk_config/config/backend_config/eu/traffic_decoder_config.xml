@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Decoder>
+    <RdsTmcDecoder>
+        <ServiceKeyTable path="service_key_table.binary"/>
+        <EventTable path="event_info.binary"/>
+        <MaxRdsGroupBufferSize value="50"/>
+    </RdsTmcDecoder>
+</Decoder>

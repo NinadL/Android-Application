@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- version -->
+<Version value="2.0" />
+
+<!-- spec(current only support "ARP" & "GEN3") -->
+<AudioSpec value="ARP" />
+
+<!-- whether Prompts (Wolverine) or TTS string (Logan)
+     Prompts or TTS -->
+<GuidanceType value="TTS" />
+
+<!-- Whether name uses phoneme or orthography -->
+<AddressNameType value="orthographyOnly" />
+
+
+<Phoneme>
+	<EscapePrefix prefix="\x1b\\lang=%s\\" />
+    <EscapeSuffix suffix="\x1b\\toi=orth\\" />
+
+    <!-- phoneme tag format, '[LNG=NT-%s]' or '[LNG=%s]' or empty -->
+    <PhonemeTagFormat format="\x1b\\toi=nts\\" />
+
+    <!-- slot prefix and postfix for wolverine, can be <TTS<slot>> or <TTS<slot2>>, '2' is the index of tts slot -->
+    <SlotGeneralFormat format="<TTS<slot%d>>" />
+    <SlotStreetFormat format="<STREETTTS<slot%d>>" />
+    <SlotCityFormat format="<CITYTTS<slot%d>>" />
+	
+    <!---in our map data, the phoeme tag may match our TTS engine -->
+    <PhonemeTagMapping>
+        <ENU dataTag="ENG" />
+        <FRC dataTag="FRE;CFR" />
+        <SPU dataTag="NAS;SPM;SPA" />
+    </PhonemeTagMapping>
+
+    <Language_TTS_Supported>
+	  <GER priority="ENU;SPU;GER;AUT;BGR;SGR;LGR;LIE;CZE;DAN;UKE;IRE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+      <ENG priority="ENU;SPU;UKE;IRE;CZE;DAN;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+      <ITA priority="ENU;SPU;ITA;SIT;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+	  <SPA priority="ENU;SPU;SPM;SPL;CAT;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />	  
+      <FRE priority="ENU;SPU;FRC;SFR;BFR;LFR;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+	  <RUS priority="ENU;SPU;RUS;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;TUR;FIN" />
+      <DUT priority="ENU;SPU;DUT;FLM;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+	  <TUR priority="ENU;SPU;TUR;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;FIN" />
+	  <POL priority="ENU;SPU;POL;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;SWE;POR;RUS;TUR;FIN" />
+      <POR priority="ENU;SPU;POR;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;RUS;TUR;FIN" />
+	  <GRE priority="ENU;SPU;UKE;IRE;CZE;DAN;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+      <SWE priority="ENU;SPU;SWE;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;POR;RUS;TUR;FIN" />
+	  <HUN priority="ENU;SPU;UKE;IRE;CZE;DAN;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+      <DAN priority="ENU;SPU;DAN;CZE;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+      <RON priority="ENU;SPU;UKE;IRE;CZE;DAN;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+	  <NOR priority="ENU;SPU;NOR;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;POL;SWE;POR;RUS;TUR;FIN" />
+      <FIN priority="ENU;SPU;UKE;IRE;CZE;DAN;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+      <CZE priority="ENU;SPU;CZE;DAN;UKE;IRE;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+	  <SLK priority="ENU;SPU;UKE;IRE;CZE;DAN;GER;AUT;BGR;SGR;LGR;LIE;SPM;SPL;CAT;FRC;SFR;BFR;LFR;ITA;SIT;DUT;FLM;NOR;POL;SWE;POR;RUS;TUR;FIN" />
+    </Language_TTS_Supported>
+	
+	<LanguagePriority>
+		<GER priority="GER;BGR;SGR;LIE;LGR" />
+		<ENG priority="ENU;UKE;IRE" />
+		<ITA priority="ITA;SIT" />
+		<SPA priority="SPU" />
+		<FRE priority="FRC;BFR;LFR;SFR" />
+		<RUS priority="RUS" />
+		<DUT priority="DUT;FLM" />
+		<TUR priority="TUR" />
+		<POL priority="POL" />
+		<POR priority="POR" />	
+		<GRE priority="GRE" />
+		<SWE priority="SWE;FSW" />
+		<HUN priority="HUN" />
+		<DAN priority="DAN" />
+		<RON priority="RON" />
+		<NOR priority="NOR" />
+		<FIN priority="FIN" />
+		<CZE priority="CZE" />
+		<SLK priority="SLO" />
+    </LanguagePriority>
+</Phoneme>
+
+<RulePath>
+	<GERMAN                 path="de_DE" />
+	<UK_ENGLISH             path="en_GB" />
+	<CASTILIAN_ITALIAN      path="it_IT" />
+	<EUROPEAN_SPANISH       path="es_ES" />
+	<EUROPEAN_FRENCH        path="fr_FR" />
+	<RUSSIAN                path="ru_RU" />
+	<DUTCH                  path="nl_NL" />
+	<TURKISH                path="tr_TR" />
+	<POLISH                 path="pl_PL" />
+	<EUROPEAN_PORTUGUESE    path="pt_PT" />
+	<GREEK                  path="el_GR" />
+	<SWEDISH				path="sv_SE" />
+	<HUNGARIAN				path="hu_HU" />
+	<DANISH					path="da_DK" />
+	<ROMANIAN				path="ro_RO" />
+	<NORWEGIAN				path="no_NO" />
+	<FINNISH				path="fi_FI" />
+	<CZECH					path="hr_HR" />
+	<SLOVAK					path="sk_SK" />
+</RulePath>
+
+<Switches>
+  <!-- Logan need repeat 3rd Guidance, but Wolverine need repeat 2nd true of false -->
+  <Repeat3rdGuidance value="true" />
+  <PlayObeyLawGuidance value="true" />
+  <DistinguishRoundaboutType value="true" />
+  <EnableSignBNameAsNextStName value="true" />
+  <UseSingleContinueTemplate value="true" />
+</Switches>
+
+<Constraints>
+    <Constraint value="[distance]" />
+    <Constraint value="[distance_after_in]" />
+    <Constraint value="[street_name]" />
+    <Constraint value="[city_name]" />
+    <Constraint value="[ordinal_number]" />
+    <Constraint value="[exit_number]" />
+    <Constraint value="[parent_poi_name]" />
+    <Constraint value="[relative_location]" />
+    <Constraint value="[landmark]" /> 
+	<Constraint value="[prep_article]" />     
+</Constraints>
+
+<TurnTypeMapping count=100>
+    <mapping key=0 value=""                             description="TnVoiceManager::EAS_TURN_INVALID" />
+    <mapping key=1 value="continue_current_road"        description="TnVoiceManager::EL2L_CONTINUE" />
+    <mapping key=2 value="turnslightleft_local_local"   description="TnVoiceManager::EL2L_TURN_SLIGHT_LEFT" />
+    <mapping key=3 value="turnslightright_local_local"  description="TnVoiceManager::EL2L_TURN_SLIGHT_RIGHT" />
+    <mapping key=4 value="turnleft_local_local"         description="TnVoiceManager::EL2L_TURN_LEFT" />
+    <mapping key=5 value="turnright_local_local"        description="TnVoiceManager::EL2L_TURN_RIGHT" />
+    <mapping key=6 value="turnsharpleft_local_local"    description="TnVoiceManager::EL2L_TURN_HARD_LEFT" />
+    <mapping key=7 value="turnsharpright_local_local"   description="TnVoiceManager::EL2L_TURN_HARD_RIGHT" />
+    <mapping key=8 value="uturn_local_local"            description="TnVoiceManager::EL2L_U_TURN" />
+    <mapping key=9 value="enterleft_local_highway"      description="TnVoiceManager::EL2H_ENTER_LEFT" />
+    <mapping key=10 value="enterahead_local_highway"    description="TnVoiceManager::EL2H_ENTER_AHEAD" />
+    <mapping key=11 value="enterright_local_highway"    description="TnVoiceManager::EL2H_ENTER_RIGHT" />
+    <mapping key=12 value="exitleft_highway_local"      description="TnVoiceManager::EH2L_EXIT_LEFT" />
+    <mapping key=13 value="exitahead_highway_local"     description="TnVoiceManager::EH2L_EXIT_AHEAD" />
+    <mapping key=14 value="exitright_highway_local"     description="TnVoiceManager::EH2L_EXIT_RIGHT" />
+    <mapping key=15 value="mergeleft_highway_highway"   description="TnVoiceManager::EH2H_SAME_NAME_LEFT" />
+    <mapping key=16 value="mergeahead_highway_highway"  description="TnVoiceManager::EH2H_SAME_NAME_AHEAD" />
+    <mapping key=17 value="mergeright_highway_highway"  description="TnVoiceManager::EH2H_SAME_NAME_RIGHT" />
+    <mapping key=18 value="mergeleft_highway_highway"   description="TnVoiceManager::EH2H_TRANSITION_LEFT" />
+    <mapping key=19 value="mergeahead_highway_highway"  description="TnVoiceManager::EH2H_TRANSITION_AHEAD" />
+    <mapping key=20 value="mergeright_highway_highway"  description="TnVoiceManager::EH2H_TRANSITION_RIGHT" />
+    <mapping key=21 value="exitleft_highway_highway"    description="TnVoiceManager::EH2H_TRANSITION_EXIT_LEFT" />
+    <mapping key=22 value="exitahead_highway_highway"   description="TnVoiceManager::EH2H_TRANSITION_EXIT_AHEAD" />
+    <mapping key=23 value="exitright_highway_highway"   description="TnVoiceManager::EH2H_TRANSITION_EXIT_RIGHT" />
+    <mapping key=24 value="exitleft_highway_highway"    description="TnVoiceManager::EH2H_TRANSITION_EXIT_LEFT_SE" />
+    <mapping key=25 value="exitahead_highway_highway"   description="TnVoiceManager::EH2H_TRANSITION_EXIT_AHEAD_SE" />
+    <mapping key=26 value="exitright_highway_highway"   description="TnVoiceManager::EH2H_TRANSITION_EXIT_RIGHT_SE" />
+    <mapping key=27 value="keepleft_HOV"                description="TnVoiceManager::EH2H_HOV_LEFT" />
+    <mapping key=28 value="continue_HOV"                description="TnVoiceManager::EH2H_HOV_AHEAD" />
+    <mapping key=29 value="keepright_HOV"               description="TnVoiceManager::EH2H_HOV_RIGHT" />
+    <mapping key=30 value="roundabout_small"            description="TnVoiceManager::EROUNDABOUT_ENTER" />
+    <mapping key=31 value="roundabout_small"        description="TnVoiceManager::EROUNDABOUT_EXIT" />
+    <mapping key=32 value="arrive_ferryentrance"        description="TnVoiceManager::EFERRY_ENTER" />
+    <mapping key=33 value="waypointleft"                description="TnVoiceManager::EWAYPOINT_LEFT" />
+    <mapping key=34 value="waypointahead"               description="TnVoiceManager::EWAYPOINT_AHEAD" />
+    <mapping key=35 value="waypointright"               description="TnVoiceManager::EWAYPOINT_RIGHT" />
+    <mapping key=36 value="destinationleft"             description="TnVoiceManager::EDESTINATION_LEFT" />
+    <mapping key=37 value="destinationahead"            description="TnVoiceManager::EDESTINATION_AHEAD" />
+    <mapping key=38 value="destinationright"            description="TnVoiceManager::EDESTINATION_RIGHT" />
+    <mapping key=39 value="keepleft_fork_local"         description="TnVoiceManager::ESTAY_LEFT_L2L" />
+    <mapping key=40 value="keepright_fork_local"        description="TnVoiceManager::ESTAY_RIGHT_L2L" />
+    <mapping key=41 value="keepleft_local_highway"      description="TnVoiceManager::ESTAY_LEFT_L2H" />
+    <mapping key=42 value="keepright_local_highway"     description="TnVoiceManager::ESTAY_RIGHT_L2H" />
+    <mapping key=43 value="uturn_wrong_direction"       description="TnVoiceManager::EL2L_U_TURN_WRONG_DIRECTION" />
+    <mapping key=44 value="roundabout_large"            description="TnVoiceManager::ELARGE_ROUNDABOUT_ENTER" />
+    <mapping key=45 value="roundabout_large"       description="TnVoiceManager::ELARGE_ROUNDABOUT_EXIT" />
+    <mapping key=46 value="enterslightleft_local_highway" description="TnVoiceManager::EL2H_ENTER_SLIGHT_LEFT" />
+    <mapping key=47 value="enterslightright_local_highway" description="TnVoiceManager::EL2H_ENTER_SLIGHT_RIGHT" />
+    <mapping key=48 value="entersharpleft_local_highway" description="TnVoiceManager::EL2H_ENTER_HARD_LEFT" />
+    <mapping key=49 value="entersharpright_local_highway" description="TnVoiceManager::EL2H_ENTER_HARD_RIGHT" />
+    <mapping key=50 value=""                            description="TnVoiceManager::ESTAY_MIDDLE_L2L" />
+    <mapping key=51 value=""                            description="TnVoiceManager::ESTAY_MIDDLE_L2H" />
+    <mapping key=52 value=""                            description="52" />
+    <mapping key=53 value=""                            description="53" />
+    <mapping key=54 value=""                            description="54" />
+    <mapping key=55 value=""                            description="55" />
+    <mapping key=56 value=""                            description="56" />
+    <mapping key=57 value=""                            description="57" />
+    <mapping key=58 value=""                            description="58" />
+    <mapping key=59 value=""                            description="59" />
+    <mapping key=60 value=""                            description="TnVoiceManager::E_F2Z_ENTER_LEFT" />
+    <mapping key=61 value=""                            description="TnVoiceManager::E_F2Z_ENTER_RIGHT" />
+    <mapping key=62 value=""                            description="TnVoiceManager::E_Z2F_EXIT_LEFT" />
+    <mapping key=63 value=""                            description="TnVoiceManager::E_Z2F_EXIT_RIGHT" />
+    <mapping key=64 value="destinationoffroad"          description="TnVoiceManager::EDESTINATION_OFFROAD" />
+    <mapping key=65 value="waypointoffroad"             description="TnVoiceManager::EWAYPOINT_OFFROAD" />
+    <mapping key=66 value=""                            description="66" />
+    <mapping key=67 value=""                            description="67" />
+    <mapping key=68 value=""                            description="68" />
+    <mapping key=69 value="turnleft_local_t_intersection" description="TnVoiceManager::ET_INTERSECTION_LEFT" />
+    <mapping key=70 value="turnright_local_t_intersection" description="TnVoiceManager::ET_INTERSECTION_RIGHT" />
+    <mapping key=71 value="turnleft_local_multibranchintersection" description="TnVoiceManager::EBRANCH_INTERSECTION_LEFT" />
+    <mapping key=72 value="turnright_local_multibranchintersection" description="TnVoiceManager::EBRANCH_INTERSECTION_RIGHT" />
+    <mapping key=73 value=""                            description="73" />
+    <mapping key=74 value="keepfarleft_local"           description="TnVoiceManager::EMULTI_FORK_STAY_LEFT" />
+    <mapping key=75 value="keepfarright_local"          description="TnVoiceManager::EMULTI_FORK_STAY_RIGHT" />
+    <mapping key=76 value=""                            description="TnVoiceManager::ERAMP" />
+    <mapping key=77 value="temporarymergeleft_highway_highway" description="TnVoiceManager::STAY_LEFT_H2H" />
+    <mapping key=78 value="temporarymergeright_highway_highway" description="TnVoiceManager::STAY_RIGHT_H2H" />
+    <mapping key=79 value="keepleft_ramp_ramp"          description="TnVoiceManager::STAY_LEFT_R2R" />
+    <mapping key=80 value="keepright_ramp_ramp"         description="TnVoiceManager::STAY_RIGHT_R2R" />
+    <mapping key=81 value="continue_ramp_ramp"          description="TnVoiceManager::R2R_CONTINUE" />
+    <mapping key=82 value=""                            description="82" />
+    <mapping key=83 value=""                            description="83" />
+    <mapping key=84 value=""                            description="84" />
+    <mapping key=85 value=""                            description="85" />
+    <mapping key=86 value=""                            description="86" />
+    <mapping key=87 value=""                            description="87" />
+    <mapping key=88 value=""                            description="88" />
+    <mapping key=89 value=""                            description="89" />
+    <mapping key=90 value=""                            description="90" />
+    <mapping key=91 value=""                            description="91" />
+    <mapping key=92 value=""                            description="92" />
+    <mapping key=93 value=""                            description="93" />
+    <mapping key=94 value=""                            description="94" />
+    <mapping key=95 value=""                            description="95" />
+    <mapping key=96 value=""                            description="96" />
+    <mapping key=97 value="destinationoffroad"          description="TnVoiceManager::EDESTINATION_OFFROAD_LEFT" />
+    <mapping key=98 value="destinationoffroad"          description="TnVoiceManager::EDESTINATION_OFFROAD_AHEAD" />
+    <mapping key=99 value="destinationoffroad"          description="TnVoiceManager::EDESTINATION_OFFROAD_RIGHT" />
+</TurnTypeMapping>

@@ -1,0 +1,122 @@
+﻿
+PREFIX
+{
+    _IN_DIE_STRASSE,   _NA,   TEXT("Am "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("An "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Auf "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Auf'"),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Aufm "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Bei "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Beim "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Im "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("In "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Nach "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Um "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Unter "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Vor "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Zu "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Zum "),
+    _IN_DIE_STRASSE,   _NA,   TEXT("Zur "),
+}
+
+DEFAULT
+{
+    _IN_DIE_STRASSE,   _NA,   TEXT(""),
+}
+
+ROUTE_PREFIX
+{
+    _AUF_DIE,   _FEMALE,   TEXT("A"),     // A1, A44, A544
+    _AUF_DIE,   _FEMALE,   TEXT("B"),     // B1, B12, B124
+    _AUF_DIE,   _FEMALE,   TEXT("K"),     // K1, K22, K234
+    _AUF_DIE,   _FEMALE,   TEXT("L"),     // L1, L22, L234
+}
+
+ROUTE_NUMBER
+{
+    _AUF_DIE,   _FEMALE,   TEXT(" "),   // 18, 110, 2201
+}
+
+POSTFIX
+{
+    _AUF_DAS,   _NEUTRAL,   _T("AUTOBAHNDREIECK"),
+    _AUF_DAS,   _NEUTRAL,   _T("AUTOBAHNKREUZ"),
+    _AUF_DAS,   _NEUTRAL,   _T("Feld"),
+    _AUF_DAS,   _NEUTRAL,   _T("Ufer"),
+
+    _AUF_DEN,   _MALE,   _T("Berg"),
+    _AUF_DEN,   _MALE,   _T("Damm"),
+    _AUF_DEN,   _MALE,   _T("Deich"),
+    _AUF_DEN,   _MALE,   _T("GÜRTEL"),
+    _AUF_DEN,   _MALE,   _T("Kai"),
+    _AUF_DEN,   _MALE,   _T("Markt"),
+    _AUF_DEN,   _MALE,   _T("Pass"),
+    _AUF_DEN,   _MALE,   _T("Patt"),
+    _AUF_DEN,   _MALE,   _T("Platz"),
+    _AUF_DEN,   _MALE,   _T("Ring"),
+    _AUF_DEN,   _MALE,   _T("Steg"),
+    _AUF_DEN,   _MALE,   _T("Steig"),
+    _AUF_DEN,   _MALE,   _T("Stieg"),
+    _AUF_DEN,   _MALE,   _T("Strand"),
+
+    _AUF_DIE,   _FEMALE,   _T("ANSCHLUSSSTELLE"),
+    _AUF_DIE,   _FEMALE,   _T("AUSFAHRT"),
+    _AUF_DIE,   _FEMALE,   _T("BRÜCKE"),
+    _AUF_DIE,   _FEMALE,   _T("Burg"),
+    _AUF_DIE,   _FEMALE,   _T("HÖHE"),
+    _AUF_DIE,   _FEMALE,   _T("INSEL"),
+    _AUF_DIE,   _FEMALE,   _T("KOPPEL"),
+    _AUF_DIE,   _FEMALE,   _T("PROMENADE"),
+    _AUF_DIE,   _FEMALE,   _T("STAFFEL"),
+    _AUF_DIE,   _FEMALE,   _T("TREPPE"),
+    _AUF_DIE,   _FEMALE,   _T("WERFT"),
+    _AUF_DIE,   _FEMALE,   _T("WIESE"),
+    _AUF_DIE,   _FEMALE,   _T("WIESEN"),
+
+    _IN_DAS,    _NEUTRAL,   _T("GÄSSCHEN"),
+    _IN_DAS,    _NEUTRAL,   _T("MOOR"),
+    _IN_DAS,    _NEUTRAL,   _T("TAL"),
+    _IN_DAS,    _NEUTRAL,   _T("TÄLCHEN"),
+    _IN_DAS,    _NEUTRAL,   _T("THAL"),
+    _IN_DAS,    _NEUTRAL,   _T("TOR"),
+
+    _IN_DEN,    _MALE,   _T("BACH"),
+    _IN_DEN,    _MALE,   _T("BOGEN"),
+    _IN_DEN,    _MALE,   _T("BROOK"),
+    _IN_DEN,    _MALE,   _T("GANG"),
+    _IN_DEN,    _MALE,   _T("GARTEN"),
+    _IN_DEN,    _MALE,   _T("GRABEN"),
+    _IN_DEN,    _MALE,   _T("HAFEN"),
+    _IN_DEN,    _MALE,   _T("HOF"),
+    _IN_DEN,    _MALE,   _T("HORST"),
+    _IN_DEN,    _MALE,   _T("KAMP"),
+    _IN_DEN,    _MALE,   _T("KANAL"),
+    _IN_DEN,    _MALE,   _T("KLEINGARTENVEREIN"),
+    _IN_DEN,    _MALE,   _T("PARK"),
+    _IN_DEN,    _MALE,   _T("PFAD"),
+    _IN_DEN,    _MALE,   _T("PFUHL"),
+    _IN_DEN,    _MALE,   _T("REDDER"),
+    _IN_DEN,    _MALE,   _T("STEIN"),
+    _IN_DEN,    _MALE,   _T("TEICH"),
+    _IN_DEN,    _MALE,   _T("TUNNEL"),
+    _IN_DEN,    _MALE,   _T("WALL"),
+    _IN_DEN,    _MALE,   _T("WEG"),
+    _IN_DEN,    _MALE,   _T("WINKEL"),
+    _IN_DEN,    _MALE,   _T("BRINK"),
+
+    _IN_DIE,    _FEMALE,   _T("ALLEE"),
+    _IN_DIE,    _FEMALE,   _T("ALLÉE"),
+    _IN_DIE,    _FEMALE,   _T("CHAUSSEE"),
+    _IN_DIE,    _FEMALE,   _T("GASSE"),
+    _IN_DIE,    _FEMALE,   _T("HEIDE"),
+    _IN_DIE,    _FEMALE,   _T("KEHRE"),
+    _IN_DIE,    _FEMALE,   _T("PASSAGE"),
+    _IN_DIE,    _FEMALE,   _T("QUERSCHNEISE"),
+    _IN_DIE,    _FEMALE,   _T("SCHNEISE"),
+    _IN_DIE,    _FEMALE,   _T("SIEDLUNG"),
+    _IN_DIE,    _FEMALE,   _T("STEIGE"),
+    _IN_DIE,    _FEMALE,   _T("STIEGE"),
+    _IN_DIE,    _FEMALE,   _T("STRASSE"),
+    _IN_DIE,    _FEMALE,   _T("TWIETE"),
+    _IN_DIE,    _FEMALE,   _T("ZEILE"),
+}

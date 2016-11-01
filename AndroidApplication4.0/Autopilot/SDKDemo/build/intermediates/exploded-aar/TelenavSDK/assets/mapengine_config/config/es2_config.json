@@ -1,0 +1,32 @@
+{
+    "graphics_api" : "ogles2",
+    "mipmap" : "software",
+    "use_polygon_offset" : true,
+    "polygon_offset_depth" : -0.1,
+    "hardcodes" :
+    {
+        "text" :
+        {
+            "glyph_bucket_size" : 1024,
+            "glyph_bucket_glyphs_per_row" : 32,
+            "glyph_loads_per_frame" : 3,
+            "enable_fast_halo" : true
+        },
+
+        "raster_zoom_bias" : -2.0        
+    },
+    "debug" :
+    {
+        "bounding_box" :
+        {
+            "show_bounding_box_for_flat_feature" : false,
+            "projected_bounding_box_color" : "#96960020",
+            "flat_feature_bounding_box_color" :
+            {
+                "label" : "#0050003c",
+                "orthogonal" : "#96000050",
+                "optimized" : "#00009650"
+            }
+        }
+    }
+}

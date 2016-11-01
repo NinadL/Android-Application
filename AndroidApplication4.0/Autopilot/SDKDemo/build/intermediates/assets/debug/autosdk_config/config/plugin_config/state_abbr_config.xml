@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<regions>
+	<region name="NA">
+		<country name="CAN">
+			<state abbr="AB" name="Alberta" />
+			<state abbr="SK" name="Saskatchewan" />
+			<state abbr="PE" name="Île-du-Prince-Édouard" />
+			<state abbr="PE" name="Prince Edward Island" />
+			<state abbr="PE" name="Isla del Príncipe Eduardo" />
+			<state abbr="MB" name="Manitoba" />
+			<state abbr="BC" name="British Columbia" />
+			<state abbr="BC" name="Colombie-Britannique" />
+			<state abbr="BC" name="Columbia Británica" />
+			<state abbr="QC" name="Quebec" />
+			<state abbr="QC" name="Québec" />
+			<state abbr="NB" name="Nuevo Brunswick" />
+			<state abbr="NB" name="Nouveau-Brunswick" />
+			<state abbr="NB" name="New Brunswick" />
+			<state abbr="NL" name="Terranova y Labrador" />
+			<state abbr="NL" name="Newfoundland and Labrador" />
+			<state abbr="NL" name="Terre-Neuve-et-Labrador" />
+			<state abbr="ON" name="Ontario" />
+			<state abbr="NS" name="Nouvelle-Écosse" />
+			<state abbr="NS" name="Nova Scotia" />
+			<state abbr="NS" name="Nueva Escocia" />
+			<state abbr="NT" name="Territorio del Noroeste" />
+			<state abbr="NT" name="Territoires du Nord-Ouest" />
+			<state abbr="NT" name="Northwest Territories" />
+			<state abbr="NU" name="Nunavut" />
+			<state abbr="YT" name="Yukón" />
+			<state abbr="YT" name="Territoire du Yukon" />
+			<state abbr="YT" name="Yukon" />
+		</country>
+		<country name="USA">
+			<state abbr="ID" name="Idaho" />
+			<state abbr="NC" name="Caroline-du-Nord" />
+			<state abbr="NC" name="Carolina del Nord" />
+			<state abbr="NC" name="North Carolina" />
+			<state abbr="NC" name="Carolina del Norte" />
+			<state abbr="NC" name="Carolina do Norte" />
+			<state abbr="ME" name="Maine" />
+			<state abbr="AR" name="Arkansas" />
+			<state abbr="UT" name="Utah" />
+			<state abbr="FL" name="Floride" />
+			<state abbr="FL" name="Florida" />
+			<state abbr="NM" name="Nuovo Messico" />
+			<state abbr="NM" name="Nuevo México" />
+			<state abbr="NM" name="New Mexico" />
+			<state abbr="NM" name="Novo Mexico" />
+			<state abbr="NM" name="Nouveau-Mexique" />
+			<state abbr="VT" name="Vermont" />
+			<state abbr="OK" name="Oklahoma" />
+			<state abbr="OR" name="Oregón" />
+			<state abbr="OR" name="Oregon" />
+			<state abbr="WA" name="Washington" />
+			<state abbr="CT" name="Connecticut" />
+			<state abbr="ND" name="Dakota del Norte" />
+			<state abbr="ND" name="Dakota-du-Nord" />
+			<state abbr="ND" name="Nord Dakota" />
+			<state abbr="ND" name="North Dakota" />
+			<state abbr="NV" name="Nevada" />
+			<state abbr="PA" name="Pennsylvania" />
+			<state abbr="PA" name="Pennsylvanie" />
+			<state abbr="MN" name="Minnesota" />
+			<state abbr="OH" name="Ohio" />
+			<state abbr="IN" name="Indiana" />
+			<state abbr="KS" name="Kansas" />
+			<state abbr="IA" name="Iowa" />
+			<state abbr="NE" name="Nebraska" />
+			<state abbr="TN" name="Tennessee" />
+			<state abbr="TX" name="Texas" />
+			<state abbr="RI" name="Rhode Island" />
+			<state abbr="MS" name="Mississippi" />
+			<state abbr="WY" name="Wyoming" />
+			<state abbr="IL" name="Illinois" />
+			<state abbr="MI" name="Michigan" />
+			<state abbr="LA" name="Louisiane" />
+			<state abbr="LA" name="Luisiana" />
+			<state abbr="LA" name="Louisiana" />
+			<state abbr="MT" name="Montana" />
+			<state abbr="MA" name="Massachusetts" />
+			<state abbr="SC" name="Carolina del Sud" />
+			<state abbr="SC" name="South Carolina" />
+			<state abbr="SC" name="Caroline-du-Sud" />
+			<state abbr="SC" name="Carolina del Sur" />
+			<state abbr="CA" name="Californie" />
+			<state abbr="CA" name="Californië" />
+			<state abbr="CA" name="Kalifornien" />
+			<state abbr="CA" name="California" />
+			<state abbr="MO" name="Missouri" />
+			<state abbr="NH" name="New Hampshire" />
+			<state abbr="NH" name="Nueva Hampshire" />
+			<state abbr="CO" name="Colorado" />
+			<state abbr="SD" name="Sud Dakota" />
+			<state abbr="SD" name="Dakota del Sur" />
+			<state abbr="SD" name="South Dakota" />
+			<state abbr="SD" name="Dakota-du-Sud" />
+			<state abbr="NJ" name="New Jersey" />
+			<state abbr="NJ" name="Nova Jersey" />
+			<state abbr="NJ" name="Nueva Jersey" />
+			<state abbr="MD" name="Maryland" />
+			<state abbr="VA" name="Virginie" />
+			<state abbr="VA" name="Virginia" />
+			<state abbr="WI" name="Wisconsin" />
+			<state abbr="AK" name="Alaska" />
+			<state abbr="HI" name="Hawaii" />
+			<state abbr="KY" name="Kentucky" />
+			<state abbr="DE" name="Delaware" />
+			<state abbr="AZ" name="Arizona" />
+			<state abbr="DC" name="District de Columbia" />
+			<state abbr="DC" name="District of Columbia" />
+			<state abbr="DC" name="Distrito de Columbia" />
+			<state abbr="NY" name="Nova York" />
+			<state abbr="NY" name="New York" />
+			<state abbr="NY" name="Nueva York" />
+			<state abbr="GA" name="Géorgie" />
+			<state abbr="GA" name="Georgia" />
+			<state abbr="WV" name="Virginie-Occidentale" />
+			<state abbr="WV" name="Virginia Occidental" />
+			<state abbr="WV" name="West Virginia" />
+			<state abbr="AL" name="Alabama" />
+		</country>
+		<country name="MEX">
+			<state abbr="Tlax" name="Tlaxcala" />
+			<state abbr="Gto" name="Guanajuato" />
+			<state abbr="Son" name="Sonora" />
+			<state abbr="Jal" name="Jalisco" />
+			<state abbr="Mich" name="Michoacan" />
+			<state abbr="Mich" name="Michoacán" />
+			<state abbr="Tab" name="Tabasco" />
+			<state abbr="DF" name="Distrito Federal" />
+			<state abbr="DF" name="District Fédéral" />
+			<state abbr="Ver" name="Veracruz" />
+			<state abbr="Mor" name="Morelos" />
+			<state abbr="BC" name="Basse-Californie" />
+			<state abbr="BC" name="Baja California" />
+			<state abbr="Zac" name="Zacatecas" />
+			<state abbr="Tamps" name="Tamaulipas" />
+			<state abbr="BCS" name="Sud de la Basse-Californie" />
+			<state abbr="BCS" name="Baja California Sur" />
+			<state abbr="Qro" name="Queretaro" />
+			<state abbr="Qro" name="Querétaro" />
+			<state abbr="Nay" name="Nayarit" />
+			<state abbr="Emex" name="México" />
+			<state abbr="Emex" name="Mexico" />
+			<state abbr="Pue" name="Puebla" />
+			<state abbr="Oax" name="Oaxaca" />
+			<state abbr="Col" name="Colima" />
+			<state abbr="Camp" name="Campeche" />
+			<state abbr="Hgo" name="Hidalgo" />
+			<state abbr="Ags" name="Aguascalientes" />
+			<state abbr="Chis" name="Chiapas" />
+			<state abbr="Chih" name="Chihuahua" />
+			<state abbr="Coah" name="Coahuila" />
+			<state abbr="QR" name="Quintana Roo" />
+			<state abbr="Gro" name="Guerrero" />
+			<state abbr="Dgo" name="Durango" />
+			<state abbr="NL" name="Nuevo Leon" />
+			<state abbr="NL" name="Nuevo León" />
+			<state abbr="Sin" name="Sinaloa" />
+			<state abbr="SLP" name="San Luis Potosí" />
+			<state abbr="SLP" name="San Luis Potosi" />
+			<state abbr="Yuc" name="Yucatán" />
+			<state abbr="Yuc" name="Yucatan" />
+		</country>
+	</region>
+	<region name="ANZ">
+		<country name="AUS">
+			<name abbr="ACT" name="Australian Capital Territory" />
+			<name abbr="NSW" name="New South Wales" />
+			<name abbr="NT" name="Northern Territory" />
+			<name abbr="OT" name="Other Territories" />
+			<name abbr="QLD" name="Queensland" />
+			<name abbr="SA" name="South Australia" />
+			<name abbr="TAS" name="Tasmania" />
+			<name abbr="VIC" name="Victoria" />
+			<name abbr="WA" name="Western Australia" />
+		</country>
+	</region>
+</regions>

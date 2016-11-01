@@ -1,0 +1,115 @@
+{
+    "graphics_api" : "ogles2",
+    "mipmap" : "software",
+    "use_polygon_offset" : true,
+    "polygon_offset_depth" : -0.1,
+    "hardcodes" :
+    {
+        "text" :
+        {
+            "glyph_bucket_size" : 1024,
+            "glyph_bucket_glyphs_per_row" : 32,
+            "glyph_loads_per_frame" : 3,
+            "enable_fast_halo" : true
+        },
+
+        "raster_zoom_bias" : -2.0        
+    },
+    "debug" :
+    {
+        "bounding_box" :
+        {
+            "show_bounding_box_for_flat_feature" : false,
+            "projected_bounding_box_color" : "#96960020",
+            "flat_feature_bounding_box_color" :
+            {
+                "label" : "#0050003c",
+                "orthogonal" : "#96000050",
+                "optimized" : "#00009650"
+            }
+        }
+    },
+    "caches" :
+    {
+        "edges" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        
+        "edgesGrid":
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        
+        "features" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        "polygons" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        "features_raster" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        "traffic" :
+        {
+            "flush_raw_data_on_scene_complete" : true,
+            "incidents" :
+            {
+                "item_capacity" : 0,
+                "size_capacity_mb" : 0
+            },
+            "data" :
+            {
+                "item_capacity" : 0,
+                "size_capacity_mb" : 0
+            },
+            "flow" :
+            {
+                "item_capacity" : 0,
+                "size_capacity_mb" : 0
+            }
+        },
+        "terrain" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        "terrain_access" :
+        {
+            "terrain_tile_cacheM_size" : 0
+        },
+        "shields" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        "point_labels" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        "billboard_labels" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        "flat_labels" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        },
+        "routes" :
+        {
+            "item_capacity" : 0,
+            "size_capacity_mb" : 0
+        }
+    }
+}

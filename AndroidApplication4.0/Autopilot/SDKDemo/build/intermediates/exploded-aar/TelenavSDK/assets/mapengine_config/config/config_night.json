@@ -1,0 +1,1145 @@
+{
+    "polygon" :
+    {
+        "blue" :
+        {
+            "color" : "#0000ffff"
+        },
+        "purple" :
+        {
+            "color" : "#ff00ffff"
+        },
+        "white" :
+        {
+            "color" : "#000000ff"
+        },
+
+        "Aerodrome" :
+        {
+            "color" : "#3a372fff"
+        },
+        "University" :
+        {
+            "color" : "#3a372fff"
+        },
+        "Parking" :
+        {
+            "color" : "#4e4d4bff"
+        },
+        "Hospital" :
+        {
+            "color" : "#40302dff"
+        },
+        "Graveyard" :
+        {
+            "color" : "#3a372fff"
+        },
+        "Building" :
+        {
+            "color" : "#3a372fff",
+            "outline_color" : "#d0c9c1ff"
+        },
+        "Sports Centre" :
+        {
+            "color" : "#3a372fff"
+        },
+
+        "Residential" :
+        {
+            "color" : "#3a372fff"
+        },
+        "Commercial" :
+        {
+            "color" : "#3a372fff"
+        },
+        "Landfill" :
+        {
+            "color" : "#3a372fff"
+        },
+        "Military" :
+        {
+            "color" : "#3a372fff",
+            "outline_color" : "#f5898280"
+        },
+
+        "Water" :
+        {
+            "color" : "#1d2c33ff"
+        },
+        "Waterway" :
+        {
+            "color" : "#1d2c33ff"
+        },
+        "Wetland" :
+        {
+            "color" : "#2f3a2cff"
+        },
+
+        "Nature Reserve" :
+        {
+            "color" : "#2f3a2cff",
+            "outline_color" : "#1a7c3650"
+        },
+        "Forest" :
+        {
+            "color" : "#2f3a2cff"
+        },
+        "Park" :
+        {
+            "color" : "#2f3a2cff"
+        },
+        "Grass" :
+        {
+            "color" : "#2f3a2cff"
+        },
+        "Vineyard" :
+        {
+            "color" : "#2f3a2cff"
+        },
+
+        "Stone" :
+        {
+            "color" : "#ebe6dcff"
+        },
+        "Sand" :
+        {
+            "color" : "#e7e2dbff"
+        },
+
+        "Theme Park" :
+        {
+            "color" : "#3a372fff"
+        },
+        "Zoo" :
+        {
+            "color" : "#2f3a2cff"
+        },
+
+        "River" :
+        {
+            "color" : "#1d2c33ff"
+        },
+        "Canal" :
+        {
+            "color" : "#1d2c33ff"
+        },
+        "Ocean Mass" :
+        {
+            "color" : "#1d2c33ff"
+        },
+        "Glacier" :
+        {
+            "color" : "#fefefeff"
+        },
+        "Pedestrian Area" :
+        {
+            "color" : "#3a372fff"
+        },
+
+        "aircraft_road" :
+        {
+            "color" : "#25222bff"
+        },
+        "airport" :
+        {
+            "color" : "#3a372fff"
+        },
+        "cemetery_ground" :
+        {
+            "color" : "#3a372fff"
+        },
+        "golf_course_ground" :
+        {
+            "color" : "#2f3a2cff"
+        },
+        "shopping_center_ground" :
+        {
+            "color" : "#3a372fff"
+        },
+        "industrial_area" :
+        {
+            "color" : "#d9d9d9ff"
+        },
+        "industrial_harbor_area" :
+        {
+            "color" : "#d9d9d9ff"
+        },
+        "stadium_ground" :
+        {
+            "color" : "#3a372fff"
+        },
+        "golf_course" :
+        {
+            "color" : "#2f3a2cff"
+        },
+        "shopping_centre" :
+        {
+            "color" : "#3a372fff",
+            
+            "outlined" : true,
+            "outline_color" : "#595548ff"
+        },
+        "Shopping Centre" :
+        {
+            "color" : "#3a372fff",
+            
+            "outlined" : true,
+            "outline_color" : "#595548ff"
+        },
+        "campus" :
+        {
+            "color" : "#3a372fff"
+        },
+        "geopolitical" :
+        {
+            "color" : "#dededeff"
+        },
+        "interior" :
+        {
+            "color" : "#e5e4e0ff"
+        },
+        "park" :
+        {
+            "color" : "#2f3a2cff"
+        },
+        "turnindicator" :
+        {
+            "color" : "#ff00ffff"
+        },
+        "unknown" :
+        {
+            "color" : "#ff00ffff"
+        }
+    },
+    "route" :
+    {
+        "default" :
+        {
+            "one_way_arrow_color" : "#ffffff7f"
+        },
+        "routeA" :
+        {
+            "color" : "#00aab4ff",
+            "outline_color" : "#2233aaff"
+        },
+        "routeB" :
+        {
+            "color" : "#00aab4ff",
+            "outline_color" : "#2233aaff"
+        },
+        "routeC" :
+        {
+            "color" : "#00aab4ff",
+            "outline_color" : "#2233aaff"
+        },
+        "FREE_FLOW_EDGE" :
+        {
+            "color" : "#00aab4ff",
+            "outline_color" : "#2233aaff"
+        },
+        "SLOW_SPEED_EDGE" :
+        {
+            "color" : "#ffcf01ff",
+            "outline_color" : "#2233aaff"
+        },
+        "CONGESTED_EDGE" :
+        {
+            "color" : "#ff242cff",
+            "outline_color" : "#2233aaff"
+        },
+        "CLOSED_EDGE" :
+        {
+            "color" : "#00aab4ff",
+            "outline_color" : "#2233aaff"
+        }
+    },
+    "edge" :
+    {
+        "Motorway" :
+        {
+            "color" : "#9a6f3dff",
+            "outline_color" : "#3a190fff"
+        },
+        "Motorway Link" :
+        {
+            "color" : "#9a6f3dff",
+            "outline_color" : "#3a190fff"
+        },
+        "Trunk" :
+        {
+            "color" : "#a39b2bff",
+            "outline_color" : "#2f1909ff"
+        },
+        "Trunk Link" :
+        {
+            "color" : "#a39b2bff",
+            "outline_color" : "#2f1909ff"
+        },
+        "Primary" :
+        {
+            "color" : "#a39b2bff",
+            "outline_color" : "#2f1909ff"
+        },
+        "Primary Link" :
+        {
+            "color" : "#a39b2bff",
+            "outline_color" : "#2f1909ff"
+        },
+        "Secondary" :
+        {
+            "color" : "#696764ff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Secondary Link" :
+        {
+            "color" : "#696764ff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Tertiary" :
+        {
+            "color" : "#4e4d4bff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Tertiary Link" :
+        {
+            "color" : "#4e4d4bff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Road" :
+        {
+            "color" : ["#dbdde1ff", "#dbdde1ff", "#dbdde1ff", "#d6d9deff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff"],
+            "outline_color" : "#d0c9c1ff"
+        },
+        "Unclassified" :
+        {
+            "color" : "#ff0000ff",
+            "outline_color" : "#d0c9c1ff"
+        },
+        "Service" :
+        {
+            "color" : "#2e2d2cff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Residential" :
+        {
+            "color" : "#4e4d4bff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Residential Limited" :
+        {
+            "color" : "#4e4d4bff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Cycleway" :
+        {
+            "color" : ["#dbdde1ff", "#dbdde1ff", "#dbdde1ff", "#d6d9deff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff"],
+            "outline_color" : "#f7f7f700"
+        },
+        "Bridleway" :
+        {
+            "color" : "#2e2d2cff",
+            "outline_color" : "#c9c0b0ff"
+        },
+        "Footway" :
+        {
+            "color" : "#2e2d2cff",
+            "outline_color" : "#f7f7f700"
+        },
+        "Pedestrian" :
+        {
+            "color" : "#2e2d2cff",
+            "outline_color" : "#f7f7f700"
+        },
+        "Living Street" :
+        {
+            "color" : "#2e2d2cff",
+            "outline_color" : "#d0c9c1ff"
+        },
+        "Track" :
+        {
+            "color" : "#2e2d2cff",
+            "outline_color" : "#bab5b3ff"
+        },
+        "Path" :
+        {
+            "color" : "#2e2d2cff",
+            "outline_color" : "#c9c0b0ff"
+        },
+        "Construction" :
+        {
+            "color" : "#f7f6f4ff",
+            "outline_color" : "#d0cac0ff"
+        },
+        "Crossing" :
+        {
+            "color" : "#eea0eeff"
+        },
+        "Ferry" :
+        {
+            "color" : "#a7cbe5ff"
+        },
+        "Ford" :
+        {
+            "color" : "#e1dbd1ff",
+            "outline_color" : "#d0cac0ff"
+        },
+
+        "State" :
+        {
+            "color" : "#eea0eeff"
+        },
+        "Steps" :
+        {
+            "color" : "#eea0eeff"
+        },
+        "Ferry Ped" :
+        {
+            "color" : "#eea0eeff"
+        },
+        "Unpaved Track" :
+        {
+            "color" : "#eea0eeff"
+        },
+        "Permissive" :
+        {
+            "color" : "#eea0eeff"
+        },
+        "Destination" :
+        {
+            "color" : "#eea0eeff"
+        },
+        "Pier" :
+        {
+            "color" : "#eea0eeff"
+        },
+        "Train Ferry" :
+        {
+            "color" : "#eea0eeff"
+        },	
+
+        "Stateborder" :
+        {
+            "color" : "#a0a0a0ff"
+        },
+        "Nationborder" :
+        {
+            "color" : "#a0a0a0ff"
+        },
+        "chinaborder" :
+        {
+            "color" : "#a0a0a0ff"
+        },
+        "chinadisputedborder" :
+        {
+            "color" : "#00000000",
+            "outline_color" : "#aaaaaaff"
+        },
+        "Waterline" :
+        {
+            "color" : "#1d2c33ff"
+        },
+        "Canal" :
+        {
+            "color" : "#1d2c33ff"
+        },
+        "dateline" :
+        {
+            "color" : "#862f2fff"
+        },
+        "ferryboat" :
+        {
+            "color" : "#a7cbe5ff"
+        },
+        "Rail" :
+        {
+            "color" : "#d1d3d4ff"
+        },
+        "smallstreet" :
+        {
+            "color" : ["#dbdde1ff", "#dbdde1ff", "#dbdde1ff", "#d6d9deff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff", "#d2d5daff"],
+            "outline_color" : "#f7f7f7ff"
+        },
+        "street" :
+        {
+            "color" : "#fffcfaff",
+            "outline_color" : "#b29e90ff"
+        },
+        "intersection" :
+        {
+            "color" : "#ffffffff",
+            "outline_color" : "#ab9e89ff"
+        },
+        "ramp" :
+        {
+            "color" : ["#c2b2b2ff", "#c2b2b2ff", "#c2b2b2ff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff"],
+            
+            "outline_color" : "#ffffffff"
+        },
+        "highwayramp" :
+        {
+            "color" : ["#c2b2b2ff", "#c2b2b2ff", "#c2b2b2ff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff", "#c2aeaeff"],
+            
+            "outline_color" : "#ffffffff"
+        },
+        "arterial" :
+        {
+            "color" : "#ffffffff",            
+            "outline_color" : "#b29e90ff"
+        },
+        "highway" :
+        {
+            "color" : "#ffd671ff",
+            "outline_color" : "#ef9b2bff"
+        }
+    },
+    "traffic" :
+    {
+        "FREE_FLOW" :
+        {
+            "color" : "#00aa00ff"
+        },
+        "SLOW_SPEED" :
+        {
+            "color" : "#ffcf01ff"
+        },
+        "CONGESTED" :
+        {
+            "color" : "#ff242cff"
+        },
+        "CLOSED" :
+        {
+            "color" : "#000000ff"
+        }
+    },
+    "route_arrows" :
+    {
+        "default" :
+        {
+            "detached_head" : true,
+            "draw_group": "route_arrows",
+            "length_forward" : 4.0,
+            "length_backward" : 4.0,
+            "outer_color" : "#803333ff",
+            "inner_color" : "#ff9000ff",
+            "outer_width" : [6.75, 6.075, 5.475, 4.95, 4.425, 3.975, 3.6, 3.225, 2.925, 2.625, 2.325, 2.1, 1.875, 1.725, 1.575, 1.425, 1.275],
+            "inner_width" : [6.0, 5.4, 4.875, 4.35, 3.9, 3.525, 3.225, 2.85, 2.55, 2.325, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+            "turn_type" : "unspecified"        
+        }
+    },
+    "vertical_labels" :
+    {
+        "highway" :
+        {
+            "outline_color" : "#ffffffff"
+        },
+        "arterial" :
+        {
+            "outline_color" : "#ffffffff"
+        },
+        "street" :
+        {
+            "priority" : 12,
+            "render_size" : 9
+        }    
+    },
+    "billboard_labels" :
+    {
+    		"default" :
+        {
+            "icon_name" : "DEFSIGN_night.png"
+        },
+        "State" :
+        {
+            "render_size" : 12,
+            "show_in_map" : "2d_and_3d",
+            "text_overall_space" : [8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 6.0, 4.0, 4.0, 4.0, 4.0, 4.0]
+        },
+        "Bridleway" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Construction" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Crossing" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Cycleway" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Ferry" :
+        {
+            "text_color" : "#225f6eff",
+            "outline_color" : "#7fb4daff"
+        },
+        "Footway" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Ford" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Living Street" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Motorway" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Motorway Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Path" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Pedestrian" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Primary" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Primary Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Residential" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Residential Limited" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Road" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Secondary" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Secondary Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Service" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Steps" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Tertiary" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Tertiary Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Track" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Trunk" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Trunk Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Unclassified" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Ferry Ped" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Unpaved Track" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Permissive" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Destination" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Pier" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Train Ferry" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        }
+    },
+    "point_labels" :
+    {
+    		"default" :
+        {
+            "outline_color" : "#1e1e1dff"
+        },
+        "Aerodrome" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Runway" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "University" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Cinema" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Parking" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Hospital" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Graveyard" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Fence" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        
+        "Wall" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Gate" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "TollBooth" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Stateborder" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Nature Reserve" :
+        {
+            "text_color" : "#7fe562ff"
+        },
+        "Land" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Residential" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Commercial" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },        
+        "Public" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Building" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Water" :
+        {
+            "text_color" : "#5bb6e5ff"
+        },
+        "Construction" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Forest" :
+        {
+            "text_color" : "#7fe562ff"
+        },
+        "Grass" :
+        {
+            "text_color" : "#7fe562ff"
+        },
+        "Landfill" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Military" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Stone" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Railway" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Park" :
+        {
+            "text_color" : "#7fe562ff"
+        },
+        "Vineyard" :
+        {
+            "text_color" : "#7fe562ff"
+        },
+        "Land" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        
+        "Sports Centre" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Pier" :
+        {
+            "text_color" : "#4384a6ff"
+        },
+        "Pipeline" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Sand" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Wetland" :
+        {
+            "text_color" : "#7fe562ff"
+        },
+        "Abandoned" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Disused" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Rail" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },        
+        "Preserved" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Subway" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Tram" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Ferry" :
+        {
+            "text_color" : "#4384a6ff"
+        },
+        "shopping_center_ground" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Theme Park" :
+        {
+            "text_color" : "#e6e7e8ff"
+        },
+        "Zoo" :
+        {
+            "text_color" : "#7fe562ff"
+        },
+        "Waterline" :
+        {
+            "text_color" : "#5bb6e5ff"
+        },
+        "River" :
+        {
+            "text_color" : "#5bb6e5ff"
+        },
+        "Canal" :
+        {
+            "text_color" : "#5bb6e5ff"
+        },
+        
+        "city_extra_large" :
+        {
+            "text_color" : "#fffbe0ff"
+        },
+        "city_large" :
+        {
+            "text_color" : "#fffbe0ff"
+        },
+        "city_medium" :
+        {
+            "text_color" : "#fffbe0ff"
+        },
+        "city_small" :
+        {
+            "text_color" : "#fffbe0ff"
+        },
+        "State" :
+        {
+            "text_color" : "#fffbe0ff"
+        },
+        "Country" :
+        {
+            "text_color" : "#fffbe0ff"
+        }
+    },
+    "flat_labels" :
+    {
+        "Bridleway" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Construction" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Crossing" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Cycleway" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Ferry" :
+        {
+            "text_color" : "#225f6eff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Footway" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Ford" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Living Street" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Motorway" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Motorway Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Path" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Pedestrian" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Primary" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Primary Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Residential" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Residential Limited" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Road" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Secondary" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Secondary Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Service" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Steps" :
+        {
+            "text_color" : "#443120ff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Tertiary" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Tertiary Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Track" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Trunk" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Trunk Link" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Unclassified" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Ferry Ped" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Unpaved Track" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Permissive" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Destination" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Pier" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        },
+        "Train Ferry" :
+        {
+            "text_color" : "#ffffffff",
+            "outline_color" : "#1e1e1dff"
+        }
+    },
+    "landmark" :
+    {
+	    "default" : 
+	    {
+            "animation_time" : 0.5,
+            "always_visible" : true,
+	        "priority" : 25,
+            "cull_distance" : -1.0
+	    }
+    },
+    "view" :
+    {
+    		"ground_color" : "#1e1e1dff",
+        "route" :
+        {
+            "smoothing_tolerance" : 0.5,
+            "smoothing_threshold" : 0.5,
+	       		"highlight_mode" :
+	        	{
+		        		"route_only" :
+		        		{
+		            		"blend_rate" : 2.0,
+		            		"blend_color" : "#ffffffc8"	
+		        		},
+	            	"full_background" :
+	            	{
+		            		"blend_rate" : 2.0,
+		            		"blend_color" : "#ffffff7f"
+		        		}
+	        	}
+        }
+		}
+}

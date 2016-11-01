@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "E:\\WorkGit\\AndroidApplication4.0\\Autopilot\\SDKDemo\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi\\ic_launcher.png",
+        "source": "E:\\WorkGit\\AndroidApplication4.0\\Autopilot\\SDKDemo\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\WorkGit\\AndroidApplication4.0\\Autopilot\\SDKDemo\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi\\maps_icon_three.png",
+        "source": "E:\\WorkGit\\AndroidApplication4.0\\Autopilot\\SDKDemo\\src\\main\\res\\mipmap-xhdpi\\maps_icon_three.png"
+    }
+]

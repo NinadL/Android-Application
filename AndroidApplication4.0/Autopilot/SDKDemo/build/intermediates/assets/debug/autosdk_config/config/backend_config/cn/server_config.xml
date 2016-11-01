@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Services>
+    <Log>
+       <Executor Type="FILE" Path="..\tmsdev.log" Mask="ERROR+REQUEST" MaxSize="52428800" MaxLines="200000" MaxFiles="10" Append="true" TID="true" Enable="true"/>
+    </Log>
+    <Routing>
+        <RCM path="rcm/rcm_all_type.xml" />
+        <RoutingAvoidMode mode="HardAvoidAutoReroute"/>
+        <IgnoreDestTRDisance autoretry="true"/>
+        <AvoidTunnelLength value="300"/>
+        <MultiRouteMaxLength value="510000"/>
+        <MultiRouteMaxETTDiff value="30"/>
+		<CheckANConditionOneway value="true"/>
+        <EcoRcm path="rcm/rcm_eco.xml" ConsiderTraffic="true" />
+	<DefaultECOInfo VehicleWeight="22" EcoRouteCurve="1" PowertrainEfficiency="30" HighSpeedRegenRate="0" LowSpeedRegenRate="0" FuelType="0" StartStopVehicle="0" ElectricVehicle="0"/>
+	<ODRadiusFactor value="1.0,1.3,1.6,1.9,2.2,2.5,2.8,3.1,3.6,4.1,4.6,5.1,5.6,6.1,6.6,7.1,7.6,8.1,13.1,18.1,23.1,28.1,33.1,38.1,43.1,48.1,53.1,58.1,108.1,1000.0,3000.0,8046.7"/>
+	<LevelPromotion>
+
+            <!--<PromotionParam Flag="OtherCommon" TotalHigherFcCnt="9999999,9999999,9999999,9999999,9999999" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,9999999,9999999,9999999,9999999" LimitPromoteRange="9999999,0,0,0,0" 
+            description = "no level promote"/>-->
+
+            <!-- promote strategy for common 0 ~ 50000 meters -->
+            <PromotionParam Flag="OtherCommon" TotalHigherFcCnt="9999999,16,40,75,60" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,19000,15000,11000,4000" LimitPromoteRange="9999999,0,0,0,0" UsePromoteStrategyDistanceLimit="50000"/>
+            <!-- promote strategy for common 50000 ~ 300000 meters -->
+            <PromotionParam Flag="OtherCommon" TotalHigherFcCnt="9999999,16,40,40,50" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,19000,15000,11000,4000" LimitPromoteRange="9999999,0,0,0,0" UsePromoteStrategyDistanceLimit="3000000"/>
+            <!-- Other common promote strategy -->
+            <PromotionParam Flag="OtherCommon" TotalHigherFcCnt="9999999,16,40,40,40" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,19000,15000,11000,4000" LimitPromoteRange="9999999,0,0,0,0" />
+
+            <PromotionParam Flag="AvoidTunnels" TotalHigherFcCnt="9999999,15,40,40,100" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,29000,26000,23000,15000" LimitPromoteRange="9999999,0,0,0,0" UsePromoteStrategyDistanceLimit="100000"/>
+
+    <!-- In the range of (0, UsePromoteStrategyDistanceLimit) use avoid hwy level promote strategy, hard avoid hwy -->
+    <!-- In the range of (UsePromoteStrategyDistanceLimit, UseSoftAvoidDistanceLimit) use normal promote strategy, hard avoid hwy -->
+    <!-- In the range of (UseSoftAvoidDistanceLimit, max) soft avoid hwy -->
+    <PromotionParam Flag="AvoidFreeways" TotalHigherFcCnt="9999999,9999999,9999999,105,40" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,9999999,9999999,11000,4000" LimitPromoteRange="9999999,0,0,0,0" UsePromoteStrategyDistanceLimit="550000" UseSoftAvoidDistanceLimit="1650000"/>
+    <PromotionParam Flag="AvoidTollRoads" TotalHigherFcCnt="9999999,9999999,9999999,80,125" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,9999999,9999999,15000,6000" LimitPromoteRange="9999999,0,0,0,0" UsePromoteStrategyDistanceLimit="150000" />
+    <PromotionParam Flag="AvoidTollRoads" TotalHigherFcCnt="9999999,9999999,9999999,70,40" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,9999999,9999999,11000,4000" LimitPromoteRange="9999999,0,0,0,0" UsePromoteStrategyDistanceLimit="300000" UseSoftAvoidDistanceLimit="1650000"/>
+    
+    <PromotionParam Flag="ShortestSpecial" TotalHigherFcCnt="9999999,9999999,9999999,40,60" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,19000,15000,11000,4000" LimitPromoteRange="9999999,0,0,0,0" UsePromoteStrategyDistanceLimit="50000" />
+
+    <PromotionParam Flag="ShortestSpecial" TotalHigherFcCnt="9999999,9999999,40,40,60" TotalHigherFcCntBase="9999999,2,2,2,2" PromoteEdgeCnt="9999999,19000,15000,11000,4000" LimitPromoteRange="9999999,0,0,0,0" UsePromoteStrategyDistanceLimit="300000" />
+
+
+
+    </LevelPromotion>
+    </Routing>
+</Services>
+

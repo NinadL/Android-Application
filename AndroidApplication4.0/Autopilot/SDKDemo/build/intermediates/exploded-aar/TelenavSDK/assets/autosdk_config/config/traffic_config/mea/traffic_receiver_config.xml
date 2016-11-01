@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TrafficReceiver>
+    <TmcSqlite path="/Users/ljin/codebase/traffic-onboard/traffic_data/eu/Traffic.db"/>
+    <ServiceProvider path="/Users/ljin/codebase/traffic-onboard/traffic_data/eu/TMCProvider.db"/>
+    <EventTable path="/Users/ljin/codebase/traffic-onboard/traffic_data/eu/event_info.binary"/>
+    <MaxRdsGroupBufferSize value="50"/>
+</TrafficReceiver>
+

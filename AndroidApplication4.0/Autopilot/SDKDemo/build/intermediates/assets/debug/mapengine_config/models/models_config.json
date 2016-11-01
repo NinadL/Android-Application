@@ -1,0 +1,129 @@
+{
+  "modelGroups": [
+    {
+      "groupName": "DEFAULT",
+      "modelList": [
+        {
+          "modelTitle": "Arrow",
+          "modelIcon": "profile_mycar_arrow_icon_unfocused.png",
+          "modelName": "arrow"
+        }
+      ]
+    },
+    {
+      "groupName": "SEASONAL",
+      "modelList": [
+        {
+          "modelTitle": "Santa's Lid",
+          "modelIcon": "profile_mycar_santa_lid_icon_unfocused.png",
+          "modelName": "Santa"
+        },
+        {
+          "modelTitle": "Elf Cap",
+          "modelIcon": "profile_mycar_elf_cap_icon_unfocused.png",
+          "modelName": "Elf"
+        },
+        {
+          "modelTitle": "Rudy",
+          "modelIcon": "profile_mycar_rudy_icon_unfocused.png",
+          "modelName": "Deer"
+        },
+        {
+          "modelTitle": "New Year's Topper",
+          "modelIcon": "profile_mycar_new_year_topper_icon_unfocused.png",
+          "modelName": "NYE"
+        },
+        {
+          "modelTitle": "Polaris",
+          "modelIcon": "profile_mycar_polaris_icon_unfocused.png",
+          "modelName": "Star"
+        },
+        {
+          "modelTitle": "Frank",
+          "modelIcon": "profile_mycar_frank_icon_unfocused.png",
+          "modelName": "Frank"
+        },
+        {
+          "modelTitle": "Jacko",
+          "modelIcon": "profile_mycar_pumpkin_icon_unfocused.png",
+          "modelName": "Pumpkin"
+        },
+        {
+          "modelTitle": "Skull",
+          "modelIcon": "profile_mycar_skull_icon_unfocused.png",
+          "modelName": "SugarSkull"
+        },
+        {
+          "modelTitle": "Spider",
+          "modelIcon": "profile_mycar_spider_icon_unfocused.png",
+          "modelName": "SpiderCar"
+        }
+      ]
+    },
+    {
+      "groupName": "CARS",
+      "modelList": [
+        {
+          "modelTitle": "Sports Car",
+          "modelIcon": "profile_mycar_sportscar_icon_unfocused.png",
+          "modelName": "sportsCar"
+        },
+        {
+          "modelTitle": "Classic Car",
+          "modelIcon": "profile_mycar_classic_icon_unfocused.png",
+          "modelName": "classic"
+        },
+        {
+          "modelTitle": "Compact Car",
+          "modelIcon": "profile_mycar_smallcar_icon_unfocused.png",
+          "modelName": "smallCar"
+        },
+        {
+          "modelTitle": "Convertible",
+          "modelIcon": "profile_mycar_convertable_icon_unfocused.png",
+          "modelName": "convertable"
+        },
+        {
+          "modelTitle": "Main Battle Tank",
+          "modelIcon": "profile_mycar_tank_icon_unfocused.png",
+          "modelName": "tank"
+        },
+        {
+          "modelTitle": "Minivan",
+          "modelIcon": "profile_mycar_minivan_icon_unfocused.png",
+          "modelName": "miniVan"
+        },
+        {
+          "modelTitle": "Monster Truck",
+          "modelIcon": "profile_mycar_monstertruck_icon_unfocused.png",
+          "modelName": "monsterTruck"
+        },
+        {
+          "modelTitle": "Motorcycle",
+          "modelIcon": "profile_mycar_motorcycle_icon_unfocused.png",
+          "modelName": "motorCycle"
+        },
+        {
+          "modelTitle": "Muscle Car",
+          "modelIcon": "profile_mycar_muscle_icon_unfocused.png",
+          "modelName": "muscleCar"
+        },
+        {
+          "modelTitle": "Old School",
+          "modelIcon": "profile_mycar_oldschool_icon_unfocused.png",
+          "modelName": "oldSchool"
+        },
+        {
+          "modelTitle": "SUV",
+          "modelIcon": "profile_mycar_suv_icon_unfocused.png",
+          "modelName": "SUV"
+        },
+        {
+          "modelTitle": "Space Fighter",
+          "modelIcon": "profile_mycar_spaceship_icon_unfocused.png",
+          "modelName": "spaceShip"
+        }
+      ]
+    }
+  ]
+}

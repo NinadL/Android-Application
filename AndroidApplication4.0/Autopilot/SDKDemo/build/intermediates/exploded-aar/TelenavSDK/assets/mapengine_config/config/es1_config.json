@@ -1,0 +1,8 @@
+{
+    "graphics_api" : "ogles1",
+    "mipmap" : "software",
+    "hardcodes" :
+    {       
+        "raster_zoom_bias" : -2.0        
+    }
+}

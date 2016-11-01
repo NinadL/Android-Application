@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- minimum time gap between two back-to-back guidances, unit is millisecond. -->
+<GuidanceInterval value="2000" />
+
+<GuidanceTimings>
+    <RoadType type="Motorway">
+        <InfoGuidanceWithoutDistance>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="5.5" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="8.5" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+        </InfoGuidanceWithoutDistance>
+
+        <InfoGuidanceWithDistance>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="2" type="lower" unit="mile" />
+                    <Dist length="5.5" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="3" type="lower" unit="km" />
+                    <Dist length="8.5" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+        </InfoGuidanceWithDistance>
+    
+        <FirstGuidance>
+            <TimingSet unit="Imperial">
+                <Timing speed="&gt 75" unit="mph">
+                    <Dist length="1.5" type="upper" unit="mile" />
+                    <Dist length="0.5" type="lower" unit="mile" />
+                </Timing>
+                <Timing speed="other" unit="mph">
+                    <Dist length="1.0" type="upper" unit="mile" />
+                    <Dist length="0.5" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="&gt 120" unit="kph">
+                    <Dist length="2.4" type="upper" unit="km" />
+                    <Dist length="0.8" type="lower" unit="km" />
+                </Timing>
+                <Timing speed="other" unit="kph">
+                    <Dist length="1.5" type="upper" unit="km" />
+                    <Dist length="0.8" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+        </FirstGuidance>
+
+        <SecondGuidance>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.5" type="upper" unit="mile" />
+                    <Dist length="0.125" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.8" type="upper" unit="km" />
+                    <Dist length="0.2" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+        </SecondGuidance>
+
+        <ThirdGuidance>
+            <TimingSet type="arrival" unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.125" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet type="arrival" unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.2" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.125" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.2" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+        </ThirdGuidance>
+    </RoadType>
+    
+    
+
+    <RoadType type="Surface">
+        <InfoGuidanceWithoutDistance>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="5.5" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="8.5" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+        </InfoGuidanceWithoutDistance>
+
+        <InfoGuidanceWithDistance>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="1.5" type="lower" unit="mile" />
+                    <Dist length="5.5" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="2" type="lower" unit="km" />
+                    <Dist length="8.5" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+        </InfoGuidanceWithDistance>
+    
+        <FirstGuidance>
+            <TimingSet unit="Imperial">
+                <Timing speed="&gt 65" unit="mph">
+                    <Dist length="1.07" type="upper" unit="mile" />
+                    <Dist length="0.57" type="lower" unit="mile" />
+                </Timing>
+                <Timing speed="&gt 50" unit="mph">
+                    <Dist length="0.56" type="upper" unit="mile" />
+                    <Dist length="0.36" type="lower" unit="mile" />
+                </Timing>
+                <Timing speed="other" unit="mph">
+                    <Dist length="0.25" type="upper" unit="mile" />
+                    <Dist length="0.15" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="&gt 100" unit="kph">
+                    <Dist length="1.722" type="upper" unit="km" />
+                    <Dist length="0.917" type="lower" unit="km" />
+                </Timing>
+                <Timing speed="&gt 80" unit="kph">
+                    <Dist length="0.9" type="upper" unit="km" />
+                    <Dist length="0.418" type="lower" unit="km" />
+                </Timing>
+                <Timing speed="other" unit="kph">
+                    <Dist length="0.4" type="upper" unit="km" />
+                    <Dist length="0.24" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+        </FirstGuidance>
+
+        <SecondGuidance>
+            <TimingSet type="roundabout" unit="Imperial">
+                <Timing speed="&gt 65" unit="mph">
+                    <Dist length="0.5" type="upper" unit="mile" />
+                    <Dist length="0.006" type="lower" unit="mile" />
+                </Timing>
+                <Timing speed="&gt 50" unit="mph">
+                    <Dist length="0.2" type="upper" unit="mile" />
+                    <Dist length="0.006" type="lower" unit="mile" />
+                </Timing>
+                <Timing speed="other" unit="mph">
+                    <Dist length="0.1" type="upper" unit="mile" />
+                    <Dist length="0.006" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet type="roundabout" unit="global">
+                <Timing speed="&gt 100" unit="kph">
+                    <Dist length="0.8" type="upper" unit="km" />
+                    <Dist length="0.01" type="lower" unit="km" />
+                </Timing>
+                <Timing speed="&gt 80" unit="kph">
+                    <Dist length="0.3" type="upper" unit="km" />
+                    <Dist length="0.01" type="lower" unit="km" />
+                </Timing>
+                <Timing speed="other" unit="kph">
+                    <Dist length="0.15" type="upper" unit="km" />
+                    <Dist length="0.01" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+
+            <TimingSet unit="Imperial">
+                <Timing speed="&gt 65" unit="mph">
+                    <Dist length="0.5" type="upper" unit="mile" />
+                    <Dist length="0.023" type="lower" unit="mile" />
+                </Timing>
+                <Timing speed="&gt 50" unit="mph">
+                    <Dist length="0.2" type="upper" unit="mile" />
+                    <Dist length="0.023" type="lower" unit="mile" />
+                </Timing>
+                <Timing speed="other" unit="mph">
+                    <Dist length="0.1" type="upper" unit="mile" />
+                    <Dist length="0.023" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="&gt 100" unit="kph">
+                    <Dist length="0.8" type="upper" unit="km" />
+                    <Dist length="0.04" type="lower" unit="km" />
+                </Timing>
+                <Timing speed="&gt 80" unit="kph">
+                    <Dist length="0.3" type="upper" unit="km" />
+                    <Dist length="0.04" type="lower" unit="km" />
+                </Timing>
+                <Timing speed="other" unit="kph">
+                    <Dist length="0.15" type="upper" unit="km" />
+                    <Dist length="0.04" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+        </SecondGuidance>
+
+        <ThirdGuidance>
+            <TimingSet type="roundabout" unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.006" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet type="roundabout" unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.01" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+			
+			<TimingSet type="arrival" unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.02" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet type="arrival" unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.04" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.023" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.04" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+        </ThirdGuidance>
+    </RoadType>
+
+
+
+    <RoadType type="Residential">
+        <InfoGuidanceWithoutDistance>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="5.5" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="8.5" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+        </InfoGuidanceWithoutDistance>
+
+        <InfoGuidanceWithDistance>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="1.5" type="lower" unit="mile" />
+					<Dist length="5.5" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="2" type="lower" unit="km" />
+                    <Dist length="8.5" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+        </InfoGuidanceWithDistance>
+    
+        <FirstGuidance>
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.10873" type="lower" unit="mile" />
+                    <Dist length="0.175" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.175" type="lower" unit="km" />
+                    <Dist length="0.282" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+        </FirstGuidance>
+
+        <SecondGuidance>
+            <TimingSet type="roundabout" unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.08084" type="upper" unit="mile" />
+                    <Dist length="0.006" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet type="roundabout" unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.13" type="upper" unit="km" />
+                    <Dist length="0.01" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+        
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.08084" type="upper" unit="mile" />
+                    <Dist length="0.01677" type="lower" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.13" type="upper" unit="km" />
+                    <Dist length="0.027" type="lower" unit="km" />
+                </Timing>
+            </TimingSet>
+        </SecondGuidance>
+
+        <ThirdGuidance>
+            <TimingSet type="roundabout" unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.006" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet type="roundabout" unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.01" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+			
+			<TimingSet type="arrival" unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.016" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet type="arrival" unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.027" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+
+            <TimingSet unit="Imperial">
+                <Timing speed="all" unit="mph">
+                    <Dist length="0.02187" type="upper" unit="mile" />
+                </Timing>
+            </TimingSet>
+            <TimingSet unit="global">
+                <Timing speed="all" unit="kph">
+                    <Dist length="0.035" type="upper" unit="km" />
+                </Timing>
+            </TimingSet>
+        </ThirdGuidance>
+    </RoadType>
+
+</GuidanceTimings>
+

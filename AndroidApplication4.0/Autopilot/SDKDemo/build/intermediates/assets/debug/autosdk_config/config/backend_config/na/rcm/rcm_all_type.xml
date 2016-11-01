@@ -1,0 +1,948 @@
+<?xml version="1.0"?>
+<RCMS version="1.0">
+  <RouteStyle Dataset="Navteq" Country="NA" StyleName="FASTEST"  Version="0001" StyleValue="0" Descript="">
+
+    <!-- Following lines are used by engine -->
+    <Promote>
+      <Level0 MinValue="20" MaxValue="70" />
+      <Level1 MinValue="30" MaxValue="70" />
+      <Level2 MinValue="30" MaxValue="70" />
+      <Level3 MinValue="30" MaxValue="70" />
+      <Level4 MinValue="30" MaxValue="70" />
+
+      <!-- Different distance route class have different max promoting level .Unit is meter -->
+      <MaxDistLevel0 Value="5000" />
+      <MaxDistLevel1 Value="50000" />
+      <MaxDistLevel2 Value="300000" />
+      <MaxDistLevel3 Value="2000000" />
+    </Promote>
+
+    <Heuristic>
+      <!-- 100(%) is equivalent to the usual A* algorithm. Greater value means more accelerated exploration-->
+      <FactorPercent Value="105" />
+
+      <PriorityDelta Value="0" />
+
+      <!-- Estimate speed used by heuristic function. Unit is m/s  -->
+      <HeuristicSpeed Value="27" />
+
+      <!-- Different priority have different heuristic factor -->
+      <PriorityFactor0 Value="0" />
+      <PriorityFactor1 Value="0" />
+      <PriorityFactor2 Value="0" />
+      <PriorityFactor3 Value="0" />
+      <PriorityFactor4 Value="0" />
+
+      <!-- Different speed category has different speed. It is a factor -->
+      <SpeedFactor0 Value="0" />
+      <SpeedFactor1 Value="0" />
+      <SpeedFactor2 Value="0" />
+      <SpeedFactor3 Value="0" />
+      <SpeedFactor4 Value="0" />
+    </Heuristic>
+
+    <!-- Turn cost module, It will be read by txt order, unit is second -->
+    <TurnCost EnableSpecificRoadTypeTurnCostTuning = "true">
+      <TurnCost0 Value="2" ValueForLowSpeedRoad = "2" ValueForLowPriorityRoad = "2"  ValueForRamp = "1"/>
+      <TurnCost1 Value="4" ValueForLowSpeedRoad = "2" ValueForLowPriorityRoad = "2"  ValueForRamp = "2"/>
+      <TurnCost2 Value="5" ValueForLowSpeedRoad = "3" ValueForLowPriorityRoad = "3"  ValueForRamp = "2"/>
+      <TurnCost3 Value="8" ValueForLowSpeedRoad = "5" ValueForLowPriorityRoad = "5"  ValueForRamp = "2"/>
+      <TurnCost4 Value="9" ValueForLowSpeedRoad = "6" ValueForLowPriorityRoad = "6"  ValueForRamp = "6"/>
+      <TurnCost5 Value="10" ValueForLowSpeedRoad = "7" ValueForLowPriorityRoad = "7"  ValueForRamp = "7"/>
+      <TurnCost6 Value="15" ValueForLowSpeedRoad = "10" ValueForLowPriorityRoad = "10"  ValueForRamp = "10"/>
+      <TurnCost7 Value="25" ValueForLowSpeedRoad = "17" ValueForLowPriorityRoad = "17"  ValueForRamp = "17"/>
+      <TurnCost8 Value="35" ValueForLowSpeedRoad = "24" ValueForLowPriorityRoad = "24"  ValueForRamp = "24"/>
+      <TurnCost9 Value="33" ValueForLowSpeedRoad = "23" ValueForLowPriorityRoad = "23"  ValueForRamp = "23"/>
+      <TurnCost10 Value="25" ValueForLowSpeedRoad = "17" ValueForLowPriorityRoad = "17"  ValueForRamp = "17"/>
+      <TurnCost11 Value="23" ValueForLowSpeedRoad = "16" ValueForLowPriorityRoad = "16"  ValueForRamp = "16"/>
+      <TurnCost12 Value="22" ValueForLowSpeedRoad = "15" ValueForLowPriorityRoad = "15"  ValueForRamp = "15"/>
+      <TurnCost13 Value="20" ValueForLowSpeedRoad = "14" ValueForLowPriorityRoad = "14"  ValueForRamp = "2"/>
+      <TurnCost14 Value="15" ValueForLowSpeedRoad = "10" ValueForLowPriorityRoad = "10"  ValueForRamp = "2"/>
+      <TurnCost15 Value="5" ValueForLowSpeedRoad = "3"  ValueForLowPriorityRoad = "3"  ValueForRamp = "2"/>
+    </TurnCost>
+    <RouteMethod Value="1024" />
+
+    <!-- Following lines are used by call back function -->
+    <CostTrans>
+      <AverageSpeed Value="13.54765988" />
+    </CostTrans>
+    <!-- Use different Heuristic speed when direct distance is different.Unit of DistLessThan is Km, unit of SpeedValue is m/s  -->
+    <DistHeuristic>
+      <DistHeuristic0 DistLessThan="1000" SpeedValue="35" />
+      <DistHeuristic0 DistLessThan="2000" SpeedValue="30" />
+      <DistHeuristic0 DistLessThan="3000" SpeedValue="27" />
+    </DistHeuristic>
+
+    <ExtraCost EnableFactor = "false">
+      <EnterLowPriorityRoadCost Value="6" />
+    </ExtraCost>
+
+    <!-- Following lines are used by call back function -->
+    <RoadUsage>
+      <!-- Determin which road type is navigable. Default all roads are navigable -->
+      <RoadUsage0 RoadType="*" SubType="*" Navigable="true" />
+      <RoadUsage1 RoadType="8" SubType="*" Navigable="false" />
+      <RoadUsage2 RoadType="9" SubType="*" Navigable="false" />
+      <RoadUsage3 RoadType="E" SubType="*" Navigable="false" />
+    </RoadUsage>
+
+    <RoadCost>
+      <!-- Determin speed value by road type and speed category, unit of SpeedValue is m/s -->
+      <!-- BEGIN Computer generated RCM, Fri Dec 12 15:52:21 CST 2014 -->
+      <!-- normal -->
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="0" Priority="*" SpeedValue="34.72222" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="1" Priority="*" SpeedValue="30.55556" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="2" Priority="*" SpeedValue="27.77778" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="3" Priority="*" SpeedValue="25.00000" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="4" Priority="*" SpeedValue="22.22222" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="5" Priority="*" SpeedValue="19.44444" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="6" Priority="*" SpeedValue="16.66667" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="7" Priority="*" SpeedValue="15.27778" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="8" Priority="*" SpeedValue="13.88889" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="9" Priority="*" SpeedValue="12.50000" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="A" Priority="*" SpeedValue="11.11111" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="B" Priority="*" SpeedValue= "9.72222" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="C" Priority="*" SpeedValue= "8.33333" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="D" Priority="*" SpeedValue= "5.55556" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="E" Priority="*" SpeedValue= "2.77778" />
+      <RoadCost RoadType="*" SubType="*" SpeedCategory="F" Priority="*" SpeedValue= "1.38889" />
+
+      <!-- special Total 579 cases covered -->
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="0" Priority="4" SpeedValue="35.00000" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="0" Priority="4" SpeedValue="35.00000" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="0" Priority="4" SpeedValue="35.00000" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="1" Priority="5" SpeedValue="35.00000" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="1" Priority="4" SpeedValue="34.94752" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="1" Priority="3" SpeedValue="34.30628" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="1" Priority="2" SpeedValue="33.34442" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="1" Priority="1" SpeedValue="26.93203" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="1" Priority="5" SpeedValue="35.00000" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="1" Priority="4" SpeedValue="34.79964" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="1" Priority="3" SpeedValue="34.16112" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="1" Priority="2" SpeedValue="33.20333" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="1" Priority="1" SpeedValue="26.81807" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="1" Priority="5" SpeedValue="32.34122" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="1" Priority="4" SpeedValue="31.55877" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="1" Priority="3" SpeedValue="30.51551" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="1" Priority="2" SpeedValue="28.68979" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="1" Priority="1" SpeedValue="21.90857" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="1" Priority="5" SpeedValue="32.86587" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="1" Priority="4" SpeedValue="32.22144" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="1" Priority="5" SpeedValue="33.29486" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="1" Priority="4" SpeedValue="32.58551" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="1" Priority="3" SpeedValue="31.87617" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="2" Priority="5" SpeedValue="30.08887" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="2" Priority="4" SpeedValue="29.54672" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="2" Priority="3" SpeedValue="29.00458" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="2" Priority="2" SpeedValue="28.19137" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="2" Priority="1" SpeedValue="22.76995" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="2" Priority="5" SpeedValue="30.48464" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="2" Priority="4" SpeedValue="29.93537" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="2" Priority="3" SpeedValue="29.38609" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="2" Priority="2" SpeedValue="28.56218" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="2" Priority="1" SpeedValue="23.06946" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="2" Priority="5" SpeedValue="28.03649" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="2" Priority="4" SpeedValue="27.35819" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="2" Priority="3" SpeedValue="26.45379" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="2" Priority="2" SpeedValue="24.87108" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="2" Priority="1" SpeedValue="18.99246" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="2" Priority="5" SpeedValue="28.77111" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="2" Priority="4" SpeedValue="28.23333" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="2" Priority="3" SpeedValue="27.69556" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="2" Priority="2" SpeedValue="26.88889" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="2" Priority="5" SpeedValue="29.15932" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="2" Priority="4" SpeedValue="28.61429" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="2" Priority="3" SpeedValue="28.06926" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="2" Priority="2" SpeedValue="27.25171" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="4" Priority="5" SpeedValue="25.59362" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="4" Priority="4" SpeedValue="25.13247" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="4" Priority="3" SpeedValue="24.67133" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="4" Priority="2" SpeedValue="23.97961" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="4" Priority="1" SpeedValue="19.36814" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="4" Priority="5" SpeedValue="25.94825" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="4" Priority="4" SpeedValue="25.48072" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="4" Priority="3" SpeedValue="25.01318" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="4" Priority="2" SpeedValue="24.31187" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="4" Priority="1" SpeedValue="19.63651" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="4" Priority="5" SpeedValue="24.51353" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="4" Priority="4" SpeedValue="23.92046" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="4" Priority="3" SpeedValue="23.12970" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="4" Priority="2" SpeedValue="21.74587" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="4" Priority="1" SpeedValue="16.60594" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="4" Priority="5" SpeedValue="23.68902" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="4" Priority="4" SpeedValue="22.84451" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="4" Priority="3" SpeedValue="22.00000" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="4" Priority="5" SpeedValue="24.18640" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="4" Priority="4" SpeedValue="23.73432" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="4" Priority="3" SpeedValue="23.28224" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="4" Priority="2" SpeedValue="22.60411" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="6" Priority="5" SpeedValue="20.25727" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="6" Priority="4" SpeedValue="19.89228" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="6" Priority="3" SpeedValue="19.52728" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="6" Priority="2" SpeedValue="18.97979" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="6" Priority="1" SpeedValue="15.32983" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="6" Priority="5" SpeedValue="19.98736" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="6" Priority="4" SpeedValue="19.62723" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="6" Priority="3" SpeedValue="19.26710" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="6" Priority="2" SpeedValue="18.72690" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="6" Priority="1" SpeedValue="15.12557" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="6" Priority="5" SpeedValue="21.20953" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="6" Priority="4" SpeedValue="20.69639" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="6" Priority="3" SpeedValue="20.01222" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="6" Priority="2" SpeedValue="18.81490" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="6" Priority="1" SpeedValue="14.36774" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="6" Priority="5" SpeedValue="21.38889" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="6" Priority="4" SpeedValue="19.70893" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="6" Priority="3" SpeedValue="18.02897" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="6" Priority="5" SpeedValue="19.63689" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="6" Priority="4" SpeedValue="18.91524" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="6" Priority="3" SpeedValue="18.19359" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="6" Priority="2" SpeedValue="17.11111" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="A" Priority="5" SpeedValue="15.88889" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="A" Priority="4" SpeedValue="15.58333" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="A" Priority="3" SpeedValue="15.27778" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="A" Priority="5" SpeedValue="15.27778" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="A" Priority="4" SpeedValue="14.98698" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="A" Priority="3" SpeedValue="14.69619" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="A" Priority="2" SpeedValue="14.26000" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="A" Priority="5" SpeedValue="16.80556" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="A" Priority="4" SpeedValue="16.39897" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="A" Priority="3" SpeedValue="15.85685" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="A" Priority="2" SpeedValue="14.90815" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="A" Priority="1" SpeedValue="11.38441" />
+      <RoadCost RoadType="0" SubType="B" SpeedCategory="A" Priority="4" SpeedValue="15.27778" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="A" Priority="5" SpeedValue="15.27778" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="A" Priority="4" SpeedValue="14.89574" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="A" Priority="3" SpeedValue="14.51371" />
+      <RoadCost RoadType="0" SubType="1" SpeedCategory="D" Priority="5" SpeedValue="13.88889" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="D" Priority="5" SpeedValue="14.16667" />
+      <RoadCost RoadType="0" SubType="2" SpeedCategory="D" Priority="4" SpeedValue="13.88889" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="D" Priority="5" SpeedValue="15.27778" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="D" Priority="4" SpeedValue="14.90815" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="D" Priority="3" SpeedValue="14.41532" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="D" Priority="2" SpeedValue="13.55287" />
+      <RoadCost RoadType="0" SubType="5" SpeedCategory="D" Priority="1" SpeedValue="10.34946" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="D" Priority="5" SpeedValue="14.16667" />
+      <RoadCost RoadType="0" SubType="C" SpeedCategory="D" Priority="4" SpeedValue="13.88889" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="1" Priority="5" SpeedValue="34.28333" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="1" Priority="4" SpeedValue="33.61111" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="1" Priority="5" SpeedValue="34.95556" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="1" Priority="4" SpeedValue="34.28333" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="1" Priority="3" SpeedValue="33.61111" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="1" Priority="5" SpeedValue="30.13037" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="2" Priority="5" SpeedValue="32.69444" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="2" Priority="4" SpeedValue="32.08333" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="2" Priority="3" SpeedValue="31.47222" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="2" Priority="2" SpeedValue="30.55556" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="2" Priority="5" SpeedValue="33.61111" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="2" Priority="4" SpeedValue="33.00551" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="2" Priority="3" SpeedValue="32.39990" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="2" Priority="2" SpeedValue="31.49149" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="2" Priority="1" SpeedValue="25.43544" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="2" Priority="5" SpeedValue="30.55556" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="2" Priority="4" SpeedValue="29.75146" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="2" Priority="3" SpeedValue="28.67934" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="2" Priority="2" SpeedValue="26.80312" />
+      <RoadCost RoadType="1" SubType="B" SpeedCategory="2" Priority="4" SpeedValue="30.55556" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="2" Priority="5" SpeedValue="31.77778" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="2" Priority="4" SpeedValue="31.16667" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="2" Priority="3" SpeedValue="30.55556" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="4" Priority="5" SpeedValue="26.31410" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="4" Priority="4" SpeedValue="25.80806" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="4" Priority="3" SpeedValue="25.30202" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="4" Priority="5" SpeedValue="26.92669" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="4" Priority="4" SpeedValue="26.42338" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="4" Priority="3" SpeedValue="25.92008" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="4" Priority="2" SpeedValue="25.16513" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="4" Priority="5" SpeedValue="26.00547" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="4" Priority="4" SpeedValue="25.32111" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="4" Priority="3" SpeedValue="24.40864" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="4" Priority="2" SpeedValue="22.81181" />
+      <RoadCost RoadType="1" SubType="B" SpeedCategory="4" Priority="5" SpeedValue="25.42222" />
+      <RoadCost RoadType="1" SubType="B" SpeedCategory="4" Priority="3" SpeedValue="24.44444" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="4" Priority="5" SpeedValue="26.15556" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="4" Priority="4" SpeedValue="25.66667" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="4" Priority="3" SpeedValue="25.17778" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="4" Priority="2" SpeedValue="24.44444" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="6" Priority="5" SpeedValue="21.99670" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="6" Priority="4" SpeedValue="21.57369" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="6" Priority="3" SpeedValue="21.15068" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="6" Priority="5" SpeedValue="22.76636" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="6" Priority="4" SpeedValue="22.35615" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="6" Priority="3" SpeedValue="21.94595" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="6" Priority="2" SpeedValue="21.33064" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="6" Priority="1" SpeedValue="17.22860" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="6" Priority="5" SpeedValue="21.05628" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="6" Priority="4" SpeedValue="20.50216" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="6" Priority="3" SpeedValue="19.76335" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="6" Priority="2" SpeedValue="18.47042" />
+      <RoadCost RoadType="1" SubType="B" SpeedCategory="6" Priority="5" SpeedValue="22.24444" />
+      <RoadCost RoadType="1" SubType="B" SpeedCategory="6" Priority="4" SpeedValue="21.81667" />
+      <RoadCost RoadType="1" SubType="B" SpeedCategory="6" Priority="3" SpeedValue="21.38889" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="6" Priority="5" SpeedValue="22.18769" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="6" Priority="4" SpeedValue="21.76100" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="6" Priority="3" SpeedValue="21.33432" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="A" Priority="5" SpeedValue="16.34722" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="A" Priority="4" SpeedValue="16.04167" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="A" Priority="2" SpeedValue="15.27778" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="A" Priority="5" SpeedValue="16.34722" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="A" Priority="4" SpeedValue="16.04167" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="A" Priority="3" SpeedValue="15.73611" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="A" Priority="2" SpeedValue="15.27778" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="A" Priority="5" SpeedValue="16.80556" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="A" Priority="4" SpeedValue="16.36330" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="A" Priority="3" SpeedValue="15.77364" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="A" Priority="2" SpeedValue="14.74172" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="A" Priority="5" SpeedValue="15.88889" />
+      <RoadCost RoadType="1" SubType="C" SpeedCategory="A" Priority="3" SpeedValue="15.27778" />
+      <RoadCost RoadType="1" SubType="1" SpeedCategory="D" Priority="5" SpeedValue="13.88889" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="D" Priority="5" SpeedValue="14.16667" />
+      <RoadCost RoadType="1" SubType="2" SpeedCategory="D" Priority="4" SpeedValue="13.88889" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="D" Priority="5" SpeedValue="15.27778" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="D" Priority="4" SpeedValue="14.87573" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="D" Priority="3" SpeedValue="14.33967" />
+      <RoadCost RoadType="1" SubType="5" SpeedCategory="D" Priority="2" SpeedValue="13.40156" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="1" Priority="5" SpeedValue="33.02994" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="1" Priority="4" SpeedValue="32.20420" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="1" Priority="3" SpeedValue="31.37845" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="1" Priority="2" SpeedValue="29.72695" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="1" Priority="1" SpeedValue="23.12096" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="1" Priority="5" SpeedValue="33.36056" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="1" Priority="4" SpeedValue="32.52654" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="1" Priority="3" SpeedValue="31.69253" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="1" Priority="2" SpeedValue="30.02450" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="1" Priority="1" SpeedValue="23.35239" />
+      <RoadCost RoadType="2" SubType="3" SpeedCategory="1" Priority="4" SpeedValue="32.69903" />
+      <RoadCost RoadType="2" SubType="3" SpeedCategory="1" Priority="3" SpeedValue="31.86059" />
+      <RoadCost RoadType="2" SubType="3" SpeedCategory="1" Priority="2" SpeedValue="30.18372" />
+      <RoadCost RoadType="2" SubType="3" SpeedCategory="1" Priority="1" SpeedValue="23.47623" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="1" Priority="5" SpeedValue="33.30189" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="1" Priority="4" SpeedValue="32.46934" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="1" Priority="3" SpeedValue="31.63679" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="1" Priority="2" SpeedValue="29.97170" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="1" Priority="1" SpeedValue="23.31132" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="1" Priority="5" SpeedValue="34.88894" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="1" Priority="4" SpeedValue="34.04486" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="1" Priority="3" SpeedValue="32.91941" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="1" Priority="2" SpeedValue="30.94987" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="1" Priority="1" SpeedValue="23.63445" />
+      <RoadCost RoadType="2" SubType="6" SpeedCategory="1" Priority="1" SpeedValue="35.00000" />
+      <RoadCost RoadType="2" SubType="B" SpeedCategory="1" Priority="4" SpeedValue="32.66667" />
+      <RoadCost RoadType="2" SubType="C" SpeedCategory="1" Priority="5" SpeedValue="32.94500" />
+      <RoadCost RoadType="2" SubType="C" SpeedCategory="1" Priority="4" SpeedValue="32.06254" />
+      <RoadCost RoadType="2" SubType="C" SpeedCategory="1" Priority="3" SpeedValue="31.18009" />
+      <RoadCost RoadType="2" SubType="C" SpeedCategory="1" Priority="2" SpeedValue="29.41518" />
+      <RoadCost RoadType="2" SubType="0" SpeedCategory="2" Priority="4" SpeedValue="26.64444" />
+      <RoadCost RoadType="2" SubType="0" SpeedCategory="2" Priority="3" SpeedValue="25.91111" />
+      <RoadCost RoadType="2" SubType="0" SpeedCategory="2" Priority="2" SpeedValue="24.44444" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="2" Priority="5" SpeedValue="29.35060" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="2" Priority="4" SpeedValue="28.61684" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="2" Priority="3" SpeedValue="27.88307" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="2" Priority="2" SpeedValue="26.41554" />
+      <RoadCost RoadType="2" SubType="1" SpeedCategory="2" Priority="1" SpeedValue="20.54542" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="2" Priority="5" SpeedValue="29.33333" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="2" Priority="4" SpeedValue="28.60000" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="2" Priority="3" SpeedValue="27.86667" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="2" Priority="2" SpeedValue="26.40000" />
+      <RoadCost RoadType="2" SubType="2" SpeedCategory="2" Priority="1" SpeedValue="20.53333" />
+      <RoadCost RoadType="2" SubType="3" SpeedCategory="2" Priority="5" SpeedValue="29.33333" />
+      <RoadCost RoadType="2" SubType="3" SpeedCategory="2" Priority="4" SpeedValue="28.60000" />
+      <RoadCost RoadType="2" SubType="3" SpeedCategory="2" Priority="3" SpeedValue="27.86667" />
+      <RoadCost RoadType="2" SubType="3" SpeedCategory="2" Priority="2" SpeedValue="26.40000" />
+      <RoadCost RoadType="2" SubType="3" SpeedCategory="2" Priority="1" SpeedValue="20.53333" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="2" Priority="5" SpeedValue="29.51027" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="2" Priority="4" SpeedValue="28.77251" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="2" Priority="3" SpeedValue="28.03475" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="2" Priority="2" SpeedValue="26.55924" />
+      <RoadCost RoadType="2" SubType="4" SpeedCategory="2" Priority="1" SpeedValue="20.65719" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="2" Priority="5" SpeedValue="29.18606" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="2" Priority="4" SpeedValue="28.47994" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="2" Priority="3" SpeedValue="27.53846" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="2" Priority="2" SpeedValue="25.89086" />
+      <RoadCost RoadType="2" SubType="5" SpeedCategory="2" Priority="1" SpeedValue="19.77120" />
+      <RoadCost RoadType="2" SubType="B" SpeedCategory="2" Priority="5" SpeedValue="27.67181" />
+      <RoadCost RoadType="2" SubType="B" SpeedCategory="2" Priority="4" SpeedValue="26.98002" />
+      <RoadCost RoadType="2" SubType="B" SpeedCategory="2" Priority="3" SpeedValue="26.28822" />
+      <RoadCost RoadType="2" SubType="B" SpeedCategory="2" Priority="2" SpeedValue="24.90463" />
+      <RoadCost RoadType="2" SubType="B" SpeedCategory="2" Priority="1" SpeedValue="19.37027" />
+      <RoadCost RoadType="2" SubType="C" SpeedCategory="2" Priority="5" SpeedValue="28.48597" />
+      <RoadCost RoadType="2" SubType="C" SpeedCategory="2" Priority="4" SpeedValue="27.77382" />
+      <RoadCost RoadType="2" SubType="C" SpeedCategory="2" Priority="3" SpeedValue="27.06167" />
+      <RoadCost RoadType="2" SubType="C" SpeedCategory="2" Priority="2" SpeedValue="25.63737" />
+      <RoadCost RoadType="2" SubType="C" SpeedCategory="2" Priority="1" SpeedValue="19.94018" />
+      <RoadCost RoadType="3" SubType="0" SpeedCategory="4" Priority="4" SpeedValue="22.82124" />
+      <RoadCost RoadType="3" SubType="0" SpeedCategory="4" Priority="3" SpeedValue="22.23608" />
+      <RoadCost RoadType="3" SubType="0" SpeedCategory="4" Priority="2" SpeedValue="21.06576" />
+      <RoadCost RoadType="3" SubType="0" SpeedCategory="4" Priority="1" SpeedValue="16.38448" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="4" Priority="5" SpeedValue="24.15443" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="4" Priority="4" SpeedValue="23.55057" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="4" Priority="3" SpeedValue="22.94671" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="4" Priority="2" SpeedValue="21.73899" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="4" Priority="1" SpeedValue="16.90810" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="4" Priority="5" SpeedValue="24.96350" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="4" Priority="4" SpeedValue="24.33941" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="4" Priority="3" SpeedValue="23.71532" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="4" Priority="2" SpeedValue="22.46715" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="4" Priority="1" SpeedValue="17.47445" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="4" Priority="5" SpeedValue="23.91956" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="4" Priority="4" SpeedValue="23.32157" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="4" Priority="3" SpeedValue="22.72358" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="4" Priority="2" SpeedValue="21.52760" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="4" Priority="1" SpeedValue="16.74369" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="4" Priority="5" SpeedValue="24.27870" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="4" Priority="4" SpeedValue="23.67173" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="4" Priority="3" SpeedValue="23.06476" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="4" Priority="2" SpeedValue="21.85083" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="4" Priority="1" SpeedValue="16.99509" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="4" Priority="5" SpeedValue="24.74224" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="4" Priority="4" SpeedValue="24.14364" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="4" Priority="3" SpeedValue="23.34550" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="4" Priority="2" SpeedValue="21.94876" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="4" Priority="1" SpeedValue="16.76087" />
+      <RoadCost RoadType="3" SubType="6" SpeedCategory="4" Priority="1" SpeedValue="19.72222" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="4" Priority="5" SpeedValue="23.17908" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="4" Priority="4" SpeedValue="22.59960" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="4" Priority="3" SpeedValue="22.02012" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="4" Priority="2" SpeedValue="20.86117" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="4" Priority="1" SpeedValue="16.22535" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="4" Priority="5" SpeedValue="24.81523" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="4" Priority="4" SpeedValue="24.19485" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="4" Priority="3" SpeedValue="23.57447" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="4" Priority="2" SpeedValue="22.33371" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="4" Priority="1" SpeedValue="17.37066" />
+      <RoadCost RoadType="3" SubType="0" SpeedCategory="6" Priority="5" SpeedValue="18.33333" />
+      <RoadCost RoadType="3" SubType="0" SpeedCategory="6" Priority="4" SpeedValue="17.87500" />
+      <RoadCost RoadType="3" SubType="0" SpeedCategory="6" Priority="3" SpeedValue="17.41667" />
+      <RoadCost RoadType="3" SubType="0" SpeedCategory="6" Priority="2" SpeedValue="16.50000" />
+      <RoadCost RoadType="3" SubType="0" SpeedCategory="6" Priority="1" SpeedValue="12.83333" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="6" Priority="5" SpeedValue="19.21783" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="6" Priority="4" SpeedValue="18.73739" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="6" Priority="3" SpeedValue="18.25694" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="6" Priority="2" SpeedValue="17.29605" />
+      <RoadCost RoadType="3" SubType="1" SpeedCategory="6" Priority="1" SpeedValue="13.45248" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="6" Priority="5" SpeedValue="19.37973" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="6" Priority="4" SpeedValue="18.89524" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="6" Priority="3" SpeedValue="18.41075" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="6" Priority="2" SpeedValue="17.44176" />
+      <RoadCost RoadType="3" SubType="2" SpeedCategory="6" Priority="1" SpeedValue="13.56581" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="6" Priority="5" SpeedValue="19.05341" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="6" Priority="4" SpeedValue="18.57707" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="6" Priority="3" SpeedValue="18.10074" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="6" Priority="2" SpeedValue="17.14807" />
+      <RoadCost RoadType="3" SubType="3" SpeedCategory="6" Priority="1" SpeedValue="13.33738" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="6" Priority="5" SpeedValue="19.32473" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="6" Priority="4" SpeedValue="18.84162" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="6" Priority="3" SpeedValue="18.35850" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="6" Priority="2" SpeedValue="17.39226" />
+      <RoadCost RoadType="3" SubType="4" SpeedCategory="6" Priority="1" SpeedValue="13.52731" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="6" Priority="5" SpeedValue="23.26258" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="6" Priority="4" SpeedValue="22.69978" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="6" Priority="3" SpeedValue="21.94937" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="6" Priority="2" SpeedValue="20.63616" />
+      <RoadCost RoadType="3" SubType="5" SpeedCategory="6" Priority="1" SpeedValue="15.75852" />
+      <RoadCost RoadType="3" SubType="6" SpeedCategory="6" Priority="1" SpeedValue="14.66667" />
+      <RoadCost RoadType="3" SubType="7" SpeedCategory="6" Priority="2" SpeedValue="19.44444" />
+      <RoadCost RoadType="3" SubType="7" SpeedCategory="6" Priority="1" SpeedValue="9.23068" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="6" Priority="5" SpeedValue="19.44444" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="6" Priority="4" SpeedValue="18.88818" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="6" Priority="3" SpeedValue="18.33192" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="6" Priority="2" SpeedValue="17.21939" />
+      <RoadCost RoadType="3" SubType="B" SpeedCategory="6" Priority="1" SpeedValue="13.21826" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="6" Priority="5" SpeedValue="19.69297" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="6" Priority="4" SpeedValue="19.20064" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="6" Priority="3" SpeedValue="18.70832" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="6" Priority="2" SpeedValue="17.72367" />
+      <RoadCost RoadType="3" SubType="C" SpeedCategory="6" Priority="1" SpeedValue="13.78508" />
+      <RoadCost RoadType="4" SubType="0" SpeedCategory="A" Priority="5" SpeedValue="13.88889" />
+      <RoadCost RoadType="4" SubType="0" SpeedCategory="A" Priority="4" SpeedValue="13.51551" />
+      <RoadCost RoadType="4" SubType="0" SpeedCategory="A" Priority="3" SpeedValue="13.14212" />
+      <RoadCost RoadType="4" SubType="0" SpeedCategory="A" Priority="2" SpeedValue="12.39536" />
+      <RoadCost RoadType="4" SubType="0" SpeedCategory="A" Priority="1" SpeedValue="9.57572" />
+      <RoadCost RoadType="4" SubType="1" SpeedCategory="A" Priority="5" SpeedValue="14.08139" />
+      <RoadCost RoadType="4" SubType="1" SpeedCategory="A" Priority="4" SpeedValue="13.69884" />
+      <RoadCost RoadType="4" SubType="1" SpeedCategory="A" Priority="3" SpeedValue="13.31629" />
+      <RoadCost RoadType="4" SubType="1" SpeedCategory="A" Priority="2" SpeedValue="12.57119" />
+      <RoadCost RoadType="4" SubType="1" SpeedCategory="A" Priority="1" SpeedValue="9.77089" />
+      <RoadCost RoadType="4" SubType="2" SpeedCategory="A" Priority="5" SpeedValue="14.26223" />
+      <RoadCost RoadType="4" SubType="2" SpeedCategory="A" Priority="4" SpeedValue="13.90568" />
+      <RoadCost RoadType="4" SubType="2" SpeedCategory="A" Priority="3" SpeedValue="13.54912" />
+      <RoadCost RoadType="4" SubType="2" SpeedCategory="A" Priority="2" SpeedValue="12.83601" />
+      <RoadCost RoadType="4" SubType="2" SpeedCategory="A" Priority="1" SpeedValue="9.98356" />
+      <RoadCost RoadType="4" SubType="3" SpeedCategory="A" Priority="5" SpeedValue="14.07007" />
+      <RoadCost RoadType="4" SubType="3" SpeedCategory="A" Priority="4" SpeedValue="13.71831" />
+      <RoadCost RoadType="4" SubType="3" SpeedCategory="A" Priority="3" SpeedValue="13.36656" />
+      <RoadCost RoadType="4" SubType="3" SpeedCategory="A" Priority="2" SpeedValue="12.66306" />
+      <RoadCost RoadType="4" SubType="3" SpeedCategory="A" Priority="1" SpeedValue="9.84905" />
+      <RoadCost RoadType="4" SubType="4" SpeedCategory="A" Priority="5" SpeedValue="13.96243" />
+      <RoadCost RoadType="4" SubType="4" SpeedCategory="A" Priority="4" SpeedValue="13.61337" />
+      <RoadCost RoadType="4" SubType="4" SpeedCategory="A" Priority="3" SpeedValue="13.26431" />
+      <RoadCost RoadType="4" SubType="4" SpeedCategory="A" Priority="2" SpeedValue="12.56619" />
+      <RoadCost RoadType="4" SubType="4" SpeedCategory="A" Priority="1" SpeedValue="9.77370" />
+      <RoadCost RoadType="4" SubType="5" SpeedCategory="A" Priority="5" SpeedValue="19.97277" />
+      <RoadCost RoadType="4" SubType="5" SpeedCategory="A" Priority="4" SpeedValue="19.48956" />
+      <RoadCost RoadType="4" SubType="5" SpeedCategory="A" Priority="3" SpeedValue="18.84528" />
+      <RoadCost RoadType="4" SubType="5" SpeedCategory="A" Priority="2" SpeedValue="17.71778" />
+      <RoadCost RoadType="4" SubType="5" SpeedCategory="A" Priority="1" SpeedValue="13.52994" />
+      <RoadCost RoadType="4" SubType="6" SpeedCategory="A" Priority="1" SpeedValue="11.07067" />
+      <RoadCost RoadType="4" SubType="7" SpeedCategory="A" Priority="3" SpeedValue="13.33333" />
+      <RoadCost RoadType="4" SubType="7" SpeedCategory="A" Priority="2" SpeedValue="10.90476" />
+      <RoadCost RoadType="4" SubType="7" SpeedCategory="A" Priority="1" SpeedValue="6.44000" />
+      <RoadCost RoadType="4" SubType="B" SpeedCategory="A" Priority="5" SpeedValue="13.53867" />
+      <RoadCost RoadType="4" SubType="B" SpeedCategory="A" Priority="4" SpeedValue="13.20020" />
+      <RoadCost RoadType="4" SubType="B" SpeedCategory="A" Priority="3" SpeedValue="12.86173" />
+      <RoadCost RoadType="4" SubType="B" SpeedCategory="A" Priority="2" SpeedValue="12.18480" />
+      <RoadCost RoadType="4" SubType="B" SpeedCategory="A" Priority="1" SpeedValue="9.47707" />
+      <RoadCost RoadType="4" SubType="C" SpeedCategory="A" Priority="5" SpeedValue="14.26243" />
+      <RoadCost RoadType="4" SubType="C" SpeedCategory="A" Priority="4" SpeedValue="13.90587" />
+      <RoadCost RoadType="4" SubType="C" SpeedCategory="A" Priority="3" SpeedValue="13.54931" />
+      <RoadCost RoadType="4" SubType="C" SpeedCategory="A" Priority="2" SpeedValue="12.83619" />
+      <RoadCost RoadType="4" SubType="C" SpeedCategory="A" Priority="1" SpeedValue="9.98370" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="1" Priority="4" SpeedValue="34.22222" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="1" Priority="3" SpeedValue="33.34473" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="1" Priority="2" SpeedValue="31.58974" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="1" Priority="1" SpeedValue="24.56980" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="1" Priority="4" SpeedValue="34.22222" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="1" Priority="3" SpeedValue="33.34473" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="1" Priority="2" SpeedValue="31.58974" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="1" Priority="1" SpeedValue="24.56980" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="1" Priority="3" SpeedValue="30.62222" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="1" Priority="2" SpeedValue="28.88889" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="2" Priority="5" SpeedValue="27.30331" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="2" Priority="4" SpeedValue="26.62073" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="2" Priority="3" SpeedValue="25.93815" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="2" Priority="2" SpeedValue="24.57298" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="2" Priority="1" SpeedValue="19.11232" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="2" Priority="4" SpeedValue="26.88889" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="2" Priority="3" SpeedValue="26.19943" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="2" Priority="2" SpeedValue="24.82051" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="2" Priority="1" SpeedValue="19.30484" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="2" Priority="4" SpeedValue="27.13504" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="2" Priority="3" SpeedValue="26.43927" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="2" Priority="2" SpeedValue="25.04773" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="2" Priority="1" SpeedValue="19.48157" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="2" Priority="1" SpeedValue="27.77778" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="4" Priority="5" SpeedValue="23.01726" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="4" Priority="4" SpeedValue="22.44182" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="4" Priority="3" SpeedValue="21.86639" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="4" Priority="2" SpeedValue="20.71553" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="4" Priority="1" SpeedValue="16.11208" />
+      <RoadCost RoadType="5" SubType="2" SpeedCategory="4" Priority="2" SpeedValue="20.00000" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="4" Priority="4" SpeedValue="22.19329" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="4" Priority="3" SpeedValue="21.62424" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="4" Priority="2" SpeedValue="20.48612" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="4" Priority="1" SpeedValue="15.93365" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="4" Priority="4" SpeedValue="22.93188" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="4" Priority="3" SpeedValue="22.34389" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="4" Priority="2" SpeedValue="21.16789" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="4" Priority="1" SpeedValue="16.46392" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="4" Priority="3" SpeedValue="21.20000" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="4" Priority="2" SpeedValue="20.00000" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="6" Priority="5" SpeedValue="19.37198" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="6" Priority="4" SpeedValue="18.88768" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="6" Priority="3" SpeedValue="18.40338" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="6" Priority="2" SpeedValue="17.43478" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="6" Priority="1" SpeedValue="13.56038" />
+      <RoadCost RoadType="5" SubType="2" SpeedCategory="6" Priority="2" SpeedValue="15.55556" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="6" Priority="4" SpeedValue="19.55556" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="6" Priority="3" SpeedValue="19.05413" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="6" Priority="2" SpeedValue="18.05128" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="6" Priority="1" SpeedValue="14.03989" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="6" Priority="5" SpeedValue="19.07479" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="6" Priority="4" SpeedValue="18.59792" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="6" Priority="3" SpeedValue="18.12105" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="6" Priority="2" SpeedValue="17.16732" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="6" Priority="1" SpeedValue="13.35236" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="6" Priority="2" SpeedValue="19.20000" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="6" Priority="1" SpeedValue="14.93333" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="A" Priority="5" SpeedValue="14.22003" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="A" Priority="4" SpeedValue="13.86453" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="A" Priority="3" SpeedValue="13.50903" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="A" Priority="2" SpeedValue="12.79803" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="A" Priority="1" SpeedValue="9.95402" />
+      <RoadCost RoadType="5" SubType="2" SpeedCategory="A" Priority="1" SpeedValue="8.61111" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="A" Priority="5" SpeedValue="13.33333" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="A" Priority="4" SpeedValue="13.00000" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="A" Priority="3" SpeedValue="12.66667" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="A" Priority="2" SpeedValue="12.00000" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="A" Priority="1" SpeedValue="9.33333" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="A" Priority="5" SpeedValue="13.96850" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="A" Priority="4" SpeedValue="13.61929" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="A" Priority="3" SpeedValue="13.27007" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="A" Priority="2" SpeedValue="12.57165" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="A" Priority="1" SpeedValue="9.77795" />
+      <RoadCost RoadType="5" SubType="B" SpeedCategory="A" Priority="1" SpeedValue="8.61111" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="A" Priority="2" SpeedValue="13.00000" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="A" Priority="1" SpeedValue="9.52000" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="D" Priority="5" SpeedValue="8.13636" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="D" Priority="4" SpeedValue="7.91124" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="D" Priority="3" SpeedValue="7.68613" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="D" Priority="2" SpeedValue="7.23589" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="D" Priority="1" SpeedValue="5.57389" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="D" Priority="2" SpeedValue="10.55643" />
+      <RoadCost RoadType="5" SubType="3" SpeedCategory="D" Priority="1" SpeedValue="8.21056" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="D" Priority="5" SpeedValue="6.58270" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="D" Priority="3" SpeedValue="6.07453" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="D" Priority="2" SpeedValue="5.56636" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="D" Priority="1" SpeedValue="4.10659" />
+      <RoadCost RoadType="5" SubType="C" SpeedCategory="D" Priority="1" SpeedValue="6.66667" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="E" Priority="2" SpeedValue="5.97260" />
+      <RoadCost RoadType="5" SubType="1" SpeedCategory="E" Priority="1" SpeedValue= "2.33333" />
+      <RoadCost RoadType="5" SubType="4" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="6" SubType="0" SpeedCategory="D" Priority="4" SpeedValue="7.99439" />
+      <RoadCost RoadType="6" SubType="0" SpeedCategory="D" Priority="3" SpeedValue="7.76482" />
+      <RoadCost RoadType="6" SubType="0" SpeedCategory="D" Priority="2" SpeedValue="7.30567" />
+      <RoadCost RoadType="6" SubType="0" SpeedCategory="D" Priority="1" SpeedValue="5.62252" />
+      <RoadCost RoadType="6" SubType="1" SpeedCategory="D" Priority="5" SpeedValue="8.51353" />
+      <RoadCost RoadType="6" SubType="1" SpeedCategory="D" Priority="4" SpeedValue="8.25642" />
+      <RoadCost RoadType="6" SubType="1" SpeedCategory="D" Priority="3" SpeedValue="7.99932" />
+      <RoadCost RoadType="6" SubType="1" SpeedCategory="D" Priority="2" SpeedValue="7.48511" />
+      <RoadCost RoadType="6" SubType="1" SpeedCategory="D" Priority="1" SpeedValue="5.71158" />
+      <RoadCost RoadType="6" SubType="2" SpeedCategory="D" Priority="5" SpeedValue="8.47506" />
+      <RoadCost RoadType="6" SubType="2" SpeedCategory="D" Priority="4" SpeedValue="8.08591" />
+      <RoadCost RoadType="6" SubType="2" SpeedCategory="D" Priority="3" SpeedValue="7.69677" />
+      <RoadCost RoadType="6" SubType="2" SpeedCategory="D" Priority="2" SpeedValue="6.91849" />
+      <RoadCost RoadType="6" SubType="2" SpeedCategory="D" Priority="1" SpeedValue="4.93985" />
+      <RoadCost RoadType="6" SubType="3" SpeedCategory="D" Priority="5" SpeedValue="8.79930" />
+      <RoadCost RoadType="6" SubType="3" SpeedCategory="D" Priority="4" SpeedValue="8.57932" />
+      <RoadCost RoadType="6" SubType="3" SpeedCategory="D" Priority="3" SpeedValue="8.35934" />
+      <RoadCost RoadType="6" SubType="3" SpeedCategory="D" Priority="2" SpeedValue="7.91937" />
+      <RoadCost RoadType="6" SubType="3" SpeedCategory="D" Priority="1" SpeedValue="6.15951" />
+      <RoadCost RoadType="6" SubType="4" SpeedCategory="D" Priority="5" SpeedValue="8.70037" />
+      <RoadCost RoadType="6" SubType="4" SpeedCategory="D" Priority="4" SpeedValue="8.48286" />
+      <RoadCost RoadType="6" SubType="4" SpeedCategory="D" Priority="3" SpeedValue="8.26535" />
+      <RoadCost RoadType="6" SubType="4" SpeedCategory="D" Priority="2" SpeedValue="7.83033" />
+      <RoadCost RoadType="6" SubType="4" SpeedCategory="D" Priority="1" SpeedValue="6.09026" />
+      <RoadCost RoadType="6" SubType="5" SpeedCategory="D" Priority="5" SpeedValue="13.00106" />
+      <RoadCost RoadType="6" SubType="5" SpeedCategory="D" Priority="4" SpeedValue="12.68652" />
+      <RoadCost RoadType="6" SubType="5" SpeedCategory="D" Priority="3" SpeedValue="12.26713" />
+      <RoadCost RoadType="6" SubType="5" SpeedCategory="D" Priority="2" SpeedValue="11.53320" />
+      <RoadCost RoadType="6" SubType="5" SpeedCategory="D" Priority="1" SpeedValue="8.80717" />
+      <RoadCost RoadType="6" SubType="6" SpeedCategory="D" Priority="1" SpeedValue="7.84767" />
+      <RoadCost RoadType="6" SubType="7" SpeedCategory="D" Priority="1" SpeedValue="6.33333" />
+      <RoadCost RoadType="6" SubType="B" SpeedCategory="D" Priority="3" SpeedValue="8.88889" />
+      <RoadCost RoadType="6" SubType="B" SpeedCategory="D" Priority="2" SpeedValue="8.35681" />
+      <RoadCost RoadType="6" SubType="B" SpeedCategory="D" Priority="1" SpeedValue="6.42378" />
+      <RoadCost RoadType="6" SubType="C" SpeedCategory="D" Priority="5" SpeedValue="7.29317" />
+      <RoadCost RoadType="6" SubType="C" SpeedCategory="D" Priority="4" SpeedValue="6.99115" />
+      <RoadCost RoadType="6" SubType="C" SpeedCategory="D" Priority="3" SpeedValue="6.68913" />
+      <RoadCost RoadType="6" SubType="C" SpeedCategory="D" Priority="2" SpeedValue="6.08510" />
+      <RoadCost RoadType="6" SubType="C" SpeedCategory="D" Priority="1" SpeedValue="4.43497" />
+      <RoadCost RoadType="6" SubType="0" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="6" SubType="1" SpeedCategory="E" Priority="3" SpeedValue="3.05959" />
+      <RoadCost RoadType="6" SubType="1" SpeedCategory="E" Priority="2" SpeedValue="2.89856" />
+      <RoadCost RoadType="6" SubType="1" SpeedCategory="E" Priority="1" SpeedValue= "2.25443" />
+      <RoadCost RoadType="6" SubType="2" SpeedCategory="E" Priority="2" SpeedValue="2.83626" />
+      <RoadCost RoadType="6" SubType="2" SpeedCategory="E" Priority="1" SpeedValue= "2.20598" />
+      <RoadCost RoadType="6" SubType="3" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="6" SubType="4" SpeedCategory="E" Priority="2" SpeedValue="3.05556" />
+      <RoadCost RoadType="6" SubType="4" SpeedCategory="E" Priority="1" SpeedValue= "2.37654" />
+      <RoadCost RoadType="6" SubType="5" SpeedCategory="E" Priority="3" SpeedValue="3.21000" />
+      <RoadCost RoadType="6" SubType="5" SpeedCategory="E" Priority="2" SpeedValue="3.00000" />
+      <RoadCost RoadType="6" SubType="6" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="6" SubType="B" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="6" SubType="C" SpeedCategory="E" Priority="2" SpeedValue= "2.40000" />
+      <RoadCost RoadType="6" SubType="C" SpeedCategory="E" Priority="1" SpeedValue= "1.86667" />
+      <RoadCost RoadType="7" SubType="1" SpeedCategory="2" Priority="1" SpeedValue="24.44444" />
+      <RoadCost RoadType="7" SubType="2" SpeedCategory="2" Priority="1" SpeedValue="24.44444" />
+      <RoadCost RoadType="7" SubType="3" SpeedCategory="2" Priority="1" SpeedValue="27.77778" />
+      <RoadCost RoadType="7" SubType="4" SpeedCategory="2" Priority="1" SpeedValue="27.77778" />
+      <RoadCost RoadType="7" SubType="5" SpeedCategory="2" Priority="1" SpeedValue="27.77778" />
+      <RoadCost RoadType="7" SubType="C" SpeedCategory="2" Priority="1" SpeedValue="24.44444" />
+      <RoadCost RoadType="7" SubType="1" SpeedCategory="4" Priority="1" SpeedValue="20.24094" />
+      <RoadCost RoadType="7" SubType="2" SpeedCategory="4" Priority="1" SpeedValue="25.00000" />
+      <RoadCost RoadType="7" SubType="3" SpeedCategory="4" Priority="1" SpeedValue="19.72222" />
+      <RoadCost RoadType="7" SubType="4" SpeedCategory="4" Priority="1" SpeedValue="25.00000" />
+      <RoadCost RoadType="7" SubType="5" SpeedCategory="4" Priority="1" SpeedValue="19.72222" />
+      <RoadCost RoadType="7" SubType="0" SpeedCategory="6" Priority="1" SpeedValue="15.14580" />
+      <RoadCost RoadType="7" SubType="1" SpeedCategory="6" Priority="1" SpeedValue="15.66164" />
+      <RoadCost RoadType="7" SubType="2" SpeedCategory="6" Priority="1" SpeedValue="15.63747" />
+      <RoadCost RoadType="7" SubType="3" SpeedCategory="6" Priority="1" SpeedValue="16.87367" />
+      <RoadCost RoadType="7" SubType="4" SpeedCategory="6" Priority="1" SpeedValue="17.40937" />
+      <RoadCost RoadType="7" SubType="5" SpeedCategory="6" Priority="1" SpeedValue="17.95727" />
+      <RoadCost RoadType="7" SubType="C" SpeedCategory="6" Priority="1" SpeedValue="17.16493" />
+      <RoadCost RoadType="7" SubType="0" SpeedCategory="A" Priority="1" SpeedValue="9.92533" />
+      <RoadCost RoadType="7" SubType="1" SpeedCategory="A" Priority="2" SpeedValue="12.00000" />
+      <RoadCost RoadType="7" SubType="1" SpeedCategory="A" Priority="1" SpeedValue="9.33333" />
+      <RoadCost RoadType="7" SubType="2" SpeedCategory="A" Priority="1" SpeedValue="11.34872" />
+      <RoadCost RoadType="7" SubType="3" SpeedCategory="A" Priority="2" SpeedValue="12.00000" />
+      <RoadCost RoadType="7" SubType="3" SpeedCategory="A" Priority="1" SpeedValue="9.33333" />
+      <RoadCost RoadType="7" SubType="4" SpeedCategory="A" Priority="2" SpeedValue="12.00000" />
+      <RoadCost RoadType="7" SubType="4" SpeedCategory="A" Priority="1" SpeedValue="9.33333" />
+      <RoadCost RoadType="7" SubType="5" SpeedCategory="A" Priority="1" SpeedValue="12.97323" />
+      <RoadCost RoadType="7" SubType="6" SpeedCategory="A" Priority="1" SpeedValue="8.61111" />
+      <RoadCost RoadType="7" SubType="C" SpeedCategory="A" Priority="1" SpeedValue="11.53627" />
+      <RoadCost RoadType="7" SubType="0" SpeedCategory="D" Priority="1" SpeedValue="7.66869" />
+      <RoadCost RoadType="7" SubType="1" SpeedCategory="D" Priority="1" SpeedValue="5.03064" />
+      <RoadCost RoadType="7" SubType="2" SpeedCategory="D" Priority="1" SpeedValue="7.23028" />
+      <RoadCost RoadType="7" SubType="3" SpeedCategory="D" Priority="1" SpeedValue="5.70519" />
+      <RoadCost RoadType="7" SubType="4" SpeedCategory="D" Priority="1" SpeedValue="6.02850" />
+      <RoadCost RoadType="7" SubType="5" SpeedCategory="D" Priority="1" SpeedValue="6.29160" />
+      <RoadCost RoadType="7" SubType="6" SpeedCategory="D" Priority="1" SpeedValue="9.52111" />
+      <RoadCost RoadType="7" SubType="B" SpeedCategory="D" Priority="1" SpeedValue="5.96707" />
+      <RoadCost RoadType="7" SubType="C" SpeedCategory="D" Priority="1" SpeedValue="5.71760" />
+      <RoadCost RoadType="7" SubType="0" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="7" SubType="1" SpeedCategory="E" Priority="1" SpeedValue="3.41967" />
+      <RoadCost RoadType="7" SubType="2" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="7" SubType="3" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="7" SubType="4" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="7" SubType="6" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="7" SubType="C" SpeedCategory="E" Priority="1" SpeedValue="2.77778" />
+      <RoadCost RoadType="6" SubType="*" SpeedCategory="E" Priority="*" SpeedValue="6.3" />
+      <RoadCost RoadType="7" SubType="*" SpeedCategory="E" Priority="*" SpeedValue="5.3" />
+      <!-- END, Fri Dec 12 15:52:21 CST 2014 -->
+
+      <!-- Avoid service road, Aug 8, 2009 Cao Y.B. -->
+      <RoadCost RoadType="*" SubType="6" SpeedCategory="*" Priority="*" SpeedValue="0.75*" />
+      <RoadCost RoadType="*" SubType="7" SpeedCategory="*" Priority="*" SpeedValue="0.10*" />
+
+      <!-- Unrecommend -->
+      <!--RoadCost RoadType="7" SubType="*" SpeedCategory="*" Priority="*" SpeedValue="0.4*" /--><!-- private -->
+      <RoadCost RoadType="D" SubType="*" SpeedCategory="*" Priority="*" SpeedValue="0.4*" /><!-- carpool -->
+
+      <!-- For Ferry roads -->
+      <RoadCost RoadType="A" SubType="*" SpeedCategory="*" Priority="*" SpeedValue="8.00000" />
+      <RoadCost RoadType="B" SubType="*" SpeedCategory="*" Priority="*" SpeedValue="8.00000" />
+
+      <!-- NonNavigable guard for build -->
+      <RoadCost RoadType="8" SubType="*" SpeedCategory="*" Priority="*" SpeedValue="1" /><!-- walk way -->
+      <RoadCost RoadType="9" SubType="*" SpeedCategory="*" Priority="*" SpeedValue="1" /><!-- non navigable -->
+      <RoadCost RoadType="E" SubType="*" SpeedCategory="*" Priority="*" SpeedValue="1" /><!-- layout -->
+      <RoadCost RoadType="7" SubType="*" SpeedCategory="F" Priority="*" SpeedValue="1" />
+      <RoadCost RoadType="*" SubType="6" SpeedCategory="F" Priority="*" SpeedValue="1" />
+      <RoadCost RoadType="*" SubType="7" SpeedCategory="F" Priority="*" SpeedValue="1" />
+      <RoadCost RoadType="D" SubType="*" SpeedCategory="F" Priority="*" SpeedValue="1" />
+
+    </RoadCost>
+
+    <!-- Junction cost -->
+    <JunctionCost Value="0" />
+
+    <!-- Factor of uturn on the same edge -->
+    <UTurnFactor Value="4" />
+
+    <!-- Additional cost for UTurn -->
+    <SingleUTurnExtratCost Value="77" />
+    <SpecialUTurnExtratCost Value="23" />
+	<DoubleDigitizedUturnCost Value = "44"/>
+    <!-- The additional cost that change from highway to ramp or change from ramp to highway -->
+    <HighwayRampCost Value="2" />
+
+    <!-- The additional cost that change from local street to highway or change from highway to local street -->
+    <HighwayChangeCost Value="10" />
+
+    <!-- The additional cost that switch to a highway from another highway add by gaos 10.01.18-->
+    <HighwaySwitchCost Value="20" />
+
+    <!-- Additional cost for enter Private Road -->
+    <PrivateRoadEnterCost Value="180" />
+
+    <!-- Factor of turn cost on highway, since there is no traffic light for highway turning -->
+    <HighwayTurnCostFactor Value="0.7" />
+
+    <!-- Cost of entering private area, for the restriction type 5/6, unit in second -->
+    <RestrictionCost Value="180" />
+
+    <!-- For vehicle, direction should not be ignored. For Pedestrian, it could be ignored -->
+    <IgnoreDirection Value="false" />
+
+    <!-- For vehicle, restriction is enabled. For pedestrian, restriction is disabled -->
+    <RestrictionEnabled Value="true" />
+
+    <!-- Additionally TN recommends to add following turn cost for routing(this won't impact ETA) 
+    to account for ferrry loading and unloading times to improve route quality 
+    Normal to Ferry turn cost = 25min 
+    Ferry to Normal turn cost = 10 min 
+    this will affect ship ferry and train ferry. -->
+    <EnterFerryCartrainCost Value="1500" />
+    <ExitFerryCartrainCost Value="600" />
+
+    <!-- Organize the nodes into different level by the in-degrees,
+      the DegreeLeveln means that if number of native in-edges is 1 larger than its value, the node belongs to level n,
+      and the value of the TurnFactorLeveln is the turn cost factor a node in level n.
+    -->
+    <TurnCostFactorByNodeDegree EnableTurnCostByNodeDegree="false">
+      <TurnFactorLevel0 Value="1.0" />
+      <TurnFactorLevel1 Value="1.0" />
+      <TurnFactorLevel2 Value="1.0" />
+      <TurnFactorLevel3 Value="1.0" />
+      <TurnFactorLevel4 Value="1.35" />
+    </TurnCostFactorByNodeDegree>
+
+    <NodeDegreeLevel DegreeLevelNum="5">
+      <DegreeLevel0 Value="0" />
+      <DegreeLevel1 Value="1" />
+      <DegreeLevel2 Value="2" />
+      <DegreeLevel3 Value="3" />
+      <DegreeLevel4 Value="4" />
+    </NodeDegreeLevel>
+
+    <!-- Distinguish  the factor for specific type of turn, value equal or less than simpleIntersectionMaxCompetitiveRoads is simple intersection and equal or more than
+      complexIntersectionMinCompetitiveRoads is complex intersection
+      simpleFactor is the additional factor for the specific turn on the simple intersection, and  complexIntersectionInDegree for the complex one
+      value means the number of other competitive roads goes into the intersection, the In-edges of the middle node except the from & to edge
+    -->
+    <SpecialTurnOnIntersectionSetting EnableSpecialTurnCostSetting="true" simpleIntersectionMaxCompetitiveRoads="0" complexIntersectionMinCompetitiveRoads="2">
+      <StraightForward simpleFactor="0.4" complexFactor="2.5" middleFactor = "1.0" highPriorityRoadFactor ="1.0" />
+      <!--<LeftTurn simpleFactor = "0.3" complexFactor = "1.0" middleFactor = "1.0"/>-->
+      <!--<RightTurn simpleFactor = "0.7" complexFactor = "1.0" middleFactor = "1.0"/>-->
+    </SpecialTurnOnIntersectionSetting>
+
+    <!-- In search, when one queue(eg. forwardQueue) is empty,
+      the other queue(eg. backwardQueue) can only go more 'MaxFutherSettleNum'steps.
+      this setting is only used for 'nohwy' and 'pedestrain' routing style. Added here to solve the data island problem.
+    -->
+    <MaxFutherSettleNum Value="1000000" />
+
+    <!-- In avoid toll mode, add avoid toll cost during calculating process-->
+    <AvoidTollCost Value="7200" />
+    <!--to resolve the local best but not global best problem, to make more shadow nodes-->
+    <ShawdowControl Enable = "true" MaxTurnCostValue = "35" />
+
+    <RoadChangeControl Enable ="false" />
+
+    <EnterUnpaveRoadCost Cost ="0" UnpaveRatio ="5" HPCost = "0" UnpaveHPRatio = "0" SpeedRatio="0.3"/>
+
+    <ThroughTraffic Enable="false"/>
+
+    <EnableGapFactor Value="true">
+    		<GapFactor Value="1.1" Level='4'/>
+    </EnableGapFactor>
+
+  </RouteStyle>
+  <RouteStyle Dataset="Navteq" Country="NA" StyleName="SHORTEST"  Version="0001" StyleValue="1" Descript="">
+
+        <!-- Following lines are used by engine -->
+		<Promote>
+			<Level0 MinValue="20" MaxValue="70" />
+			<Level1 MinValue="30" MaxValue="70" />
+			<Level2 MinValue="30" MaxValue="70" />
+			<Level3 MinValue="30" MaxValue="70" />
+			<Level4 MinValue="30" MaxValue="70" />
+
+			<!--
+				Different distance route class have different max promoting level
+				.Unit is meter
+			-->
+			<MaxDistLevel0 Value="5000" />
+			<MaxDistLevel1 Value="50000" />
+			<MaxDistLevel2 Value="300000" />
+			<MaxDistLevel3 Value="2000000" />
+		</Promote>
+		<Heuristic>
+			<!--
+				100(%) is equivalent to the usual A* algorithm. Greater value means
+				more accelerated exploration
+			-->
+			<FactorPercent Value="105" />
+
+			<PriorityDelta Value="0" />
+
+			<!-- Estimate speed used by heuristic function. Unit is m/s  -->
+			<HeuristicSpeed Value="14" />
+
+			<!-- Different priority have different heuristic factor -->
+			<PriorityFactor0 Value="0" />
+			<PriorityFactor1 Value="0" />
+			<PriorityFactor2 Value="0" />
+			<PriorityFactor3 Value="0" />
+			<PriorityFactor4 Value="0" />
+
+			<!-- Different speed category has different speed. It is a factor -->
+			<SpeedFactor0 Value="0" />
+			<SpeedFactor1 Value="0" />
+			<SpeedFactor2 Value="0" />
+			<SpeedFactor3 Value="0" />
+			<SpeedFactor4 Value="0" />
+		</Heuristic>
+
+		<!-- Turn cost module, It will be read by txt order, unit is second -->
+		<TurnCost>
+			<TurnCost0 Value="0" />
+			<TurnCost1 Value="0" />
+			<TurnCost2 Value="0" />
+			<TurnCost3 Value="1" />
+			<TurnCost4 Value="1" />
+			<TurnCost5 Value="2" />
+			<TurnCost6 Value="2" />
+			<TurnCost7 Value="3" />
+			<TurnCost8 Value="3" />
+			<TurnCost9 Value="3" />
+			<TurnCost10 Value="2" />
+			<TurnCost11 Value="2" />
+			<TurnCost12 Value="1" />
+			<TurnCost13 Value="1" />
+			<TurnCost14 Value="0" />
+			<TurnCost15 Value="0" />
+		</TurnCost>
+		<RouteMethod Value="1024" />
+		
+		<!-- Following lines are used by call back function -->
+    <!-- Use different Heuristic speed when direct distance is different.Unit of DistLessThan is Km, unit of SpeedValue is m/s  -->
+    <DistHeuristic>
+       <DistHeuristic0 DistLessThan="1000" SpeedValue="17" />
+       <DistHeuristic0 DistLessThan="2000" SpeedValue="16" />
+       <DistHeuristic0 DistLessThan="3000" SpeedValue="15" />
+    </DistHeuristic>
+
+		<!-- Following lines are used by call back function -->
+		<RoadUsage>
+			<!--
+				Determin which road type is navigable. Default all roads are
+				navigable
+			-->
+			<RoadUsage0 RoadType="*" SubType="*" Navigable="true" />
+			<RoadUsage1 RoadType="8" SubType="*" Navigable="false" />
+			<RoadUsage2 RoadType="9" SubType="*" Navigable="false" />
+			<RoadUsage3 RoadType="E" SubType="*" Navigable="false" />
+		    </RoadUsage>
+		
+		    <RoadCost>
+		    <!-- Determin speed value by road type and speed category, unit of SpeedValue is m/s -->
+		        <RoadCost0 RoadType="*" SpeedCategory="*" SpeedValue= "17"/>
+		        <RoadCost1 RoadType="*" SubType="5" SpeedCategory="*" Priority="*" SpeedValue="16" /><!--ramp-->
+		        <RoadCost RoadType="D" SubType="*" SpeedCategory="*" Priority="*" SpeedValue="0.5*" /><!-- carpool -->
+		    </RoadCost>
+
+		<!-- The unit of JunctionCost is second. -->
+		<JunctionCost Value="0" />
+		
+		<!-- The additional cost that change from highway to ramp or change from ramp to highway -->
+    <HighwayRampCost Value = "2"/>
+    
+		<!--
+			The additional cost that change from local street to highway or
+			change from highway to local street
+		-->
+		<HighwayChangeCost Value="0" />
+		<SingleUTurnExtratCost Value="70"/>
+		<SpecialUTurnExtratCost Value="2"/>	
+		<!-- Additional cost for enter Private Road -->
+		<PrivateRoadEnterCost Value="180" />
+		<HardAvoidFactor Value="10" />
+		<!--
+			Factor of turn cost on highway, since there is no traffic light for
+			highway turning
+		-->
+		<HighwayTurnCostFactor Value="0.9" />
+		
+		<SmallroadTurnCostFactor Value="0.1" />
+
+		<!--
+			Cost of entering private area, for the restriction type 5/6, unit in
+			second
+		-->
+		<RestrictionCost Value="180" />
+		
+		<PromoteLevelFactor Value="1.4" />
+
+    </RouteStyle>
+	<ETACostModule>
+	<!-- Additionally TN recommends to add following turn cost for ETA 
+	to account for ferrry loading and unloading times to improve route quality 
+	Normal to Ferry turn cost = 25min 
+	Ferry to Normal turn cost = 10 min 
+	this will affect ship ferry and train ferry. -->
+	<EnterFerryCartrainCost Value="1500" />
+	<ExitFerryCartrainCost Value="600" /> 
+	</ETACostModule>
+</RCMS>
