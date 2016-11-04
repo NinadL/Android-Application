@@ -50,19 +50,19 @@ public class LaneModel
         {
             if(laneBoundaries.get(i).getType() == 9)
             {
-                rightRightLaneBoundary = createImaginaryLane(-5.4, laneBoundaries.get(i));
-                rightRightLaneBoundary.setType(2);
-                sortedBoundaries.add(rightRightLaneBoundary);
+//                rightRightLaneBoundary = createImaginaryLane(-5.4, laneBoundaries.get(i));
+//                rightRightLaneBoundary.setType(2);
+//                sortedBoundaries.add(rightRightLaneBoundary);
                 rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
                 rightLaneBoundary.setType(1);
                 sortedBoundaries.add(rightLaneBoundary);
                 leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
                 leftLaneBoundary.setType(1);
                 sortedBoundaries.add(leftLaneBoundary);
-                leftLeftLaneBoundary = createImaginaryLane(5.4, laneBoundaries.get(i));
-                leftLeftLaneBoundary.setType(2);
-                sortedBoundaries.add(leftLeftLaneBoundary);
-                sortedBoundaries.add(laneBoundaries.get(i));
+//                leftLeftLaneBoundary = createImaginaryLane(5.4, laneBoundaries.get(i));
+//                leftLeftLaneBoundary.setType(2);
+//                sortedBoundaries.add(leftLeftLaneBoundary);
+//                sortedBoundaries.add(laneBoundaries.get(i));
             }
 
 

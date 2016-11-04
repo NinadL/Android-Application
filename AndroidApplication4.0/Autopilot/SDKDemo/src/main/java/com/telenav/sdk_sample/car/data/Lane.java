@@ -46,28 +46,28 @@ public class Lane {
     //Init method is just for testing
     public void init() {
 
-//        rightLane.setType(9);
-//        rightLane.addPoint(new Point(0.00,-1.00,0.00,1.8));
-//        rightLane.addPoint(new Point(0.0179971,-0.999838,3,1.827));
-//        rightLane.addPoint(new Point(0.0359767,-0.999353,6,1.908));
-//        rightLane.addPoint(new Point(0.0539214,-0.998545,9,2.043));
-//        rightLane.addPoint(new Point(0.0718141,-0.997418,12,2.232));
-//        rightLane.addPoint(new Point(0.0896377,-0.995974,15,2.475));
-//        rightLane.addPoint(new Point(0.107376,-0.994219,18,2.772));
-//        rightLane.addPoint(new Point(0.125012,-0.992155,21,3.123));
-//        rightLane.addPoint(new Point(0.14253,-0.989791,24,3.528));
-//        rightLane.addPoint(new Point(0.159915,-0.987131,27,3.987));
-//        rightLane.addPoint(new Point(0.177153,-0.984183,30,4.5));
-//        rightLane.addPoint(new Point(0.194229,-0.980956,33,5.067));
-//        rightLane.addPoint(new Point(0.211131,-0.977458,36,5.688));
-//        rightLane.addPoint(new Point(0.227845,-0.973697,39,6.363));
-//        rightLane.addPoint(new Point(0.24436,-0.969684,42,7.092));
-//        rightLane.addPoint(new Point(0.260666,-0.965429,45,7.875));
-//        rightLane.addPoint(new Point(0.276751,-0.960942,48,8.712));
-//        rightLane.addPoint(new Point(0.292607,-0.956233,51,9.603));
-//        rightLane.addPoint(new Point(0.308226,-0.951313,54,10.548));
-//        rightLane.addPoint(new Point(0.323599,-0.946194,57,11.547));
-//        rightLane.addPoint(new Point(0.338719,-0.940887,60,12.6));
+        rightLane.setType(9);
+        rightLane.addPoint(new Point(0.00,-1.00,0.00,1.8));
+        rightLane.addPoint(new Point(0.0179971,-0.999838,3,1.827));
+        rightLane.addPoint(new Point(0.0359767,-0.999353,6,1.908));
+        rightLane.addPoint(new Point(0.0539214,-0.998545,9,2.043));
+        rightLane.addPoint(new Point(0.0718141,-0.997418,12,2.232));
+        rightLane.addPoint(new Point(0.0896377,-0.995974,15,2.475));
+        rightLane.addPoint(new Point(0.107376,-0.994219,18,2.772));
+        rightLane.addPoint(new Point(0.125012,-0.992155,21,3.123));
+        rightLane.addPoint(new Point(0.14253,-0.989791,24,3.528));
+        rightLane.addPoint(new Point(0.159915,-0.987131,27,3.987));
+        rightLane.addPoint(new Point(0.177153,-0.984183,30,4.5));
+        rightLane.addPoint(new Point(0.194229,-0.980956,33,5.067));
+        rightLane.addPoint(new Point(0.211131,-0.977458,36,5.688));
+        rightLane.addPoint(new Point(0.227845,-0.973697,39,6.363));
+        rightLane.addPoint(new Point(0.24436,-0.969684,42,7.092));
+        rightLane.addPoint(new Point(0.260666,-0.965429,45,7.875));
+        rightLane.addPoint(new Point(0.276751,-0.960942,48,8.712));
+        rightLane.addPoint(new Point(0.292607,-0.956233,51,9.603));
+        rightLane.addPoint(new Point(0.308226,-0.951313,54,10.548));
+        rightLane.addPoint(new Point(0.323599,-0.946194,57,11.547));
+        rightLane.addPoint(new Point(0.338719,-0.940887,60,12.6));
 //
 //
 //        centerLane.addPoint(new Point(0.00,-1.00,0,0.00));
@@ -91,30 +91,30 @@ public class Lane {
 //        centerLane.addPoint(new Point(0.308226,-0.951313,54,8.748));
 //        centerLane.addPoint(new Point(0.323599,-0.946194,57,9.747));
 //        centerLane.addPoint(new Point(0.338719,-0.940887,60,10.8));
-//        centerLane.setType(9);
+        centerLane.setType(9);
 //
 //
-//        centerLane.addPoint(new Point(0, -0.45508, 0, 0));
-//        centerLane.addPoint(new Point(1, -0.61621, 0, 0));
-//        centerLane.addPoint(new Point(2, -0.77146, 0, 0));
-//        centerLane.addPoint(new Point(3, -0.92085, 0, 0));
-//        centerLane.addPoint(new Point(4, -1.0644, 0, 0));
-//        centerLane.addPoint(new Point(5, -1.202, 0, 0));
-//        centerLane.addPoint(new Point(6, -1.3338, 0, 0));
-//        centerLane.addPoint(new Point(7, -1.4629, 0, 0));
-//        centerLane.addPoint(new Point(8, -1.5927, 0, 0));
-//        centerLane.addPoint(new Point(9, -1.7226, 0, 0));
-//        centerLane.addPoint(new Point(10, -1.8524, 0, 0));
-//        centerLane.addPoint(new Point(11, -1.9822, 0, 0));
-//        centerLane.addPoint(new Point(12, -2.112, 0, 0));
-//        centerLane.addPoint(new Point(13, -2.2418, 0, 0));
-//        centerLane.addPoint(new Point(14, -2.3716, 0, 0));
-//        centerLane.addPoint(new Point(15, -2.5015, 0, 0));
-//        centerLane.addPoint(new Point(16, -2.6313, 0, 0));
-//        centerLane.addPoint(new Point(17, -2.7611, 0, 0));
-//        centerLane.addPoint(new Point(18, -2.8909, 0, 0));
-//        centerLane.addPoint(new Point(19, -3.0207, 0, 0));
-//        centerLane.addPoint(new Point(20, -3.1505, 0, 0));
+        centerLane.addPoint(new Point(0, 0 ,0, 0));
+        centerLane.addPoint(new Point(0, 0 ,5, 0));
+        centerLane.addPoint(new Point(0, 0 ,10, 0));
+        centerLane.addPoint(new Point(0, 0 ,15, 0));
+        centerLane.addPoint(new Point(0, 0 ,20, 0));
+        centerLane.addPoint(new Point(0, 0 ,25, 0));
+        centerLane.addPoint(new Point(0, 0 ,30, 0));
+        centerLane.addPoint(new Point(0, 0 ,35, 0));
+        centerLane.addPoint(new Point(0, 0 ,40, 0));
+        centerLane.addPoint(new Point(0, 0 ,45, 0));
+        centerLane.addPoint(new Point(0, 0 ,50, 0));
+        centerLane.addPoint(new Point(0, 0 ,55, 0));
+        centerLane.addPoint(new Point(0, 0 ,60, 0));
+        centerLane.addPoint(new Point(0, 0 ,65, 0));
+        centerLane.addPoint(new Point(0, 0 ,70, 0));
+        centerLane.addPoint(new Point(0, 0 ,75, 0));
+        centerLane.addPoint(new Point(0, 0 ,80, 0));
+        centerLane.addPoint(new Point(0, 0 ,85, 0));
+        centerLane.addPoint(new Point(0, 0 ,90, 0));
+        centerLane.addPoint(new Point(0, 0 ,95, 0));
+        centerLane.addPoint(new Point(0, 0 ,100, 0));
 
     }
 }

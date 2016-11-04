@@ -58,127 +58,131 @@ public class laneFunctions {
 
 
     //Grid Production
-    public void gridFormation(ArrayList<Point> centerLane, ArrayList vertexList,ArrayList colorList)
-    {
-
-        short stepSize = 1; //draw 4 lines to draw the  stepSize+1 lane points
-
-        for (int gridPointCount = 0; gridPointCount < (centerLane.size() - 1); gridPointCount+=stepSize) //the number of points on the lane
-        {
-            float bottomGridPointX = (float) centerLane.get(gridPointCount).getX();
-            float bottomGridPointY = (float) centerLane.get(gridPointCount).getY();
-            float bottomGridPointNx = (float) centerLane.get(gridPointCount).getNx();
-            float bottomGridPointNy = (float) centerLane.get(gridPointCount).getNy();
-
-            float[] bottomPoint;
-            float[] topPoint;
-
-
-            //horizontal lines
-            if(gridPointCount% 3 == 0)
-            {
-                bottomPoint = getDistantPoints((float) centerLane.get(gridPointCount).getY(), (float) centerLane.get(gridPointCount).getX(), (float) centerLane.get(gridPointCount).getNx(), (float) centerLane.get(gridPointCount).getNy(), 7);
-                pointCalculation(bottomPoint[1], bottomPoint[0], 0, 1, bottomPoint[3], bottomPoint[2], 0, 1, -1, vertexList, colorList);
-            }
-
-            if (gridPointCount +stepSize < centerLane.size())
-            {
-
-                float topX = (float) centerLane.get(gridPointCount +stepSize).getX();
-                float topY = (float) centerLane.get(gridPointCount +stepSize ).getY();
-                float topNx = (float) centerLane.get(gridPointCount +stepSize).getNx();
-                float topNy = (float) centerLane.get(gridPointCount +stepSize ).getNy();
-
-                for (int gridColumnNo = 1; gridColumnNo <=7; gridColumnNo++)
-                {
-                    bottomPoint = getDistantPoints(bottomGridPointY, bottomGridPointX, bottomGridPointNx, bottomGridPointNy, gridColumnNo);
-                    topPoint = getDistantPoints(topY, topX, topNx, topNy, gridColumnNo);
-
-
-                    pointCalculation(bottomPoint[1],bottomPoint[0],bottomGridPointNx,bottomGridPointNy,topPoint[1],topPoint[0],topNx,topNy,-1,vertexList,colorList);
-                    pointCalculation(bottomPoint[3],bottomPoint[2],bottomGridPointNx,bottomGridPointNy,topPoint[3],topPoint[2],topNx,topNy,-1,vertexList,colorList);
-
-                    //extension of lines
-                    if (gridPointCount+ 2*stepSize  > centerLane.size()-1 && centerLane.get(gridPointCount+ stepSize).getX() < 95)
-                    {
-
-                        float lastPointX = (float) centerLane.get(gridPointCount+ stepSize).getX();
-                        float lastPointY = (float) centerLane.get(gridPointCount+ stepSize).getY();
-                        float lastPointNx = (float) centerLane.get(gridPointCount+ stepSize).getNx();
-                        float lastPointNy = (float) centerLane.get(gridPointCount+ stepSize).getNy();
-
-                        while (lastPointX <= finalPoint && gridColumnNo ==7 ) {
-                            short step = 10;
-                            if ((int) lastPointX / 10 <= 10)
-                            {
-                                float[] tempPoints = getDistantPoints(lastPointY, lastPointX, lastPointNx, lastPointNy, 7);
-                                pointCalculation(tempPoints[1], tempPoints[0], 0, 1, tempPoints[3], tempPoints[2], 0, 1, -1, vertexList, colorList);
-                            }
-                            lastPointX = lastPointX+step;
-                            lastPointY = lastPointY+(step*-topNx/topNy);
-
-                        }
-                        //left column extension
-                        pointCalculation(topPoint[1],topPoint[0],0,1,finalPoint,topPoint[0]+((finalPoint -topPoint[1] )*-topNx/topNy),0,1,-1,vertexList,colorList);
-
-                        if(gridColumnNo  ==7  ) //extend center line only once
-                            pointCalculation(topX,topY,0,1,finalPoint,topY+((finalPoint -topX )*-topNx/topNy),0,1,-1,vertexList,colorList);
-                        //extend right columns
-                        pointCalculation(topPoint[3],topPoint[2],0,1,finalPoint,topPoint[2]+((finalPoint -topPoint[3] )*-topNx/topNy),0,1,-1,vertexList,colorList);
-
-                    }
-
-                }
-            }
-
-        }
-
-    }
+//    public void gridFormation(ArrayList<Point> centerLane, ArrayList vertexList,ArrayList colorList)
+//    {
+//
+//        short stepSize = 1; //DrawEntity 4 lines to DrawEntity the  stepSize+1 lane points
+//
+//        for (int gridPointCount = 0; gridPointCount < (centerLane.size() - 1); gridPointCount+=stepSize) //the number of points on the lane
+//        {
+//            float bottomGridPointX = (float) centerLane.get(gridPointCount).getX();
+//            float bottomGridPointY = (float) centerLane.get(gridPointCount).getY();
+//            float bottomGridPointNx = (float) centerLane.get(gridPointCount).getNx();
+//            float bottomGridPointNy = (float) centerLane.get(gridPointCount).getNy();
+//
+//            float[] bottomPoint;
+//            float[] topPoint;
+//
+//
+//            //horizontal lines
+//            if(gridPointCount% 3 == 0)
+//            {
+//                bottomPoint = getDistantPoints((float) centerLane.get(gridPointCount).getY(), (float) centerLane.get(gridPointCount).getX(), (float) centerLane.get(gridPointCount).getNx(), (float) centerLane.get(gridPointCount).getNy(), 7);
+//                pointCalculation(bottomPoint[1], bottomPoint[0], 0, 1, bottomPoint[3], bottomPoint[2], 0, 1, -1, vertexList, colorList);
+//            }
+//
+//            if (gridPointCount +stepSize < centerLane.size())
+//            {
+//
+//                float topX = (float) centerLane.get(gridPointCount +stepSize).getX();
+//                float topY = (float) centerLane.get(gridPointCount +stepSize ).getY();
+//                float topNx = (float) centerLane.get(gridPointCount +stepSize).getNx();
+//                float topNy = (float) centerLane.get(gridPointCount +stepSize ).getNy();
+//
+//                for (int gridColumnNo = 1; gridColumnNo <=7; gridColumnNo++)
+//                {
+//                    bottomPoint = getDistantPoints(bottomGridPointY, bottomGridPointX, bottomGridPointNx, bottomGridPointNy, gridColumnNo);
+//                    topPoint = getDistantPoints(topY, topX, topNx, topNy, gridColumnNo);
+//
+//
+//                    pointCalculation(bottomPoint[1],bottomPoint[0],bottomGridPointNx,bottomGridPointNy,topPoint[1],topPoint[0],topNx,topNy,-1,vertexList,colorList);
+//                    pointCalculation(bottomPoint[3],bottomPoint[2],bottomGridPointNx,bottomGridPointNy,topPoint[3],topPoint[2],topNx,topNy,-1,vertexList,colorList);
+//
+//                    //extension of lines
+//                    if (gridPointCount+ 2*stepSize  > centerLane.size()-1 && centerLane.get(gridPointCount+ stepSize).getX() < 95)
+//                    {
+//
+//                        float lastPointX = (float) centerLane.get(gridPointCount+ stepSize).getX();
+//                        float lastPointY = (float) centerLane.get(gridPointCount+ stepSize).getY();
+//                        float lastPointNx = (float) centerLane.get(gridPointCount+ stepSize).getNx();
+//                        float lastPointNy = (float) centerLane.get(gridPointCount+ stepSize).getNy();
+//
+//                        while (lastPointX <= finalPoint && gridColumnNo ==7 ) {
+//                            short step = 10;
+//                            if ((int) lastPointX / 10 <= 10)
+//                            {
+//                                float[] tempPoints = getDistantPoints(lastPointY, lastPointX, lastPointNx, lastPointNy, 7);
+//                                pointCalculation(tempPoints[1], tempPoints[0], 0, 1, tempPoints[3], tempPoints[2], 0, 1, -1, vertexList, colorList);
+//                            }
+//                            lastPointX = lastPointX+step;
+//                            lastPointY = lastPointY+(step*-topNx/topNy);
+//
+//                        }
+//                        //left column extension
+//                        pointCalculation(topPoint[1],topPoint[0],0,1,finalPoint,topPoint[0]+((finalPoint -topPoint[1] )*-topNx/topNy),0,1,-1,vertexList,colorList);
+//
+//                        if(gridColumnNo  ==7  ) //extend center line only once
+//                            pointCalculation(topX,topY,0,1,finalPoint,topY+((finalPoint -topX )*-topNx/topNy),0,1,-1,vertexList,colorList);
+//                        //extend right columns
+//                        pointCalculation(topPoint[3],topPoint[2],0,1,finalPoint,topPoint[2]+((finalPoint -topPoint[3] )*-topNx/topNy),0,1,-1,vertexList,colorList);
+//
+//                    }
+//
+//                }
+//            }
+//
+//        }
+//
+//    }
 
 
     /*
-     * draw solid line
+     * DrawEntity solid line
      * Mode is used to give color and thickness to the line generated.
-     * distance is used to draw the parallel lane from the lane give
+     * distance is used to DrawEntity the parallel lane from the lane give
      */
-    public void getSolidLineCoordinates(ArrayList<Point> LanePoints, int mode, ArrayList vertexList, ArrayList colorList,float distance)
-    {
-        short stepSize =1;
-        for (int pointCount = 0; pointCount < LanePoints.size(); pointCount+=stepSize)
-        {
-            float bottomX = (float) LanePoints.get(pointCount).getX();
-            float bottomY = (float) LanePoints.get(pointCount).getY();
-            float bottomNx = (float) LanePoints.get(pointCount).getNx();
-            float bottomNy = (float) LanePoints.get(pointCount).getNy();
+//    public void getSolidLineCoordinates(ArrayList<Point> LanePoints, int mode, ArrayList vertexList, ArrayList colorList,float distance)
+//    {
+//        short stepSize =1;
+//        for (int pointCount = 0; pointCount < LanePoints.size(); pointCount+=stepSize)
+//        {
+//            float bottomX = (float) LanePoints.get(pointCount).getX();
+//            float bottomY = (float) LanePoints.get(pointCount).getY();
+//            float bottomNx = (float) LanePoints.get(pointCount).getNx();
+//            float bottomNy = (float) LanePoints.get(pointCount).getNy();
+//
+//            if (pointCount + stepSize < LanePoints.size())
+//            {
+//                float topX = (float)  LanePoints.get(pointCount +stepSize ).getX();
+//                float topY = (float)  LanePoints.get(pointCount +stepSize).getY();
+//                float topNx = (float) LanePoints.get(pointCount +stepSize).getNx();
+//                float topNy = (float) LanePoints.get(pointCount +stepSize).getNy();
+//
+//                if(distance != 0.0) //DrawEntity parallel lines
+//                {
+//                    float[] newBottomPoints = getDistantPoints(bottomY, bottomX, bottomNx, bottomNy, distance);
+//                    float[] newTopPoints = getDistantPoints(topY, topX, topNx, topNy, distance);
+//                    if(distance > 0)
+//                    {
+//                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,colorList);
+//                    }
+//                    else if(distance < 0)
+//                    {
+//                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,colorList);
+//                    }
+//                }
+//                else
+//                    pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList,colorList);
+//
+//            }
+//        }
+//    }
 
-            if (pointCount + stepSize < LanePoints.size())
-            {
-                float topX = (float)  LanePoints.get(pointCount +stepSize ).getX();
-                float topY = (float)  LanePoints.get(pointCount +stepSize).getY();
-                float topNx = (float) LanePoints.get(pointCount +stepSize).getNx();
-                float topNy = (float) LanePoints.get(pointCount +stepSize).getNy();
-
-                if(distance != 0.0) //draw parallel lines
-                {
-                    float[] newBottomPoints = getDistantPoints(bottomY, bottomX, bottomNx, bottomNy, distance);
-                    float[] newTopPoints = getDistantPoints(topY, topX, topNx, topNy, distance);
-                    if(distance > 0){
-                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,colorList);}
-                    else if(distance < 0){
-                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,colorList);}
-                }
-                else
-                    pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList,colorList);
-
-            }
-        }
-    }
-
-    public void pointCalculation(float bottomX,float bottomY,float bottomNx, float bottomNy, float topX, float topY, float topNx, float topNy, int mode,ArrayList vertexList, ArrayList colorList){
+    public void pointCalculation(float bottomX,float bottomY,float bottomNx, float bottomNy, float topX, float topY, float topNx, float topNy, int mode,ArrayList vertexList,ArrayList vertexList1,  ArrayList colorList){
         if ((bottomNx == 0 || bottomNy == 1 || bottomNy == -1) && (topNx == 0 || topNy == 1 || topNy == -1))
         {
 
-            thickLineCreation(bottomX, bottomY, topX, topY, mode,vertexList,colorList);
+            thickLineCreation(bottomX, bottomY, topX, topY, mode,vertexList,vertexList1, colorList);
 
         }
         else {
@@ -205,7 +209,7 @@ public class laneFunctions {
                 float newY;
                 //newY = bottomY*(1 - t)+t*topY;
                 newY = ((1 - t) * bottomY * (1 - t)) + (2 * t * (1 - t) * cy) + (t * t * topY);
-                thickLineCreation(prevX, prevY, newX, newY, mode,vertexList,colorList);
+                thickLineCreation(prevX, prevY, newX, newY, mode,vertexList, vertexList1, colorList);
 
                 prevX = newX;
                 prevY = newY;
@@ -214,11 +218,11 @@ public class laneFunctions {
         }
     }
     /*
-    * draw dashed line
+    * DrawEntity dashed line
     * Mode is used to give color and thickness to the line generated.
-    * distance is used to draw the parallel lane from the lane give
+    * distance is used to DrawEntity the parallel lane from the lane give
     */
-    public void getDashedLineCoordinates(ArrayList<Point> LanePoints, int mode, ArrayList vertexList, ArrayList colorList)
+    public void getDashedLineCoordinates(ArrayList<Point> LanePoints, int mode, ArrayList vertexList, ArrayList vertexList1,  ArrayList colorList)
     {
         short blankSpaceSize = 2;
 
@@ -238,7 +242,7 @@ public class laneFunctions {
                 float topNx = (float) LanePoints.get(pointCount  +blankSpaceSize ).getNx();
                 float topNy = (float) LanePoints.get(pointCount +blankSpaceSize  ).getNy();
 
-                pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList,colorList);
+                pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList,vertexList1,  colorList);
             }
         }
     }
@@ -270,46 +274,73 @@ public class laneFunctions {
 
 
     //creating a thick rightLane
-    public void thickLineCreation(float x1, float y1, float x2, float y2, int mode, ArrayList laneVertexList, ArrayList LaneColorLane) {
+    public void thickLineCreation(float x1, float y1, float x2, float y2, int mode, ArrayList laneVertexList, ArrayList laneVertexList1, ArrayList LaneColorLane) {
         float thickness;
         if (mode > 9)
             thickness = 0.05f;
         else
-            thickness = 0.1f;
-        if (mode == -1) {
+            thickness = 0.5f;
+        if (mode == -1)
+        {
             laneVertexList.add(x1);
             laneVertexList.add(y1);
             //  laneVertexList.add(1);
 
-
             laneVertexList.add(x2);
             laneVertexList.add(y2);
             // laneVertexList.add(1);
-        } else {
+        }
+        else if(mode == 1 )
+        {
             laneVertexList.add(x1);  //x1
-            laneVertexList.add(y1 - thickness);   //y1-0.5
+            laneVertexList.add(y1 - 3.6);   //y1-0.5
             // laneVertexList.add(1);
 
             laneVertexList.add(x1);  //x1
-            laneVertexList.add(y1 + thickness);   //y1+0.5
+            laneVertexList.add(y1 + 3.6);   //y1+0.5
             // laneVertexList.add(1);
 
             laneVertexList.add(x2);  //x1
-            laneVertexList.add(y2 + thickness); //y2+0.5
+            laneVertexList.add(y2 + 3.6); //y2+0.5
             // laneVertexList.add(1);
 
             laneVertexList.add(x2);//x1
-            laneVertexList.add(y2 + thickness); //y2+0.5
+            laneVertexList.add(y2 + 3.6); //y2+0.5
             // laneVertexList.add(1);
 
             laneVertexList.add(x2); //x1
-            laneVertexList.add(y2 - thickness); //y2-0.5
+            laneVertexList.add(y2 - 3.6); //y2-0.5
             //  laneVertexList.add(1);
 
             laneVertexList.add(x1); //x1
-            laneVertexList.add(y1 - thickness); //y1-0.5
+            laneVertexList.add(y1 - 3.6); //y1-0.5
+
+
+            laneVertexList1.add(x1);  //x1
+            laneVertexList1.add(y1 - thickness);   //y1-0.5
+            // laneVertexList.add(1);
+
+            laneVertexList1.add(x1);  //x1
+            laneVertexList1.add(y1 + thickness);   //y1+0.5
+            // laneVertexList.add(1);
+
+            laneVertexList1.add(x2);  //x1
+            laneVertexList1.add(y2 + thickness); //y2+0.5
+            // laneVertexList.add(1);
+
+            laneVertexList1.add(x2);//x1
+            laneVertexList1.add(y2 + thickness); //y2+0.5
+            // laneVertexList.add(1);
+
+            laneVertexList1.add(x2); //x1
+            laneVertexList1.add(y2 - thickness); //y2-0.5
             //  laneVertexList.add(1);
+
+            laneVertexList1.add(x1); //x1
+            laneVertexList1.add(y1 - thickness); //y1-0.5
         }
+
+            //  laneVertexList.add(1);
 
 
         if (mode == -1)//grid
@@ -317,8 +348,8 @@ public class laneFunctions {
             for (int lanepoint = 0; lanepoint < 4; lanepoint++)
             {
                 LaneColorLane.add(0);
-                LaneColorLane.add(0.8);
-                LaneColorLane.add(0.8);
+                LaneColorLane.add(0);
+                LaneColorLane.add(0);
                 LaneColorLane.add(0.5f);
             }
         }
@@ -352,7 +383,7 @@ public class laneFunctions {
                     LaneColorLane.add(1);
                     LaneColorLane.add(1);
                     LaneColorLane.add(1);
-                    LaneColorLane.add(0.5f);
+                    LaneColorLane.add(1f);
                 }
             }
         }

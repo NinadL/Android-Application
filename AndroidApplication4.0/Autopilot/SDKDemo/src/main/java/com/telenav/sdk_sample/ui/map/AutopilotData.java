@@ -4,6 +4,8 @@ import com.telenav.sdk.navigation.controller.NavigationManager;
 import com.telenav.sdk.navigation.model.NavigationData;
 import com.telenav.sdk.navigation.model.RoadType;
 import com.telenav.sdk.navigation.model.SpeedLimit;
+import com.telenav.sdk_sample.car.data.DataParser;
+import com.telenav.sdk_sample.car.data.Ego;
 
 /**
  * Created by ninad on 7/7/16.
@@ -15,6 +17,7 @@ public class AutopilotData
     public static boolean isHighwayNext = false;
     public static boolean areWeOnHighway = false;
     MyMapRenderingUtils myMapRenderingUtils = new MyMapRenderingUtils();
+    public static DataParser dataParser;
 
 
     //Gets the remaining distance for the autopilot to end
@@ -58,4 +61,35 @@ public class AutopilotData
         }
         return 0;
     }
+
+    public int getSpeed()
+    {
+        int finalSpeed = 0;
+
+        dataParser = new DataParser();
+
+        if(dataParser.getSelfObject() != null)
+        {
+            Ego ego = dataParser.getSelfObject();
+            if(ego.getSpeed() != null)
+            {
+                double[] speed = ego.getSpeed();
+
+                finalSpeed = (int)(Math.sqrt(speed[0]*speed[1]*speed[2] + speed[0]*speed[1]*speed[2]));
+                return (int)(finalSpeed * 2.23694);
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+        else
+        {
+            return 0;
+        }
+
+
+    }
+
 }

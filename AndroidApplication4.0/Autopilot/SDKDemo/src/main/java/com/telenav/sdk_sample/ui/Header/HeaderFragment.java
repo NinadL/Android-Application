@@ -24,6 +24,7 @@ import com.telenav.sdk.navigation.model.SpeedLimit;
 import com.telenav.sdk.navigation.model.TravellingEdgeInfo;
 import com.telenav.sdk.navigation.model.TurnType;
 import com.telenav.sdk_sample.R;
+import com.telenav.sdk_sample.ui.map.AutopilotData;
 import com.telenav.sdk_sample.ui.map.MapActivity;
 
 public class HeaderFragment extends Fragment
@@ -50,6 +51,8 @@ public class HeaderFragment extends Fragment
 
     static CharSequence finalString;
     static CharSequence refSpeedString;
+
+    static AutopilotData autopilotData;
 
     public HeaderFragment() {
         // Required empty public constructor
@@ -420,30 +423,24 @@ public class HeaderFragment extends Fragment
 
     public void setSpeed()
     {
-        if (NavigationManager.getInstance().getNavigationData() != null)
-        {
-            NavigationData navigationData = NavigationManager.getInstance().getNavigationData();
 
-            if (navigationData.getTravellingEdgeInfo() != null)
-            {
-                TravellingEdgeInfo travellingEdgeInfo= navigationData.getTravellingEdgeInfo();
+        autopilotData = new AutopilotData();
 
-                int speed = (int)travellingEdgeInfo.getInstanceSpeed();
-                analogSpeed.setProgress(speed);
+        int speed = autopilotData.getSpeed();
 
-                String currentSpeed = String.valueOf(speed);
-                SpannableString currentSpeedSpannableString = new SpannableString(currentSpeed);
-                currentSpeedSpannableString.setSpan(new RelativeSizeSpan(1.7f), 0, currentSpeed.length(), 0);
-                currentSpeedSpannableString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, currentSpeed.length(), 0);
-                finalString = TextUtils.concat(currentSpeedSpannableString, "\nmph");
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        digitalSpeed.setText(finalString);
-                    }
-                });
+        analogSpeed.setProgress(speed);
+
+        String currentSpeed = String.valueOf(speed);
+        SpannableString currentSpeedSpannableString = new SpannableString(currentSpeed);
+        currentSpeedSpannableString.setSpan(new RelativeSizeSpan(1.7f), 0, currentSpeed.length(), 0);
+        currentSpeedSpannableString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, currentSpeed.length(), 0);
+        finalString = TextUtils.concat(currentSpeedSpannableString, "\nmph");
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                digitalSpeed.setText(finalString);
             }
-        }
+        });
 
     }
 

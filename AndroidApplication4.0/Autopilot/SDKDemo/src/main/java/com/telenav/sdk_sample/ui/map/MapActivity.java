@@ -24,7 +24,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -36,7 +35,6 @@ import com.telenav.entity.service.model.v4.EntitySearchResponse;
 import com.telenav.entity.service.model.v4.EntitySuggestionResponse;
 import com.telenav.entity.service.model.v4.Suggestion;
 import com.telenav.foundation.log.LogEnum;
-import com.telenav.foundation.vo.LatLon;
 import com.telenav.sdk.external.ExternalDisplayManager;
 import com.telenav.sdk.map.InitialiseManager;
 import com.telenav.sdk.map.InitialiseSettings;
@@ -45,10 +43,7 @@ import com.telenav.sdk.map.MapSettings;
 import com.telenav.sdk.map.MapView;
 import com.telenav.sdk.map.SdkInitialization;
 import com.telenav.sdk.navigation.controller.NavigationManager;
-import com.telenav.sdk.navigation.model.Edge;
-import com.telenav.sdk.navigation.model.NavigationData;
 import com.telenav.sdk.navigation.model.NavigationSettings;
-import com.telenav.sdk.navigation.model.Segment;
 import com.telenav.sdk.navigation.model.TrafficSettings;
 import com.telenav.sdk_sample.R;
 import com.telenav.sdk_sample.application.ApplicationPreferences;
@@ -57,7 +52,7 @@ import com.telenav.sdk_sample.application.SdkSampleApplication;
 import com.telenav.sdk_sample.car.data.SocketServer;
 import com.telenav.sdk_sample.connectivity.NetworkConnectionMonitor;
 import com.telenav.sdk_sample.joglrender.OBJParser;
-import com.telenav.sdk_sample.joglrender.openGLRenderer;
+import com.telenav.sdk_sample.joglrender.OpenGLRenderer;
 import com.telenav.sdk_sample.search.SearchManager;
 import com.telenav.sdk_sample.search.SearchRequestObject;
 import com.telenav.sdk_sample.search.SuggestionItem;
@@ -66,8 +61,6 @@ import com.telenav.sdk_sample.ui.menu.MenuConstants;
 import com.telenav.sdk_sample.ui.menu.SlidingMenuAdapter;
 import com.telenav.sdk_sample.ui.menu.SlidingMenuItem;
 import com.telenav.sdk_sample.car.data.SocketClient;
-
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -220,7 +213,7 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
         gl = (GLSurfaceView) findViewById(R.id.jogl_render);
         gl.setEGLContextClientVersion(2);
 
-        gl.setRenderer( new openGLRenderer(this,(RelativeLayout) findViewById(R.id.leftPane)));
+        gl.setRenderer( new OpenGLRenderer(this,(RelativeLayout) findViewById(R.id.leftPane)));
 
     }
 

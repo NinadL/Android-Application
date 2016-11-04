@@ -110,7 +110,7 @@ public class OBJParser {
         Log.d("asyncTask","setting status");
         modelBuffers obj = new modelBuffers();
         obj.setBuffer(faceBuffer,colorBuffer,normalBuffer,textureBuffer,faces.size());
-        new draw().setVehicleStatus(obj,true);
+        new DrawEntity().setVehicleStatus(obj,true);
         Log.d("set","setting status");
 
     }
