@@ -141,42 +141,42 @@ public class laneFunctions {
      * Mode is used to give color and thickness to the line generated.
      * distance is used to DrawEntity the parallel lane from the lane give
      */
-//    public void getSolidLineCoordinates(ArrayList<Point> LanePoints, int mode, ArrayList vertexList, ArrayList colorList,float distance)
-//    {
-//        short stepSize =1;
-//        for (int pointCount = 0; pointCount < LanePoints.size(); pointCount+=stepSize)
-//        {
-//            float bottomX = (float) LanePoints.get(pointCount).getX();
-//            float bottomY = (float) LanePoints.get(pointCount).getY();
-//            float bottomNx = (float) LanePoints.get(pointCount).getNx();
-//            float bottomNy = (float) LanePoints.get(pointCount).getNy();
-//
-//            if (pointCount + stepSize < LanePoints.size())
-//            {
-//                float topX = (float)  LanePoints.get(pointCount +stepSize ).getX();
-//                float topY = (float)  LanePoints.get(pointCount +stepSize).getY();
-//                float topNx = (float) LanePoints.get(pointCount +stepSize).getNx();
-//                float topNy = (float) LanePoints.get(pointCount +stepSize).getNy();
-//
-//                if(distance != 0.0) //DrawEntity parallel lines
-//                {
-//                    float[] newBottomPoints = getDistantPoints(bottomY, bottomX, bottomNx, bottomNy, distance);
-//                    float[] newTopPoints = getDistantPoints(topY, topX, topNx, topNy, distance);
-//                    if(distance > 0)
-//                    {
-//                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,colorList);
-//                    }
-//                    else if(distance < 0)
-//                    {
-//                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,colorList);
-//                    }
-//                }
-//                else
-//                    pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList,colorList);
-//
-//            }
-//        }
-//    }
+    public void getSolidLineCoordinates(ArrayList<Point> LanePoints, int mode, ArrayList vertexList, ArrayList vertexList1, ArrayList colorList,float distance)
+    {
+        short stepSize =1;
+        for (int pointCount = 0; pointCount < LanePoints.size(); pointCount+=stepSize)
+        {
+            float bottomX = (float) LanePoints.get(pointCount).getX();
+            float bottomY = (float) LanePoints.get(pointCount).getY();
+            float bottomNx = (float) LanePoints.get(pointCount).getNx();
+            float bottomNy = (float) LanePoints.get(pointCount).getNy();
+
+            if (pointCount + stepSize < LanePoints.size())
+            {
+                float topX = (float)  LanePoints.get(pointCount +stepSize ).getX();
+                float topY = (float)  LanePoints.get(pointCount +stepSize).getY();
+                float topNx = (float) LanePoints.get(pointCount +stepSize).getNx();
+                float topNy = (float) LanePoints.get(pointCount +stepSize).getNy();
+
+                if(distance != 0.0) //DrawEntity parallel lines
+                {
+                    float[] newBottomPoints = getDistantPoints(bottomY, bottomX, bottomNx, bottomNy, distance);
+                    float[] newTopPoints = getDistantPoints(topY, topX, topNx, topNy, distance);
+                    if(distance > 0)
+                    {
+                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,vertexList1, colorList);
+                    }
+                    else if(distance < 0)
+                    {
+                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,vertexList1, colorList);
+                    }
+                }
+                else
+                    pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList,vertexList1, colorList);
+
+            }
+        }
+    }
 
     public void pointCalculation(float bottomX,float bottomY,float bottomNx, float bottomNy, float topX, float topY, float topNx, float topNy, int mode,ArrayList vertexList,ArrayList vertexList1,  ArrayList colorList){
         if ((bottomNx == 0 || bottomNy == 1 || bottomNy == -1) && (topNx == 0 || topNy == 1 || topNy == -1))

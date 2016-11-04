@@ -527,7 +527,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 //                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList,-3.6f);
 //                                    rightLaneDashed = true;
 //                                }
-                                laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, dashLanePoints, laneColorList);
+                                laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, dashLanePoints, laneColorList, 0);
 
                                 break;
                             case 9: //centerlane
