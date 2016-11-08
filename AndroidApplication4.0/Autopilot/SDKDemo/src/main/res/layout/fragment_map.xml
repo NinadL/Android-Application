@@ -406,7 +406,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/map_view"
+        android:background="@drawable/map_overview_inactive"
         android:visibility="gone"
         />
 

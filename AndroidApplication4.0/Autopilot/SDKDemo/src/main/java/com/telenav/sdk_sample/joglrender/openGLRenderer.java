@@ -106,7 +106,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
     @Override
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config)
     {  // Set the background clear color to gray.
-        GLES20.glClearColor(0f,0f,0f, 0.5f);
+        GLES20.glClearColor(0.098f,0.098f,0.098f, 1f);
 
         /*
         * horizontal shift if both "eyeX" and "lookX" are set to same value else model gets aligned at some angle instead of being oriented horizontally
@@ -548,6 +548,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
                     FloatBuffer colorBuffer = convertToFloatBuffer(laneColorList,dataSize2D);
                     drawEntityObjectForBuffer.setBufferLane(vertexBuffer, colorBuffer, lanePoints.size() / 2, true);
                     drawEntityObjectForBuffer.setBufferDashLane(vertexBuffer1, colorBuffer, lanePoints.size() / 2, true);
+
 //                    FloatBuffer vertexBuffer = convertToFloatBuffer(lanePoints,dataSize2D);
 //
 //                    FloatBuffer colorBuffer = convertToFloatBuffer(laneColorList,dataSize2D);

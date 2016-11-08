@@ -80,8 +80,12 @@ public class DataParser
                 //  Log.d("motex","sent");
             }
         }
+//        Lane lane = new Lane();
+//        lane.init();
+//        ArrayList<Lane> lanes = new ArrayList<>();
+//        lanes.add(lane.centerLane);
 //        LaneModel laneModel = new LaneModel();
-//        localDeepCopy = laneModel.sortLanes(localDeepCopy);
+//        localDeepCopy = laneModel.sortLanes(lanes);
         return localDeepCopy;
     }
 

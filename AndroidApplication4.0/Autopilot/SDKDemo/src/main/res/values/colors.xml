@@ -12,4 +12,5 @@
     <color name="warning_color">#FED406</color>
     <color name="error_color">#D0011D</color>
     <color name="emergency_background_color">#43060E</color>
+    <color name="opengl_background">#191919</color>
 </resources>

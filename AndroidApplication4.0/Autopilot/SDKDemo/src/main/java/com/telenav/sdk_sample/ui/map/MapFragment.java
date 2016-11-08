@@ -970,7 +970,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                         travelEstimation.setVisibility(View.VISIBLE);
                         currentStreetName.setVisibility(View.VISIBLE);
                         zoomView.setVisibility(View.VISIBLE);
-                        zoomView.setImageResource(R.drawable.map_view);
+                        zoomView.setImageResource(R.drawable.map_overview_inactive);
                         isStreetLevelZoomEnabled = true;
 
                         AutopilotStatusDecisions autopilotStatusDecisions = new AutopilotStatusDecisions();
@@ -1028,7 +1028,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                 currentStreetName.setVisibility(View.GONE);
                 junctionViewImage.setVisibility(View.GONE);
                 zoomView.setVisibility(View.GONE);
-                zoomView.setImageResource(R.drawable.overview_icon);
+                zoomView.setImageResource(R.drawable.map_overview_active);
                 isStreetLevelZoomEnabled = false;
                 slidingMenu.setVisibility(View.VISIBLE);
                 NavigationManager.getInstance().stopNavigation();
@@ -1072,7 +1072,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
             case R.id.zoom_view:
                 if(isStreetLevelZoomEnabled)
                 {
-                    zoomView.setImageResource(R.drawable.overview_icon);
+                    zoomView.setImageResource(R.drawable.map_overview_active);
                     mapSettings.setZoomLevel(8.0f, 0.5f);
                     mapSettings.setFollowUserPosition(!appPrefs.getBooleanPreference(PreferenceTypes.K_FOLLOW_USER_POSITION));
                     mapSettings.setEnableHeadingRotation(!appPrefs.getBooleanPreference(PreferenceTypes.K_ROTATE_HEADING));
@@ -1081,7 +1081,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                 }
                 else
                 {
-                    zoomView.setImageResource(R.drawable.map_view);
+                    zoomView.setImageResource(R.drawable.map_overview_inactive);
                     mapSettings.setZoomLevel(1.0f, 1.0f);
                     mapSettings.setFollowUserPosition(appPrefs.getBooleanPreference(PreferenceTypes.K_FOLLOW_USER_POSITION));
                     mapSettings.setEnableHeadingRotation(appPrefs.getBooleanPreference(PreferenceTypes.K_ROTATE_HEADING));

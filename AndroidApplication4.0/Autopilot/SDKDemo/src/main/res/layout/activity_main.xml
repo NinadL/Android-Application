@@ -7,15 +7,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="3"
-        android:orientation="vertical">
+        android:weightSum="1080"
+        android:orientation="vertical"
+        android:background="@android:color/black">
 
 
-        <!--Top margin-->
+        <!--Margin-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_weight="25"
             android:background="@android:color/black">
         </LinearLayout>
 
@@ -23,23 +24,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="370"
             android:orientation="horizontal"
             android:id="@+id/header_frame">
         </LinearLayout>
 
+        <!--Margin-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
-            android:weightSum="2"
+            android:layout_weight="25"
+            android:background="@android:color/black">
+        </LinearLayout>
+
+        <!--Maps and Open GL-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="635"
+            android:weightSum="1920"
             android:orientation="horizontal">
 
-
+            <!--Margin-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="25"
+                android:background="@android:color/black">
+            </LinearLayout>
+
+            <!--Maps -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="922">
 
                 <FrameLayout
                     android:id="@+id/content_frame"
@@ -48,12 +66,20 @@
 
             </LinearLayout>
 
+            <!--Margin-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="25"
+                android:background="@android:color/black">
+            </LinearLayout>
+
+            <!--Open GL-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="922"
                 android:orientation="vertical"
-                android:background="@android:color/black"
                 >
 
                 <RelativeLayout
@@ -76,6 +102,22 @@
 
             </LinearLayout>
 
+            <!--Margin-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="25"
+                android:background="@android:color/black">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Margin-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            android:background="@android:color/black">
         </LinearLayout>
     </LinearLayout>
 
