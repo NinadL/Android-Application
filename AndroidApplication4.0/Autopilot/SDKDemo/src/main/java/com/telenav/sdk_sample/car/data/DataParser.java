@@ -17,6 +17,9 @@ import java.util.ArrayList;
  */
 public class DataParser
 {
+//    static Lane lane = new Lane();
+//    static ArrayList<Lane> localDeep = null;
+
     static State stateObject = new State();
     static Ego egoObject = new Ego();
     static ArrayList<Sensor> sensorObject = new ArrayList<Sensor>();
@@ -39,7 +42,14 @@ public class DataParser
         return mutex;
     }
 
-    public DataParser(){}
+    public DataParser()
+    {
+//        lane.init();
+//        ArrayList<Lane> lanes = new ArrayList<>();
+//        lanes.add(lane.centerLane);
+//        LaneModel laneModel = new LaneModel();
+//        localDeep = laneModel.sortLanes(lanes);
+    }
 
     public ControlMessage getControlMessageObject()
     {
@@ -80,12 +90,8 @@ public class DataParser
                 //  Log.d("motex","sent");
             }
         }
-//        Lane lane = new Lane();
-//        lane.init();
-//        ArrayList<Lane> lanes = new ArrayList<>();
-//        lanes.add(lane.centerLane);
-//        LaneModel laneModel = new LaneModel();
-//        localDeepCopy = laneModel.sortLanes(lanes);
+//        localDeepCopy = localDeep;
+
         return localDeepCopy;
     }
 

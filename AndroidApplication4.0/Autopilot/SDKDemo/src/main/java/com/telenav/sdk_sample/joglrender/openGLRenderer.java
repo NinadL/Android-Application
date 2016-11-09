@@ -96,9 +96,8 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
     {
         this.context = context;
         this.mainActivityRelativeLayout = rl;
-        sensorStatusTimer.scheduleAtFixedRate(new senorStatusTimerClass(),0,1000);
-//        gridTimer.scheduleAtFixedRate(new gridProductionTimerClass(),0,150);
-        laneTimer.scheduleAtFixedRate(new laneCalculationTimerClass(),0,85);
+        //sensorStatusTimer.scheduleAtFixedRate(new senorStatusTimerClass(),0,1000);
+        laneTimer.scheduleAtFixedRate(new laneCalculationTimerClass(),0,100);
 
 
     }
@@ -106,7 +105,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
     @Override
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config)
     {  // Set the background clear color to gray.
-        GLES20.glClearColor(0.098f,0.098f,0.098f, 1f);
+        GLES20.glClearColor(0.025f,0.025f,0.025f, 1f);
 
         /*
         * horizontal shift if both "eyeX" and "lookX" are set to same value else model gets aligned at some angle instead of being oriented horizontally
@@ -120,7 +119,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         // We are looking toward the distance
         final float lookX = -3f;
         final float lookY = -15f;
-        final float lookZ = -10.0f;
+        final float lookZ = -18.0f;
 
         // Set our up vector. This is where our head would be pointing were we holding the camera.
         final float upX = 0.0f;
@@ -129,14 +128,14 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
         Matrix.setLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
 
-        final float eyeXLane = -21;//-17
+        final float eyeXLane = -23;//-17
         final float eyeYLane = 0f;
-        final float eyeZLane = 13;
+        final float eyeZLane = 7;
 
         // We are looking toward the distance
         final float lookXLane = -0.0f;
         final float lookYLane = 0.0f;
-        final float lookZLane = -10.0f;
+        final float lookZLane = -18.0f;
 
         // Set our up vector. This is where our head would be pointing were we holding the camera.
         final float upXLane = 1.0f;
@@ -146,10 +145,14 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         Matrix.setLookAtM(mViewMatrixLane, 0, eyeXLane, eyeYLane, eyeZLane, lookXLane, lookYLane, lookZLane, upXLane, upYLane, upZLane);
 
         // Disable depth testing
-        GLES20.glDisable(GLES20.GL_DEPTH_TEST);
+        //GLES20.glDisable(GLES20.GL_DEPTH_TEST);
         GLES20.glDisable(GLES20.GL_CULL_FACE);
-        GLES20.glEnable(GLES20.GL_BLEND);
-        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+//        GLES20.glEnable(GLES20.GL_BLEND);
+//        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+
+        GLES20.glEnable( GLES20.GL_DEPTH_TEST );
+        GLES20.glDepthFunc( GLES20.GL_LEQUAL );
+        GLES20.glDepthMask( true );
 
         drawEntityObject = new DrawEntity(mainActivityRelativeLayout,mMVPMatrixLane,mViewMatrixLane,mModelMatrixLane,mProjectionMatrixLane);
 
@@ -179,7 +182,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
 
 
-        int roadTextureHandle = loadTexture(context, R.drawable.gray);
+        int roadTextureHandle = loadTexture(context, R.drawable.road_color);
         int redColorHandle  = OpenGLRenderer.loadTexture(context, R.raw.rio_red);
         int yellowColorHandle  = OpenGLRenderer.loadTexture(context, R.raw.rio_yellow);
         int whiteColorHandle  = OpenGLRenderer.loadTexture(context, R.drawable.white_strip);
@@ -487,6 +490,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
                 laneBoundaryData = dp.getLaneObject();
                 ArrayList lanePoints = new ArrayList();
                 ArrayList dashLanePoints = new ArrayList();
+                ArrayList leftShaderLanePoints = new ArrayList();
                 ArrayList laneColorList = new ArrayList();
                 ArrayList laneColorList1 = new ArrayList();
                 ArrayList<Lane> localLaneBoundaryData = laneBoundaryData;
@@ -510,28 +514,8 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
                          */
                         Log.d("number of boundries",i++ +" "+localLaneBoundaryData.get(lane_no).getPoints().size());
                         switch( localLaneBoundaryData.get(lane_no).getType()){
-                            case LaneModel.leftLaneInvisibleType:
-                                //laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), LaneModel.leftLaneInvisibleType, lanePoints, laneColorList);
-                                break;
-                            case LaneModel.leftLeftLaneInvisibleType:
-                                //laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), LaneModel.leftLeftLaneInvisibleType, lanePoints, laneColorList,0);
-                                break;
                             case 1://dashed
-//                                if(lane_no == 1 )
-//                                {
-//                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList,3.6f);
-//                                    leftLaneDashed = true;
-//                                }
-//                                if( lane_no ==2)
-//                                {
-//                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList,-3.6f);
-//                                    rightLaneDashed = true;
-//                                }
                                 laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, dashLanePoints, laneColorList, 0);
-
-                                break;
-                            case 9: //centerlane
-                               // new laneFunctions().getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 9, lanePoints, laneColorList);
                                 break;
                             default:
                                 //laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), localLaneBoundaryData.get(lane_no).getType(), lanePoints, laneColorList,0);
@@ -548,13 +532,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
                     FloatBuffer colorBuffer = convertToFloatBuffer(laneColorList,dataSize2D);
                     drawEntityObjectForBuffer.setBufferLane(vertexBuffer, colorBuffer, lanePoints.size() / 2, true);
                     drawEntityObjectForBuffer.setBufferDashLane(vertexBuffer1, colorBuffer, lanePoints.size() / 2, true);
-
-//                    FloatBuffer vertexBuffer = convertToFloatBuffer(lanePoints,dataSize2D);
-//
-//                    FloatBuffer colorBuffer = convertToFloatBuffer(laneColorList,dataSize2D);
-//
-//                    drawEntityObjectForBuffer.setBufferDashedLane(vertexBuffer1, colorBuffer, lanePoints.size() / 2, true);
-
                 }
                 else
                     drawEntityObjectForBuffer.setBufferLane(null, null, 0, false);
@@ -568,55 +545,4 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
             statusObject.setAreWeOnCentreLane(leftLaneDashed && rightLaneDashed);
         }
     }
-
-    private class gridProductionTimerClass extends TimerTask {
-
-        ArrayList<Lane> laneBoundaryData = new ArrayList<Lane>();
-        @Override
-        public void run() {
-           //if((statusObject.gettingLaneData()))
-            if(true)
-            {
-                long waitTime = 100;
-
-                laneBoundaryData = dp.getLaneObject();
-                ArrayList gridPoints = new ArrayList();
-                ArrayList gridColorList = new ArrayList();
-                long startTime = System.currentTimeMillis();
-
-
-                ArrayList<Lane> localLaneBoundaryData = laneBoundaryData;
-//                new laneFunctions().getSolidLineCoordinates(centerLane.getPoints(), gridMode, gridPoints, gridColorList,0);
-//                new laneFunctions().gridFormation(centerLane.getPoints(), gridPoints,gridColorList);
-
-                for (int lane_no = 0; lane_no < localLaneBoundaryData.size(); lane_no++)
-                {
-                    if (localLaneBoundaryData.get(lane_no) != null &&  localLaneBoundaryData.get(lane_no).getType() == 9  )
-                    {
-  //                      new laneFunctions().getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), gridMode, gridPoints, gridColorList,0);
-
-  //                      new laneFunctions().gridFormation(localLaneBoundaryData.get(lane_no).getPoints(), gridPoints,gridColorList);
-
-                    }
-                }
-
-                if (gridPoints.size() != 0) {
-                    FloatBuffer vertexList = convertToFloatBuffer(gridPoints,dataSize2D);
-                    FloatBuffer colorList = convertToFloatBuffer(gridColorList,dataSize2D);
-
-                    modelBuffers obj = new modelBuffers();
-                    obj.setBuffer(vertexList, colorList, null, null, gridPoints.size() / 2);
-                    drawEntityObjectForBuffer.setBufferGrid(obj, true);
-                }
-                else
-                    drawEntityObjectForBuffer.setBufferGrid(null, false);
-
-                Log.d("gridProduction"," "+(System.currentTimeMillis()- startTime));
-
-            }
-            else
-                drawEntityObjectForBuffer.setBufferGrid(null, false);
-        }
-    }
-
 }

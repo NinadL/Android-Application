@@ -158,27 +158,27 @@ public class laneFunctions {
                 float topNx = (float) LanePoints.get(pointCount +stepSize).getNx();
                 float topNy = (float) LanePoints.get(pointCount +stepSize).getNy();
 
-                if(distance != 0.0) //DrawEntity parallel lines
-                {
-                    float[] newBottomPoints = getDistantPoints(bottomY, bottomX, bottomNx, bottomNy, distance);
-                    float[] newTopPoints = getDistantPoints(topY, topX, topNx, topNy, distance);
-                    if(distance > 0)
-                    {
-                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,vertexList1, colorList);
-                    }
-                    else if(distance < 0)
-                    {
-                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,vertexList1, colorList);
-                    }
-                }
-                else
+//                if(distance != 0.0) //DrawEntity parallel lines
+//                {
+//                    float[] newBottomPoints = getDistantPoints(bottomY, bottomX, bottomNx, bottomNy, distance);
+//                    float[] newTopPoints = getDistantPoints(topY, topX, topNx, topNy, distance);
+//                    if(distance > 0)
+//                    {
+//                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,vertexList1, colorList);
+//                    }
+//                    else if(distance < 0)
+//                    {
+//                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,vertexList1, colorList);
+//                    }
+//                }
+//                else
                     pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList,vertexList1, colorList);
 
             }
         }
     }
 
-    public void pointCalculation(float bottomX,float bottomY,float bottomNx, float bottomNy, float topX, float topY, float topNx, float topNy, int mode,ArrayList vertexList,ArrayList vertexList1,  ArrayList colorList){
+    public void pointCalculation(float bottomX,float bottomY,float bottomNx, float bottomNy, float topX, float topY, float topNx, float topNy, int mode,ArrayList vertexList,ArrayList vertexList1, ArrayList colorList){
         if ((bottomNx == 0 || bottomNy == 1 || bottomNy == -1) && (topNx == 0 || topNy == 1 || topNy == -1))
         {
 
@@ -222,30 +222,30 @@ public class laneFunctions {
     * Mode is used to give color and thickness to the line generated.
     * distance is used to DrawEntity the parallel lane from the lane give
     */
-    public void getDashedLineCoordinates(ArrayList<Point> LanePoints, int mode, ArrayList vertexList, ArrayList vertexList1,  ArrayList colorList)
-    {
-        short blankSpaceSize = 2;
-
-        for (int pointCount = 0; pointCount < LanePoints.size(); pointCount+=2*blankSpaceSize)
-        {
-            float bottomX = (float) LanePoints.get(pointCount).getX();
-            float bottomY = (float) LanePoints.get(pointCount).getY();
-            float bottomNx = (float) LanePoints.get(pointCount).getNx();
-            float bottomNy = (float) LanePoints.get(pointCount).getNy();
-
-
-
-            if (pointCount + blankSpaceSize < LanePoints.size())
-            {
-                float topX = (float)  LanePoints.get(pointCount +blankSpaceSize  ).getX();
-                float topY = (float)  LanePoints.get(pointCount  +blankSpaceSize ).getY();
-                float topNx = (float) LanePoints.get(pointCount  +blankSpaceSize ).getNx();
-                float topNy = (float) LanePoints.get(pointCount +blankSpaceSize  ).getNy();
-
-                pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList,vertexList1,  colorList);
-            }
-        }
-    }
+//    public void getDashedLineCoordinates(ArrayList<Point> LanePoints, int mode, ArrayList vertexList, ArrayList vertexList1,  ArrayList colorList)
+//    {
+//        short blankSpaceSize = 2;
+//
+//        for (int pointCount = 0; pointCount < LanePoints.size(); pointCount+=2*blankSpaceSize)
+//        {
+//            float bottomX = (float) LanePoints.get(pointCount).getX();
+//            float bottomY = (float) LanePoints.get(pointCount).getY();
+//            float bottomNx = (float) LanePoints.get(pointCount).getNx();
+//            float bottomNy = (float) LanePoints.get(pointCount).getNy();
+//
+//
+//
+//            if (pointCount + blankSpaceSize < LanePoints.size())
+//            {
+//                float topX = (float)  LanePoints.get(pointCount +blankSpaceSize  ).getX();
+//                float topY = (float)  LanePoints.get(pointCount  +blankSpaceSize ).getY();
+//                float topNx = (float) LanePoints.get(pointCount  +blankSpaceSize ).getNx();
+//                float topNy = (float) LanePoints.get(pointCount +blankSpaceSize  ).getNy();
+//
+//                pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList,vertexList1, vert  colorList);
+//            }
+//        }
+//    }
 
 
     //line dividing formula
@@ -275,45 +275,44 @@ public class laneFunctions {
 
     //creating a thick rightLane
     public void thickLineCreation(float x1, float y1, float x2, float y2, int mode, ArrayList laneVertexList, ArrayList laneVertexList1, ArrayList LaneColorLane) {
-        float thickness;
-        if (mode > 9)
-            thickness = 0.05f;
-        else
-            thickness = 0.5f;
-        if (mode == -1)
-        {
-            laneVertexList.add(x1);
-            laneVertexList.add(y1);
-            //  laneVertexList.add(1);
+        float thickness = 0.1f;
 
-            laneVertexList.add(x2);
-            laneVertexList.add(y2);
-            // laneVertexList.add(1);
-        }
-        else if(mode == 1 )
+//        if (mode == -1)
+//        {
+//            laneVertexList.add(x1);
+//            laneVertexList.add(y1);
+//            //  laneVertexList.add(1);
+//
+//            laneVertexList.add(x2);
+//            laneVertexList.add(y2);
+//            // laneVertexList.add(1);
+//        }
+        if(mode == 1)
         {
             laneVertexList.add(x1);  //x1
-            laneVertexList.add(y1 - 3.6);   //y1-0.5
+            laneVertexList.add(y1 - 3.6f);   //y1-0.5
             // laneVertexList.add(1);
 
             laneVertexList.add(x1);  //x1
-            laneVertexList.add(y1 + 3.6);   //y1+0.5
+            laneVertexList.add(y1 + 3.6f);   //y1+0.5
             // laneVertexList.add(1);
 
             laneVertexList.add(x2);  //x1
-            laneVertexList.add(y2 + 3.6); //y2+0.5
+            laneVertexList.add(y2 + 3.6f); //y2+0.5
             // laneVertexList.add(1);
 
             laneVertexList.add(x2);//x1
-            laneVertexList.add(y2 + 3.6); //y2+0.5
+            laneVertexList.add(y2 + 3.6f); //y2+0.5
             // laneVertexList.add(1);
 
             laneVertexList.add(x2); //x1
-            laneVertexList.add(y2 - 3.6); //y2-0.5
+            laneVertexList.add(y2 - 3.6f); //y2-0.5
             //  laneVertexList.add(1);
 
             laneVertexList.add(x1); //x1
-            laneVertexList.add(y1 - 3.6); //y1-0.5
+            laneVertexList.add(y1 - 3.6f); //y1-0.5
+
+            //////////////////////////////////////////
 
 
             laneVertexList1.add(x1);  //x1
@@ -338,6 +337,8 @@ public class laneFunctions {
 
             laneVertexList1.add(x1); //x1
             laneVertexList1.add(y1 - thickness); //y1-0.5
+
+            ////////////////////////////////////////////
         }
 
             //  laneVertexList.add(1);
@@ -364,13 +365,13 @@ public class laneFunctions {
                     LaneColorLane.add(0);
                     LaneColorLane.add(0.5f);
                 }
-                else if (mode == LaneModel.leftLaneInvisibleType || mode == LaneModel.leftLeftLaneInvisibleType)
-                {
-                    LaneColorLane.add(0.5);
-                    LaneColorLane.add(0.5);
-                    LaneColorLane.add(0.5);
-                    LaneColorLane.add(0.5f);
-                }
+//                else if (mode == LaneModel.leftLaneInvisibleType || mode == LaneModel.leftLeftLaneInvisibleType)
+//                {
+//                    LaneColorLane.add(0.5);
+//                    LaneColorLane.add(0.5);
+//                    LaneColorLane.add(0.5);
+//                    LaneColorLane.add(0.5f);
+//                }
                 else if (mode == 9)
                 {
                     LaneColorLane.add(1);
