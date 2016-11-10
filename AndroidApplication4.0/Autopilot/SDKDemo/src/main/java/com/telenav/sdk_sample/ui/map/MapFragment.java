@@ -314,7 +314,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
         mapSettings.setOrientationMode(MapSettings.ORIENTATION_MODE_M3D_HEADING_UP);
         setMapGesture();
         mapSettings.setMapStyle(MapSettings.MAP_STYLE_NIGHT);
-        mapSettings.setFollowUserPosition(appPrefs.getBooleanPreference(PreferenceTypes.K_FOLLOW_USER_POSITION));
+        mapSettings.setFollowUserPosition(true);
         mapSettings.setEnableHeadingRotation(appPrefs.getBooleanPreference(PreferenceTypes.K_ROTATE_HEADING));
         mapSettings.setShowBuildingIn3D(appPrefs.getBooleanPreference(PreferenceTypes.K_SHOW_BUILDINGS_IN_3D_MODE));
         mapSettings.setShowTerrain(appPrefs.getBooleanPreference(PreferenceTypes.K_SHOW_MAP_TERRAIN_MODE));
@@ -1362,7 +1362,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 
             if (NavigationManager.getInstance().getNavigationData().isNavigationStarted()) {
                 showTurnArrowOnMap();
-                MapActivity.headerFragment.setSpeed();
+
                 if (!TextUtils.isEmpty(NavigationManager.getInstance().getNavigationData().getNextStreetName()) && mainActivity != null) {
                     mainActivity.runOnUiThread(new Runnable() {
                         @Override

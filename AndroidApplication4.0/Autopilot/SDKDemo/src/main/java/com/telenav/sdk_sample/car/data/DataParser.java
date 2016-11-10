@@ -48,7 +48,7 @@ public class DataParser
 //        ArrayList<Lane> lanes = new ArrayList<>();
 //        lanes.add(lane.centerLane);
 //        LaneModel laneModel = new LaneModel();
-//        localDeep = laneModel.sortLanes(lanes);
+//        localDeep = laneModel.constructLanes(lanes);
     }
 
     public ControlMessage getControlMessageObject()
@@ -63,7 +63,6 @@ public class DataParser
 
     public Ego getSelfObject()
     {
-        Log.d("Ego Object", String.valueOf(egoObject));
         return egoObject;
     }
 
@@ -152,7 +151,7 @@ public class DataParser
             Log.d("sortedLane Size,",sortedLane.size()+" ");
         }
         LaneModel laneModel = new LaneModel();
-        sortedLane = laneModel.sortLanes(laneObject);
+        sortedLane = laneModel.constructLanes(laneObject);
 
 //            //Obstacles
 //

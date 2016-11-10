@@ -24,6 +24,7 @@ public class AutopilotStatusDecisions
 {
     private static AutopilotData autopilotData;
     public static Timer timerForStatusCheck;
+    public static Timer timerForSpeedUpdate;
     private static DataParser dataParser = new DataParser();
     private static setStatusClass statusObject = new setStatusClass();
     //Status will be set to 0 or 1 based on the condition.
@@ -38,6 +39,9 @@ public class AutopilotStatusDecisions
         autopilotData = new AutopilotData();
         timerForStatusCheck = new Timer("MyTimer1", true);
         timerForStatusCheck.scheduleAtFixedRate(new StatusDecision(), 100, 1000);
+
+        timerForSpeedUpdate = new Timer("MyTimer2", true);
+        timerForSpeedUpdate.scheduleAtFixedRate(new SetSpeed(), 50, 1000);
     }
 
     void setStatus(int index)
@@ -55,27 +59,6 @@ public class AutopilotStatusDecisions
     boolean isNetworkWorking()
     {
         boolean exists = true;
-//        try {
-//            SocketAddress sockaddr = new InetSocketAddress("192.168.1.190", 1234);
-//            // Create an unbound socket
-//            Socket sock = new Socket();
-//
-//            // This method will block no more than timeoutMs.
-//            // If the timeout occurs, SocketTimeoutException is thrown.
-//            int timeoutMs = 2000;   // 2 seconds
-//            sock.connect(sockaddr, timeoutMs);
-//            if(exists)
-//            {
-//                return true;
-//            }
-//            else
-//            {
-//                setStatus(NETWORK_NOT_WORKING);
-//                return false;
-//            }
-//        }
-//        catch(Exception e){
-//        }
         return exists;
     }
 
@@ -165,6 +148,15 @@ public class AutopilotStatusDecisions
     private static final int AUTOPILOT = 1;
 
 
+    class SetSpeed extends TimerTask
+    {
+        @Override
+        public void run()
+        {
+            MapActivity.headerFragment.setSpeed();
+        }
+    }
+
     class StatusDecision extends TimerTask
     {
 
@@ -239,9 +231,7 @@ public class AutopilotStatusDecisions
                 MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
                 MapActivity.headerFragment.setEngageAutopilot(DISABLED);
                 MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(NORMAL);
-
             }
-
         }
     }
 

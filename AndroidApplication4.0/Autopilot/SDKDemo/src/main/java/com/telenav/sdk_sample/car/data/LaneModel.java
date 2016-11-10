@@ -7,66 +7,103 @@ import java.util.ArrayList;
  */
 public class LaneModel
 {
-    static Lane rightRightLaneBoundary;
     static Lane rightLaneBoundary;
     static Lane leftLaneBoundary;
-    static Lane leftLeftLaneBoundary;
 
-    static int NOT_PRESENT = -1;
+    static boolean isRightRightLanePresent = false;
+    static boolean isRightLanePresent = false;
+    static boolean isLeftLanePresent = false;
+    static boolean isLeftLeftLanePresent = false;
 
-    ArrayList<LaneModelObject> laneBoundaries = new ArrayList<LaneModelObject>();
     ArrayList<Lane> sortedBoundaries = new ArrayList<Lane>();
 
 
-
-    public ArrayList<Lane> sortLanes(ArrayList<Lane> laneBoundaries)
+    public ArrayList<Lane> constructLanes(ArrayList<Lane> laneBoundaries)
     {
+        isRightRightLanePresent = false;
+        isRightLanePresent = false;
+        isLeftLanePresent = false;
+        isLeftLeftLanePresent = false;
+
+        sortedBoundaries.clear();
 
         for (int i = 0; i < laneBoundaries.size(); i++)
         {
-            if(laneBoundaries.get(i).getType() == 9)
+            //find ideal lane boundary for all the lanes except for the centre lane
+            if(laneBoundaries.get(i).getType() != 9)
+            {
+                findMatchingPair(laneBoundaries.get(i).getPoints().get(0).getY());
+            }
+        }
+
+        //Set the type based on the present lane boundaries
+        for (int i = 0; i < laneBoundaries.size(); i++)
+        {
+            if (laneBoundaries.get(i).getType() == 9)
             {
 
-                rightRightLaneBoundary = createImaginaryLane(-5.4, laneBoundaries.get(i));
-                rightRightLaneBoundary.setType(2);
-                sortedBoundaries.add(rightRightLaneBoundary);
+                if(isLeftLanePresent && isRightLanePresent)
+                {
+                    rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
+                    rightLaneBoundary.setType(1);
+                    sortedBoundaries.add(rightLaneBoundary);
 
-                rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
-                rightLaneBoundary.setType(1);
-                sortedBoundaries.add(rightLaneBoundary);
+                    leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
+                    leftLaneBoundary.setType(1);
+                    sortedBoundaries.add(leftLaneBoundary);
+                }
+                else if(isLeftLanePresent)
+                {
+                    rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
+                    rightLaneBoundary.setType(2);
+                    sortedBoundaries.add(rightLaneBoundary);
 
-                leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
-                leftLaneBoundary.setType(1);
-                sortedBoundaries.add(leftLaneBoundary);
+                    leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
+                    leftLaneBoundary.setType(1);
+                    sortedBoundaries.add(leftLaneBoundary);
 
-                leftLeftLaneBoundary = createImaginaryLane(5.4, laneBoundaries.get(i));
-                leftLeftLaneBoundary.setType(2);
-                sortedBoundaries.add(leftLeftLaneBoundary);
+                }
+                else if(isRightLanePresent)
+                {
+                    rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
+                    rightLaneBoundary.setType(1);
+                    sortedBoundaries.add(rightLaneBoundary);
+
+                    leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
+                    leftLaneBoundary.setType(2);
+                    sortedBoundaries.add(leftLaneBoundary);
+                }
+                else
+                {
+                    rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
+                    rightLaneBoundary.setType(2);
+                    sortedBoundaries.add(rightLaneBoundary);
+
+                    leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
+                    leftLaneBoundary.setType(2);
+                    sortedBoundaries.add(leftLaneBoundary);
+                }
+                sortedBoundaries.add(laneBoundaries.get(i));
+
             }
         }
         return this.sortedBoundaries;
     }
 
-    //Create imaginary lane based on the surrounding lanes
-    Lane createImaginaryLane(double missingLaneBoundaryYCoord, Lane adjacentLane)
-    {
+    //Create imaginary lane based on the centre lanes
+    Lane createImaginaryLane(double missingLaneBoundaryYCoord, Lane adjacentLane) {
         Lane imaginaryLane = new Lane();
-        if(adjacentLane == null)
-        {
-            for(int i = 0; i < 100 ; i=i+4)
-            {
+        if (adjacentLane == null) {
+            for (int i = 0; i < 100; i = i + 4) {
                 Point point = new Point();
                 point.setX(i);
                 point.setY(missingLaneBoundaryYCoord);
                 imaginaryLane.addPoint(point);
             }
-        }
-        else
-        {
+        } else {
             double distanceBetweenLanes = missingLaneBoundaryYCoord - adjacentLane.getPoints().get(0).getY();
 
-            for(int i = 0; i < adjacentLane.getPoints().size(); i++)
-            {
+            for (int i = 0; i < adjacentLane.getPoints().size(); i++) {
                 Point point = new Point();
                 point.setX(adjacentLane.getPoints().get(i).getX());
                 point.setY(adjacentLane.getPoints().get(i).getY() + distanceBetweenLanes);
@@ -77,24 +114,41 @@ public class LaneModel
         }
         return imaginaryLane;
     }
-}
 
-class LaneModelObject
-{
-    int id;
-    Lane laneboundary;
-    int type;
-    Double y;
-
-    public LaneModelObject(Lane laneboundary, int type, double y)
+    //Finds the closest lane boundary to the ideal lane boundary
+    void findMatchingPair(double y)
     {
-        this.laneboundary = laneboundary;
-        this.type = type;
-        this.y = y;
+        double targetValueOne = Math.pow((5.4 - y), 2);
+        double targetValueTwo = Math.pow((1.8 - y), 2);
+
+        double targetValueThree = Math.pow((-5.4 - y), 2);
+        double targetValueFour = Math.pow((-1.8 - y), 2);
+
+        double minValue = targetValueOne;
+        double lanePresent = 5.4;
+
+        if (targetValueTwo < minValue) {
+            minValue = targetValueTwo;
+            lanePresent = 1.8;
+        }
+        if (targetValueThree < minValue) {
+            minValue = targetValueThree;
+            lanePresent = -5.4;
+        }
+        if (targetValueFour < minValue) {
+            minValue = targetValueFour;
+            lanePresent = -1.8;
+        }
+
+        if (lanePresent == 5.4) {
+            isLeftLeftLanePresent = true;
+        } else if (lanePresent == 1.8) {
+            isLeftLanePresent = true;
+        } else if (lanePresent == -1.8) {
+            isRightLanePresent = true;
+        } else if (lanePresent == -5.4) {
+            isRightRightLanePresent = true;
+        }
     }
 
-    public Double getY()
-    {
-        return y;
-    }
 }
