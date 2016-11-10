@@ -89,7 +89,7 @@ public class DataParser
                 //  Log.d("motex","sent");
             }
         }
-//        localDeepCopy = localDeep;
+        //localDeepCopy = localDeep;
 
         return localDeepCopy;
     }

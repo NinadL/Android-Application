@@ -174,19 +174,19 @@ public class DrawEntity {
         //GLES20.glDisable(GLES20.GL_BLEND);
 
         if (flag1 && laneSize > minArrayListSize) {
-            //GLES20.glFlush();
-            drawTexture(laneVertexBuffer, laneColorBuffer, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, whiteColorHandle);
+            GLES20.glFlush();
+            drawTexture(laneVertexBuffer, laneColorBuffer, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, 4);
         }
 
         if (flag5 && laneSize > minArrayListSize) {
-            //GLES20.glFlush();
+            GLES20.glFlush();
             drawTexture(dashedLaneBuffer, laneColorBuffer, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, whiteColorHandle);
         }
 
         if(islaneTextureReceived && texturePointSize > minArrayListSize)
         {
-            //GLES20.glFlush();
-            drawTexture(laneTextureBuffer, laneTextureColorBuffer, null, null, texturePointSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, roadTextureHandle);
+            GLES20.glFlush();
+            drawTexture(laneTextureBuffer, laneTextureColorBuffer, null, null, texturePointSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -1);
 
         }
 
