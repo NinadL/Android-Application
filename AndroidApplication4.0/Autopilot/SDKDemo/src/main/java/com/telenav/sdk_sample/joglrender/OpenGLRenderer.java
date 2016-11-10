@@ -542,63 +542,59 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
                 long startTime = System.currentTimeMillis();
                 int i = 0;
 
-                if(localLaneBoundaryData.get(0).getType() == 1)
-                {
-                    rightLanePresent = true;
-                }
-                else
-                {
-                    rightLanePresent = false;
-                }
+                int laneDataSize = localLaneBoundaryData.size();
 
-                if(localLaneBoundaryData.get(1).getType() == 1)
-                {
-                    leftLanePresent = true;
-                }
-                else
-                {
-                    leftLanePresent = false;
-                }
+                if (laneDataSize > 0) {
 
-                for (int lane_no = 0; lane_no < localLaneBoundaryData.size(); lane_no++)
-                {
+                    if (localLaneBoundaryData.get(0).getType() == 1) {
+                        rightLanePresent = true;
+                    } else {
+                        rightLanePresent = false;
+                    }
 
-                    if (localLaneBoundaryData.get(lane_no) != null )//{&&  localLaneBoundaryData.get(lane_no).getType() < 9  ) {
-                    {
+                    if (localLaneBoundaryData.get(1).getType() == 1) {
+                        leftLanePresent = true;
+                    } else {
+                        leftLanePresent = false;
+                    }
+
+                    for (int lane_no = 0; lane_no < localLaneBoundaryData.size(); lane_no++) {
+
+                        if (localLaneBoundaryData.get(lane_no) != null)//{&&  localLaneBoundaryData.get(lane_no).getType() < 9  ) {
+                        {
 
                         /*
                          * LaneType {DASHED = 1, SOLID = 2,UNDECIDED =3, ROAD_EDGE=4, DOUBLE_LANE_MARK=5, BOTTS_DOTS=6, INVALID=7, UNKNOWN=8, CENTER_LINE=9, PATH=10
                          */
-                        Log.d("number of boundries",i++ +" "+localLaneBoundaryData.get(lane_no).getPoints().size());
-                        switch( localLaneBoundaryData.get(lane_no).getType())
-                        {
-                            case 1://dashed
-                                laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList);
-                                break;
-                            case 2://solid
-                                laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList, 0);
-                                break;
-                            default:
-                                //laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), localLaneBoundaryData.get(lane_no).getType(), lanePoints, laneColorList,0);
+                            Log.d("number of boundries", i++ + " " + localLaneBoundaryData.get(lane_no).getPoints().size());
+                            switch (localLaneBoundaryData.get(lane_no).getType()) {
+                                case 1://dashed
+                                    laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList);
+                                    break;
+                                case 2://solid
+                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, laneColorList, 0);
+                                    break;
+                                default:
+                                    //laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), localLaneBoundaryData.get(lane_no).getType(), lanePoints, laneColorList,0);
+                            }
                         }
+
                     }
 
-                }
+                    Log.d("laneProductionEnds", String.valueOf(" timeTaken " + (System.currentTimeMillis() - startTime)) + "bufferSize " + lanePoints.size());
 
-                Log.d("laneProductionEnds", String.valueOf(" timeTaken " + (System.currentTimeMillis() - startTime)) + "bufferSize " + lanePoints.size());
-
-                if (lanePoints.size() != 0)
-                {
-                    FloatBuffer vertexBuffer = convertToFloatBuffer(lanePoints,dataSize2D);
-                    FloatBuffer colorBuffer = convertToFloatBuffer(laneColorList,dataSize2D);
-                    drawEntityObjectForBuffer.setBufferLane(vertexBuffer, colorBuffer, lanePoints.size() / 2, true);
+                    if (lanePoints.size() != 0) {
+                        FloatBuffer vertexBuffer = convertToFloatBuffer(lanePoints, dataSize2D);
+                        FloatBuffer colorBuffer = convertToFloatBuffer(laneColorList, dataSize2D);
+                        drawEntityObjectForBuffer.setBufferLane(vertexBuffer, colorBuffer, lanePoints.size() / 2, true);
+                    } else {
+                        drawEntityObjectForBuffer.setBufferLane(null, null, 0, false);
+                    }
                 }
-                else
-                    drawEntityObjectForBuffer.setBufferLane(null, null, 0, false);
-            }
-            else{
+            } else {
                 drawEntityObjectForBuffer.setBufferLane(null, null, 0, false);
             }
+
             statusObject.setIsLeftLaneVisible(leftLanePresent);
             Log.d("lane type","rightLanePresent1 "+ rightLanePresent);
             statusObject.setIsRightLaneVisible(rightLanePresent);
