@@ -30,7 +30,7 @@ public class DrawEntity {
     private  int mNormalDataSize = 3;
     private  int mTextureCoordinateDataSize = 2;
 
-    
+
     float[] mModelMatrix;
     float[] mProjectionMatrix;
     float[] mViewMatrix;
@@ -45,7 +45,7 @@ public class DrawEntity {
     private int mTextureCoordinateHandle;
     private int mUseTextureHandle;
     private int mMVMatrixHandle;
-    
+
     Context Context;
 
     int mTextureUniformHandle;
@@ -56,11 +56,10 @@ public class DrawEntity {
 
     static private FloatBuffer laneVertexBuffer;
     static private FloatBuffer dashedLaneBuffer;
-    static private FloatBuffer laneTextureBuffer;
+    static private FloatBuffer rightShaderBuffer;
     static private FloatBuffer laneColorBuffer;
-    static private FloatBuffer laneTextureColorBuffer;
+    static private FloatBuffer laneColorBuffer1;
     static  private int laneSize;
-    static  private int texturePointSize;
     static boolean flag1 = false;
 
     static boolean flag2 = false;
@@ -70,7 +69,6 @@ public class DrawEntity {
     static boolean flag4=false;
     static boolean flag5=false;
     static boolean flag6=false;
-    static boolean islaneTextureReceived = false;
     static modelBuffers vehicleObj;
 
 
@@ -131,19 +129,9 @@ public class DrawEntity {
         flag1 = flag;
     }
 
-    public void setLaneTexture(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag){
-        laneTextureBuffer = vertexBuffer;
-        laneTextureColorBuffer = colorBuffer;
-        texturePointSize = Size;
-        islaneTextureReceived = flag;
-    }
-
-
-
-
     public void setBufferDashLane(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag){
         dashedLaneBuffer = vertexBuffer;
-        laneColorBuffer = colorBuffer;
+        laneColorBuffer1 = colorBuffer;
         laneSize = Size;
         flag5 = flag;
     }
@@ -171,23 +159,16 @@ public class DrawEntity {
     public void drawToScreen()
     {
 
-        //GLES20.glDisable(GLES20.GL_BLEND);
+        GLES20.glDisable(GLES20.GL_BLEND);
 
         if (flag1 && laneSize > minArrayListSize) {
             GLES20.glFlush();
-            drawTexture(laneVertexBuffer, laneColorBuffer, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, 4);
+            drawTexture(laneVertexBuffer, laneColorBuffer, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
         }
 
         if (flag5 && laneSize > minArrayListSize) {
             GLES20.glFlush();
-            drawTexture(dashedLaneBuffer, laneColorBuffer, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, whiteColorHandle);
-        }
-
-        if(islaneTextureReceived && texturePointSize > minArrayListSize)
-        {
-            GLES20.glFlush();
-            drawTexture(laneTextureBuffer, laneTextureColorBuffer, null, null, texturePointSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -1);
-
+            drawTexture(dashedLaneBuffer, laneColorBuffer1, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
         }
 
         if (flag4)
@@ -266,7 +247,7 @@ public class DrawEntity {
 
         mMVPMatrixHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_MVPMatrix");
         mMVMatrixHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_MVMatrix");
-       // mLightPosHandleTexture = GLES20.glGetUniformLocation(mProgramHandle, "u_LightPos");
+        // mLightPosHandleTexture = GLES20.glGetUniformLocation(mProgramHandle, "u_LightPos");
         mTextureUniformHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Texture");
 
         mUseTextureHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_UseTexture");
@@ -330,7 +311,7 @@ public class DrawEntity {
 
         GLES20.glDrawArrays(mode, 0,size);
         Log.d("laneFormoation",mode+" "+size);
-       // GLES20.glDeleteTextures(1,mTextureDataHandle);
+        // GLES20.glDeleteTextures(1,mTextureDataHandle);
 
     }
 

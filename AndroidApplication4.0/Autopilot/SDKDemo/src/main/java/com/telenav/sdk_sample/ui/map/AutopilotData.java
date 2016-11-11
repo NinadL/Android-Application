@@ -82,7 +82,6 @@ public class AutopilotData
             {
                 return 0;
             }
-
         }
         else
         {

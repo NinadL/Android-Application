@@ -32,6 +32,42 @@ import java.util.TimerTask;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+
+/**
+ * Created by ishwarya on 7/14/16.
+ */
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
+import android.opengl.GLUtils;
+import android.opengl.Matrix;
+import android.util.Log;
+import android.widget.RelativeLayout;
+
+import com.telenav.sdk_sample.R;
+import com.telenav.sdk_sample.car.data.DataParser;
+import com.telenav.sdk_sample.car.data.FieldOfView;
+import com.telenav.sdk_sample.car.data.Lane;
+import com.telenav.sdk_sample.car.data.LaneModel;
+import com.telenav.sdk_sample.car.data.Sensor;
+import com.telenav.sdk_sample.car.data.setStatusClass;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
 /**
  * Created by ishwarya on 7/14/16.
  */
@@ -80,7 +116,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
     final Timer sensorStatusTimer = new Timer(true);
     final Timer laneTimer = new Timer(true);
-    final Timer laneTextureTimer = new Timer(true);
+    final Timer textureTimer = new Timer(true);
     final Timer gridTimer = new Timer(true);
 
     //private Handler handler = new Handler();
@@ -99,15 +135,13 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         this.mainActivityRelativeLayout = rl;
         //sensorStatusTimer.scheduleAtFixedRate(new senorStatusTimerClass(),0,1000);
         laneTimer.scheduleAtFixedRate(new laneCalculationTimerClass(),0,100);
-        //laneTextureTimer.scheduleAtFixedRate(new laneTextureTimerClass(), 0, 1000);
-
-
+        //textureTimer.scheduleAtFixedRate(new LaneTextureTimerClass(), 0, 100);
     }
 
     @Override
     public void onSurfaceCreated(GL10 glUnused, EGLConfig config)
     {  // Set the background clear color to gray.
-        GLES20.glClearColor(0.098f,0.098f,0.098f, 1f);
+        GLES20.glClearColor(0.025f,0.025f,0.025f, 1f);
 
         /*
         * horizontal shift if both "eyeX" and "lookX" are set to same value else model gets aligned at some angle instead of being oriented horizontally
@@ -147,14 +181,19 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         Matrix.setLookAtM(mViewMatrixLane, 0, eyeXLane, eyeYLane, eyeZLane, lookXLane, lookYLane, lookZLane, upXLane, upYLane, upZLane);
 
         // Disable depth testing
-
-
-//        GLES20.glDisable(GLES20.GL_DEPTH_TEST);
+        //GLES20.glDisable(GLES20.GL_DEPTH_TEST);
 //        GLES20.glDisable(GLES20.GL_CULL_FACE);
 //        GLES20.glEnable(GLES20.GL_BLEND);
-//        GLES20.glBlendFunc(GLES20.GL_ZERO, GLES20.GL_ONE);
-//
-        GLES20.glEnable( GLES20.GL_DEPTH_TEST );
+//        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE);
+
+
+        GLES20.glEnable(GLES20.GL_DEPTH_TEST);
+        GLES20.glDisable(GLES20.GL_CULL_FACE);
+        GLES20.glEnable(GLES20.GL_BLEND);
+        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+
+
+//        GLES20.glEnable( GLES20.GL_DEPTH_TEST );
 //        GLES20.glDepthFunc( GLES20.GL_LEQUAL );
 //        GLES20.glDepthMask( true );
 
@@ -171,24 +210,27 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
 
         // Define a simple shader program for our point.
-        final String pointVertexShader = readTextFileFromRawResource(context, R.raw.point_vertex_shader);
-        final String pointFragmentShader = readTextFileFromRawResource(context, R.raw.point_fragment_shader);
-
-        final int pointVertexShaderHandle = compileShader(GLES20.GL_VERTEX_SHADER, pointVertexShader);
-        final int pointFragmentShaderHandle = compileShader(GLES20.GL_FRAGMENT_SHADER, pointFragmentShader);
-
-
-        mPointProgramHandle = createAndLinkProgram(pointVertexShaderHandle, pointFragmentShaderHandle,
-                new String[] {"a_Position"});
+//        final String pointVertexShader = readTextFileFromRawResource(context, R.raw.point_vertex_shader);
+//        final String pointFragmentShader = readTextFileFromRawResource(context, R.raw.point_fragment_shader);
+//
+//        final int pointVertexShaderHandle = compileShader(GLES20.GL_VERTEX_SHADER, pointVertexShader);
+//        final int pointFragmentShaderHandle = compileShader(GLES20.GL_FRAGMENT_SHADER, pointFragmentShader);
+//
+//
+//        mPointProgramHandle = createAndLinkProgram(pointVertexShaderHandle, pointFragmentShaderHandle,
+//                new String[] {"a_Position"});
 
         // Load the texture
 
-        int roadTextureHandle = loadTexture(context, R.drawable.road_color);
-        int redColorHandle  = OpenGLRenderer.loadTexture(context, R.raw.rio_red);
-        int yellowColorHandle  = OpenGLRenderer.loadTexture(context, R.raw.rio_yellow);
-        int whiteColorHandle  = OpenGLRenderer.loadTexture(context, R.drawable.white_strip);
 
         GLES20.glUseProgram(mProgramHandleTexture);
+
+        int roadTextureHandle = loadTexture(context, R.drawable.road_color);
+        int redColorHandle  = mTextureDataHandle = OpenGLRenderer.loadTexture(context, R.raw.rio_red);
+        int yellowColorHandle  = mTextureDataHandle = OpenGLRenderer.loadTexture(context, R.raw.rio_yellow);
+        int whiteColorHandle  = OpenGLRenderer.loadTexture(context, R.drawable.white_strip);
+
+
 
         drawEntityObject.setTextureValues(mPositionHandleTexture,mProgramHandleTexture,mMVPMatrix,mViewMatrix,mModelMatrix,mProjectionMatrix,mMVPMatrixHandleTexture,mColorHandleTexture,mNormalHandle,mTextureCoordinateHandle,context,mMVMatrixHandleTexture,mTextureDataHandle,redColorHandle,yellowColorHandle, roadTextureHandle, whiteColorHandle);
 
@@ -408,74 +450,70 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
      * sensorList.get(i).orientation[0] = qw;
         */
 
-    class senorStatusTimerClass extends TimerTask
-    {
-        public void run() {
-            if ( statusObject.gettingPerceptionData() ){
+//    class senorStatusTimerClass extends TimerTask
+//    {
+//        public void run() {
+//            if ( statusObject.gettingPerceptionData() ){
+//
+//                ArrayList sensorPoints = new ArrayList();
+//                ArrayList sensorColorList = new ArrayList();
+//
+//                ArrayList<Sensor> sensorList = dp.getSensorObject();
+//
+//
+//                for (int i = 0; i < sensorList.size(); i++) {
+//                    ArrayList<FieldOfView> fOVList = sensorList.get(i).getFieldOfViews();
+//                    for(int j = 0; j<fOVList.size();j++)
+//                    {
+//                        short xAdjustmentValue = 1;
+//                        short zMultiplicationFactor = 4;
+//                        boolean visibility = false;
+//
+//                        if(sensorList.get(i).getStatus() == 1) {
+//                            visibility = true;
+//                        }
+//
+//                        double lengthMax = fOVList.get(i).getLengthSpan().getLengthMax();
+//                        //Log.d("Sensor data",(xAdjustmentValue + -(sensorList.get(i).getPosition()[0])) +" "+ sensorList.get(i).getPosition()[1]+" "+(zMultiplicationFactor * sensorList.get(i).getPosition()[2])+ "orientation" +(float) Math.acos(-sensorList.get(i).getOrientation()[3])*2 +" "+sensorList.get(i).getOrientation()[0]+" "+Math.acos(sensorList.get(i).getOrientation()[3]));
+//
+//                        /*displaying the available coverage area that the sensor senses in green*/
+//
+//                        double angleMax = fOVList.get(j).getAngleSpan().getAngleMax();
+//                        new SensorFunctions().getSensorCoverageBuffer(angleMax, (float) (xAdjustmentValue + (-sensorList.get(i).getPosition()[0])), (float) (sensorList.get(i).getPosition()[1]), (float) (zMultiplicationFactor * sensorList.get(i).getPosition()[2]), (float) lengthMax, visibility, sensorPoints, sensorColorList, (float) Math.acos(-sensorList.get(i).getOrientation()[0])*2);
+//
+//                        double angleMin = fOVList.get(i).getAngleSpan().getAngleMin();
+//                        new SensorFunctions().getSensorCoverageBuffer(angleMin, (float) (xAdjustmentValue + -sensorList.get(i).getPosition()[0]), (float)  (sensorList.get(i).getPosition()[1]), (float) (zMultiplicationFactor * sensorList.get(i).getPosition()[2]), (float) lengthMax, visibility, sensorPoints, sensorColorList, (float) Math.acos(-sensorList.get(i).getOrientation()[0])*2);
+//
+//
+//                        double lengthMin = fOVList.get(i).getLengthSpan().getLengthMin();
+//
+//                        if (lengthMin > 0)
+//                        {
+//                            new SensorFunctions().getSensorCoverageBuffer(angleMax, (float) (xAdjustmentValue + -new Sensor().getPosition()[0]), (float) new Sensor().getPosition()[1], (float) (zMultiplicationFactor * new Sensor().getPosition()[2]), (float) lengthMin, false, sensorPoints, sensorColorList,  (float) Math.acos(sensorList.get(i).getOrientation()[0])*2);
+//                            new SensorFunctions().getSensorCoverageBuffer(angleMin, (float) (xAdjustmentValue + -new Sensor().getPosition()[0]), (float) new Sensor().getPosition()[1], (float) (zMultiplicationFactor * new Sensor().getPosition()[2]), (float) lengthMin, false, sensorPoints, sensorColorList,  (float) Math.acos(sensorList.get(i).getOrientation()[0])*2);
+//                        }
+//
+//                        if (sensorPoints.size() > 0)
+//                        {
+//                            FloatBuffer vertexList = convertToFloatBuffer(sensorPoints, dataSize3D);
+//                            FloatBuffer colorList = convertToFloatBuffer(sensorColorList,dataSize3D);
+//                            new DrawEntity().setBufferSensors(vertexList, colorList, sensorPoints.size() / 3, true);
+//
+//                        }
+//                        else
+//                            new DrawEntity().setBufferSensors(null, null, 0, false);
+//                        // Log.d("sensorProductionEnds", String.valueOf("  " + sensorPoints.size()));
+//                    }
+//                }
+//            }
+//            else
+//                new DrawEntity().setBufferSensors(null, null, 0, false);
+//        }
+//    }
 
-                ArrayList sensorPoints = new ArrayList();
-                ArrayList sensorColorList = new ArrayList();
-
-                ArrayList<Sensor> sensorList = dp.getSensorObject();
-
-
-                for (int i = 0; i < sensorList.size(); i++) {
-                    ArrayList<FieldOfView> fOVList = sensorList.get(i).getFieldOfViews();
-                    for(int j = 0; j<fOVList.size();j++)
-                    {
-                        short xAdjustmentValue = 1;
-                        short zMultiplicationFactor = 4;
-                        boolean visibility = false;
-
-                        if(sensorList.get(i).getStatus() == 1) {
-                            visibility = true;
-                        }
-
-                        double lengthMax = fOVList.get(i).getLengthSpan().getLengthMax();
-                        //Log.d("Sensor data",(xAdjustmentValue + -(sensorList.get(i).getPosition()[0])) +" "+ sensorList.get(i).getPosition()[1]+" "+(zMultiplicationFactor * sensorList.get(i).getPosition()[2])+ "orientation" +(float) Math.acos(-sensorList.get(i).getOrientation()[3])*2 +" "+sensorList.get(i).getOrientation()[0]+" "+Math.acos(sensorList.get(i).getOrientation()[3]));
-
-                        /*displaying the available coverage area that the sensor senses in green*/
-
-                        double angleMax = fOVList.get(j).getAngleSpan().getAngleMax();
-                        new SensorFunctions().getSensorCoverageBuffer(angleMax, (float) (xAdjustmentValue + (-sensorList.get(i).getPosition()[0])), (float) (sensorList.get(i).getPosition()[1]), (float) (zMultiplicationFactor * sensorList.get(i).getPosition()[2]), (float) lengthMax, visibility, sensorPoints, sensorColorList, (float) Math.acos(-sensorList.get(i).getOrientation()[0])*2);
-
-                        double angleMin = fOVList.get(i).getAngleSpan().getAngleMin();
-                        new SensorFunctions().getSensorCoverageBuffer(angleMin, (float) (xAdjustmentValue + -sensorList.get(i).getPosition()[0]), (float)  (sensorList.get(i).getPosition()[1]), (float) (zMultiplicationFactor * sensorList.get(i).getPosition()[2]), (float) lengthMax, visibility, sensorPoints, sensorColorList, (float) Math.acos(-sensorList.get(i).getOrientation()[0])*2);
-
-
-                        double lengthMin = fOVList.get(i).getLengthSpan().getLengthMin();
-
-                        if (lengthMin > 0)
-                        {
-                            new SensorFunctions().getSensorCoverageBuffer(angleMax, (float) (xAdjustmentValue + -new Sensor().getPosition()[0]), (float) new Sensor().getPosition()[1], (float) (zMultiplicationFactor * new Sensor().getPosition()[2]), (float) lengthMin, false, sensorPoints, sensorColorList,  (float) Math.acos(sensorList.get(i).getOrientation()[0])*2);
-                            new SensorFunctions().getSensorCoverageBuffer(angleMin, (float) (xAdjustmentValue + -new Sensor().getPosition()[0]), (float) new Sensor().getPosition()[1], (float) (zMultiplicationFactor * new Sensor().getPosition()[2]), (float) lengthMin, false, sensorPoints, sensorColorList,  (float) Math.acos(sensorList.get(i).getOrientation()[0])*2);
-                        }
-
-                        if (sensorPoints.size() > 0)
-                        {
-                            FloatBuffer vertexList = convertToFloatBuffer(sensorPoints, dataSize3D);
-                            FloatBuffer colorList = convertToFloatBuffer(sensorColorList,dataSize3D);
-                            new DrawEntity().setBufferSensors(vertexList, colorList, sensorPoints.size() / 3, true);
-
-                        }
-                        else
-                            new DrawEntity().setBufferSensors(null, null, 0, false);
-                        // Log.d("sensorProductionEnds", String.valueOf("  " + sensorPoints.size()));
-                    }
-                }
-            }
-            else
-                new DrawEntity().setBufferSensors(null, null, 0, false);
-        }
-    }
-
-    //This is used to draw the background texture of the lanes
-//    private class laneTextureTimerClass extends TimerTask
+//    private class LaneTextureTimerClass extends TimerTask
 //    {
 //        ArrayList<Lane> laneBoundaryData = new ArrayList<Lane>();
-//        ArrayList texturePoints = new ArrayList();
-//        ArrayList textureColorList = new ArrayList();
-//
 //        @Override
 //        public void run()
 //        {
@@ -483,13 +521,20 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 //            if(true)
 //            {
 //                laneBoundaryData = dp.getLaneObject();
+//                ArrayList texturePoints = new ArrayList();
+//                ArrayList textureColorList = new ArrayList();
 //                ArrayList<Lane> localLaneBoundaryData = laneBoundaryData;
 //
-//                for(int i = 0; i < localLaneBoundaryData.size(); i++)
+//                for (int i = 0; i < localLaneBoundaryData.size(); i++)
 //                {
-//                    if(localLaneBoundaryData.get(i).getType() == 9)
+//
+//                    if (localLaneBoundaryData.get(i) != null )
 //                    {
-//                        laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(i).getPoints(), 9, texturePoints, textureColorList, 0);
+//                        if(localLaneBoundaryData.get(i).getType() == 9)
+//                        {
+//                            laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(i).getPoints(), 9, texturePoints, textureColorList, 0);
+//
+//                        }
 //                    }
 //                }
 //
@@ -497,20 +542,20 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 //                {
 //                    FloatBuffer vertexBuffer = convertToFloatBuffer(texturePoints,dataSize2D);
 //                    FloatBuffer colorBuffer = convertToFloatBuffer(textureColorList,dataSize2D);
-//                    drawEntityObjectForBuffer.setLaneTexture(vertexBuffer, colorBuffer, texturePoints.size() / 2, true);
+//                    drawEntityObjectForBuffer.setBufferDashLane(vertexBuffer, colorBuffer, texturePoints.size() / 2, true);
 //                }
 //                else
 //                {
-//                    drawEntityObjectForBuffer.setLaneTexture(null, null, 0, false);
+//                    drawEntityObjectForBuffer.setBufferDashLane(null, null, 0, false);
 //                }
 //            }
-//            else
-//            {
-//                drawEntityObjectForBuffer.setLaneTexture(null, null, 0, false);
+//            else{
+//                drawEntityObjectForBuffer.setBufferDashLane(null, null, 0, false);
 //            }
 //
 //        }
 //    }
+
 
     private class laneCalculationTimerClass extends TimerTask {
 
@@ -524,80 +569,69 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
             boolean leftLaneDashed = false;
             boolean rightLaneDashed = false;
 
-          if (statusObject.gettingLaneData())
+            if (statusObject.gettingLaneData())
             //if(true)
             {
+                // long waitTime = 100;
+
+
                 laneBoundaryData = dp.getLaneObject();
                 ArrayList lanePoints = new ArrayList();
                 ArrayList texturePoints = new ArrayList();
-                ArrayList dashLanePoints = new ArrayList();
-                ArrayList laneColorList = new ArrayList();
                 ArrayList textureColorList = new ArrayList();
+                ArrayList laneColorList = new ArrayList();
                 ArrayList<Lane> localLaneBoundaryData = laneBoundaryData;
 
                 long startTime = System.currentTimeMillis();
                 int i = 0;
+                for (int lane_no = 0; lane_no < localLaneBoundaryData.size(); lane_no++) {
 
-                int laneDataSize = localLaneBoundaryData.size();
-
-                if (laneDataSize > 0) {
-
-                    if (localLaneBoundaryData.get(0).getType() == 1) {
-                        rightLanePresent = true;
-                    } else {
-                        rightLanePresent = false;
-                    }
-
-                    if (localLaneBoundaryData.get(1).getType() == 1) {
-                        leftLanePresent = true;
-                    } else {
-                        leftLanePresent = false;
-                    }
-
-                    for (int lane_no = 0; lane_no < localLaneBoundaryData.size(); lane_no++) {
-
-                        if (localLaneBoundaryData.get(lane_no) != null)//{&&  localLaneBoundaryData.get(lane_no).getType() < 9  ) {
-                        {
+                    if (localLaneBoundaryData.get(lane_no) != null )//{&&  localLaneBoundaryData.get(lane_no).getType() < 9  ) {
+                    {
+                        Log.d("lane number",lane_no+"lane type "+localLaneBoundaryData.get(lane_no).getType());
+                        if(lane_no == 1)
+                            leftLanePresent = true;
+                        if(lane_no == 2) {
+                            rightLanePresent = true;
+                            Log.d("lane ty", "rightLanePresent " + rightLanePresent);
+                        }
 
                         /*
                          * LaneType {DASHED = 1, SOLID = 2,UNDECIDED =3, ROAD_EDGE=4, DOUBLE_LANE_MARK=5, BOTTS_DOTS=6, INVALID=7, UNKNOWN=8, CENTER_LINE=9, PATH=10
                          */
-                            Log.d("number of boundries", i++ + " " + localLaneBoundaryData.get(lane_no).getPoints().size());
-                            switch (localLaneBoundaryData.get(lane_no).getType()) {
-                                case 1://dashed
-                                    //laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 2, lanePoints, laneColorList);
-                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, texturePoints, laneColorList, textureColorList, 0);
-                                    break;
-                                case 2://solid
-                                    laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 2, lanePoints, texturePoints, laneColorList, textureColorList, 0);
-                                    break;
-                                default:
-                                    //laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), localLaneBoundaryData.get(lane_no).getType(), lanePoints, laneColorList,0);
-                            }
+                        Log.d("number of boundries",i++ +" "+localLaneBoundaryData.get(lane_no).getPoints().size());
+                        switch( localLaneBoundaryData.get(lane_no).getType()){
+                            case 1://dashed
+                                laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, texturePoints, laneColorList, textureColorList, 0);                                break;
+                            case 2://dashed
+                                laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 2, lanePoints, texturePoints, laneColorList, textureColorList, 0);
+                                break;
+                            default:
+                                //laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), localLaneBoundaryData.get(lane_no).getType(), lanePoints, laneColorList,0);
                         }
-
                     }
 
-                    Log.d("laneProductionEnds", String.valueOf(" timeTaken " + (System.currentTimeMillis() - startTime)) + "bufferSize " + lanePoints.size());
-
-                    if (lanePoints.size() != 0) {
-                        FloatBuffer vertexBuffer = convertToFloatBuffer(lanePoints, dataSize2D);
-                        FloatBuffer colorBuffer = convertToFloatBuffer(laneColorList, dataSize2D);
-
-                        FloatBuffer vertexBuffer1 = convertToFloatBuffer(texturePoints, dataSize2D);
-                        FloatBuffer colorBuffer1 = convertToFloatBuffer(textureColorList, dataSize2D);
-
-                        drawEntityObjectForBuffer.setBufferLane(vertexBuffer, colorBuffer, lanePoints.size() / 2, true);
-
-                        drawEntityObjectForBuffer.setLaneTexture(vertexBuffer1, colorBuffer1, texturePoints.size() / 2, true);
-                    } else {
-                        drawEntityObjectForBuffer.setBufferLane(null, null, 0, false);
-                    }
                 }
-            } else {
+
+                Log.d("laneProductionEnds", String.valueOf(" timeTaken " + (System.currentTimeMillis() - startTime)) + "bufferSize " + lanePoints.size());
+
+                if (lanePoints.size() != 0) {
+                    FloatBuffer vertexBuffer = convertToFloatBuffer(lanePoints,dataSize2D);
+                    FloatBuffer colorBuffer = convertToFloatBuffer(laneColorList,dataSize2D);
+                    FloatBuffer vertexBuffer1 = convertToFloatBuffer(texturePoints,dataSize2D);
+                    FloatBuffer colorBuffer1 = convertToFloatBuffer(textureColorList,dataSize2D);
+
+                    drawEntityObjectForBuffer.setBufferDashLane(vertexBuffer1, colorBuffer1, texturePoints.size() / 2, true);
+                    drawEntityObjectForBuffer.setBufferLane(vertexBuffer, colorBuffer, lanePoints.size() / 2, true);
+
+                    //drawEntityObjectForBuffer.setBufferDashLane(vertexBuffer1, colorBuffer1, lanePoints.size() / 2, true);
+                }
+                else
+                    drawEntityObjectForBuffer.setBufferLane(null, null, 0, false);
+            }
+            else{
                 drawEntityObjectForBuffer.setBufferLane(null, null, 0, false);
             }
-
             statusObject.setIsLeftLaneVisible(leftLanePresent);
             Log.d("lane type","rightLanePresent1 "+ rightLanePresent);
             statusObject.setIsRightLaneVisible(rightLanePresent);
