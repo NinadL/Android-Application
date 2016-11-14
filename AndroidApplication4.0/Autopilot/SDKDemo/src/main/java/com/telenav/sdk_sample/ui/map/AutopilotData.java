@@ -27,7 +27,7 @@ public class AutopilotData
     {
         int remainingDistanceTillNextEdge;
 
-        if (NavigationManager.getInstance().getNavigationData() != null && myMapRenderingUtils.distanceValues.size() > 0)
+        if (NavigationManager.getInstance() != null && NavigationManager.getInstance().getNavigationData() != null && myMapRenderingUtils.distanceValues.size() > 0)
         {
             NavigationData navigationData = NavigationManager.getInstance().getNavigationData();
             int travelledDistance = navigationData.getTravelledDistance();

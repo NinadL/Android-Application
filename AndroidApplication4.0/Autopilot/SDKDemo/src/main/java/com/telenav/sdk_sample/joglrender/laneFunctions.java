@@ -167,20 +167,6 @@ public class laneFunctions {
                 float topNx = (float) LanePoints.get(pointCount +stepSize).getNx();
                 float topNy = (float) LanePoints.get(pointCount +stepSize).getNy();
 
-//                if(distance != 0.0) //DrawEntity parallel lines
-//                {
-//                    float[] newBottomPoints = getDistantPoints(bottomY, bottomX, bottomNx, bottomNy, distance);
-//                    float[] newTopPoints = getDistantPoints(topY, topX, topNx, topNy, distance);
-//                    if(distance > 0)
-//                    {
-//                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,vertexList1, colorList);
-//                    }
-//                    else if(distance < 0)
-//                    {
-//                        pointCalculation(newBottomPoints[1],newBottomPoints[0],bottomNx,bottomNy,newTopPoints[1],newTopPoints[0],topNx,topNy,mode,vertexList,vertexList1, colorList);
-//                    }
-//                }
-//                else
                 pointCalculation(bottomX,bottomY,bottomNx,bottomNy,topX,topY,topNx,topNy,mode,vertexList, vertexList1, colorList, colorList1);
 
             }

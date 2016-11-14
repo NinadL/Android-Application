@@ -177,7 +177,7 @@ public class DrawEntity {
             short zTranslateValue = 1;
             float yMultiplicationFactor = 3.5f;
 
-            Matrix.scaleM(mModelMatrixLane, 0, 1f, 0.4f, 0.6f); //originally 0, 0.5, 0.5, 0.5
+            Matrix.scaleM(mModelMatrixLane, 0, 1f, 0.5f, 0.7f); //originally 0, 0.5, 0.5, 0.5
             Matrix.translateM(mModelMatrixLane, 0, xTranslateValue, 0, 0);
 //
 //                    //make the car hood to face forward
@@ -188,7 +188,7 @@ public class DrawEntity {
             Matrix.rotateM(mModelMatrixLane, 0, 0, 0, 1, 0);
             GLES20.glFlush();
             drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
-            Matrix.translateM(mModelMatrixLane, 0, -xTranslateValue, 0, 0);
+            //Matrix.translateM(mModelMatrixLane, 0, -xTranslateValue, 0, 0);
 
 ////                    //obstacles
 ////
@@ -207,15 +207,17 @@ public class DrawEntity {
 //                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
 
             if (statusObject.gettingPerceptionData() && dp.getObstaclesObject()!= null)
-
+            //if(true)
             {
                 ArrayList<Obstacles> obstacleList = dp.getObstaclesObject();
-                //Log.d("entered", "he " + obstacleList.size());
                 for (int i = 0; i < obstacleList.size(); i++)
                 {
                     if (obstacleList.get(i) != null && isObstacleInAdjacentLane(obstacleList.get(i)))
                     {
                         float yCoordinate = (float)obstacleList.get(i).getPosition()[1];
+                        float xCoordinate = (float)obstacleList.get(i).getPosition()[0];
+                        Matrix.scaleM(mModelMatrixLane, 0, 0.9f, 0.9f, 0.9f);
+
                         //This scaling factor is for scaling the y coordinate of the car as per the value of y
                         float scalingIndex = 2.77f;
 
@@ -230,11 +232,15 @@ public class DrawEntity {
                         {
                             scalingFactor = scalingFactor * -1;
                         }
+                        Matrix.translateM(mModelMatrixLane,0,-(float) (xCoordinate),0,scalingFactor + (float) (yCoordinate));
                         Matrix.rotateM(mModelMatrixLane, 0, (float) Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3]) * 2) - 180, 0, 1, 0);
-                        Matrix.translateM(mModelMatrixLane,0,-(float) (obstacleList.get(i).getPosition()[0]),0,scalingFactor + (float) (obstacleList.get(i).getPosition()[1]));
+                        //Matrix.rotateM(mModelMatrixLane, 0, (float) Math.toDegrees(Math.acos(0.0) * 2) - 180, 0, 1, 0);
+                        //Matrix.translateM(mModelMatrixLane,0,-(float) (obstacleList.get(i).getPosition()[0]),0,scalingFactor + (float) (obstacleList.get(i).getPosition()[1]));
                         drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, yellowColorHandle);
-                        Matrix.translateM(mModelMatrixLane,0,(float) (obstacleList.get(i).getPosition()[0]),0,-scalingFactor - (float) (obstacleList.get(i).getPosition()[1]));
+                        //Matrix.rotateM(mModelMatrixLane, 0, -((float) Math.toDegrees(Math.acos(0.0) * 2) - 180), 0, 1, 0);
                         Matrix.rotateM(mModelMatrixLane, 0, -((float) Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3]) * 2) - 180), 0, 1, 0);
+                        Matrix.translateM(mModelMatrixLane,0,(float) (xCoordinate),0,-scalingFactor - (float) (yCoordinate));
+                        //Matrix.translateM(mModelMatrixLane,0,(float) (obstacleList.get(i).getPosition()[0]),0,-scalingFactor - (float) (obstacleList.get(i).getPosition()[1]));
                     }
                 }
             }

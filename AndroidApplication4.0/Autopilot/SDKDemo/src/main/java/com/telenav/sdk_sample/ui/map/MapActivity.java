@@ -340,9 +340,9 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
         registerNetworkConnectionBroadcastReceiver();
         mapFragment = new MapFragment();
         headerFragment = new HeaderFragment();
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, mapFragment, MAP_FRAGMENT).commit();
         getFragmentManager().beginTransaction().replace(R.id.header_frame, headerFragment, HEADER_FRAGMENT).commit();
-        setDefaultNavigationSettingsValues();
+        getFragmentManager().beginTransaction().replace(R.id.content_frame, mapFragment, MAP_FRAGMENT).commit();
+         setDefaultNavigationSettingsValues();
     }
 
     /**
