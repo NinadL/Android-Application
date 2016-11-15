@@ -632,10 +632,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
             else{
                 drawEntityObjectForBuffer.setBufferLane(null, null, 0, false);
             }
-            statusObject.setIsLeftLaneVisible(leftLanePresent);
-            Log.d("lane type","rightLanePresent1 "+ rightLanePresent);
-            statusObject.setIsRightLaneVisible(rightLanePresent);
-            statusObject.setAreWeOnCentreLane(leftLaneDashed && rightLaneDashed);
         }
     }
 }

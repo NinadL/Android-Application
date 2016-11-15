@@ -669,8 +669,8 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 
         mainActivity = getActivity();
         //text to speech
-        textToSpeechManager = new TextToSpeechManager();
-        textToSpeechManager.initialiseTextToSpeech();
+        textToSpeechManager = MapActivity.textToSpeechManager;
+        //textToSpeechManager.initialiseTextToSpeech();
     }
 
     @Override
@@ -702,7 +702,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
     public void onDestroyView() {
         MapView.destroyMap();
         LocationManager.getInstance().stopLocationUpdates();
-        textToSpeechManager.release();
+
         super.onDestroyView();
     }
 
@@ -1015,9 +1015,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 
             //This is used to stop navigation
             case R.id.close_navigation:
-                if (textToSpeechManager != null) {
-                    textToSpeechManager.stop();
-                }
+
                 myTimer1.cancel();
                 myTimer1.purge();
 //                ((MapActivity)getActivity()).isNavigationStarted = false;

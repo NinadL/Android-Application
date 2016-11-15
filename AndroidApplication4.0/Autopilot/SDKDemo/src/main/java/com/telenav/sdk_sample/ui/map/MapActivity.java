@@ -56,6 +56,7 @@ import com.telenav.sdk_sample.joglrender.OpenGLRenderer;
 import com.telenav.sdk_sample.search.SearchManager;
 import com.telenav.sdk_sample.search.SearchRequestObject;
 import com.telenav.sdk_sample.search.SuggestionItem;
+import com.telenav.sdk_sample.text.to.speech.TextToSpeechManager;
 import com.telenav.sdk_sample.ui.Header.HeaderFragment;
 import com.telenav.sdk_sample.ui.menu.MenuConstants;
 import com.telenav.sdk_sample.ui.menu.SlidingMenuAdapter;
@@ -105,6 +106,8 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
 
     //Header fragment
     public static HeaderFragment headerFragment;
+
+    public static TextToSpeechManager textToSpeechManager;
 
     //sliding menu
 
@@ -189,6 +192,9 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
             ipAddress = appPrefs.getStringPreference(PreferenceTypes.K_IP_ADDRESS);
             //client = new SocketClient(ipAddress,45002);
             Log.d("ipAddress", "is"+ ipAddress);
+
+            textToSpeechManager = new TextToSpeechManager();
+            textToSpeechManager.initialiseTextToSpeech();
 
             LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
             if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
@@ -406,6 +412,11 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
     protected void onDestroy()
     {
         super.onDestroy();
+
+        if (textToSpeechManager != null) {
+            textToSpeechManager.stop();
+        }
+        textToSpeechManager.release();
 
         MapView.destroyMap();
         if (networkConnectionMonitor != null) {

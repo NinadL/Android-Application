@@ -47,6 +47,7 @@ public class HeaderFragment extends Fragment
     ImageButton decreaseSpeed;
     Button takeControl;
     public static boolean isAutopilotOn = false;
+    public static boolean canAutopilotBeEnabled = false;
     public static int referenceSpeed = 60;
 
     static CharSequence finalString;
@@ -117,9 +118,42 @@ public class HeaderFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                ((MapActivity) getActivity()).sendControl(1);
-                ((MapActivity) getActivity()).moveToRouteMid();
-                isAutopilotOn = true;
+                if(canAutopilotBeEnabled) {
+                    ((MapActivity) getActivity()).sendControl(1);
+                    ((MapActivity) getActivity()).moveToRouteMid();
+                    isAutopilotOn = true;
+                }
+                else
+                {
+                    int i = 0;
+                    while(AutopilotStatusDecisions.status[i] == 1)
+                    {
+                        i++;
+                    }
+                    if(AutopilotStatusDecisions.status[i] == 0)
+                    {
+                       switch(i)
+                       {
+                           case 0:
+                               MapActivity.textToSpeechManager.playAdvice("Network not working");
+                               break;
+                           case 1:
+                               MapActivity.textToSpeechManager.playAdvice("Car data not received");
+                               break;
+                           case 2:
+                               MapActivity.textToSpeechManager.playAdvice("We are not on highway yet");
+                               break;
+                           case 3:
+                               MapActivity.textToSpeechManager.playAdvice("Distance for highway to end is less then 3 miles");
+                               break;
+                           case 4:
+                               MapActivity.textToSpeechManager.playAdvice("We are not on centre lane yet");
+                               break;
+
+                       }
+                    }
+
+                }
             }
         });
 
@@ -134,7 +168,8 @@ public class HeaderFragment extends Fragment
 
         takeControl.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 ((MapActivity) getActivity()).sendControl(1);
             }
         });
@@ -227,7 +262,7 @@ public class HeaderFragment extends Fragment
                 {
                     case 0:
                         engageAutopilot.setImageResource(R.drawable.engage_autopilot_disabled);
-                        engageAutopilot.setClickable(false);
+                        engageAutopilot.setClickable(true);
                         break;
 
                     case 1:

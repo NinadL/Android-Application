@@ -3,8 +3,10 @@ package com.telenav.sdk_sample.ui.Header;
 import android.net.ConnectivityManager;
 import android.util.Log;
 
+import com.telenav.sdk_sample.R;
 import com.telenav.sdk_sample.car.data.DataParser;
 import com.telenav.sdk_sample.car.data.setStatusClass;
+import com.telenav.sdk_sample.text.to.speech.Speech;
 import com.telenav.sdk_sample.ui.map.AutopilotData;
 import com.telenav.sdk_sample.ui.map.MapActivity;
 
@@ -27,11 +29,12 @@ public class AutopilotStatusDecisions
     public static Timer timerForSpeedUpdate;
     private static DataParser dataParser = new DataParser();
     private static setStatusClass statusObject = new setStatusClass();
+    private static Speech speech= new Speech();
     //Status will be set to 0 or 1 based on the condition.
     //If the condition is satisfied then the value is set to 1
     //else it is set to 0
 
-    private int[] status = {WORKING, WORKING, WORKING, WORKING, WORKING};
+    public static int[] status = {1, 1, 1, 1, 1};
 
 
     public void initTimer()
@@ -83,7 +86,6 @@ public class AutopilotStatusDecisions
         //Convert meters to miles
         remainingDistance = remainingDistance * 0.000621371;
 
-        Log.d("DistanceRemaining", String.valueOf(remainingDistance));
         if(remainingDistance > 3.00)
         {
             return true;
@@ -97,12 +99,19 @@ public class AutopilotStatusDecisions
 
     boolean areWeOnHighway()
     {
-        if(AutopilotData.areWeOnHighway) {
+        if(AutopilotData.areWeOnHighway)
+        {
+            if(!speech.onHighwayMessagePlayed)
+            {
+                MapActivity.textToSpeechManager.playAdvice(speech.onHighwayMessage);
+                speech.onHighwayMessagePlayed = true;
+            }
             return true;
         }
         else
         {
             setStatus(WE_ARE_NOT_HIGHWAY);
+            speech.onHighwayMessagePlayed = false;
             return false;
         }
     }
@@ -114,11 +123,9 @@ public class AutopilotStatusDecisions
 
     boolean areWeOnCentreLane()
     {
-        if(statusObject.areWeOnCentreLane()) {
+        if (statusObject.areWeOnCentreLane()) {
             return true;
-        }
-        else
-        {
+        } else {
             setStatus(WE_ARE_NOT_ON_CENTRE_LANE);
             return false;
         }
@@ -174,6 +181,10 @@ public class AutopilotStatusDecisions
                 MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
                 MapActivity.headerFragment.setEngageAutopilot(DISABLED);
                 MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(NORMAL);
+
+                speech.autopilotEnableMessagePlayed = false;
+                speech.autopilotEnabledMessagePlayed = false;
+                MapActivity.headerFragment.canAutopilotBeEnabled = false;
             }
             else if(!areNodesWorking())
             {
@@ -181,20 +192,41 @@ public class AutopilotStatusDecisions
                 MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
                 MapActivity.headerFragment.setEngageAutopilot(DISABLED);
                 MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(NORMAL);
+
+                speech.autopilotEnableMessagePlayed = false;
+                speech.autopilotEnabledMessagePlayed = false;
+                MapActivity.headerFragment.canAutopilotBeEnabled = false;
             }
             else if(areWeOnHighway() &&
                     !isAutoPilotOnForCar() &&
                     isDistanceToAutopilotEndMoreThan3Miles() &&
                     areWeOnCentreLane())
             {
+                MapActivity.headerFragment.canAutopilotBeEnabled = true;
+
+                if(!speech.autopilotEnableMessagePlayed)
+                {
+                    MapActivity.textToSpeechManager.playAdvice(speech.autopilotEnableMessage);
+                    speech.autopilotEnableMessagePlayed = true;
+                }
+
                 MapActivity.headerFragment.setAutopilotStatusImageAndText(AUTOPILOT_AVAILABLE);
                 MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
                 MapActivity.headerFragment.setEngageAutopilot(ENABLED);
                 MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(NORMAL);
+
+                speech.autopilotEnabledMessagePlayed = false;
             }
 
             else if(isAutoPilotOnForCar())
             {
+
+                if(!speech.autopilotEnabledMessagePlayed)
+                {
+                    MapActivity.textToSpeechManager.playAdvice(speech.autopilotEnabledMessage);
+                    speech.autopilotEnabledMessagePlayed = true;
+                }
+
                 MapActivity.headerFragment.setEngageAutopilot(DISABLED);
                 MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(AUTOPILOT);
 
@@ -222,6 +254,9 @@ public class AutopilotStatusDecisions
                     MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
                     MapActivity.headerFragment.setAutopilotStatusImageAndText(TAKE_OVER_NOW);
                 }
+
+                speech.autopilotEnableMessagePlayed = false;
+                MapActivity.headerFragment.canAutopilotBeEnabled = false;
             }
 
             else
@@ -231,6 +266,10 @@ public class AutopilotStatusDecisions
                 MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
                 MapActivity.headerFragment.setEngageAutopilot(DISABLED);
                 MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(NORMAL);
+
+                speech.autopilotEnableMessagePlayed = false;
+                speech.autopilotEnabledMessagePlayed = false;
+                MapActivity.headerFragment.canAutopilotBeEnabled = false;
             }
         }
     }

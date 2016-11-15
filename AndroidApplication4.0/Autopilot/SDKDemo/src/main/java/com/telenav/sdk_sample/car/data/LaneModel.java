@@ -14,6 +14,7 @@ public class LaneModel
     static boolean isRightLanePresent = false;
     static boolean isLeftLanePresent = false;
     static boolean isLeftLeftLanePresent = false;
+    static setStatusClass statusClass = new setStatusClass();
 
     ArrayList<Lane> sortedBoundaries = new ArrayList<Lane>();
 
@@ -51,6 +52,8 @@ public class LaneModel
                     leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
                     leftLaneBoundary.setType(1);
                     sortedBoundaries.add(leftLaneBoundary);
+
+                    statusClass.setAreWeOnCentreLane(true);
                 }
                 else if(isLeftLanePresent)
                 {
@@ -140,13 +143,18 @@ public class LaneModel
             lanePresent = -1.8;
         }
 
-        if (lanePresent == 5.4) {
+        if (lanePresent == 5.4)
+        {
             isLeftLeftLanePresent = true;
-        } else if (lanePresent == 1.8) {
+        }
+        else if (lanePresent == 1.8)
+        {
             isLeftLanePresent = true;
-        } else if (lanePresent == -1.8) {
+        } else if (lanePresent == -1.8)
+        {
             isRightLanePresent = true;
-        } else if (lanePresent == -5.4) {
+        } else if (lanePresent == -5.4)
+        {
             isRightRightLanePresent = true;
         }
     }
