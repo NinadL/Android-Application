@@ -41,10 +41,10 @@ public class AutopilotStatusDecisions
     {
         autopilotData = new AutopilotData();
         timerForStatusCheck = new Timer("MyTimer1", true);
-        timerForStatusCheck.scheduleAtFixedRate(new StatusDecision(), 100, 1000);
+        timerForStatusCheck.scheduleAtFixedRate(new StatusDecision(), 5000, 1000);
 
         timerForSpeedUpdate = new Timer("MyTimer2", true);
-        timerForSpeedUpdate.scheduleAtFixedRate(new SetSpeed(), 50, 1000);
+        timerForSpeedUpdate.scheduleAtFixedRate(new SetSpeed(), 5000, 1000);
     }
 
     void setStatus(int index)

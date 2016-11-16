@@ -337,8 +337,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
             ExternalDisplayManager.getInstance().setExternalMapSettings(mapSettings);
             ExternalDisplayManager.getInstance().startRenderOnExternalDisplay(getActivity(), 1280, 720);
         }
-        AutopilotStatusDecisions autopilotStatusDecisions = new AutopilotStatusDecisions();
-        autopilotStatusDecisions.initTimer();
+
 
         return view;
     }

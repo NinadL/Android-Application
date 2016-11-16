@@ -43,6 +43,9 @@ public class LaneModel
             if (laneBoundaries.get(i).getType() == 9)
             {
 
+                extendLane(laneBoundaries.get(i));
+
+
                 if(isLeftLanePresent && isRightLanePresent)
                 {
                     rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
@@ -156,6 +159,29 @@ public class LaneModel
         } else if (lanePresent == -5.4)
         {
             isRightRightLanePresent = true;
+        }
+    }
+
+    void extendLane(Lane lane)
+    {
+        ArrayList<Point> points = lane.getPoints();
+
+        if(points.get(points.size()-1).getX() < 100.0d)
+        {
+            Point lastPoint = points.get(points.size()-1);
+            double xCoordinate = points.get(points.size()-1).getX();
+            double yCoordinate = points.get(points.size()-1).getY();
+
+            xCoordinate = xCoordinate + 5;
+
+            while(xCoordinate < 100.0d)
+            {
+                Point newPoint = lastPoint;
+                newPoint.setX(xCoordinate);
+                lane.addPoint(lastPoint);
+                xCoordinate = xCoordinate+1;
+                lastPoint = newPoint;
+            }
         }
     }
 

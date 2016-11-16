@@ -1,10 +1,14 @@
 package com.telenav.sdk_sample.car.data;
 
+import android.os.Environment;
 import android.util.Log;
 
 import org.json.JSONException;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,6 +16,8 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+
+import static com.telenav.foundation.log.LogEnum.Appender.file;
 
 //import org.json.simple.parser.ParseException;
 
@@ -29,6 +35,10 @@ public class SocketClient
     int mode;
     DataParser dp = new DataParser();
 
+    String fileName = "AndroidLog";
+    final File file= new File(Environment.getExternalStorageDirectory(), fileName);
+    FileOutputStream fo;
+
     public SocketClient(String h, int p, int m)
     {
         host = h;
@@ -39,8 +49,7 @@ public class SocketClient
         new Thread(conn).start();
     }
 
-    protected Socket openConnection()
-    {
+    protected Socket openConnection() throws FileNotFoundException {
 
         socket = new Socket();
         SocketAddress address = new InetSocketAddress(host, port);
@@ -54,11 +63,11 @@ public class SocketClient
             e.printStackTrace();
         }
         Log.d("Client","connected on port "+socket.getLocalPort());
+        fo = new FileOutputStream(file);
         return socket;
     }
 
-    public void closeConnection()
-    {
+    public void closeConnection() throws IOException {
         try
         {
             if (socket != null)
@@ -71,7 +80,9 @@ public class SocketClient
         {
             e.printStackTrace();
         }
+        fo.close();
         closeInputOutput();
+
     }
 
     protected void closeInputOutput()
@@ -107,7 +118,11 @@ public class SocketClient
                 catch (Throwable e)
                 {
                     if(socket!=null&&socket.isConnected())
-                        closeConnection();
+                        try {
+                            closeConnection();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                     e.printStackTrace();
                 }
             }
@@ -172,7 +187,7 @@ public class SocketClient
         }
     }
 
-    private void processMessage(String str) throws JSONException {
+    private void processMessage(String str) throws JSONException, IOException {
 
         /*
         0 = perception
@@ -180,6 +195,12 @@ public class SocketClient
         2 = Control
         3 = map
          */
+
+
+
+
+
+        fo.write(str.getBytes());
         if (mode == 0)
             dp.parseJsonRequestString(str);
         if (mode == 1)

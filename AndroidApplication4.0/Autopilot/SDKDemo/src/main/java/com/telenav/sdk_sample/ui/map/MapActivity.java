@@ -57,6 +57,7 @@ import com.telenav.sdk_sample.search.SearchManager;
 import com.telenav.sdk_sample.search.SearchRequestObject;
 import com.telenav.sdk_sample.search.SuggestionItem;
 import com.telenav.sdk_sample.text.to.speech.TextToSpeechManager;
+import com.telenav.sdk_sample.ui.Header.AutopilotStatusDecisions;
 import com.telenav.sdk_sample.ui.Header.HeaderFragment;
 import com.telenav.sdk_sample.ui.menu.MenuConstants;
 import com.telenav.sdk_sample.ui.menu.SlidingMenuAdapter;
@@ -105,7 +106,7 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
     private MapFragment mapFragment;
 
     //Header fragment
-    public static HeaderFragment headerFragment;
+    public static HeaderFragment headerFragment= new HeaderFragment();
 
     public static TextToSpeechManager textToSpeechManager;
 
@@ -344,10 +345,13 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
             return;
         }
         registerNetworkConnectionBroadcastReceiver();
+
         mapFragment = new MapFragment();
-        headerFragment = new HeaderFragment();
+
         getFragmentManager().beginTransaction().replace(R.id.header_frame, headerFragment, HEADER_FRAGMENT).commit();
         getFragmentManager().beginTransaction().replace(R.id.content_frame, mapFragment, MAP_FRAGMENT).commit();
+        AutopilotStatusDecisions autopilotStatusDecisions = new AutopilotStatusDecisions();
+        autopilotStatusDecisions.initTimer();
          setDefaultNavigationSettingsValues();
     }
 
@@ -433,19 +437,35 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
         }
 
         if (c0 != null) {
-            c0.closeConnection();
+            try {
+                c0.closeConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             c0 = null;
         }
         if (c1 != null) {
-            c1.closeConnection();
+            try {
+                c1.closeConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             c1 = null;
         }
         if (c2 != null) {
-            c2.closeConnection();
+            try {
+                c2.closeConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             c2 = null;
         }
         if (c3 != null) {
-            c3.closeConnection();
+            try {
+                c3.closeConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             c3 = null;
         }
     }
