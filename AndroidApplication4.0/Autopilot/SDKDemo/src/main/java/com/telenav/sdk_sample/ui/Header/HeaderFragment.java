@@ -462,6 +462,7 @@ public class HeaderFragment extends Fragment
         autopilotData = new AutopilotData();
 
         int speed = autopilotData.getSpeed();
+        //int speed = 50;
 
         analogSpeed.setProgress(speed);
 

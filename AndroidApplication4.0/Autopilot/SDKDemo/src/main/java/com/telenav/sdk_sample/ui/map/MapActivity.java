@@ -49,6 +49,7 @@ import com.telenav.sdk_sample.R;
 import com.telenav.sdk_sample.application.ApplicationPreferences;
 import com.telenav.sdk_sample.application.PreferenceTypes;
 import com.telenav.sdk_sample.application.SdkSampleApplication;
+import com.telenav.sdk_sample.car.data.DataParser;
 import com.telenav.sdk_sample.car.data.SocketServer;
 import com.telenav.sdk_sample.connectivity.NetworkConnectionMonitor;
 import com.telenav.sdk_sample.joglrender.OBJParser;
@@ -64,10 +65,13 @@ import com.telenav.sdk_sample.ui.menu.SlidingMenuAdapter;
 import com.telenav.sdk_sample.ui.menu.SlidingMenuItem;
 import com.telenav.sdk_sample.car.data.SocketClient;
 
+import org.json.JSONException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -353,6 +357,12 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
         AutopilotStatusDecisions autopilotStatusDecisions = new AutopilotStatusDecisions();
         autopilotStatusDecisions.initTimer();
          setDefaultNavigationSettingsValues();
+
+//        PrimeRun p = new PrimeRun(this);
+//        new Thread(p).start();
+
+//        PrimeRun1 p1 = new PrimeRun1(this);
+//        new Thread(p1).start();
     }
 
     /**
@@ -1247,4 +1257,101 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
         mapFragment.pointToMidRoute();
 
     }
+
+    class PrimeRun implements Runnable
+    {
+        private Context context;
+
+        PrimeRun(Context context)
+        {
+            this.context = context;
+        }
+
+        public void run()
+        {
+            DataParser dataParser = new DataParser();
+            String str="";
+            StringBuffer buf = new StringBuffer();
+            InputStream is = context.getResources().openRawResource(R.raw.android_log);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+            if (is!=null)
+            {
+                try {
+                    while ((str = reader.readLine()) != null)
+                    {
+                        if(str.contains("state"))
+                        {
+                            try {
+                                dataParser.parseJsonRequestString(str);
+                                Thread.sleep(100);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else
+                        {
+                            dataParser.parseJsonMotionRequestString(str);
+                            Thread.sleep(100);
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    class PrimeRun1 implements Runnable
+    {
+        private Context context;
+
+        PrimeRun1(Context context)
+        {
+            this.context = context;
+        }
+
+        public void run()
+        {
+            DataParser dataParser = new DataParser();
+            String str="";
+            StringBuffer buf = new StringBuffer();
+            InputStream is = context.getResources().openRawResource(R.raw.lane_log);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+            if (is!=null)
+            {
+                try {
+                    while ((str = reader.readLine()) != null)
+                    {
+                        if(str.contains("state"))
+                        {
+                            try {
+                                dataParser.parseJsonRequestString(str);
+                                Thread.sleep(100);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else
+                        {
+                            dataParser.parseJsonMotionRequestString(str);
+                            Thread.sleep(100);
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

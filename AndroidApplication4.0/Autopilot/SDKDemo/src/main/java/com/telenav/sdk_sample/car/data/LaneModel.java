@@ -166,7 +166,7 @@ public class LaneModel
     {
         ArrayList<Point> points = lane.getPoints();
 
-        if(points.get(points.size()-1).getX() < 100.0d)
+        if(points.get(points.size()-1).getX() < 200.0d)
         {
             Point lastPoint = points.get(points.size()-1);
             double xCoordinate = points.get(points.size()-1).getX();
@@ -174,7 +174,7 @@ public class LaneModel
 
             xCoordinate = xCoordinate + 5;
 
-            while(xCoordinate < 100.0d)
+            while(xCoordinate < 200.0d)
             {
                 Point newPoint = lastPoint;
                 newPoint.setX(xCoordinate);

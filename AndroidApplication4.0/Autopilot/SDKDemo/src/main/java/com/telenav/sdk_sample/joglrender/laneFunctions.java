@@ -277,44 +277,57 @@ public class laneFunctions {
             thickness = 0.05f;
         }
 
-//        if (mode == -1)
-//        {
-//            laneVertexList.add(x1);
-//            laneVertexList.add(y1);
-//            //  laneVertexList.add(1);
-//
-//            laneVertexList.add(x2);
-//            laneVertexList.add(y2);
-//            // laneVertexList.add(1);
-//        }
-//        if(mode == 1)
-//        {
-//            laneVertexList.add(x1);  //x1
-//            laneVertexList.add(y1 - thickness);   //y1-0.5
-//            // laneVertexList.add(1);
-//
-//            laneVertexList.add(x1);  //x1
-//            laneVertexList.add(y1 + thickness);   //y1+0.5
-//            // laneVertexList.add(1);
-//
-//            laneVertexList.add(x2);  //x1
-//            laneVertexList.add(y2 + thickness); //y2+0.5
-//            // laneVertexList.add(1);
-//
-//            laneVertexList.add(x2);//x1
-//            laneVertexList.add(y2 + thickness); //y2+0.5
-//            // laneVertexList.add(1);
-//
-//            laneVertexList.add(x2); //x1
-//            laneVertexList.add(y2 - thickness); //y2-0.5
-//            //  laneVertexList.add(1);
-//
-//            laneVertexList.add(x1); //x1
-//            laneVertexList.add(y1 - thickness); //y1-0.5
-//
-//        }
+        if(mode == 3)
+        {
+            laneVertexList1.add(x1);  //x1
+            laneVertexList1.add(y1 - 5.4f);   //y1-0.5
+            // laneVertexList.add(1);
 
-        if(mode == 2 || mode == 1)
+            laneVertexList1.add(x1);  //x1
+            laneVertexList1.add(y1 + 5.4f);   //y1+0.5
+            // laneVertexList.add(1);
+
+            laneVertexList1.add(x2);  //x1
+            laneVertexList1.add(y2 + 5.4f); //y2+0.5
+            // laneVertexList.add(1);
+
+            laneVertexList1.add(x2);//x1
+            laneVertexList1.add(y2 + 5.4f); //y2+0.5
+            // laneVertexList.add(1);
+
+            laneVertexList1.add(x2); //x1
+            laneVertexList1.add(y2 - 5.4f); //y2-0.5
+            //  laneVertexList.add(1);
+
+            laneVertexList1.add(x1); //x1
+            laneVertexList1.add(y1 - 5.4f); //y1-0.5
+
+            laneVertexList.add(x1);  //x1
+            laneVertexList.add(y1 - thickness);   //y1-0.5
+            // laneVertexList.add(1);
+
+            laneVertexList.add(x1);  //x1
+            laneVertexList.add(y1 + thickness);   //y1+0.5
+            // laneVertexList.add(1);
+
+            laneVertexList.add(x2);  //x1
+            laneVertexList.add(y2 + thickness); //y2+0.5
+            // laneVertexList.add(1);
+
+            laneVertexList.add(x2);//x1
+            laneVertexList.add(y2 + thickness); //y2+0.5
+            // laneVertexList.add(1);
+
+            laneVertexList.add(x2); //x1
+            laneVertexList.add(y2 - thickness); //y2-0.5
+            //  laneVertexList.add(1);
+
+            laneVertexList.add(x1); //x1
+            laneVertexList.add(y1 - thickness); //y1-0.5
+        }
+
+
+        else if(mode == 2 || mode == 1)
         {
             laneVertexList1.add(x1);  //x1
             laneVertexList1.add(y1 - 3.6f);   //y1-0.5

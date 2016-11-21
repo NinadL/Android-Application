@@ -75,7 +75,7 @@ public class AutopilotData
             {
                 double[] speed = ego.getSpeed();
 
-                finalSpeed = (int)(Math.sqrt(speed[0]*speed[1]*speed[2] + speed[0]*speed[1]*speed[2]));
+                finalSpeed = (int)(Math.sqrt(speed[0]*speed[0] + speed[1]*speed[1] + speed[2]*speed[2]));
                 return (int)(finalSpeed * 2.23694);
             }
             else

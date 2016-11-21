@@ -13,6 +13,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -1448,7 +1449,6 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 
     @Override
     public void onWhereAmIInfoUpdated(Status status, WhereAmIInfo whereAmIInfo) {
-
     }
 
     @Override

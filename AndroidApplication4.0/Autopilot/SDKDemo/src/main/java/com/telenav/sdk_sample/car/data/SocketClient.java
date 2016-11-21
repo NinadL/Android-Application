@@ -35,7 +35,7 @@ public class SocketClient
     int mode;
     DataParser dp = new DataParser();
 
-    String fileName = "AndroidLog";
+    String fileName = "android_log";
     final File file= new File(Environment.getExternalStorageDirectory(), fileName);
     FileOutputStream fo;
 
@@ -195,11 +195,6 @@ public class SocketClient
         2 = Control
         3 = map
          */
-
-
-
-
-
         fo.write(str.getBytes());
         if (mode == 0)
             dp.parseJsonRequestString(str);
