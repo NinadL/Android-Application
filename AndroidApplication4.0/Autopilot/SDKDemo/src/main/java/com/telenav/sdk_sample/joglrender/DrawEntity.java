@@ -305,6 +305,7 @@ public class DrawEntity {
         GLES20.glUniform1i(mTextureUniformHandle, 0);
 
         vertexBuffer.position(0);
+
         /*
         *  mPositionHandle: The OpenGL index of the position attribute of shader program.
         *  dataSize: 2-D  or 3-D
@@ -347,9 +348,8 @@ public class DrawEntity {
         GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mMVPMatrix, 0);
 
 
-
-        GLES20.glDrawArrays(mode, 0,size);
-        Log.d("laneFormoation",mode+" "+size);
+        GLES20.glDrawArrays(mode, 0, size);
+        Log.d("laneFormoation", mode + " " + size);
         // GLES20.glDeleteTextures(1,mTextureDataHandle);
 
     }

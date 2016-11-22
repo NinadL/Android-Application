@@ -62,6 +62,7 @@ import com.telenav.sdk.navigation.model.NavigationData;
 import com.telenav.sdk.navigation.model.NavigationSettings;
 import com.telenav.sdk.navigation.model.NavigationStatus;
 import com.telenav.sdk.navigation.model.Point;
+import com.telenav.sdk.navigation.model.RawRoadType;
 import com.telenav.sdk.navigation.model.RouteError;
 import com.telenav.sdk.navigation.model.RouteInfo;
 import com.telenav.sdk.navigation.model.RouteOption;
@@ -988,27 +989,8 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                         //myTimer1.scheduleAtFixedRate(new SendData(), 100, 500);
 
 
+                        MapActivity.isNavigationStarted = true;
                         naviButton.setVisibility(View.GONE);
-                    }
-                    //This part of the code is never called
-                    else {
-                        if (textToSpeechManager != null) {
-                            textToSpeechManager.stop();
-                        }
-                        ((MapActivity)getActivity()).isNavigationStarted = false;
-                        myTimer1.cancel();
-                        myTimer1.purge();
-                        // nextStreetNameTextView.setVisibility(View.GONE);
-//                        navigationDetails.setVisibility(View.GONE);
-//                        navigationDetailsExt.setVisibility(View.GONE);
-//                        travelEstimation.setVisibility(View.GONE);
-                        currentStreetName.setVisibility(View.GONE);
-                        junctionViewImage.setVisibility(View.GONE);
-                        NavigationManager.getInstance().stopNavigation();
-                        mapSettings.setLocationType(MapSettings.LOCATION_TYPE_REAL);
-                        mapView.removeAllAnnotation();
-                        releaseAnnotations();
-                        ((MapActivity) mainActivity).enableSettingsMenu();
                     }
                 }
                 break;
@@ -1018,10 +1000,6 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 
                 myTimer1.cancel();
                 myTimer1.purge();
-//                ((MapActivity)getActivity()).isNavigationStarted = false;
-                // nextStreetNameTextView.setVisibility(View.GONE);
-//                navigationDetails.setVisibility(View.GONE);
-//                navigationDetailsExt.setVisibility(View.GONE);
                 travelEstimation.setVisibility(View.GONE);
                 currentStreetName.setVisibility(View.GONE);
                 junctionViewImage.setVisibility(View.GONE);
@@ -1035,6 +1013,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                 releaseAnnotations();
                 mapSettings.setZoomLevel(8.0f, 0.5f);
                 ((MapActivity) mainActivity).enableSettingsMenu();
+                MapActivity.isNavigationStarted = false;
                 break;
             case R.id.currentPositionButton:
                 if (lastKnownLocation != null) {
@@ -1357,6 +1336,13 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
     {
         if (NavigationManager.getInstance().getNavigationData() != null) {
             navigationData = NavigationManager.getInstance().getNavigationData();
+            RawRoadType rawRoadType = navigationData.getRawRoadType();
+
+            if(rawRoadType != null && rawRoadType.value() == 0)
+            {
+                MapActivity.areWeOnHighwayNoNavi = true;
+            }
+
 
             if (NavigationManager.getInstance().getNavigationData().isNavigationStarted()) {
                 showTurnArrowOnMap();

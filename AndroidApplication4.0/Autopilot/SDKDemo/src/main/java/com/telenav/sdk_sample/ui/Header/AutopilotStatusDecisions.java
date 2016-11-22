@@ -99,7 +99,8 @@ public class AutopilotStatusDecisions
 
     boolean areWeOnHighway()
     {
-        if(AutopilotData.areWeOnHighway)
+        if((AutopilotData.areWeOnHighway && MapActivity.isNavigationStarted) ||
+          (!MapActivity.isNavigationStarted && MapActivity.areWeOnHighwayNoNavi))
         {
             if(!speech.onHighwayMessagePlayed)
             {
@@ -197,10 +198,14 @@ public class AutopilotStatusDecisions
                 speech.autopilotEnabledMessagePlayed = false;
                 MapActivity.headerFragment.canAutopilotBeEnabled = false;
             }
-            else if(areWeOnHighway() &&
+            else if((MapActivity.isNavigationStarted && areWeOnHighway() &&
                     !isAutoPilotOnForCar() &&
                     isDistanceToAutopilotEndMoreThan3Miles() &&
-                    areWeOnCentreLane())
+                    areWeOnCentreLane()) ||
+                    (!MapActivity.isNavigationStarted &&
+                     !isAutoPilotOnForCar() &&
+                     areWeOnHighway() &&
+                     areWeOnCentreLane()))
             {
                 MapActivity.headerFragment.canAutopilotBeEnabled = true;
 
@@ -218,6 +223,7 @@ public class AutopilotStatusDecisions
                 speech.autopilotEnabledMessagePlayed = false;
             }
 
+
             else if(isAutoPilotOnForCar())
             {
 
@@ -231,28 +237,23 @@ public class AutopilotStatusDecisions
                 MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(AUTOPILOT);
 
 
-                double remainingDistance = autopilotData.getDistance();
-                //Convert meters to miles
-                remainingDistance = remainingDistance * 0.000621371;
-                if(remainingDistance > 5.00)
-                {
-                    MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
-                    MapActivity.headerFragment.setAutopilotStatusImageAndText(AUTOPILOT_ENABLED);
-                }
-                else if(isDistanceToAutopilotEndMoreThan3Miles())
-                {
-                    MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
-                    MapActivity.headerFragment.setAutopilotStatusImageAndText(PREPARE_TO_TAKE_OVER);
-                }
-                else if(remainingDistance <= 3.00 && remainingDistance > 1.00)
-                {
-                    MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
-                    MapActivity.headerFragment.setAutopilotStatusImageAndText(PLEASE_TAKE_OVER);
-                }
-                else
-                {
-                    MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
-                    MapActivity.headerFragment.setAutopilotStatusImageAndText(TAKE_OVER_NOW);
+                if(MapActivity.isNavigationStarted) {
+                    double remainingDistance = autopilotData.getDistance();
+                    //Convert meters to miles
+                    remainingDistance = remainingDistance * 0.000621371;
+                    if (remainingDistance > 5.00) {
+                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
+                        MapActivity.headerFragment.setAutopilotStatusImageAndText(AUTOPILOT_ENABLED);
+                    } else if (isDistanceToAutopilotEndMoreThan3Miles()) {
+                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
+                        MapActivity.headerFragment.setAutopilotStatusImageAndText(PREPARE_TO_TAKE_OVER);
+                    } else if (remainingDistance <= 3.00 && remainingDistance > 1.00) {
+                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
+                        MapActivity.headerFragment.setAutopilotStatusImageAndText(PLEASE_TAKE_OVER);
+                    } else {
+                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
+                        MapActivity.headerFragment.setAutopilotStatusImageAndText(TAKE_OVER_NOW);
+                    }
                 }
 
                 speech.autopilotEnableMessagePlayed = false;

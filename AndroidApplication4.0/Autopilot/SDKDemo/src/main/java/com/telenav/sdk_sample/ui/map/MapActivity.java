@@ -133,7 +133,8 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
     private ApplicationPreferences appPrefs;
 
 
-    public boolean isNavigationStarted = false;
+    public static boolean isNavigationStarted = false;
+    public static boolean areWeOnHighwayNoNavi = false;
 
 
     String ipAddress = "198.168.1.101";
