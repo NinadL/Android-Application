@@ -145,7 +145,7 @@ public class DrawEntity {
 
     public void setBufferLane(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag)
     {
-        if(vertexBuffer != null && vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
+        if(vertexBuffer == null || vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
         {
             laneVertexBuffer = laneVertexBufferPrevious;
             laneColorBuffer = laneColorBufferPrevious;
@@ -163,7 +163,7 @@ public class DrawEntity {
 
     public void setBufferDashLane(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag)
     {
-        if(vertexBuffer != null && vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
+        if(vertexBuffer == null || vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
         {
             dashedLaneBuffer = dashedLaneBufferPrevious;
             laneColorBuffer1 = laneColorBuffer1Previous;
