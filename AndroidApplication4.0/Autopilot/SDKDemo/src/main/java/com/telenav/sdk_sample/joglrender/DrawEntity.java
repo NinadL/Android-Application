@@ -78,6 +78,9 @@ public class DrawEntity {
     static private FloatBuffer laneColorBuffer;
     static private FloatBuffer laneColorBuffer1;
     static  private int laneSize;
+    static private int dashLaneSize;
+    static private int dashLaneSizePrevious;
+
     static boolean flag1 = false;
 
     static boolean flag2 = false;
@@ -142,7 +145,7 @@ public class DrawEntity {
 
     public void setBufferLane(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag)
     {
-        if(vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
+        if(vertexBuffer != null && vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
         {
             laneVertexBuffer = laneVertexBufferPrevious;
             laneColorBuffer = laneColorBufferPrevious;
@@ -158,10 +161,21 @@ public class DrawEntity {
         flag1 = flag;
     }
 
-    public void setBufferDashLane(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag){
-        dashedLaneBuffer = vertexBuffer;
-        laneColorBuffer1 = colorBuffer;
-        laneSize = Size;
+    public void setBufferDashLane(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag)
+    {
+        if(vertexBuffer != null && vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
+        {
+            dashedLaneBuffer = dashedLaneBufferPrevious;
+            laneColorBuffer1 = laneColorBuffer1Previous;
+            dashLaneSize = dashLaneSizePrevious;
+        }
+        else
+        {
+            dashedLaneBufferPrevious = dashedLaneBuffer = vertexBuffer;
+            laneColorBuffer1Previous = laneColorBuffer1 = colorBuffer;
+            dashLaneSizePrevious = dashLaneSize = Size;
+
+        }
         flag5 = flag;
     }
 
@@ -197,7 +211,7 @@ public class DrawEntity {
 
         if (flag5 && laneSize > minArrayListSize) {
             //GLES20.glFlush();
-            drawTexture(dashedLaneBuffer, laneColorBuffer1, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
+            drawTexture(dashedLaneBuffer, laneColorBuffer1, null, null, dashLaneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
         }
 
         if (flag4)
@@ -304,7 +318,9 @@ public class DrawEntity {
 
         GLES20.glUniform1i(mTextureUniformHandle, 0);
 
-        vertexBuffer.position(0);
+        if(vertexBuffer != null) {
+            vertexBuffer.position(0);
+
 
         /*
         *  mPositionHandle: The OpenGL index of the position attribute of shader program.
@@ -315,42 +331,43 @@ public class DrawEntity {
               The stride tells OpenGL how far the same attribute for the next vertex is present so we can use a buffer which contains
               vertex,color,normal and texture together as well just vary the stride at that time
         */
-        GLES20.glVertexAttribPointer(mPositionHandle, dataSize, GLES20.GL_FLOAT, false, 0, vertexBuffer);
-        GLES20.glEnableVertexAttribArray(mPositionHandle);
-
-        if (colorBuffer != null) {
-
-            colorBuffer.position(0);
-            GLES20.glVertexAttribPointer(mColorHandle, mColorDataSize, GLES20.GL_FLOAT, false, 16, colorBuffer);
-            GLES20.glEnableVertexAttribArray(mColorHandle);
+            GLES20.glVertexAttribPointer(mPositionHandle, dataSize, GLES20.GL_FLOAT, false, 0, vertexBuffer);
         }
+            GLES20.glEnableVertexAttribArray(mPositionHandle);
 
-        if (normalBuffer != null) {
+            if (colorBuffer != null) {
 
-            normalBuffer.position(0);
-            GLES20.glVertexAttribPointer(mNormalHandle, mNormalDataSize, GLES20.GL_FLOAT, false, 0, normalBuffer);
-            GLES20.glEnableVertexAttribArray(mNormalHandle);
-        }
+                colorBuffer.position(0);
+                GLES20.glVertexAttribPointer(mColorHandle, mColorDataSize, GLES20.GL_FLOAT, false, 16, colorBuffer);
+                GLES20.glEnableVertexAttribArray(mColorHandle);
+            }
 
-        if (textureBuffer != null) {
+            if (normalBuffer != null) {
 
-            textureBuffer.position(0);
-            GLES20.glVertexAttribPointer(mTextureCoordinateHandle, mTextureCoordinateDataSize, GLES20.GL_FLOAT, false, 0, textureBuffer);
-            GLES20.glEnableVertexAttribArray(mTextureCoordinateHandle);
-        }
+                normalBuffer.position(0);
+                GLES20.glVertexAttribPointer(mNormalHandle, mNormalDataSize, GLES20.GL_FLOAT, false, 0, normalBuffer);
+                GLES20.glEnableVertexAttribArray(mNormalHandle);
+            }
 
-        //MVMatrix
-        Matrix.multiplyMM(mMVPMatrix, 0, mViewMatrix, 0, mModelMatrix, 0);
-        GLES20.glUniformMatrix4fv(mMVMatrixHandle, 1, false, mMVPMatrix, 0);
+            if (textureBuffer != null) {
 
-        //MVPMatrix
-        Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mMVPMatrix, 0);
-        GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mMVPMatrix, 0);
+                textureBuffer.position(0);
+                GLES20.glVertexAttribPointer(mTextureCoordinateHandle, mTextureCoordinateDataSize, GLES20.GL_FLOAT, false, 0, textureBuffer);
+                GLES20.glEnableVertexAttribArray(mTextureCoordinateHandle);
+            }
+
+            //MVMatrix
+            Matrix.multiplyMM(mMVPMatrix, 0, mViewMatrix, 0, mModelMatrix, 0);
+            GLES20.glUniformMatrix4fv(mMVMatrixHandle, 1, false, mMVPMatrix, 0);
+
+            //MVPMatrix
+            Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mMVPMatrix, 0);
+            GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mMVPMatrix, 0);
 
 
-        GLES20.glDrawArrays(mode, 0, size);
-        Log.d("laneFormoation", mode + " " + size);
-        // GLES20.glDeleteTextures(1,mTextureDataHandle);
+            GLES20.glDrawArrays(mode, 0, size);
+            Log.d("laneFormoation", mode + " " + size);
+            // GLES20.glDeleteTextures(1,mTextureDataHandle);
 
     }
 
