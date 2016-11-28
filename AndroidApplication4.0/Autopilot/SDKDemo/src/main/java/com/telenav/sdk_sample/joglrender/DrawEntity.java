@@ -56,25 +56,22 @@ public class DrawEntity {
 
     static private FloatBuffer laneVertexBufferPrevious;
     static private FloatBuffer dashedLaneBufferPrevious;
-
-    static private FloatBuffer laneVertexBufferCurrent;
-    static private FloatBuffer dashedLaneBufferCurrent;
+    static private FloatBuffer laneVertexBufferExtPrevious;
 
     static private FloatBuffer laneColorBufferPrevious;
     static private FloatBuffer laneColorBuffer1Previous;
+    static private FloatBuffer laneColorBufferExtPrevious;
 
-    static private FloatBuffer laneColorBufferCurrent;
-    static private FloatBuffer laneColorBuffer1Current;
 
     static  private int laneSizePrevious;
-    static  private int laneSizeCurrent;
-
-
+    static  private int laneSizeExtPrevious;
 
 
     static private FloatBuffer laneVertexBuffer;
     static private FloatBuffer dashedLaneBuffer;
-    static private FloatBuffer rightShaderBuffer;
+    static private FloatBuffer laneVertexBufferExt;
+    static private FloatBuffer laneColorBufferExt;
+    static  private int laneSizeExt;
     static private FloatBuffer laneColorBuffer;
     static private FloatBuffer laneColorBuffer1;
     static  private int laneSize;
@@ -179,10 +176,29 @@ public class DrawEntity {
         flag5 = flag;
     }
 
-    public void setBufferGrid(modelBuffers object, boolean flag){
-        gridObj = object;
-        flag2 = flag;
+    public void setBufferLaneExt(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag)
+    {
+        if(vertexBuffer == null || vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
+        {
+            laneVertexBufferExt = laneVertexBufferExtPrevious;
+            laneColorBufferExt = laneColorBufferExtPrevious;
+            laneSizeExt = laneSizeExtPrevious;
+        }
+        else
+        {
+            laneVertexBufferExtPrevious = laneVertexBufferExt = vertexBuffer;
+            laneColorBufferExtPrevious = laneColorBufferExt = colorBuffer;
+            laneSizeExtPrevious = laneSizeExt = Size;
+
+        }
+        flag1 = flag;
+
     }
+
+//    public void setBufferGrid(modelBuffers object, boolean flag){
+//        gridObj = object;
+//        flag2 = flag;
+//    }
 
     public void setVehicleStatus(modelBuffers object, boolean flag) {
         Log.d("asyncTask","setVehicleStatus");
@@ -209,9 +225,14 @@ public class DrawEntity {
             drawTexture(laneVertexBuffer, laneColorBuffer, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
         }
 
-        if (flag5 && laneSize > minArrayListSize) {
+        if (flag5 && dashLaneSize > minArrayListSize) {
             //GLES20.glFlush();
             drawTexture(dashedLaneBuffer, laneColorBuffer1, null, null, dashLaneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
+        }
+
+        if (flag1 && laneSizeExt > minArrayListSize) {
+            //GLES20.glFlush();
+            drawTexture(laneVertexBufferExt, laneColorBufferExt, null, null, laneSizeExt, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
         }
 
         if (flag4)
@@ -374,7 +395,7 @@ public class DrawEntity {
     boolean isObstacleInAdjacentLane(Obstacles obstacle)
     {
         double[] position = obstacle.getPosition();
-        if(position[1] > 5.4 && position[1] < -5.4)
+        if(position[1] > 5.4d || position[1] < -5.4d)
         {
             return false;
         }
