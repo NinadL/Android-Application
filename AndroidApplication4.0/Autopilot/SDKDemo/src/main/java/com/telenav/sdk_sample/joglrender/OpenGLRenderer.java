@@ -12,10 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.telenav.sdk_sample.R;
 import com.telenav.sdk_sample.car.data.DataParser;
-import com.telenav.sdk_sample.car.data.FieldOfView;
 import com.telenav.sdk_sample.car.data.Lane;
-import com.telenav.sdk_sample.car.data.LaneModel;
-import com.telenav.sdk_sample.car.data.Sensor;
 import com.telenav.sdk_sample.car.data.setStatusClass;
 
 import java.io.BufferedReader;
@@ -36,65 +33,14 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Created by ishwarya on 7/14/16.
  */
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.opengl.GLES20;
-import android.opengl.GLSurfaceView;
-import android.opengl.GLUtils;
-import android.opengl.Matrix;
-import android.util.Log;
-import android.widget.RelativeLayout;
-
-import com.telenav.sdk_sample.R;
-import com.telenav.sdk_sample.car.data.DataParser;
-import com.telenav.sdk_sample.car.data.FieldOfView;
-import com.telenav.sdk_sample.car.data.Lane;
-import com.telenav.sdk_sample.car.data.LaneModel;
-import com.telenav.sdk_sample.car.data.Sensor;
-import com.telenav.sdk_sample.car.data.setStatusClass;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
 
 /**
  * Created by ishwarya on 7/14/16.
  */
 public class OpenGLRenderer implements GLSurfaceView.Renderer
 {
-    float[] mModelMatrixLane = new float[16];
-    float[] mProjectionMatrixLane = new float[16];
-    float[] mViewMatrixLane = new float[16];
-    float[] mMVPMatrixLane = new float[16];
+    //******    texture handles     ******//
 
-    FloatBuffer staticLaneVertexBuffer;
-    FloatBuffer staticLaneColorBuffer;
-    FloatBuffer staticTextureVertexBuffer;
-    FloatBuffer staticTextureColorBuffer;
-    ArrayList staticLanePoints = new ArrayList();
-
-    static FloatBuffer staticRLaneVertexBuffer;
-    static FloatBuffer staticRLaneColorBuffer;
-    static FloatBuffer staticRTextureVertexBuffer;
-    static FloatBuffer staticRTextureColorBuffer;
-    static ArrayList staticRLanePoints = new ArrayList();
-
-    static ArrayList<Lane> staticLanes = new ArrayList<>();
-
-
-
-    /******    texture handles     ******/
     private int mMVPMatrixHandleTexture;
     private int mMVMatrixHandleTexture;
     private int mTextureUniformHandle;
@@ -102,56 +48,47 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
     private int mColorHandleTexture;
     private int mNormalHandle;
     private int mTextureCoordinateHandle;
+    private int mProgramHandleTexture;
+    private int mPointProgramHandle;
+    private int mTextureDataHandle;
+
     private float[] mMVPMatrix = new float[16];
     private float[] mModelMatrix = new float[16];
     private float[] mViewMatrix = new float[16];
     private float[] mProjectionMatrix = new float[16];
 
+    float[] mModelMatrixLane = new float[16];
+    float[] mProjectionMatrixLane = new float[16];
+    float[] mViewMatrixLane = new float[16];
+    float[] mMVPMatrixLane = new float[16];
 
-    private int mProgramHandleTexture;
-    private int mPointProgramHandle;
-    private int mTextureDataHandle;
+    //******    constants     ******//
 
-    private final int mColorDataSize = 4;
-    private final int mColorLaneSize = 3;
-    private final int mNormalDataSize = 3;
-
-    Context context;
-
-    short gridMode = -1;
-
-    //private final Handler handler = new Handler();
+    final short DASH_LANE = 1;
+    final short SOLID_LANE = 2;
 
     private DrawEntity drawEntityObjectForBuffer = new DrawEntity();
-    private DrawEntity drawEntityObject;
     private laneFunctions laneFunctionsObject = new laneFunctions();
-
-    private DataParser dp = new DataParser();
-    private setStatusClass statusObject = new setStatusClass();
-
-    final Timer sensorStatusTimer = new Timer(true);
+    static ArrayList<Lane> previousLaneBoundaries = new ArrayList<>();
     final Timer laneTimer = new Timer(true);
-    final Timer textureTimer = new Timer(true);
-    final Timer gridTimer = new Timer(true);
-
-    //private Handler handler = new Handler();
-    Lane centerLane =Lane.cLane();
-    Lane rightLane =Lane.rLane();
-    Lane leftLane = Lane.lLane();
+    private DataParser dp = new DataParser();
+    Context context;
+    private DrawEntity drawEntityObject;
     private RelativeLayout mainActivityRelativeLayout;
     int dataSize2D = 2;
-    int dataSize3D = 3;
 
-    public OpenGLRenderer(){}
 
+    /*
+     * Constructor to initialize the lanes and call
+     * the timer class to construct the lanes periodically
+     */
     public OpenGLRenderer(Context context, RelativeLayout rl)
     {
         this.context = context;
         this.mainActivityRelativeLayout = rl;
         init();
-        //sensorStatusTimer.scheduleAtFixedRate(new senorStatusTimerClass(),0,1000);
-        laneTimer.scheduleAtFixedRate(new laneCalculationTimerClass(),0,85);
-        //textureTimer.scheduleAtFixedRate(new LaneTextureTimerClass(), 0, 100);
+
+        laneTimer.scheduleAtFixedRate(new LaneVertexCalculator(),0,85);
     }
 
 
@@ -197,22 +134,10 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
         Matrix.setLookAtM(mViewMatrixLane, 0, eyeXLane, eyeYLane, eyeZLane, lookXLane, lookYLane, lookZLane, upXLane, upYLane, upZLane);
 
-        // Disable depth testing
-        //GLES20.glDisable(GLES20.GL_DEPTH_TEST);
-//        GLES20.glDisable(GLES20.GL_CULL_FACE);
-//        GLES20.glEnable(GLES20.GL_BLEND);
-//        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE);
-
-
         GLES20.glEnable(GLES20.GL_DEPTH_TEST);
         GLES20.glDisable(GLES20.GL_CULL_FACE);
         GLES20.glEnable(GLES20.GL_BLEND);
         GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-
-
-//        GLES20.glEnable( GLES20.GL_DEPTH_TEST );
-//        GLES20.glDepthFunc( GLES20.GL_LEQUAL );
-//        GLES20.glDepthMask( true );
 
         drawEntityObject = new DrawEntity(mainActivityRelativeLayout,mMVPMatrixLane,mViewMatrixLane,mModelMatrixLane,mProjectionMatrixLane);
 
@@ -225,18 +150,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         mProgramHandleTexture = createAndLinkProgram(vertexShaderHandleTexture, fragmentShaderHandleTexture,
                 new String[] {"a_Position",  "a_Color", "a_Normal", "a_TexCoordinate"});
 
-
-        // Define a simple shader program for our point.
-//        final String pointVertexShader = readTextFileFromRawResource(context, R.raw.point_vertex_shader);
-//        final String pointFragmentShader = readTextFileFromRawResource(context, R.raw.point_fragment_shader);
-//
-//        final int pointVertexShaderHandle = compileShader(GLES20.GL_VERTEX_SHADER, pointVertexShader);
-//        final int pointFragmentShaderHandle = compileShader(GLES20.GL_FRAGMENT_SHADER, pointFragmentShader);
-//
-//
-//        mPointProgramHandle = createAndLinkProgram(pointVertexShaderHandle, pointFragmentShaderHandle,
-//                new String[] {"a_Position"});
-
         // Load the texture
 
 
@@ -246,8 +159,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         int redColorHandle  = mTextureDataHandle = OpenGLRenderer.loadTexture(context, R.raw.rio_red);
         int yellowColorHandle  = mTextureDataHandle = OpenGLRenderer.loadTexture(context, R.raw.rio_yellow);
         int whiteColorHandle  = OpenGLRenderer.loadTexture(context, R.drawable.white_strip);
-
-
 
         drawEntityObject.setTextureValues(mPositionHandleTexture,mProgramHandleTexture,mMVPMatrix,mViewMatrix,mModelMatrix,mProjectionMatrix,mMVPMatrixHandleTexture,mColorHandleTexture,mNormalHandle,mTextureCoordinateHandle,context,mMVMatrixHandleTexture,mTextureDataHandle,redColorHandle,yellowColorHandle, roadTextureHandle, whiteColorHandle);
 
@@ -259,12 +170,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         GLES20.glViewport(0, 0, width, height);
 
         final float ratio = (float) width / height;
-        final float left = -1;
-        final float right = 1;
-        final float bottom = -1;
-        final float top =1;
-        final float near = -10;
-        final float far = 10.0f;
 
         Matrix.frustumM(mProjectionMatrixLane, 0, -1.3f, 1.3f, -1, 1, 1, 100);
 
@@ -292,11 +197,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         Matrix.translateM(mModelMatrixLane,0,-24,0,0f);
         Matrix.scaleM(mModelMatrixLane,0,0.55f,1.5f,-1f);
 
-
-
         drawEntityObject.drawToScreen();
-
-
     }
 
     public FloatBuffer convertToFloatBuffer(ArrayList List,int dataSize){
@@ -306,8 +207,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         Buffer.put(laneFunctionsObject.convertToArray(List));
         return Buffer;
     }
-
-
 
     private int compileShader(final int shaderType, final String shaderSource)
     {
@@ -333,7 +232,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
         return shaderHandle;
     }
-
 
 
     public static String readTextFileFromRawResource(final Context context,
@@ -364,9 +262,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
         return body.toString();
     }
-
-
-
 
     private int createAndLinkProgram(final int vertexShaderHandle, final int fragmentShaderHandle, final String[] attributes)
     {
@@ -407,8 +302,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
         return programHandle;
     }
-
-
 
 
     public static int loadTexture(final Context context, final int resourceId)
@@ -458,93 +351,99 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         Lane lane = new Lane();
         lane.init();
 
-        staticLanes.add(lane.rightLane);
-        staticLanes.add(lane.leftLane);
-        staticLanes.add(lane.centerLane);
+        previousLaneBoundaries.add(lane.rightLane);
+        previousLaneBoundaries.add(lane.leftLane);
+        previousLaneBoundaries.add(lane.centerLane);
     }
 
-    private class laneCalculationTimerClass extends TimerTask {
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /*
+      Class : LaneVertexCalculator
+            This class is used to calculate the vertices of the lane boundaries
+            for displaying them on OpenGl
+     */
+    private class LaneVertexCalculator extends TimerTask {
 
         ArrayList<Lane> laneBoundaryData = new ArrayList<Lane>();
-
 
         @Override
         public void run()
         {
-            ArrayList lanePoints = new ArrayList();
-            ArrayList texturePoints = new ArrayList();
-            ArrayList texturePointsExt = new ArrayList();
-            ArrayList textureColorList = new ArrayList();
-            ArrayList laneColorList = new ArrayList();
-            ArrayList textureColorListExt = new ArrayList();
+            ArrayList boundaryPoints = new ArrayList();
+            ArrayList centreLanePoints = new ArrayList();
+            ArrayList sideLanePoints = new ArrayList();
 
-            //if (statusObject.gettingLaneData())
-            if(true)
+            ArrayList boundaryColor = new ArrayList();
+            ArrayList centreLaneColor = new ArrayList();
+            ArrayList sideLaneColor = new ArrayList();
+
+            laneBoundaryData = dp.getLaneObject();
+
+            //Clear all the existing data
+             boundaryPoints.clear();
+             centreLanePoints.clear();
+             centreLaneColor.clear();
+             boundaryColor.clear();
+
+            ArrayList<Lane> localLaneBoundaryData = laneBoundaryData;
+
+
+            //If we do not receive any lanes, use the previous lane boundaries
+            //Else, save the current lane boundaries.
+            if(localLaneBoundaryData.size() == 0)
             {
-                laneBoundaryData = dp.getLaneObject();
-                 lanePoints.clear();
-                 texturePoints.clear();
-                 textureColorList.clear();
-                 laneColorList.clear();
-                ArrayList<Lane> localLaneBoundaryData = laneBoundaryData;
+                localLaneBoundaryData.clear();
+                localLaneBoundaryData = previousLaneBoundaries;
+            }
+            else
+            {
+                previousLaneBoundaries.clear();
+                previousLaneBoundaries = localLaneBoundaryData;
+            }
 
-                long startTime = System.currentTimeMillis();
-                int i = 0;
 
-                if(localLaneBoundaryData.size() == 0)
+            //Iterate through the lane boundaries and display the appropriate boundary based on the type
+            for (int i = 0; i < localLaneBoundaryData.size(); i++)
+            {
+                if (localLaneBoundaryData.get(i) != null )
                 {
-                    localLaneBoundaryData.clear();
-                    localLaneBoundaryData = staticLanes;
-                }
-                else
-                {
-                    staticLanes.clear();
-                    staticLanes = localLaneBoundaryData;
-                }
-
-
-                for (int lane_no = 0; lane_no < localLaneBoundaryData.size(); lane_no++) {
-
-                    if (localLaneBoundaryData.get(lane_no) != null )//{&&  localLaneBoundaryData.get(lane_no).getType() < 9  ) {
+                    switch( localLaneBoundaryData.get(i).getType())
                     {
-                        /*
-                         * LaneType {DASHED = 1, SOLID = 2,UNDECIDED =3, ROAD_EDGE=4, DOUBLE_LANE_MARK=5, BOTTS_DOTS=6, INVALID=7, UNKNOWN=8, CENTER_LINE=9, PATH=10
-                         */
-                        switch( localLaneBoundaryData.get(lane_no).getType())
-                        {
-                            case 1:
-                                laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 1, lanePoints, texturePoints, texturePointsExt,  laneColorList, textureColorList,  textureColorListExt, 0);
-                                break;
-                            case 2:
-                                laneFunctionsObject.getSolidLineCoordinates(localLaneBoundaryData.get(lane_no).getPoints(), 2, lanePoints, texturePoints,texturePointsExt,  laneColorList, textureColorList,  textureColorListExt, 0);
-                                break;
-                        }
+                        case 1:
+                            //dashed lane boundary
+                            laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), DASH_LANE,
+                                                                        boundaryPoints, centreLanePoints, sideLanePoints,
+                                                                        boundaryColor, centreLaneColor,  sideLaneColor);
+                            break;
+                        case 2:
+                            //solid lane boundary
+                            laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), SOLID_LANE,
+                                                                        boundaryPoints, centreLanePoints,sideLanePoints,
+                                                                        boundaryColor, centreLaneColor,  sideLaneColor);
+                            break;
                     }
-
-                }
-
-                Log.d("laneProductionEnds", String.valueOf(" timeTaken " + (System.currentTimeMillis() - startTime)) + "bufferSize " + lanePoints.size());
-
-                if (lanePoints.size() != 0) {
-                    FloatBuffer vertexBuffer = convertToFloatBuffer(lanePoints,dataSize2D);
-                    FloatBuffer colorBuffer = convertToFloatBuffer(laneColorList,dataSize2D);
-                    FloatBuffer vertexBuffer1 = convertToFloatBuffer(texturePoints,dataSize2D);
-                    FloatBuffer colorBuffer1 = convertToFloatBuffer(textureColorList,dataSize2D);
-                    FloatBuffer vertexBuffer2 = convertToFloatBuffer(texturePointsExt,dataSize2D);
-                    FloatBuffer colorBuffer2 = convertToFloatBuffer(textureColorListExt,dataSize2D);
-
-                    drawEntityObjectForBuffer.setBufferLaneExt(vertexBuffer2, colorBuffer2, texturePointsExt.size() / 2, true);
-                    drawEntityObjectForBuffer.setBufferDashLane(vertexBuffer1, colorBuffer1, texturePoints.size() / 2, true);
-                    drawEntityObjectForBuffer.setBufferLane(vertexBuffer, colorBuffer, lanePoints.size() / 2, true);
-                }
-                else {
-                    drawEntityObjectForBuffer.setBufferDashLane(staticTextureVertexBuffer, staticTextureColorBuffer, staticLanePoints.size() / 2, true);
-
                 }
 
             }
-            else{
-                drawEntityObjectForBuffer.setBufferDashLane(staticTextureVertexBuffer, staticTextureColorBuffer, staticLanePoints.size()/2, true);
+
+            //If all vertices and colors are set, then render the lane
+            if (boundaryPoints.size() != 0 && boundaryColor.size() != 0 &&
+                centreLanePoints.size() != 0 &&  centreLaneColor.size() != 0 &&
+                sideLanePoints.size() != 0 && sideLaneColor.size() != 0)
+            {
+
+                FloatBuffer boundaryVertexBuffer = convertToFloatBuffer(boundaryPoints,dataSize2D);
+                FloatBuffer boundaryColorBuffer = convertToFloatBuffer(boundaryColor,dataSize2D);
+
+                FloatBuffer centreLaneVertexBuffer = convertToFloatBuffer(centreLanePoints,dataSize2D);
+                FloatBuffer centreLaneColorBuffer = convertToFloatBuffer(centreLaneColor,dataSize2D);
+
+                FloatBuffer sideLaneVertexBuffer = convertToFloatBuffer(sideLanePoints,dataSize2D);
+                FloatBuffer sideLaneColorBuffer = convertToFloatBuffer(sideLaneColor,dataSize2D);
+
+                drawEntityObjectForBuffer.setSideLaneBuffer(sideLaneVertexBuffer, sideLaneColorBuffer, sideLanePoints.size() / 2, true);
+                drawEntityObjectForBuffer.setCentreLaneBuffer(centreLaneVertexBuffer, centreLaneColorBuffer, centreLanePoints.size() / 2, true);
+                drawEntityObjectForBuffer.setBoundaryBuffer(boundaryVertexBuffer, boundaryColorBuffer, boundaryPoints.size() / 2, true);
             }
         }
     }

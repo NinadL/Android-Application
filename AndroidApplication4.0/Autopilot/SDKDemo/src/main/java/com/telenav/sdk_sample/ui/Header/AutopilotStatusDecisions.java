@@ -37,6 +37,10 @@ public class AutopilotStatusDecisions
     public static int[] status = {1, 1, 1, 1, 1};
 
 
+    /*
+     * This method will initialize and call the timers
+     * to check for the status and update them on the UI
+     */
     public void initTimer()
     {
         autopilotData = new AutopilotData();
@@ -47,6 +51,14 @@ public class AutopilotStatusDecisions
         timerForSpeedUpdate.scheduleAtFixedRate(new SetSpeed(), 5000, 1000);
     }
 
+    /*
+     * This method is used to set the status. The array index corresponds to following conditions:
+     * NETWORK_NOT_WORKING = 0
+     * NODES_NOT_WORKING = 1
+     * WE_ARE_NOT_HIGHWAY = 2
+     * DISTANCE_LESS_THAN_3_MILES = 3
+     * WE_ARE_NOT_ON_CENTRE_LANE = 4
+     */
     void setStatus(int index)
     {
         for(int i = 0; i < index; i++)
@@ -59,12 +71,20 @@ public class AutopilotStatusDecisions
         }
     }
 
+    /*
+     * This method is used to check if the network is working or not
+     */
     boolean isNetworkWorking()
     {
         boolean exists = true;
         return exists;
     }
 
+    /*
+     * This method is used to check if the nodes is working or not.
+     * Nodes would be working if we get the data from perception module,
+     * control module and motion planning module periodically
+     */
     boolean areNodesWorking()
     {
         if(statusObject.gettingPerceptionData() &&
@@ -80,6 +100,10 @@ public class AutopilotStatusDecisions
         }
     }
 
+    /*
+     * This method check if the distance to the
+     * end of the highway is greater than 3 miles or not
+     */
     boolean isDistanceToAutopilotEndMoreThan3Miles()
     {
         double remainingDistance = autopilotData.getDistance();
@@ -97,6 +121,9 @@ public class AutopilotStatusDecisions
         }
     }
 
+    /*
+     * This method check if we are currently on highway
+     */
     boolean areWeOnHighway()
     {
         if((AutopilotData.areWeOnHighway && MapActivity.isNavigationStarted) ||
@@ -117,16 +144,29 @@ public class AutopilotStatusDecisions
         }
     }
 
+    /*
+     * This method check if the autopilot is on or not
+     */
     boolean isAutoPilotOnForCar()
     {
-        return dataParser.getControlMessageObject().getIsAutoDrivingOn();
+        boolean isAutopilotOn = false;
+        if(dataParser != null && dataParser.getControlMessageObject() != null)
+        {
+            isAutopilotOn = dataParser.getControlMessageObject().getIsAutoDrivingOn();
+        }
+        return isAutopilotOn;
     }
 
+    /*
+     * This method check if we are on centre lane or not
+     */
     boolean areWeOnCentreLane()
     {
-        if (statusObject.areWeOnCentreLane()) {
+        if (statusObject != null && statusObject.areWeOnCentreLane())
+        {
             return true;
-        } else {
+        } else
+        {
             setStatus(WE_ARE_NOT_ON_CENTRE_LANE);
             return false;
         }
@@ -262,7 +302,6 @@ public class AutopilotStatusDecisions
 
             else
             {
-                Log.d("StatusDecision", "else");
                 MapActivity.headerFragment.setAutopilotStatusImageAndText(MANUAL_DRIVE);
                 MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
                 MapActivity.headerFragment.setEngageAutopilot(DISABLED);

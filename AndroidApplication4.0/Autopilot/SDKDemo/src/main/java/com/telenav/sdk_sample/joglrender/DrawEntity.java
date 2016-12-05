@@ -16,27 +16,9 @@ import java.util.ArrayList;
 /**
  * Created by ishwarya on 7/20/16.
  */
-public class DrawEntity {
-    float[] mModelMatrixLane;
-    float[] mProjectionMatrixLane;
-    float[] mViewMatrixLane;
-    float[] mMVPMatrixLane;
-
-    private  int mBytesPerFloat = 4;
-    private  int mPositionDataSize = 3;
-    private  int mStrideBytes = 12;
-    private  int mColorDataSize = 4;
-    private  int mColorLaneSize = 3;
-    private  int mNormalDataSize = 3;
-    private  int mTextureCoordinateDataSize = 2;
-
-
-    float[] mModelMatrix;
-    float[] mProjectionMatrix;
-    float[] mViewMatrix;
-    private float[] mMVPMatrix;
-
-    /******    texture handles     ******/
+public class DrawEntity
+{
+    //******    texture handles     ******//
     private int mPositionHandle;
     private int mProgramHandle;
     private int mMVPMatrixHandle;
@@ -46,67 +28,83 @@ public class DrawEntity {
     private int mUseTextureHandle;
     private int mMVMatrixHandle;
 
-    Context Context;
+    float[] mModelMatrixLane;
+    float[] mProjectionMatrixLane;
+    float[] mViewMatrixLane;
+    float[] mMVPMatrixLane;
+
+    float[] mModelMatrix;
+    float[] mProjectionMatrix;
+    float[] mViewMatrix;
+    private float[] mMVPMatrix;
 
     int mTextureUniformHandle;
     int mTextureDataHandle;
-    public String errorMsg="";
-    // int mPointProgramHandle;
 
+    //******  Buffers used to render the objects ******//
 
-    static private FloatBuffer laneVertexBufferPrevious;
-    static private FloatBuffer dashedLaneBufferPrevious;
-    static private FloatBuffer laneVertexBufferExtPrevious;
+    static private FloatBuffer boundaryVertexBuffer;
+    static private FloatBuffer centreLaneVertexBuffer;
+    static private FloatBuffer sideLaneVertexBuffer;
 
-    static private FloatBuffer laneColorBufferPrevious;
-    static private FloatBuffer laneColorBuffer1Previous;
-    static private FloatBuffer laneColorBufferExtPrevious;
+    static private FloatBuffer previousBoundaryVertexBuffer;
+    static private FloatBuffer previousCentreLaneVertexBuffer;
+    static private FloatBuffer previousSideLaneVertexBuffer;
 
+    static private FloatBuffer boundaryColorBuffer;
+    static private FloatBuffer centreLaneColorBuffer;
+    static private FloatBuffer sideLaneColorBuffer;
 
-    static  private int laneSizePrevious;
-    static  private int laneSizeExtPrevious;
+    static private FloatBuffer previousBoundaryColorBuffer;
+    static private FloatBuffer previousCentreLaneColorBuffer;
+    static private FloatBuffer previousSideLaneColorBuffer;
 
-
-    static private FloatBuffer laneVertexBuffer;
-    static private FloatBuffer dashedLaneBuffer;
-    static private FloatBuffer laneVertexBufferExt;
-    static private FloatBuffer laneColorBufferExt;
-    static  private int laneSizeExt;
-    static private FloatBuffer laneColorBuffer;
-    static private FloatBuffer laneColorBuffer1;
-    static  private int laneSize;
-    static private int dashLaneSize;
-    static private int dashLaneSizePrevious;
-
-    static boolean flag1 = false;
-
-    static boolean flag2 = false;
-    static private modelBuffers gridObj;
-
-
-    static boolean flag4=false;
-    static boolean flag5=false;
-    static boolean flag6=false;
     static modelBuffers vehicleObj;
 
+    //****** Sizes is required while rendering the objects ******//
 
-    static private FloatBuffer sensorVertexBuffer;
-    static private FloatBuffer sensorColorBuffer;
-    static private int sensorSize;
-    static boolean flag3;
-    private  DataParser dp = new DataParser();
-    private setStatusClass statusObject = new setStatusClass();
+    static  private int boundarySize = 0;
+    static private int centreLaneSize = 0;
+    static  private int sideLaneSize = 0;
 
-    private short minArrayListSize = 3;
-    private short xYVertexSize = 2;
-    private short xYZVertexSize = 3;
+    static  private int previousBoundarySize = 0;
+    static private int previousCentreLaneSize = 0;
+    static  private int previousSideLaneSize = 0;
+
+    //****** Booleans values used to check if the buffers have been set ******//
+
+    static boolean isBoundaryAvbl = false;
+    static boolean isCentreLaneAvbl =false;
+    static boolean isSideLaneAvbl =false;
+    static boolean isVehicleObjAvbl =false;
+
+    //****** Color handles for the car ******//
 
     int redColorHandle;
     int yellowColorHandle;
     int roadTextureHandle;
     int whiteColorHandle;
+
+    //****** Constant values ******//
+
+    private short minArrayListSize = 3;
+    private short xYVertexSize = 2;
+    private short xYZVertexSize = 3;
+
+    private  int mColorDataSize = 4;
+    private  int mNormalDataSize = 3;
+    private  int mTextureCoordinateDataSize = 2;
+
+    private  DataParser dp = new DataParser();
+    private setStatusClass statusObject = new setStatusClass();
     private static  RelativeLayout mainActivityRelativeLayout;
-    public DrawEntity(){}
+    Context Context;
+
+    public DrawEntity()
+    {
+
+    }
+
 
     public DrawEntity(RelativeLayout mainActivityRelativeLayout, float[] mMVPMatrix, float[] mViewMatrix, float[] mModelMatrix, float[] mProjectionMatrix) {
 
@@ -118,7 +116,9 @@ public class DrawEntity {
 
     }
 
-
+    /*
+    *   This method is used to initialize the texture handles and the matrices
+    */
     public void setTextureValues(int mPositionHandle, int mProgramHandle, float[] mMVPMatrix, float[] mViewMatrix, float[] mModelMatrix, float[] mProjectionMatrix, int mMVPMatrixHandle, int mColorHandle, int mNormalHandle, int mTextureCoordinateHandle, Context c, int mMVMatrixHandle, int mTextureDataHandle,int redColorHandle, int yellowColorHandle, int roadTextureHandle, int whiteColorHandle) {
 
         this.mPositionHandle = mPositionHandle;
@@ -140,138 +140,143 @@ public class DrawEntity {
         this.whiteColorHandle = whiteColorHandle;
     }
 
-    public void setBufferLane(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag)
+     /*
+     *   This method is used to set the vertex and the color for the boundary.
+     *   We check if the buffer is empty or not. If it is empty, then we use the previously
+     *   rendered contents again.
+     */
+    public void setBoundaryBuffer(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int size, boolean flag)
     {
         if(vertexBuffer == null || vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
         {
-            laneVertexBuffer = laneVertexBufferPrevious;
-            laneColorBuffer = laneColorBufferPrevious;
-            laneSize = laneSizePrevious;
+            boundaryVertexBuffer = previousBoundaryVertexBuffer;
+            boundaryColorBuffer = previousBoundaryColorBuffer;
+            boundarySize = previousBoundarySize;
         }
         else
         {
-            laneVertexBufferPrevious = laneVertexBuffer = vertexBuffer;
-            laneColorBufferPrevious = laneColorBuffer = colorBuffer;
-            laneSizePrevious = laneSize = Size;
+            previousBoundaryVertexBuffer = boundaryVertexBuffer = vertexBuffer;
+            previousBoundaryColorBuffer = boundaryColorBuffer = colorBuffer;
+            previousBoundarySize = boundarySize = size;
 
         }
-        flag1 = flag;
+        isBoundaryAvbl = flag;
     }
 
-    public void setBufferDashLane(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag)
+    /*
+    *   This method is used to set the vertex and the color for the centre part of the lane.
+    *   We check if the buffer is empty or not. If it is empty, then we use the previously
+    *   rendered contents again.
+    */
+    public void setCentreLaneBuffer(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int size, boolean flag)
     {
         if(vertexBuffer == null || vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
         {
-            dashedLaneBuffer = dashedLaneBufferPrevious;
-            laneColorBuffer1 = laneColorBuffer1Previous;
-            dashLaneSize = dashLaneSizePrevious;
+            centreLaneVertexBuffer = previousCentreLaneVertexBuffer;
+            centreLaneColorBuffer = previousCentreLaneColorBuffer;
+            centreLaneSize = previousCentreLaneSize;
         }
         else
         {
-            dashedLaneBufferPrevious = dashedLaneBuffer = vertexBuffer;
-            laneColorBuffer1Previous = laneColorBuffer1 = colorBuffer;
-            dashLaneSizePrevious = dashLaneSize = Size;
+            previousCentreLaneVertexBuffer = centreLaneVertexBuffer = vertexBuffer;
+            previousCentreLaneColorBuffer = centreLaneColorBuffer = colorBuffer;
+            previousCentreLaneSize = centreLaneSize = size;
 
         }
-        flag5 = flag;
+        isCentreLaneAvbl = flag;
     }
 
-    public void setBufferLaneExt(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int Size, boolean flag)
+    /*
+    *   This method is used to set the vertex and the color for the side part of the lane.
+    *   We check if the buffer is empty or not. If it is empty, then we use the previously
+    *   rendered contents again.
+    */
+    public void setSideLaneBuffer(FloatBuffer vertexBuffer, FloatBuffer colorBuffer, int size, boolean flag)
     {
         if(vertexBuffer == null || vertexBuffer.capacity() - vertexBuffer.remaining() == 0)
         {
-            laneVertexBufferExt = laneVertexBufferExtPrevious;
-            laneColorBufferExt = laneColorBufferExtPrevious;
-            laneSizeExt = laneSizeExtPrevious;
+            sideLaneVertexBuffer = previousSideLaneVertexBuffer;
+            sideLaneColorBuffer = previousSideLaneColorBuffer;
+            sideLaneSize = previousSideLaneSize;
         }
         else
         {
-            laneVertexBufferExtPrevious = laneVertexBufferExt = vertexBuffer;
-            laneColorBufferExtPrevious = laneColorBufferExt = colorBuffer;
-            laneSizeExtPrevious = laneSizeExt = Size;
+            previousSideLaneVertexBuffer = sideLaneVertexBuffer = vertexBuffer;
+            previousSideLaneColorBuffer = sideLaneColorBuffer = colorBuffer;
+            previousSideLaneSize = sideLaneSize = size;
 
         }
-        flag1 = flag;
+        isSideLaneAvbl = flag;
 
     }
 
-//    public void setBufferGrid(modelBuffers object, boolean flag){
-//        gridObj = object;
-//        flag2 = flag;
-//    }
-
-    public void setVehicleStatus(modelBuffers object, boolean flag) {
-        Log.d("asyncTask","setVehicleStatus");
+    /*
+    *   This method is used to set the vehicle object.
+    */
+    public void setVehicleStatus(modelBuffers object, boolean flag)
+    {
         vehicleObj = object;
-        flag4 = flag;
+        isVehicleObjAvbl = flag;
     }
 
-    public void setBufferSensors(FloatBuffer vertexList,FloatBuffer colorList, int Size,boolean flag) {
-        Log.d("sentsensor", "flag3" );
-        sensorVertexBuffer = vertexList;
-        sensorColorBuffer = colorList;
-        sensorSize = Size;
-        flag3 = flag;
-    }
-
-
+    /*
+    *   This method is used to draw various objects on the screen
+    */
     public void drawToScreen()
     {
 
-        GLES20.glDisable(GLES20.GL_BLEND);
-
-        if (flag1 && laneSize > minArrayListSize) {
-            //GLES20.glFlush();
-            drawTexture(laneVertexBuffer, laneColorBuffer, null, null, laneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
-        }
-
-        if (flag5 && dashLaneSize > minArrayListSize) {
-            //GLES20.glFlush();
-            drawTexture(dashedLaneBuffer, laneColorBuffer1, null, null, dashLaneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
-        }
-
-        if (flag1 && laneSizeExt > minArrayListSize) {
-            //GLES20.glFlush();
-            drawTexture(laneVertexBufferExt, laneColorBufferExt, null, null, laneSizeExt, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
-        }
-
-        if (flag4)
+        //Check if the boundary is ready to be rendered, and non-empty
+        if (isBoundaryAvbl && boundarySize > minArrayListSize)
         {
-            short xTranslateValue = 6;
-            short zTranslateValue = 1;
-            float yMultiplicationFactor = 3.5f;
+            drawTexture(boundaryVertexBuffer, boundaryColorBuffer,
+                        null, null, boundarySize,
+                        xYVertexSize, 0.0f, GLES20.GL_TRIANGLES,
+                        mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
+        }
 
-            Matrix.scaleM(mModelMatrixLane, 0, 1f, 0.5f, 0.7f); //originally 0, 0.5, 0.5, 0.5
+        //Check if the centre lane part is ready to be rendered, and non-empty
+        if (isCentreLaneAvbl && centreLaneSize > minArrayListSize)
+        {
+            drawTexture(centreLaneVertexBuffer, centreLaneColorBuffer, null, null, centreLaneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
+        }
+
+        //Check if the side lane part is ready to be rendered, and non-empty
+        if (isSideLaneAvbl && sideLaneSize > minArrayListSize)
+        {
+            drawTexture(sideLaneVertexBuffer, sideLaneColorBuffer, null, null, sideLaneSize, xYVertexSize, 0.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, -2);
+        }
+
+        //Check if vehicle object is ready to be rendered
+        if (isVehicleObjAvbl)
+        {
+            ////////////////////////////////////////
+            //  Setup the view for the vehicles   //
+            ////////////////////////////////////////
+
+            short xTranslateValue = 6;
+
+            Matrix.scaleM(mModelMatrixLane, 0, 1f, 0.5f, 0.7f);
             Matrix.translateM(mModelMatrixLane, 0, xTranslateValue, 0, 0);
-//
-//                    //make the car hood to face forward
+
+            //make the car hood to face forward
             Matrix.rotateM(mModelMatrixLane, 0, -180, 0, 0, 1);
-//
-//                    //make the car tires to touch the base else it is verticle instead of horizontal
+
+            //make the car tires to touch the base else it is vertical instead of horizontal
             Matrix.rotateM(mModelMatrixLane, 0, -90, 1, 0, 0);
             Matrix.rotateM(mModelMatrixLane, 0, 0, 0, 1, 0);
+
             GLES20.glFlush();
+
+            ////////////////////////////////////////
+            //  Draw the vehicles                 //
+            ////////////////////////////////////////
+
+            //Draw our car
             drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
             Matrix.translateM(mModelMatrixLane, 0, -xTranslateValue, 0, 0);
 
-////                    //obstacles
-////
-//                    Matrix.translateM(mModelMatrixLane, 0,-13, 0,  -10 + 3.6f );
-//                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
-//
-//                    Matrix.translateM(mModelMatrixLane, 0,+13, 0, 10 -3.6f );
-//
-//                    Matrix.translateM(mModelMatrixLane, 0,-23, 0, 5 + 1.8f );
-//                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
-//
-//                    Matrix.translateM(mModelMatrixLane, 0,-13, 0, -5 - 1.8f );
-//                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
-//
-//                    Matrix.translateM(mModelMatrixLane, 0,-13, 0, -5 -1.8f );
-//                    drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, redColorHandle);
-
+            //Draw the obstacles
             if (statusObject.gettingPerceptionData() && dp.getObstaclesObject()!= null)
-            //if(true)
             {
                 ArrayList<Obstacles> obstacleList = dp.getObstaclesObject();
                 for (int i = 0; i < obstacleList.size(); i++)
@@ -280,9 +285,6 @@ public class DrawEntity {
                     {
                         float yCoordinate = (float)obstacleList.get(i).getPosition()[1];
                         float xCoordinate = (float)obstacleList.get(i).getPosition()[0];
-
-                        //float yCoordinate = -3.6f;
-                        //float xCoordinate = 10.0f;
 
                         Matrix.scaleM(mModelMatrixLane, 0, 0.9f, 0.9f, 0.9f);
 
@@ -293,6 +295,7 @@ public class DrawEntity {
                         {
                             scalingIndex = scalingIndex*-1;
                         }
+
                         //This is the actual scaling that needs to be done
                         float scalingFactor = yCoordinate * scalingIndex;
 
@@ -300,15 +303,14 @@ public class DrawEntity {
                         {
                             scalingFactor = scalingFactor * -1;
                         }
+
+                        //Translate the obstacle, rotate it to the desired angle, render the obstacle,
+                        // move the perception back to origin
                         Matrix.translateM(mModelMatrixLane,0,-(float) (xCoordinate),0,scalingFactor + (float) (yCoordinate));
-                        //Matrix.rotateM(mModelMatrixLane, 0, (float) Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3]) * 2), 0, 1, 0);
-                        //Matrix.rotateM(mModelMatrixLane, 0, (float) Math.toDegrees(Math.acos(0.0) * 2), 0, 1, 0);
                         Matrix.translateM(mModelMatrixLane,0,-(float) (obstacleList.get(i).getPosition()[0]),0,scalingFactor + (float) (obstacleList.get(i).getPosition()[1]));
                         drawTexture(vehicleObj.getVertexBuffer(), vehicleObj.getColorBuffer(), vehicleObj.getNormalBuffer(), vehicleObj.getTextureBuffer(), vehicleObj.getSize(), xYZVertexSize, 1.0f, GLES20.GL_TRIANGLES, mProjectionMatrixLane, mViewMatrixLane, mModelMatrixLane, yellowColorHandle);
-                        //Matrix.rotateM(mModelMatrixLane, 0, -((float) Math.toDegrees(Math.acos(0.0) * 2)), 0, 1, 0);
                         Matrix.rotateM(mModelMatrixLane, 0, -((float) Math.toDegrees(Math.acos(obstacleList.get(i).getOrientation()[3]) * 2)), 0, 1, 0);
                         Matrix.translateM(mModelMatrixLane,0,(float) (xCoordinate),0,-scalingFactor - (float) (yCoordinate));
-                        //Matrix.translateM(mModelMatrixLane,0,(float) (obstacleList.get(i).getPosition()[0]),0,-scalingFactor - (float) (obstacleList.get(i).getPosition()[1]));
                     }
                 }
             }
@@ -316,12 +318,17 @@ public class DrawEntity {
     }
 
 
-    void drawTexture(FloatBuffer vertexBuffer,FloatBuffer colorBuffer, FloatBuffer normalBuffer, FloatBuffer textureBuffer, int size ,int dataSize,float useTexture,int mode,float[] mProjectionMatrix,float[] mViewMatrix,float[] mModelMatrix,int mTextureDataHandle)
+    /*
+    *   This method is used to render the objects on the screen
+    */
+    void drawTexture(FloatBuffer vertexBuffer,FloatBuffer colorBuffer,
+                     FloatBuffer normalBuffer, FloatBuffer textureBuffer, int size,
+                     int dataSize,float useTexture,int mode, float[] mProjectionMatrix,
+                     float[] mViewMatrix,float[] mModelMatrix,int mTextureDataHandle)
     {
 
         mMVPMatrixHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_MVPMatrix");
         mMVMatrixHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_MVMatrix");
-        // mLightPosHandleTexture = GLES20.glGetUniformLocation(mProgramHandle, "u_LightPos");
         mTextureUniformHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Texture");
 
         mUseTextureHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_UseTexture");
@@ -339,7 +346,8 @@ public class DrawEntity {
 
         GLES20.glUniform1i(mTextureUniformHandle, 0);
 
-        if(vertexBuffer != null) {
+        if(vertexBuffer != null)
+        {
             vertexBuffer.position(0);
 
 
@@ -354,44 +362,44 @@ public class DrawEntity {
         */
             GLES20.glVertexAttribPointer(mPositionHandle, dataSize, GLES20.GL_FLOAT, false, 0, vertexBuffer);
         }
-            GLES20.glEnableVertexAttribArray(mPositionHandle);
+        GLES20.glEnableVertexAttribArray(mPositionHandle);
 
-            if (colorBuffer != null) {
+        if (colorBuffer != null) {
 
-                colorBuffer.position(0);
-                GLES20.glVertexAttribPointer(mColorHandle, mColorDataSize, GLES20.GL_FLOAT, false, 16, colorBuffer);
-                GLES20.glEnableVertexAttribArray(mColorHandle);
-            }
+            colorBuffer.position(0);
+            GLES20.glVertexAttribPointer(mColorHandle, mColorDataSize, GLES20.GL_FLOAT, false, 16, colorBuffer);
+            GLES20.glEnableVertexAttribArray(mColorHandle);
+        }
 
-            if (normalBuffer != null) {
+        if (normalBuffer != null) {
 
-                normalBuffer.position(0);
-                GLES20.glVertexAttribPointer(mNormalHandle, mNormalDataSize, GLES20.GL_FLOAT, false, 0, normalBuffer);
-                GLES20.glEnableVertexAttribArray(mNormalHandle);
-            }
+            normalBuffer.position(0);
+            GLES20.glVertexAttribPointer(mNormalHandle, mNormalDataSize, GLES20.GL_FLOAT, false, 0, normalBuffer);
+            GLES20.glEnableVertexAttribArray(mNormalHandle);
+        }
 
-            if (textureBuffer != null) {
+        if (textureBuffer != null) {
 
-                textureBuffer.position(0);
-                GLES20.glVertexAttribPointer(mTextureCoordinateHandle, mTextureCoordinateDataSize, GLES20.GL_FLOAT, false, 0, textureBuffer);
-                GLES20.glEnableVertexAttribArray(mTextureCoordinateHandle);
-            }
+            textureBuffer.position(0);
+            GLES20.glVertexAttribPointer(mTextureCoordinateHandle, mTextureCoordinateDataSize, GLES20.GL_FLOAT, false, 0, textureBuffer);
+            GLES20.glEnableVertexAttribArray(mTextureCoordinateHandle);
+        }
 
-            //MVMatrix
-            Matrix.multiplyMM(mMVPMatrix, 0, mViewMatrix, 0, mModelMatrix, 0);
-            GLES20.glUniformMatrix4fv(mMVMatrixHandle, 1, false, mMVPMatrix, 0);
+        //MVMatrix
+        Matrix.multiplyMM(mMVPMatrix, 0, mViewMatrix, 0, mModelMatrix, 0);
+        GLES20.glUniformMatrix4fv(mMVMatrixHandle, 1, false, mMVPMatrix, 0);
 
-            //MVPMatrix
-            Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mMVPMatrix, 0);
-            GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mMVPMatrix, 0);
+        //MVPMatrix
+        Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mMVPMatrix, 0);
+        GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mMVPMatrix, 0);
 
-
-            GLES20.glDrawArrays(mode, 0, size);
-            Log.d("laneFormoation", mode + " " + size);
-            // GLES20.glDeleteTextures(1,mTextureDataHandle);
-
+        GLES20.glDrawArrays(mode, 0, size);
     }
 
+    /*
+     *  This method is used to check if the obstacle is in the adjacent lane.
+     *  We check if the obstacle is at a distance of >5.4 or <-5.4 on Y axis.
+     */
     boolean isObstacleInAdjacentLane(Obstacles obstacle)
     {
         double[] position = obstacle.getPosition();

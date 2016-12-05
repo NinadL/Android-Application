@@ -20,12 +20,15 @@ public class AutopilotData
     public static DataParser dataParser;
 
 
-    //Gets the remaining distance for the autopilot to end
-    //(Get the current distance travelled and then check the distance value to see the range in which we fall.
-    // Return the distance which is at the end of this range)
+    /*
+    *   Gets the remaining distance for the autopilot to end
+     *  (Get the current distance travelled and then check the
+     *  distance value to see the range in which we fall.
+     *  Return the distance which is at the end of this range)
+     */
     public double getDistance()
     {
-        int remainingDistanceTillNextEdge;
+        int remainingDistanceTillNextEdge = Integer.MAX_VALUE;
 
         if (NavigationManager.getInstance() != null && NavigationManager.getInstance().getNavigationData() != null && myMapRenderingUtils.distanceValues.size() > 0)
         {
@@ -62,6 +65,10 @@ public class AutopilotData
         return 0;
     }
 
+    /*
+     *  This method is used to get the speed
+     *  from the data parser and send it to UI for display
+     */
     public int getSpeed()
     {
         int finalSpeed = 0;
@@ -76,7 +83,7 @@ public class AutopilotData
                 double[] speed = ego.getSpeed();
 
                 finalSpeed = (int)(Math.sqrt(speed[0]*speed[0] + speed[1]*speed[1] + speed[2]*speed[2]));
-                return (int)(finalSpeed * 2.23694);
+                return (int)(finalSpeed * 2.23694); //Convert it to miles/hour
             }
             else
             {
@@ -87,8 +94,6 @@ public class AutopilotData
         {
             return 0;
         }
-
-
     }
 
 }

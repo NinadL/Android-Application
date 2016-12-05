@@ -1360,7 +1360,10 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                             double distanceToTurn = (double) NavigationManager.getInstance().getNavigationData().getDistanceToTurn();
                             //Convert the distance to miles and round it off
                             distanceToTurn = Math.round(((float)distanceToTurn* 0.000621371)*10.0)/10.0;
-                            MapActivity.headerFragment.setTurnDistance(distanceToTurn);
+
+                            if(distanceToTurn > 0) {
+                                MapActivity.headerFragment.setTurnDistance(distanceToTurn);
+                            }
 
                             TravelEstimation travelEstimation = NavigationManager.getInstance().getNavigationData().getDestinationTravelEstimation();
 
