@@ -110,7 +110,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         final float eyeZ = 7.0f;
 
         // We are looking toward the distance
-        final float lookX = -8.0f;
+        final float lookX = -12.0f;
         final float lookY = -0.0f;
         final float lookZ = -10.0f;
 
@@ -126,7 +126,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         final float eyeZLane = 7.0f;
 
         // We are looking toward the distance
-        final float lookXLane = -8.0f;
+        final float lookXLane = -12.0f;
         final float lookYLane = 0.0f;
         final float lookZLane = -10.0f;
 
@@ -463,7 +463,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
                                         boundaryPoints, centreLanePoints,sideLanePoints,
                                         boundaryColor, centreLaneColor,  sideLaneColor);
                             }
-
                             break;
                     }
                 }

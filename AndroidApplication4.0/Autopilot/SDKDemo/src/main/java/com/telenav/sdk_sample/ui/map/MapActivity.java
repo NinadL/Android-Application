@@ -361,7 +361,7 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
 
 //        PrimeRun p = new PrimeRun(this);
 //        new Thread(p).start();
-
+//
 //        PrimeRun1 p1 = new PrimeRun1(this);
 //        new Thread(p1).start();
     }

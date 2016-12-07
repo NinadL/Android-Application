@@ -226,7 +226,7 @@ public class laneFunctions
         {
 
             //If we are rendering the right lane
-            if (laneSide == LEFT_LANE)
+            if (laneSide == RIGHT_LANE)
             {
                 //We need to add the vertices which are to
                 // the right of this lane to the sideLanePoints arraylist.
@@ -341,10 +341,15 @@ public class laneFunctions
             //If solid line is present, we represent it by white color
             if(mode != 1)
             {
-                centreLaneColor.add(0.25f);
-                centreLaneColor.add(0.25f);
-                centreLaneColor.add(0.25f);
-                centreLaneColor.add(1f);
+                sideLaneColor.add(0.25f);
+                sideLaneColor.add(0.25f);
+                sideLaneColor.add(0.25f);
+                sideLaneColor.add(1f);
+                /////////////////////////////////
+//                centreLaneColor.add(0.25f);
+//                centreLaneColor.add(0.25f);
+//                centreLaneColor.add(0.25f);
+//                centreLaneColor.add(1f);
             }
         }
 
@@ -352,68 +357,128 @@ public class laneFunctions
         // blending has to be done from left to right
         if(mode != 1) {
             if (laneSide == LEFT_LANE) {
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(1f);
+                /////////////////////////////////
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(1f);
             }
             //We we are rendering left lane,
             // blending has to be done from right to left
             else {
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(0.25f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(0.25f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(1f);
 
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(0.025f);
-                sideLaneColor.add(1f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(0.025f);
+                centreLaneColor.add(1f);
+                ///////////////////////////////
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(0.25f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(1f);
+//
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(0.025f);
+//                sideLaneColor.add(1f);
             }
         }
     }
