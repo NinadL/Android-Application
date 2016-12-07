@@ -133,7 +133,7 @@ public class DataParser
                 JSONArray pointsData = laneData.getJSONArray("points");
                 if (pointsData != null)
                 {
-
+                    Point lastPoint = new Point();
                     for (int j = 0; j < pointsData.length(); j++)
                     {
                         Point pointsDataObject = new Point();
@@ -144,9 +144,33 @@ public class DataParser
                         pointsDataObject.setNy(Double.valueOf(point.get("ny").toString()));
 
                         laneDataObject.addPoint(pointsDataObject);
+
+                        lastPoint = pointsDataObject;
+                    }
+
+                    if(lastPoint.getX() < 100.0d)
+                    {
+                        double xCoordinate = lastPoint.getX();
+                        double yCoordinate = lastPoint.getY();
+                        double nx = lastPoint.getNx();
+                        double ny = lastPoint.getNy();
+
+                        xCoordinate = xCoordinate + 2;
+
+                        while(xCoordinate < 100.0d)
+                        {
+                            Point newPoint = new Point();
+                            newPoint.setX(xCoordinate);
+                            newPoint.setY(yCoordinate);
+                            newPoint.setNx(nx);
+                            newPoint.setNy(ny);
+                            laneDataObject.addPoint(newPoint);
+                            xCoordinate = xCoordinate+1;
+                        }
                     }
                     laneObject.add(laneDataObject);
                 }
+
             }
             Log.d("sortedLane Size,",sortedLane.size()+" ");
         }

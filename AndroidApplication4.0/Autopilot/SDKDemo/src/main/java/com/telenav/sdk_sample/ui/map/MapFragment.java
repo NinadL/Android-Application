@@ -671,7 +671,7 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
         mainActivity = getActivity();
         //text to speech
         textToSpeechManager = MapActivity.textToSpeechManager;
-        //textToSpeechManager.initialiseTextToSpeech();
+        textToSpeechManager.initialiseTextToSpeech();
     }
 
     @Override

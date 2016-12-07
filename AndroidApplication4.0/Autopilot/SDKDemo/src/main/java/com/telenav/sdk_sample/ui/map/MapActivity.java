@@ -1273,7 +1273,7 @@ public class MapActivity extends AppCompatActivity implements InitialiseStatusLi
             DataParser dataParser = new DataParser();
             String str="";
             StringBuffer buf = new StringBuffer();
-            InputStream is = context.getResources().openRawResource(R.raw.android_log);
+            InputStream is = context.getResources().openRawResource(R.raw.car_log);
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
             if (is!=null)

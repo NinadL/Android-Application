@@ -13,7 +13,6 @@ import android.widget.RelativeLayout;
 import com.telenav.sdk_sample.R;
 import com.telenav.sdk_sample.car.data.DataParser;
 import com.telenav.sdk_sample.car.data.Lane;
-import com.telenav.sdk_sample.car.data.setStatusClass;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -64,8 +63,12 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
     //******    constants     ******//
 
-    final short DASH_LANE = 1;
+    final short INVISIBLE_LANE = 3;
     final short SOLID_LANE = 2;
+
+    final short RIGHT_LANE = 0;
+    final short LEFT_LANE = 1;
+
 
     private DrawEntity drawEntityObjectForBuffer = new DrawEntity();
     private laneFunctions laneFunctionsObject = new laneFunctions();
@@ -102,30 +105,30 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         * "lookY" shifts the view up/down ,-40 places it in center of screen and  "eyeY" makes the camera to go up/down
         *
         * */
-        final float eyeX = -3;                                     ;
-        final float eyeY =22f;
-        final float eyeZ = 0;
+        final float eyeX = -21.0f;
+        final float eyeY =0.0f;
+        final float eyeZ = 7.0f;
 
         // We are looking toward the distance
-        final float lookX = -3f;
-        final float lookY = -15f;
-        final float lookZ = -18.0f;
+        final float lookX = -8.0f;
+        final float lookY = -0.0f;
+        final float lookZ = -10.0f;
 
         // Set our up vector. This is where our head would be pointing were we holding the camera.
-        final float upX = 0.0f;
-        final float upY = 1.0f;
+        final float upX = 1.0f;
+        final float upY = 0.0f;
         final float upZ = 0.0f;
 
         Matrix.setLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, lookX, lookY, lookZ, upX, upY, upZ);
 
-        final float eyeXLane = -23;//-17
-        final float eyeYLane = 0f;
-        final float eyeZLane = 7;
+        final float eyeXLane = -21.0f;//-17
+        final float eyeYLane = 0.0f;
+        final float eyeZLane = 7.0f;
 
         // We are looking toward the distance
-        final float lookXLane = -0.0f;
+        final float lookXLane = -8.0f;
         final float lookYLane = 0.0f;
-        final float lookZLane = -18.0f;
+        final float lookZLane = -10.0f;
 
         // Set our up vector. This is where our head would be pointing were we holding the camera.
         final float upXLane = 1.0f;
@@ -351,8 +354,8 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
         Lane lane = new Lane();
         lane.init();
 
-        previousLaneBoundaries.add(lane.rightLane);
         previousLaneBoundaries.add(lane.leftLane);
+        previousLaneBoundaries.add(lane.rightLane);
         previousLaneBoundaries.add(lane.centerLane);
     }
 
@@ -410,16 +413,57 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
                     switch( localLaneBoundaryData.get(i).getType())
                     {
                         case 1:
+                            if(i == 0) {
+                                laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(i).getPoints(), 1, RIGHT_LANE,
+                                        boundaryPoints, boundaryColor);
+
+                                laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), 4, RIGHT_LANE,
+                                        null, centreLanePoints, sideLanePoints,
+                                        null, centreLaneColor, sideLaneColor);
+                            }
+                            else if(i == 1)
+                            {
+                                laneFunctionsObject.getDashedLineCoordinates(localLaneBoundaryData.get(i).getPoints(), 1, LEFT_LANE,
+                                        boundaryPoints, boundaryColor);
+
+                                laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), 4, LEFT_LANE,
+                                        null, centreLanePoints, sideLanePoints,
+                                        null, centreLaneColor, sideLaneColor);
+                            }
+                            break;
+
+
+
+                        case 3:
                             //dashed lane boundary
-                            laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), DASH_LANE,
-                                                                        boundaryPoints, centreLanePoints, sideLanePoints,
-                                                                        boundaryColor, centreLaneColor,  sideLaneColor);
+                            if(i == 0) {
+                                laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), INVISIBLE_LANE, RIGHT_LANE,
+                                        boundaryPoints, centreLanePoints, sideLanePoints,
+                                        boundaryColor, centreLaneColor, sideLaneColor);
+                            }
+                            else if(i == 1)
+                            {
+                                laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), INVISIBLE_LANE, LEFT_LANE,
+                                        boundaryPoints, centreLanePoints, sideLanePoints,
+                                        boundaryColor, centreLaneColor, sideLaneColor);
+                            }
                             break;
                         case 2:
                             //solid lane boundary
-                            laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), SOLID_LANE,
-                                                                        boundaryPoints, centreLanePoints,sideLanePoints,
-                                                                        boundaryColor, centreLaneColor,  sideLaneColor);
+                            if(i == 0)
+                            {
+                                laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), SOLID_LANE, RIGHT_LANE,
+                                        boundaryPoints, centreLanePoints,sideLanePoints,
+                                        boundaryColor, centreLaneColor,  sideLaneColor);
+
+                            }
+                            else if(i == 1)
+                            {
+                                laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), SOLID_LANE, LEFT_LANE,
+                                        boundaryPoints, centreLanePoints,sideLanePoints,
+                                        boundaryColor, centreLaneColor,  sideLaneColor);
+                            }
+
                             break;
                     }
                 }

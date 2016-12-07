@@ -10,6 +10,9 @@ public class LaneModel
     static Lane rightLaneBoundary;
     static Lane leftLaneBoundary;
 
+    int leftLaneType = 3;
+    int rightLaneType = 3;
+
     static boolean isRightRightLanePresent = false;
     static boolean isRightLanePresent = false;
     static boolean isLeftLanePresent = false;
@@ -33,7 +36,7 @@ public class LaneModel
             //find ideal lane boundary for all the lanes except for the centre lane
             if(laneBoundaries.get(i).getType() != 9)
             {
-                findMatchingPair(laneBoundaries.get(i).getPoints().get(0).getY());
+                findMatchingPair(laneBoundaries.get(i));
             }
         }
 
@@ -42,18 +45,16 @@ public class LaneModel
         {
             if (laneBoundaries.get(i).getType() == 9)
             {
-
-                extendLane(laneBoundaries.get(i));
-
+                //extendLane(laneBoundaries.get(i));
 
                 if(isLeftLanePresent && isRightLanePresent)
                 {
                     rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
-                    rightLaneBoundary.setType(1);
+                    rightLaneBoundary.setType(rightLaneType);
                     sortedBoundaries.add(rightLaneBoundary);
 
                     leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
-                    leftLaneBoundary.setType(1);
+                    leftLaneBoundary.setType(leftLaneType);
                     sortedBoundaries.add(leftLaneBoundary);
 
                     statusClass.setAreWeOnCentreLane(true);
@@ -61,36 +62,37 @@ public class LaneModel
                 else if(isLeftLanePresent)
                 {
                     rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
-                    rightLaneBoundary.setType(2);
+                    rightLaneBoundary.setType(rightLaneType);
                     sortedBoundaries.add(rightLaneBoundary);
 
                     leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
-                    leftLaneBoundary.setType(1);
+                    leftLaneBoundary.setType(leftLaneType);
                     sortedBoundaries.add(leftLaneBoundary);
 
                 }
                 else if(isRightLanePresent)
                 {
                     rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
-                    rightLaneBoundary.setType(1);
+                    rightLaneBoundary.setType(rightLaneType);
                     sortedBoundaries.add(rightLaneBoundary);
 
                     leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
-                    leftLaneBoundary.setType(2);
+                    leftLaneBoundary.setType(leftLaneType);
                     sortedBoundaries.add(leftLaneBoundary);
                 }
                 else
                 {
                     rightLaneBoundary = createImaginaryLane(-1.8, laneBoundaries.get(i));
-                    rightLaneBoundary.setType(2);
+                    rightLaneBoundary.setType(rightLaneType);
                     sortedBoundaries.add(rightLaneBoundary);
 
                     leftLaneBoundary = createImaginaryLane(1.8, laneBoundaries.get(i));
-                    leftLaneBoundary.setType(2);
+                    leftLaneBoundary.setType(leftLaneType);
                     sortedBoundaries.add(leftLaneBoundary);
                 }
                 sortedBoundaries.add(laneBoundaries.get(i));
-
+                leftLaneType = 3;
+                rightLaneType = 3;
             }
         }
         return this.sortedBoundaries;
@@ -122,8 +124,10 @@ public class LaneModel
     }
 
     //Finds the closest lane boundary to the ideal lane boundary
-    void findMatchingPair(double y)
+    void findMatchingPair(Lane lane)
     {
+        double y = lane.getPoints().get(0).getY();
+
         double targetValueOne = Math.pow((5.4 - y), 2);
         double targetValueTwo = Math.pow((1.8 - y), 2);
 
@@ -153,10 +157,14 @@ public class LaneModel
         else if (lanePresent == 1.8)
         {
             isLeftLanePresent = true;
-        } else if (lanePresent == -1.8)
+            leftLaneType = lane.getType();
+        }
+        else if (lanePresent == -1.8)
         {
             isRightLanePresent = true;
-        } else if (lanePresent == -5.4)
+            rightLaneType = lane.getType();
+        }
+        else if (lanePresent == -5.4)
         {
             isRightRightLanePresent = true;
         }
@@ -172,7 +180,7 @@ public class LaneModel
             double xCoordinate = points.get(points.size()-1).getX();
             double yCoordinate = points.get(points.size()-1).getY();
 
-            xCoordinate = xCoordinate + 5;
+            xCoordinate = xCoordinate + 2;
 
             while(xCoordinate < 200.0d)
             {
