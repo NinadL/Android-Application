@@ -11,8 +11,8 @@ public class laneFunctions
     //Constants
     final short INVISIBLE_LANE = 3;
     final short SOLID_LANE = 2;
-    final float SIDE_SIZE = 3.6f;
-    final float CENTRE_SIZE = 1.8f;
+    final float SIDE_SIZE = 1.8f;
+    final float CENTRE_SIZE = 3.6f;
     final short RIGHT_LANE = 0;
     final short LEFT_LANE = 1;
 

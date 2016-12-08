@@ -133,7 +133,6 @@ public class DataParser
                 JSONArray pointsData = laneData.getJSONArray("points");
                 if (pointsData != null)
                 {
-                    Point lastPoint = new Point();
                     for (int j = 0; j < pointsData.length(); j++)
                     {
                         Point pointsDataObject = new Point();
@@ -144,9 +143,18 @@ public class DataParser
                         pointsDataObject.setNy(Double.valueOf(point.get("ny").toString()));
 
                         laneDataObject.addPoint(pointsDataObject);
-
-                        lastPoint = pointsDataObject;
                     }
+
+                    Point lastPoint = new Point();
+                    Point secondLastPoint = new Point();
+                    lastPoint = laneDataObject.getPoints().get(laneDataObject.getPoints().size()-1);
+                    secondLastPoint = laneDataObject.getPoints().get(laneDataObject.getPoints().size()-2);
+
+                    double XDifference = lastPoint.getX() - secondLastPoint.getX();
+                    double YDifference = lastPoint.getY() - secondLastPoint.getY();
+                    double NYDifference = lastPoint.getNy() - secondLastPoint.getNy();
+                    double NXDifference = lastPoint.getNx() - secondLastPoint.getNx();
+
 
                     if(lastPoint.getX() < 100.0d)
                     {
@@ -155,7 +163,10 @@ public class DataParser
                         double nx = lastPoint.getNx();
                         double ny = lastPoint.getNy();
 
-                        xCoordinate = xCoordinate + 2;
+                        xCoordinate = xCoordinate + XDifference;
+                        yCoordinate = yCoordinate + YDifference;
+                        nx = nx + NXDifference;
+                        ny = ny + NYDifference;
 
                         while(xCoordinate < 100.0d)
                         {
@@ -165,7 +176,10 @@ public class DataParser
                             newPoint.setNx(nx);
                             newPoint.setNy(ny);
                             laneDataObject.addPoint(newPoint);
-                            xCoordinate = xCoordinate+1;
+                            xCoordinate = xCoordinate + XDifference;
+                            yCoordinate = yCoordinate + YDifference;
+                            nx = nx + NXDifference;
+                            ny = ny + NYDifference;
                         }
                     }
                     laneObject.add(laneDataObject);
