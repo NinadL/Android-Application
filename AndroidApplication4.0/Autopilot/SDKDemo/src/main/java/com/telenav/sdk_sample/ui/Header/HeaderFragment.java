@@ -464,7 +464,13 @@ public class HeaderFragment extends Fragment
      */
     public void setNormalAndAutopilotSpeedLimit()
     {
-        if (NavigationManager.getInstance() != null &&
+        if(!MapActivity.isNavigationStarted)
+        {
+            speedLimitNormal.setText("");
+            speedLimitAutopilot.setText("");
+        }
+
+        else if (NavigationManager.getInstance() != null &&
                 NavigationManager.getInstance().getNavigationData() != null)
         {
 
@@ -539,6 +545,30 @@ public class HeaderFragment extends Fragment
         }
     }
 
+    public void setTurnDistanceVisible(boolean visible)
+    {
+        if(!visible)
+        {
+            turnDistance.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            turnDistance.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void setTurnIconVisible(boolean visible)
+    {
+        if(!visible)
+        {
+            turnIcon.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            turnIcon.setVisibility(View.VISIBLE);
+        }
+    }
+
     /*
      *  This method is used to set the turn icon, during navigation.
      */
@@ -546,6 +576,7 @@ public class HeaderFragment extends Fragment
     {
         if(turnIcon != null) {
             switch (turnType) {
+
                 case Continue:
                     turnIcon.setImageResource(R.drawable.lane_assist_ahead_icon);
                     break;

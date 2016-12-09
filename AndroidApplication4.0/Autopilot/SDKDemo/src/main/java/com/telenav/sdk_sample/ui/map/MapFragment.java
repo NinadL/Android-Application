@@ -967,9 +967,6 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 
 
                         naviButton.setText(getResources().getText(R.string.stop_navi_button_label));
-                        //nextStreetNameTextView.setVisibility(View.VISIBLE);
-//                        navigationDetails.setVisibility(View.VISIBLE);
-//                        navigationDetailsExt.setVisibility(View.VISIBLE);
                         travelEstimation.setVisibility(View.VISIBLE);
                         currentStreetName.setVisibility(View.VISIBLE);
                         zoomView.setVisibility(View.VISIBLE);
@@ -991,6 +988,8 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
 
                         MapActivity.isNavigationStarted = true;
                         naviButton.setVisibility(View.GONE);
+                        MapActivity.headerFragment.setTurnIconVisible(true);
+                        MapActivity.headerFragment.setTurnDistanceVisible(true);
                     }
                 }
                 break;
@@ -1009,8 +1008,13 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                 slidingMenu.setVisibility(View.VISIBLE);
                 NavigationManager.getInstance().stopNavigation();
                 mapSettings.setLocationType(MapSettings.LOCATION_TYPE_REAL);
+                MapActivity.headerFragment.setTurnIconVisible(false);
+                MapActivity.headerFragment.setTurnDistanceVisible(false);
+                MapActivity.headerFragment.setNextStreetName("");
+                MapActivity.headerFragment.setNormalAndAutopilotSpeedLimit();
                 mapView.removeAllAnnotation();
                 releaseAnnotations();
+
                 mapSettings.setZoomLevel(8.0f, 0.5f);
                 ((MapActivity) mainActivity).enableSettingsMenu();
                 MapActivity.isNavigationStarted = false;
@@ -1096,6 +1100,10 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
                         mapView.clearRoutes();
                     }
                     ((MapActivity) mainActivity).enableSettingsMenu();
+                    MapActivity.headerFragment.setTurnIconVisible(false);
+                    MapActivity.headerFragment.setTurnDistanceVisible(false);
+                    MapActivity.headerFragment.setNextStreetName("");
+                    MapActivity.headerFragment.setNormalAndAutopilotSpeedLimit();
                 }
             });
         }
@@ -1588,6 +1596,8 @@ public class MapFragment extends Fragment implements MapListener, LocationListen
     private void setImageResource(NavigationData navigationData, HeaderFragment headerFragment)
     {
         ManeuverInfo maneuverInfo = navigationData.getCurrentManeuverInfo();
+
+
         if(maneuverInfo != null)
         {
             TurnType turnType = maneuverInfo.getTurnType();
