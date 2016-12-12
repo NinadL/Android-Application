@@ -188,11 +188,11 @@ public class laneFunctions
         //Set the thickness
         if(mode == INVISIBLE_LANE)
         {
-            thickness = 0.05f;
+            thickness = 0.03f;
         }
         else
         {
-            thickness = 0.1f;
+            thickness = 0.05f;
         }
 
         /////////////////////////

@@ -145,8 +145,8 @@ public class DataParser
                         laneDataObject.addPoint(pointsDataObject);
                     }
 
-                    Point lastPoint = new Point();
-                    Point secondLastPoint = new Point();
+                    Point lastPoint;
+                    Point secondLastPoint;
                     lastPoint = laneDataObject.getPoints().get(laneDataObject.getPoints().size()-1);
                     secondLastPoint = laneDataObject.getPoints().get(laneDataObject.getPoints().size()-2);
 

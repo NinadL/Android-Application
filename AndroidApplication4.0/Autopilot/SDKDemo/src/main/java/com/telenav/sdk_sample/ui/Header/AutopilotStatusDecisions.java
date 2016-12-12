@@ -96,7 +96,8 @@ public class AutopilotStatusDecisions
         else
         {
             setStatus(NODES_NOT_WORKING);
-            return false;
+            //return false;
+            return true;
         }
     }
 
