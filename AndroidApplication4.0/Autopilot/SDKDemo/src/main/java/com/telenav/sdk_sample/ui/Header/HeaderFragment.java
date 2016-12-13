@@ -417,26 +417,26 @@ public class HeaderFragment extends Fragment
                 }
             });
 
-            if (index == 5) {
-                mapsInformationLayout.getHandler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mapsInformationLayout.setBackgroundColor(getResources().getColor(R.color.emergency_background_color));
-                    }
-                });
-                speedometerLayout.getHandler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        speedometerLayout.setBackgroundColor(getResources().getColor(R.color.emergency_background_color));
-                    }
-                });
-                autopilotStatusLayout.getHandler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        autopilotStatusLayout.setBackgroundColor(getResources().getColor(R.color.emergency_background_color));
-                    }
-                });
-            } else {
+//            if (index == 5) {
+//                mapsInformationLayout.getHandler().post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mapsInformationLayout.setBackgroundColor(getResources().getColor(R.color.emergency_background_color));
+//                    }
+//                });
+//                speedometerLayout.getHandler().post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        speedometerLayout.setBackgroundColor(getResources().getColor(R.color.emergency_background_color));
+//                    }
+//                });
+//                autopilotStatusLayout.getHandler().post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        autopilotStatusLayout.setBackgroundColor(getResources().getColor(R.color.emergency_background_color));
+//                    }
+//                });
+//            } else {
                 mapsInformationLayout.getHandler().post(new Runnable() {
                     @Override
                     public void run() {
@@ -455,7 +455,7 @@ public class HeaderFragment extends Fragment
                         autopilotStatusLayout.setBackgroundColor(getResources().getColor(R.color.backgroundColor));
                     }
                 });
-            }
+//            }
         }
     }
 

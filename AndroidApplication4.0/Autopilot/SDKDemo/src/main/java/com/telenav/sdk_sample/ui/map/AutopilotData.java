@@ -65,6 +65,26 @@ public class AutopilotData
         return 0;
     }
 
+    public double getHighwayEndDistance() {
+        int remainingDistanceTillEndOfHighway = Integer.MAX_VALUE;
+
+        if (NavigationManager.getInstance() != null && NavigationManager.getInstance().getNavigationData() != null && myMapRenderingUtils.distanceValues.size() > 0) {
+            NavigationData navigationData = NavigationManager.getInstance().getNavigationData();
+            int travelledDistance = navigationData.getTravelledDistance();
+
+            for (int i = myMapRenderingUtils.distanceValues.size() - 1; i > 0; i--)
+            {
+                if (myMapRenderingUtils.distanceValues.get(i).type == HIGHWAY) {
+                    remainingDistanceTillEndOfHighway = myMapRenderingUtils.distanceValues.get(i).distance - travelledDistance;
+                    return remainingDistanceTillEndOfHighway;
+                }
+
+            }
+        }
+        return remainingDistanceTillEndOfHighway;
+    }
+
+
     /*
      *  This method is used to get the speed
      *  from the data parser and send it to UI for display

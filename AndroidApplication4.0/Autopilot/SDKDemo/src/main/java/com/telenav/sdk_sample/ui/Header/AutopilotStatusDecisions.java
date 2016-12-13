@@ -96,8 +96,8 @@ public class AutopilotStatusDecisions
         else
         {
             setStatus(NODES_NOT_WORKING);
-            //return false;
-            return true;
+            return false;
+            //return true;
         }
     }
 
@@ -156,6 +156,7 @@ public class AutopilotStatusDecisions
             isAutopilotOn = dataParser.getControlMessageObject().getIsAutoDrivingOn();
         }
         return isAutopilotOn;
+        //return HeaderFragment.isAutopilotOn;
     }
 
     /*
@@ -170,6 +171,7 @@ public class AutopilotStatusDecisions
         {
             setStatus(WE_ARE_NOT_ON_CENTRE_LANE);
             return false;
+            //return true;
         }
     }
 
@@ -239,14 +241,9 @@ public class AutopilotStatusDecisions
                 speech.autopilotEnabledMessagePlayed = false;
                 MapActivity.headerFragment.canAutopilotBeEnabled = false;
             }
-            else if((MapActivity.isNavigationStarted && areWeOnHighway() &&
+            else if(areWeOnHighway() &&
                     !isAutoPilotOnForCar() &&
-                    isDistanceToAutopilotEndMoreThan3Miles() &&
-                    areWeOnCentreLane()) ||
-                    (!MapActivity.isNavigationStarted &&
-                     !isAutoPilotOnForCar() &&
-                     areWeOnHighway() &&
-                     areWeOnCentreLane()))
+                    areWeOnCentreLane())
             {
                 MapActivity.headerFragment.canAutopilotBeEnabled = true;
 
@@ -280,20 +277,24 @@ public class AutopilotStatusDecisions
 
                 if(MapActivity.isNavigationStarted) {
                     double remainingDistance = autopilotData.getDistance();
+                    double remainingDistanceToHighwayEnd = autopilotData.getHighwayEndDistance();
                     //Convert meters to miles
                     remainingDistance = remainingDistance * 0.000621371;
-                    if (remainingDistance > 5.00) {
+                    remainingDistanceToHighwayEnd = remainingDistanceToHighwayEnd * 0.000621371;
+                    Log.d("distanceToHighwayEnd", String.valueOf(remainingDistanceToHighwayEnd));
+                    if (remainingDistanceToHighwayEnd < 1.00){
+                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
+                        MapActivity.headerFragment.setAutopilotStatusImageAndText(TAKE_OVER_NOW);
+                    }
+                    else if (remainingDistance > 5.00) {
                         MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
                         MapActivity.headerFragment.setAutopilotStatusImageAndText(AUTOPILOT_ENABLED);
                     } else if (isDistanceToAutopilotEndMoreThan3Miles()) {
                         MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
                         MapActivity.headerFragment.setAutopilotStatusImageAndText(PREPARE_TO_TAKE_OVER);
-                    } else if (remainingDistance <= 3.00 && remainingDistance > 1.00) {
+                    } else if (remainingDistance <= 3.00 ) {
                         MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
                         MapActivity.headerFragment.setAutopilotStatusImageAndText(PLEASE_TAKE_OVER);
-                    } else {
-                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
-                        MapActivity.headerFragment.setAutopilotStatusImageAndText(TAKE_OVER_NOW);
                     }
                 }
 
