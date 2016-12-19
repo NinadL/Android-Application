@@ -282,13 +282,11 @@ public class DrawEntity
                 ArrayList<Obstacles> obstacleList = dp.getObstaclesObject();
                 for (int i = 0; i < obstacleList.size(); i++)
                 {
+                    GLES20.glFlush();
                     if (obstacleList.get(i) != null && isObstacleInAdjacentLane(obstacleList.get(i)))
                     {
                         float yCoordinate = (float)obstacleList.get(i).getPosition()[1];
                         float xCoordinate = (float)obstacleList.get(i).getPosition()[0];
-
-//                        float yCoordinate = -3.6f;
-//                        float xCoordinate = 10.0f;
 
                         Matrix.scaleM(mModelMatrixLane, 0, 1f, 1f, 1f);
 

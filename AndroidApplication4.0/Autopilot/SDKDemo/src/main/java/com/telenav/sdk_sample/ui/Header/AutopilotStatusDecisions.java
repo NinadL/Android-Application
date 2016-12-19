@@ -156,6 +156,7 @@ public class AutopilotStatusDecisions
             isAutopilotOn = dataParser.getControlMessageObject().getIsAutoDrivingOn();
         }
         return isAutopilotOn;
+        //return true;
         //return HeaderFragment.isAutopilotOn;
     }
 
@@ -219,7 +220,51 @@ public class AutopilotStatusDecisions
             " areWeOnCentreLane : " + String.valueOf(areWeOnCentreLane()));
 
             //Check if we are connected to the network
-            if(!isNetworkWorking())
+
+            if(isAutoPilotOnForCar())
+            {
+
+                if(!speech.autopilotEnabledMessagePlayed)
+                {
+                    MapActivity.textToSpeechManager.playAdvice(speech.autopilotEnabledMessage);
+                    speech.autopilotEnabledMessagePlayed = true;
+                }
+
+                MapActivity.headerFragment.setEngageAutopilot(DISABLED);
+                MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(AUTOPILOT);
+                MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
+                MapActivity.headerFragment.setAutopilotStatusImageAndText(AUTOPILOT_ENABLED);
+
+
+                if(MapActivity.isNavigationStarted)
+                {
+                    double remainingDistance = autopilotData.getDistance();
+                    double remainingDistanceToHighwayEnd = autopilotData.getHighwayEndDistance();
+                    //Convert meters to miles
+                    remainingDistance = remainingDistance * 0.000621371;
+                    remainingDistanceToHighwayEnd = remainingDistanceToHighwayEnd * 0.000621371;
+                    Log.d("distanceToHighwayEnd", String.valueOf(remainingDistanceToHighwayEnd));
+                    if (remainingDistanceToHighwayEnd < 1.00){
+                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
+                        MapActivity.headerFragment.setAutopilotStatusImageAndText(TAKE_OVER_NOW);
+                    }
+                    else if (remainingDistance > 5.00) {
+                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
+                        MapActivity.headerFragment.setAutopilotStatusImageAndText(AUTOPILOT_ENABLED);
+                    } else if (isDistanceToAutopilotEndMoreThan3Miles()) {
+                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
+                        MapActivity.headerFragment.setAutopilotStatusImageAndText(PREPARE_TO_TAKE_OVER);
+                    } else if (remainingDistance <= 3.00 ) {
+                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
+                        MapActivity.headerFragment.setAutopilotStatusImageAndText(PLEASE_TAKE_OVER);
+                    }
+                }
+
+                speech.autopilotEnableMessagePlayed = false;
+                MapActivity.headerFragment.canAutopilotBeEnabled = false;
+            }
+
+            else if(!isNetworkWorking())
             {
                 MapActivity.headerFragment.setAutopilotStatusImageAndText(MANUAL_DRIVE);
                 MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
@@ -262,45 +307,48 @@ public class AutopilotStatusDecisions
             }
 
 
-            else if(isAutoPilotOnForCar())
-            {
-
-                if(!speech.autopilotEnabledMessagePlayed)
-                {
-                    MapActivity.textToSpeechManager.playAdvice(speech.autopilotEnabledMessage);
-                    speech.autopilotEnabledMessagePlayed = true;
-                }
-
-                MapActivity.headerFragment.setEngageAutopilot(DISABLED);
-                MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(AUTOPILOT);
-
-
-                if(MapActivity.isNavigationStarted) {
-                    double remainingDistance = autopilotData.getDistance();
-                    double remainingDistanceToHighwayEnd = autopilotData.getHighwayEndDistance();
-                    //Convert meters to miles
-                    remainingDistance = remainingDistance * 0.000621371;
-                    remainingDistanceToHighwayEnd = remainingDistanceToHighwayEnd * 0.000621371;
-                    Log.d("distanceToHighwayEnd", String.valueOf(remainingDistanceToHighwayEnd));
-                    if (remainingDistanceToHighwayEnd < 1.00){
-                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
-                        MapActivity.headerFragment.setAutopilotStatusImageAndText(TAKE_OVER_NOW);
-                    }
-                    else if (remainingDistance > 5.00) {
-                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
-                        MapActivity.headerFragment.setAutopilotStatusImageAndText(AUTOPILOT_ENABLED);
-                    } else if (isDistanceToAutopilotEndMoreThan3Miles()) {
-                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
-                        MapActivity.headerFragment.setAutopilotStatusImageAndText(PREPARE_TO_TAKE_OVER);
-                    } else if (remainingDistance <= 3.00 ) {
-                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
-                        MapActivity.headerFragment.setAutopilotStatusImageAndText(PLEASE_TAKE_OVER);
-                    }
-                }
-
-                speech.autopilotEnableMessagePlayed = false;
-                MapActivity.headerFragment.canAutopilotBeEnabled = false;
-            }
+//            else if(isAutoPilotOnForCar())
+//            {
+//
+//                if(!speech.autopilotEnabledMessagePlayed)
+//                {
+//                    MapActivity.textToSpeechManager.playAdvice(speech.autopilotEnabledMessage);
+//                    speech.autopilotEnabledMessagePlayed = true;
+//                }
+//
+//                MapActivity.headerFragment.setEngageAutopilot(DISABLED);
+//                MapActivity.headerFragment.setVisibilityForSpeedLimitAndRefSpeed(AUTOPILOT);
+//                MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
+//                MapActivity.headerFragment.setAutopilotStatusImageAndText(AUTOPILOT_ENABLED);
+//
+//
+//                if(MapActivity.isNavigationStarted)
+//                {
+//                    double remainingDistance = autopilotData.getDistance();
+//                    double remainingDistanceToHighwayEnd = autopilotData.getHighwayEndDistance();
+//                    //Convert meters to miles
+//                    remainingDistance = remainingDistance * 0.000621371;
+//                    remainingDistanceToHighwayEnd = remainingDistanceToHighwayEnd * 0.000621371;
+//                    Log.d("distanceToHighwayEnd", String.valueOf(remainingDistanceToHighwayEnd));
+//                    if (remainingDistanceToHighwayEnd < 1.00){
+//                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
+//                        MapActivity.headerFragment.setAutopilotStatusImageAndText(TAKE_OVER_NOW);
+//                    }
+//                    else if (remainingDistance > 5.00) {
+//                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
+//                        MapActivity.headerFragment.setAutopilotStatusImageAndText(AUTOPILOT_ENABLED);
+//                    } else if (isDistanceToAutopilotEndMoreThan3Miles()) {
+//                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(ENABLED);
+//                        MapActivity.headerFragment.setAutopilotStatusImageAndText(PREPARE_TO_TAKE_OVER);
+//                    } else if (remainingDistance <= 3.00 ) {
+//                        MapActivity.headerFragment.setIncreaseDecreaseSpeed(DISABLED);
+//                        MapActivity.headerFragment.setAutopilotStatusImageAndText(PLEASE_TAKE_OVER);
+//                    }
+//                }
+//
+//                speech.autopilotEnableMessagePlayed = false;
+//                MapActivity.headerFragment.canAutopilotBeEnabled = false;
+//            }
 
             else
             {

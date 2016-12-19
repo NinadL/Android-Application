@@ -467,6 +467,23 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
                                         boundaryColor, centreLaneColor,  sideLaneColor);
                             }
                             break;
+
+                        default:
+                            //solid lane boundary
+                            if(i == 0)
+                            {
+                                laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), SOLID_LANE, RIGHT_LANE,
+                                        boundaryPoints, centreLanePoints,sideLanePoints,
+                                        boundaryColor, centreLaneColor,  sideLaneColor);
+
+                            }
+                            else if(i == 1)
+                            {
+                                laneFunctionsObject.generateVertexAndColorPoints(localLaneBoundaryData.get(i).getPoints(), SOLID_LANE, LEFT_LANE,
+                                        boundaryPoints, centreLanePoints,sideLanePoints,
+                                        boundaryColor, centreLaneColor,  sideLaneColor);
+                            }
+                            break;
                     }
                 }
 

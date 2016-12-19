@@ -57,7 +57,8 @@ public class LaneModel
                     leftLaneBoundary.setType(leftLaneType);
                     sortedBoundaries.add(leftLaneBoundary);
 
-                    if(rightLaneType == 1 && leftLaneType == 1) {
+                    if(rightLaneType == 1 && leftLaneType == 1)
+                    {
                         statusClass.setAreWeOnCentreLane(true);
                     }
                     else
